@@ -1,5 +1,5 @@
 
-public class Profiles {
+public class Profiles {		
 	
 	private String firstName, lastName, mobilePhone, residenceRegion, userID, gender, dateOfInfection;
 	private int age;
@@ -19,7 +19,7 @@ public class Profiles {
 		this.age = age;
 		this.isSusceptible = isSusceptible;
 		this.closeContactWith = closeContactWith;
-		
+
 	}
 
 	public String getFirstName() { return firstName; }
@@ -27,7 +27,7 @@ public class Profiles {
 	public String getLastName() { return lastName; }
 
 	public String getMobilePhone() { return mobilePhone; }
-	
+
 	public String getResidenceRegion() { return residenceRegion; }
 
 	public String getUserID() { return userID; }
