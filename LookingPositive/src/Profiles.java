@@ -1,12 +1,19 @@
 
 public class Profiles {		
 	
-	private String firstName, lastName, mobilePhone, residenceRegion, userID, gender, dateOfInfection;
-	private int age;
+	private String firstName, lastName, mobilePhone, residenceRegion, gender, dateOfInfection;
+	private int age ,userId;
 	private boolean isSusceptible;
 	private String[] closeContactWith;
-
-	public void modelCase(String firstName, String lastName, String mobilePhone, 
+	private static int counterforus = 0 ;
+	public Profiles(String firstName , int userId ) { 
+		
+		
+			this.firstName = firstName;
+			this.userId = userId ; }
+	
+	
+	/*public void modelCase(String firstName, String lastName, String mobilePhone, 
 					 String residenceRegion, String userID, String gender, 
 					 String dateOfInfection, int age, boolean isSusceptible, String[]closeContactWith) {
 		this.firstName = firstName;
@@ -20,7 +27,7 @@ public class Profiles {
 		this.isSusceptible = isSusceptible;
 		this.closeContactWith = closeContactWith;
 
-	}
+	}*/
 
 	public String getFirstName() { return firstName; }
 
@@ -30,7 +37,7 @@ public class Profiles {
 
 	public String getResidenceRegion() { return residenceRegion; }
 
-	public String getUserID() { return userID; }
+	public int getUserID() { return userId; }
 
 	public String getGender() { return gender; }
 
