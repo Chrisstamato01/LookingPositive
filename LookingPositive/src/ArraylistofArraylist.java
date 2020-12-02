@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class ArraylistofArraylist {
 	
-	protected ArrayList<ArrayList<Event> > eventlist =  
-            new ArrayList<ArrayList<Event> >();
+	protected ArrayList<ArrayList<Event> > eventlist =  new ArrayList<ArrayList<Event> >();
 	
 	public void createarraylistofevents(int userid) {
 		

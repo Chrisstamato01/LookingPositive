@@ -6,7 +6,7 @@ protected static ArraylistofArraylist today = new ArraylistofArraylist();
 	protected static ArraylistofArraylist future = new ArraylistofArraylist();
 	LocalDate dayplusone ;
 	//na sviso to localdate today gt to xrisimopoioumne gia ton sxediasmo kanonika sigrinoume tin simerini hmerominia
-	public static String addevent(Event ev , int userid , LocalDate today) {
+	public static String addevent(Event ev , int userid , LocalDate tod) {
 
 	if(LocalDate.of(2020, 12, 01) .compareTo(LocalDate.of(2020, 12, 01))==0) {
 		today.eventlist.get(userid).add(ev);
