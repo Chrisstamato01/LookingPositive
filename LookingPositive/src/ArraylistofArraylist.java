@@ -8,6 +8,8 @@ public class ArraylistofArraylist {
 		
 		ArrayList<Event> usereventlist = new ArrayList<>();
 		eventlist.add(usereventlist);
+		
+	
 	}
 	
 	public void deleteevent () {
