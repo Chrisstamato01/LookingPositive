@@ -1,11 +1,12 @@
-import java.time.LocalDate;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class aeknfoeknf {
 
 	public static void main(String[] args) {
-		LocalDate veryoldDate = LocalDate.of(2020, 12, 01);
-		LocalDate oldDate = LocalDate.of(2020, 12, 03);
+		LocalDate veryoldDate = LocalDate.of(2020, 9, 25);
+		LocalDate oldDate = LocalDate.of(2020, 8, 14);
 		LocalDate newDate = LocalDate.of(2020, 12, 10);
 		ArrayList<Profiles> contactedpeople = new ArrayList<>();
 		Profiles katerina = new Profiles("katerina" , 0);
@@ -106,11 +107,11 @@ public class aeknfoeknf {
 		
 		//Eventsaver.deleteexpiredevents(p,c);
 		
-		Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,06) ,LocalDate.of(2020, 12, 01));
+		Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,06) ,LocalDate.of(2020, 11, 25));
 		
 		Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,07) ,LocalDate.of(2020, 12, 06));
 		
-		Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,11) ,LocalDate.of(2020, 12, 07));
+		Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,14) ,LocalDate.of(2020, 12, 07));
 		
 		//Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,05) ,LocalDate.of(2020, 12, 04));
 		
@@ -136,7 +137,7 @@ public class aeknfoeknf {
 					System.out.println(Eventsaver.fourteendays[kol].eventlist.get(i).get(j));
 		
 				}}}
-		
+		System.out.println(veryoldDate.until(oldDate , ChronoUnit.DAYS));
 				}
 			
 	}

@@ -1,4 +1,5 @@
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 public class Eventsaver {
 
@@ -34,7 +35,7 @@ public class Eventsaver {
 
 	public static void deleteexpiredevents(LocalDate newdate , LocalDate olddate) {
 		//ΒΡΙΣΚΟΥΜΕ ΤΗΝ ΔΙΑΦΟΡΑ ΜΕΤΑΞΥ ΤΩΝ ΗΜΕΡΟΜΗΝΙΩΝ
-		int x = newdate.compareTo(olddate);
+		long x = olddate.until(newdate , ChronoUnit.DAYS);
 		LocalDate replicaolddate ;
 	System.out.println(x);
 		//ΔΗΜΙΟΘΡΓΙΑ ΒΡΟΓΧΟΥ ΓΙΑ ΤΗΝ ΔΙΑΧΕΙΡΗΣΗ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΑΠΕΧΟΥΝ ΠΟΛΛΕΣ ΜΕΡΕΣ ΜΕΤΑΞΥ ΤΟΥΣ 
@@ -93,9 +94,9 @@ public class Eventsaver {
 		System.out.println("filling today");
 			for(int i = 0 ; i < future.eventlist.size() ; i++ ) {
 				for(int j = 0; j < future.eventlist.get(i).size(); j++) {
-					if(replicaolddate.compareTo(future.eventlist.get(i).get(j).getDate())==0) {
+					if(replicaolddate.isEqual((future.eventlist.get(i).get(j).getDate()))) {
 						today.eventlist.get(i).add(future.eventlist.get(i).get(j));
-						
+						//System.out.println(today.eventlist.get(i).get(j));
 					}
 				}
 			}
@@ -104,7 +105,7 @@ public class Eventsaver {
 		System.out.println("removing future of day");
 			for(int i = 0 ; i < future.eventlist.size() ; i++ ) {
 				for(int j = future.eventlist.get(i).size()-1; j >= 0; j-- ) {
-					if(replicaolddate.compareTo(future.eventlist.get(i).get(j).getDate())==0) {
+					if(replicaolddate.isEqual((future.eventlist.get(i).get(j).getDate()))) {
 						System.out.println(future.eventlist.get(i).size()+"before");
 						future.eventlist.get(i).remove(j);
 						System.out.println(future.eventlist.get(i).size()+"after");
@@ -115,45 +116,9 @@ public class Eventsaver {
 		System.out.println("Afterrefilltoday");
 		today.printcheck();
 		System.out.println("Afterrefilltoday");
-	/*}else if(x < 14){
-			LocalDate replicaolddate = olddate;
-			System.out.println("else");
-
-			for(int i = 13 ; i > x-1 ; i--) {
-				fourteendays[i].deleteevent();
-				fourteendays[i].copydoublearralist(fourteendays[i-1]);
-			}
-			for(int i = 0 ; i < x ; i++) {
-				fourteendays[i].deleteevent();
-			}
-			fourteendays[x-1].copydoublearralist(today);
-			for(int k = 2 ; k <= x ; k++) {
-				for(int i = 0 ; i < future.eventlist.size() ; i++ ) {
-					for(int j = 0; j < future.eventlist.get(i).size(); j++) {
-						if(olddate.plusDays(1).equals(future.eventlist.get(i).get(j).getDate())) {
-							today.eventlist.get(i).add(future.eventlist.get(i).get(j));
-							future.eventlist.get(i).remove(j);
-						}
-					}
-					fourteendays[x-k].copydoublearralist(today);
-				}
-			}
-			for(int k = 2 ; k <= x ; k++) {
-				for(int i = 0 ; i < future.eventlist.size() ; i++ ) {
-					for(int j = future.eventlist.get(i).size()-1; j >= 0; j--) {
-						if(replicaolddate.plusDays(1).equals(future.eventlist.get(i).get(j).getDate())) {
-							future.eventlist.get(i).remove(j);
-						}
-					}
-				}
-			}
-
-			// }else
-
-		
-	}*/
+	
 		}
 }
-	}
+}
 
 
