@@ -1,6 +1,5 @@
 import java.time.*;
 import java.time.temporal.ChronoUnit;
-import java.util.Collections;
 public class Eventsaver {
 
 	protected static ArraylistofArraylist fourteendays[] = new ArraylistofArraylist[14];
@@ -20,17 +19,17 @@ public class Eventsaver {
 	protected static ArraylistofArraylist day12 = new ArraylistofArraylist();
 	protected static ArraylistofArraylist day13 = new ArraylistofArraylist();
 	protected static ArraylistofArraylist day14 = new ArraylistofArraylist();
-	LocalDate dayplusone ;
 	
 	//na sviso to localdate today gt to xrisimopoioumne gia ton sxediasmo kanonika sigrinoume tin simerini hmerominia
+	//Η ΜΕΘΟΔΟΣ ΕΠΙΛΕΓΕΙ ΑΝ ΘΑ ΤΟΠΟΘΕΤΗΣΕΙ ΤΑ EVENT ΣΤΟΝ TODAY Η ΣΤΟΝ FUTURE
 	public static String addevent(Event ev , int userid , int x) {
 
-	if(x==1) {
-		today.eventlist.get(userid).add(ev);
-	}else {
-		future.eventlist.get(userid).add(ev);
-	}
-	return "Καταχωρήθηκε η εκδήλωση σας " + ev ;
+		if(x==1) {
+			today.eventlist.get(userid).add(ev);
+		}else {
+			future.eventlist.get(userid).add(ev);
+		}
+		return "Καταχωρήθηκε η εκδήλωση σας " + ev ;
 	}
 
 	public static void deleteexpiredevents(LocalDate newdate , LocalDate olddate) {
@@ -118,7 +117,7 @@ public class Eventsaver {
 		System.out.println("Afterrefilltoday");
 	
 		}
-}
+	}
 }
 
 
