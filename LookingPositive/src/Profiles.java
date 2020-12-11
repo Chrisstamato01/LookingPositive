@@ -1,10 +1,15 @@
 
 public class Profiles {		
 	
-	private String firstName, lastName, mobilePhone,userID, residenceRegion, gender, dateOfInfection;
-	private int age ;
+	private String firstName, lastName, mobilePhone, userID, residenceRegion, gender, dateOfInfection;
+	private int age;
 	private boolean isSusceptible;
 	private String[] closeContactWith;
+	
+	/*public Profiles(String firstName ,int  userID) {
+		this.firstName = firstName;
+		this.userID = userID;
+	}*/
 	
 	public void modelCase(String firstName, String lastName, String mobilePhone, 
 					 String residenceRegion, String userID, String gender, 
