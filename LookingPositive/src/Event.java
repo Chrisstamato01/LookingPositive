@@ -5,7 +5,7 @@ public class Event {
 	private LocalDate date;
 	private String place;
 	private ArrayList<Profiles> profiles;
-	
+	//ΚΑΤΑΣΚΕΥΑΣΤΗΣ ΤΩΝ EVENTS
 	public Event(LocalDate datetime ,String place ,ArrayList<Profiles> profiles) {
 		this.date = datetime;
 		this.place = place;

@@ -27,10 +27,7 @@ public class ArraylistofArraylist {
 			}
 		}
 	}
-	//@Override
-	//public String toString() {
-		
-	//}
+	//ΜΕΘΟΔΟΣ ΓΙΑ ΕΜΦΑΝΗΣΗ ΣΤΟΙΧΕΙΩΝ
 	public void printcheck() {
 		for (int i = 0 ; i < eventlist.size() ; i++ ) {
 			for(int j = 0; j < eventlist.get(i).size(); j++) {
