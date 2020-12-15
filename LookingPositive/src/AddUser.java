@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
 public class AddUser {
-	static int id=1;
-	
+static int id = 0;
+static int password = 1000;
+
 	private boolean hasError = false;
-	
+
 	public void add() {
-		Profiles profile = new Profiles();
-		profile.modelCase(handleFirstName(), handleLastName(), handleMobilePhone(), 
+		Profile profile = new Profile(handleFirstName(), handleLastName(), handleMobilePhone(),
 				handleResidenceRegion(),handleUserID(), handleGender(),
-				handleDateOfInfection(), handleAge(), handleIsSusceptible(),handleGetCloseContactWith());
+				handleDateOfInfection(), handleAge(), handleIsSusceptible(), handlePassword());
+
 		hasError = false;
 	}
 	private String handleFirstName() {
@@ -47,7 +48,7 @@ public class AddUser {
 	}
 	private String handleDateOfInfection() {
 		Scanner sc = new Scanner(System.in);    // να την φτιαξουμε με if (αν εχει κοβιντ ή οχι)
-		System.out.println("Έχετε μολυνθεί ;(Ν/Ο)");
+		System.out.println("Έχετε μολυνθεί; (Ν/Ο)");
 		String isInfected = sc.next();
 		if (isInfected == "Ν") {
 			System.out.println("Ημερομήνια μολύνσεως: "); 
@@ -75,13 +76,16 @@ public class AddUser {
 		}
 		return isSuspectible;
 	}
-	private String[] handleGetCloseContactWith() {
+	private int handlePassword() {
+		return password++;
+	}
+/*	private String[] handleGetCloseContactWith() {
 		Scanner sc = new Scanner(System.in);
 		String []toReturn = new String[20];
 		System.out.println("Έχετε έρθει σε επαφή με άλλα ατομα ; (Ν/Ο)");
 		String 	closeContactWith = sc.next();
 		int i=0;
-		
+
 		if (closeContactWith == "Ν") {
 			System.out.println("Με ποιον ;");
 			System.out.println("Οταν τελειωσετε εισαγεται Τέλος");
@@ -93,8 +97,6 @@ public class AddUser {
 			return toReturn;
 		}else {
 			return null;
-		}
+		}	*/
 
 	}
-
-}
