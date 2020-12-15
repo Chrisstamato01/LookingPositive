@@ -4,7 +4,7 @@ public class ArraylistofArraylist {
 	
 	protected ArrayList<ArrayList<Event> > eventlist =  new ArrayList<ArrayList<Event> >();
 	//ΔΗΜΙΟΥΡΓΕΙ ΤΙΣ ΕΠΙΜΕΡΟΥΣ ΛΙΣΤΕΣ ΠΟΥ ΑΝΤΙΣΤΟΙΧΟΥΝ ΣΤΟΝ ΚΑΘΕ ΧΡΗΣΤΗ 
-	public void createarraylistofevents(int userid) {
+	public void createarraylistofevents() {
 		
 		ArrayList<Event> usereventlist = new ArrayList<>();
 		eventlist.add(usereventlist);
