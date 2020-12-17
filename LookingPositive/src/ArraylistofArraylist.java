@@ -4,7 +4,7 @@ public class ArraylistofArraylist {
 	
 	protected ArrayList<ArrayList<Event> > eventlist =  new ArrayList<ArrayList<Event> >();
 	//ΔΗΜΙΟΥΡΓΕΙ ΤΙΣ ΕΠΙΜΕΡΟΥΣ ΛΙΣΤΕΣ ΠΟΥ ΑΝΤΙΣΤΟΙΧΟΥΝ ΣΤΟΝ ΚΑΘΕ ΧΡΗΣΤΗ 
-	public void createarraylistofevents(int userid) {
+	public void createarraylistofevents() {
 		
 		ArrayList<Event> usereventlist = new ArrayList<>();
 		eventlist.add(usereventlist);
@@ -27,10 +27,7 @@ public class ArraylistofArraylist {
 			}
 		}
 	}
-	//@Override
-	//public String toString() {
-		
-	//}
+	//ΜΕΘΟΔΟΣ ΓΙΑ ΕΜΦΑΝΗΣΗ ΣΤΟΙΧΕΙΩΝ
 	public void printcheck() {
 		for (int i = 0 ; i < eventlist.size() ; i++ ) {
 			for(int j = 0; j < eventlist.get(i).size(); j++) {
