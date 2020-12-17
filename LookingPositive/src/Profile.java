@@ -1,25 +1,32 @@
 import java.util.ArrayList;
 
 public class Profile {
-	private String firstName, lastName, mobilePhone, residenceRegion, gender, dateOfInfection, email;
-	private int age, userID, password;
+	private String firstName, lastName, residenceRegion,/* gender,*/ /*dateOfInfection,*/ email, password;
+	private int age, userID, mobilePhone;
 	private boolean isSusceptible;
 	private String[] closeContactWith;
+	public static int counter = 0;
 	
 	protected static ArrayList<Profile> profilesSave = new ArrayList<>();
 	
-	public Profile(String firstName, String lastName, String mobilePhone, 
-					String residenceRegion, int userID, String gender, 
-					String dateOfInfection, int age, boolean isSusceptible, 
-					int password, String email) {
+	public Profile(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	public Profile(String firstName, String lastName, int mobilePhone, 
+					String residenceRegion, int userID, /*String gender, */
+					/*String dateOfInfection,*/ int age, boolean isSusceptible, 
+					String password, String email) {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.mobilePhone = mobilePhone;
 		this.residenceRegion = residenceRegion;
-		this.userID = userID;
-		this.gender = gender;
-		this.dateOfInfection = dateOfInfection;
+		this.userID = counter;
+		counter++;
+/*		this.gender = gender;*/
+/*		this.dateOfInfection = dateOfInfection;*/
 		this.age = age;
 		this.isSusceptible = isSusceptible;
 		this.closeContactWith = closeContactWith;
@@ -65,15 +72,15 @@ public class Profile {
 
 	public String getLastName() { return lastName; }
 
-	public String getMobilePhone() { return mobilePhone; }
+	public int getMobilePhone() { return mobilePhone; }
 
 	public String getResidenceRegion() { return residenceRegion; }
 
 	public int getUserID() { return userID; }
 
-	public String getGender() { return gender; }
+/*	public String getGender() { return gender; }*/
 
-	public String getDateOfInfection() { return dateOfInfection; }
+/*	public String getDateOfInfection() { return dateOfInfection; }*/
 
 	public int getAge() { return age; }
 
@@ -82,6 +89,8 @@ public class Profile {
 	public String[] getCloseContactWith() { return closeContactWith; }
 	
 	public String getEmail() { return email; }
+
+	public String getPassword() { return password; }
 
 
 }
