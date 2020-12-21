@@ -1,28 +1,39 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class ArraylistofArraylist {
 	
 	protected ArrayList<ArrayList<Event> > eventlist =  new ArrayList<ArrayList<Event> >();
-	
-	public void createarraylistofevents(int userid) {
+	//ΔΗΜΙΟΥΡΓΕΙ ΤΙΣ ΕΠΙΜΕΡΟΥΣ ΛΙΣΤΕΣ ΠΟΥ ΑΝΤΙΣΤΟΙΧΟΥΝ ΣΤΟΝ ΚΑΘΕ ΧΡΗΣΤΗ 
+	public void createarraylistofevents() {
 		
 		ArrayList<Event> usereventlist = new ArrayList<>();
 		eventlist.add(usereventlist);
 		
 	
 	}
-	
-	public void deleteevent () {
-		for (int i = 0 ; i < eventlist.size() ; i++) {
-			for ( int j=0 ; j < eventlist.get(i).size(); j++) {
-				eventlist.get(i).set(j, null);
+	//ΑΝΤΙΓΡΑΦΗ ΜΙΑΣ ΔΙΣΔΙΑΣΤΑΤΗΣ ΛΙΣΤΑΣ ΣΤΟ ΑΝΤΙΚΕΙΜΕΝΟ
+	public void copydoublearralist(ArraylistofArraylist tocopy ) {
+		for (int i = 0 ; i < tocopy.eventlist.size() ; i++) {
+			for(int j = 0; j < tocopy.eventlist.get(i).size(); j++) {
+				eventlist.get(i).add(tocopy.eventlist.get(i).get(j));
 			}
 		}
 	}
-	//@Override
-	//public String toString() {
-		
-	//}
+	//ΔΙΑΓΡΑΦΗ ΤΟΥ ΠΕΡΙΕΧΟΜΕΝΟΥ ΜΙΑΣ ΔΙΣΔΙΑΣΤΑΤΗΣ ΛΙΣΤΑΣ
+	public void deleteevent () {
+		for (int i = 0 ; i < eventlist.size() ; i++) {
+			for ( int j=eventlist.get(i).size()-1 ; j >= 0; j--) {
+				eventlist.get(i).remove(j);
+			}
+		}
+	}
+	//ΜΕΘΟΔΟΣ ΓΙΑ ΕΜΦΑΝΗΣΗ ΣΤΟΙΧΕΙΩΝ
+	public void printcheck() {
+		for (int i = 0 ; i < eventlist.size() ; i++ ) {
+			for(int j = 0; j < eventlist.get(i).size(); j++) {
+					System.out.println(eventlist.get(i).get(j));
+				}
+			}
+		}
+	}
 
-
-}

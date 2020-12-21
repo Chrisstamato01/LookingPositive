@@ -3,26 +3,13 @@ import java.util.ArrayList;
 public class Event {
 	
 	private LocalDate date;
-	private String place;
-	private ArrayList<Profiles> profiles;
-	private int counter = 0;
-	//private ArrayList<Event> events = new ArrayList<>();
-	
-	
-	public int getCounter() {
-		return counter;
-	}
-
-	public void setCounter(int counter) {
-		this.counter = counter;
-	}
-
-	public Event(LocalDate datetime ,String place ,ArrayList<Profiles> profiles) {
+	private Geography place;
+	private ArrayList<Profile> profiles;
+	//ΚΑΤΑΣΚΕΥΑΣΤΗΣ ΤΩΝ EVENTS
+	public Event(LocalDate datetime ,Geography place ,ArrayList<Profile> profiles) {
 		this.date = datetime;
 		this.place = place;
 		this.profiles = profiles;
-		counter++;
-		//events.add(this);
 	}
 
 	public LocalDate getDate() {
@@ -33,19 +20,19 @@ public class Event {
 		this.date = date;
 	}
 
-	public String getPlace() {
+	public Geography getPlace() {
 		return place;
 	}
 
-	public void setPlace(String place) {
+	public void setPlace(Geography place) {
 		this.place = place;
 	}
 
-	public ArrayList<Profiles> getProfiles() {
+	public ArrayList<Profile> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(ArrayList<Profiles> profiles) {
+	public void setProfiles(ArrayList<Profile> profiles) {
 		this.profiles = profiles;
 	}
 	@Override
