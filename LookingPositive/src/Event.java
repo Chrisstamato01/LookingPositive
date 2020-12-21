@@ -53,4 +53,5 @@ public class Event {
 		return "Γεγονός -> Ημερομηνία: "+date+"Μέρος: "+place+"Άτομ: "+profiles+".";
 	}
 
+
 }
