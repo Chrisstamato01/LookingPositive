@@ -3,7 +3,7 @@ import javax.mail.internet.*;
 import java.util.*;
 public class Sendmail {
 	final static String from = "lookingprositive@gmail.com";
-	final static String to = "meleniaabebedeli@gmail.com";
+	final static String to = "sophiastr28@gmail.com";
 	final static String password = "lookingpositive1!";
 	final static String SMTPserver = "smtp.gmail.com";
 	final static String emailServerPort = "465";

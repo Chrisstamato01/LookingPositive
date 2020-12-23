@@ -32,18 +32,17 @@ public class Mail {
 			  msg.setText(emailBody);
 			  msg.setSubject(emailSubject);
 			  msg.setFrom(new InternetAddress(from));
-			  String[] mailAddressTo = new String[3];    
+			  /*String[] mailAddressTo = new String[3];    
 			  mailAddressTo[0] = "sophiastr28@gmail.com";    
 			  mailAddressTo[1] = "meleniaabebebedeli@gmail.com";    
-			  mailAddressTo[2] = "nikolas1813@gmail.com";
-			  InternetAddress[] mailAddress_TO = new InternetAddress[mailAddressTo.length];
-
-				for (int i = 0; i < mailAddressTo.length; i++)
+			  mailAddressTo[2] = "nikolas1813@gmail.com"; */
+			  InternetAddress[] mailAddress_TO = new InternetAddress[Tracking.newContacts.size()];
+			  for (int i = 0; i < Tracking.newContacts.size(); i++)
 				{
-				    mailAddress_TO[i] = new InternetAddress(mailAddressTo[i]);
+				    mailAddress_TO[i] = new InternetAddress(Tracking.newContacts.get(i));
 				}
-
-			  msg.addRecipients(Message.RecipientType.TO, mailAddress_TO);mailAddress_TO = new InternetAddress[mailAddressTo.length]; 
+			  msg.addRecipients(Message.RecipientType.TO, mailAddress_TO);
+			  mailAddress_TO = new InternetAddress[mailAddress_TO.length]; 
 			  Transport.send(msg);
 			  System.out.println("Message send Successfully:)"); }
 			  catch (Exception mex){
