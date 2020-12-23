@@ -15,7 +15,7 @@ public  void track(int userID) { //πρέπει να μου στέλνουν τ�
 }
 
 public static <String> ArrayList<String> removeDuplicates(ArrayList<String> list) {
-Set<String> set = new LinkedHashSet<>();
+Set<String> set = new LinkedHashSet<String>();
 set.addAll(list);
 list.clear();
 list.addAll(set);

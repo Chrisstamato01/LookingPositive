@@ -1,9 +1,11 @@
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import java.util.*;
 public class Sendmail {
 	final static String from = "lookingprositive@gmail.com";
-	final static String to = "sophiastr28@gmail.com";
+	final static String to = "nikolas1813@gmail.com";
 	final static String password = "lookingpositive1!";
 	final static String SMTPserver = "smtp.gmail.com";
 	final static String emailServerPort = "465";
