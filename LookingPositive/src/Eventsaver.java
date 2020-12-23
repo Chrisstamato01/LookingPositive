@@ -22,7 +22,7 @@ public class Eventsaver {
 	
 	//na sviso to localdate today gt to xrisimopoioumne gia ton sxediasmo kanonika sigrinoume tin simerini hmerominia
 	//Η ΜΕΘΟΔΟΣ ΕΠΙΛΕΓΕΙ ΑΝ ΘΑ ΤΟΠΟΘΕΤΗΣΕΙ ΤΑ EVENT ΣΤΟΝ TODAY Η ΣΤΟΝ FUTURE
-	public static String addevent(Event ev , int userid , int x) {
+	public static String addtocalendar(Event ev , int userid , int x) {
 
 		if(x==1) {
 			today.eventlist.get(userid).add(ev);
