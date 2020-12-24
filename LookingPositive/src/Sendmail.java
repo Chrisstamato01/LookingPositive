@@ -10,7 +10,7 @@ public class Sendmail {
 	final static String SMTPserver = "smtp.gmail.com";
 	final static String emailServerPort = "465";
 	final static String emailSubject = " Επείγον μήνυμα ";
-	final static String emailBody = " Έχετε έρθει σε επαφή με επιβεβαιωμένο κρούσμα. Μείνετε προληπτικά σπίτι ";
+	final static String emailBody = " Έχετε έρθει σε επαφή με επιβεβαιωμένο κρούσμα. Μείνετε προληπτικά σπίτι. ";
 	@SuppressWarnings("unused")
 	public static void email()	{
 			  Properties props = new Properties();
