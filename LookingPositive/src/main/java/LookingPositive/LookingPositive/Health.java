@@ -1,8 +1,11 @@
 package LookingPositive.LookingPositive;
 
 import java.util.Scanner;
-
 public class Health {
+	/**
+	 * @param userID current userID
+	 * @exception InputMismatchException
+	 */
 	public static void chooseOperation(int userID) {
 		System.out.println(" Αν θέλετε να ενημερώσετε την κατάσταση υγεία σας, πιέστε 1 ");
 		System.out.println(" Αν είστε θετικός στο Κορωνοϊό, πιέστε 2 ");
@@ -27,7 +30,10 @@ public class Health {
 			areYouOk();
 		}
 	}
-
+	/**
+	 * this method records symptoms
+	 *@exception InputMismatchException
+	 */
 	public static void areYouOk() {
 		System.out.println(" Νιώθετε καλά σήμερα ;(ΝΑΙ/ΟΧΙ) ");
 		Scanner sc = new Scanner(System.in);
@@ -75,7 +81,7 @@ public class Health {
 					flag = true;
 					break;
 				case 1:
-					countsymptoma = countsymptoma + 2; // Σε κάποια συμπτώματα προστίθονται δύο γιατι θεωθείται οτι
+					countsymptoma = countsymptoma + 2; // Σε κάποια συμπτώματα προστίθονται δύο γιατι θεωρείται οτι
 														// έχουν μεγαλύτερη βαρύτητα
 					break;
 				case 2:

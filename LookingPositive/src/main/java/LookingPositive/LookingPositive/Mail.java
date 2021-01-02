@@ -2,11 +2,9 @@ package LookingPositive.LookingPositive;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
-
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
-
 public class Mail {
 	final static String from = "lookingprositive@gmail.com";
 	final static String password = "lookingpositive1!";
@@ -15,6 +13,11 @@ public class Mail {
 	final static String emailSubject = " Επείγον μήνυμα ";
 	final static String emailBody = " Έχετε έρθει σε επαφή με επιβεβαιωμένο κρούσμα. Μείνετε προληπτικά σπίτι ";
 
+	/**
+	 * this method sends emails
+	 * @param list
+	 * @exception SendFailedException
+	 */
 	@SuppressWarnings("unused")
 	public static void email(ArrayList<String> list) {
 		Properties props = new Properties();
@@ -33,7 +36,6 @@ public class Mail {
 			}
 		}
 		try {
-
 			Authenticator auth = new SMTPAuthenticator();
 			Session session = Session.getInstance(props, auth);
 			MimeMessage msg = new MimeMessage(session);
