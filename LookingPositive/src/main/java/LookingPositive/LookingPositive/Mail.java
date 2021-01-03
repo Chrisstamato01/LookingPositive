@@ -14,8 +14,8 @@ public class Mail {
 	final static String emailBody = " Έχετε έρθει σε επαφή με επιβεβαιωμένο κρούσμα. Μείνετε προληπτικά σπίτι ";
 
 	/**
-	 * this method sends emails
-	 * @param list
+	 * this method sends E-mails
+	 * @param list unique E-mails
 	 * @exception SendFailedException
 	 */
 	@SuppressWarnings("unused")

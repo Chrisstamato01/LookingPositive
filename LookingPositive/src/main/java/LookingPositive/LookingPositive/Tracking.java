@@ -6,7 +6,7 @@ public class Tracking {
 	
 	private static ArrayList<String> contactstoinform = new ArrayList<String>();
 	/**
-	 * this method tracks
+	 * this method 
 	 * @param userID case ID
 	 */
 	public static void track(int userID) {
@@ -23,9 +23,9 @@ public class Tracking {
     
 	/**
 	 * this method removes duplicates
-	 * @param <String> contains emails
-	 * @param list contains unique emails
-	 * @return unique emails
+	 * @param <String> contains E-mails
+	 * @param list contains unique E-mails
+	 * @return unique E-mails
 	 */
 	public static <String> ArrayList<String> removeDuplicates(ArrayList<String> list) {
 		Set<String> set = new LinkedHashSet<String>();
