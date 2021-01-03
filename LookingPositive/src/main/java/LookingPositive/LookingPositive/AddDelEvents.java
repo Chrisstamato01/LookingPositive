@@ -21,7 +21,7 @@ public final class AddDelEvents {
  * @param dateOfCreation the date when the event was created(ΝΑΑΑΑΣΒΗΣΤΕΙ)
  */
   public static void addEvent(final int userId, final int dateOfCreation) {
-    Eventsaver.addToCalendar(
+    EventSaver.addToCalendar(
         new Event(dateInput(), addGeography(), profileListInput()), userId,
         dateOfCreation);
 
@@ -139,11 +139,11 @@ public final class AddDelEvents {
    * @param userID specific user
    */
   public static void viewEvents(final int userID) {
-    for (int i = 0; i < Eventsaver
+    for (int i = 0; i < EventSaver
         .getFuture().getUsersEventListsSize(userID); i++) {
 
       System.out.println(
-          i + 1 + " " + Eventsaver.getFuture().getCurrentEvent(userID, i));
+          i + 1 + " " + EventSaver.getFuture().getCurrentEvent(userID, i));
     }
   }
 
@@ -166,7 +166,7 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > Eventsaver
+          if (n > EventSaver
               .getFuture().getUsersEventListsSize(userID) - 1 || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
@@ -180,7 +180,7 @@ public final class AddDelEvents {
         }
       }
     }
-    Eventsaver.getFuture().removeCurrentEvent(userID, n - 1);
+    EventSaver.getFuture().removeCurrentEvent(userID, n - 1);
     sc.close();
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }

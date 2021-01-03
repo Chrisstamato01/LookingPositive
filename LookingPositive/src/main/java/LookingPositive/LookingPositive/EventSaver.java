@@ -10,13 +10,13 @@ public final class EventSaver {
   /**
    * This field contains an integer which is the days Covid-Sars-19 lasts.
    */
-  private static final  int daysCovidLasts = 14;
+  private static final int DAYS_COVID_LASTS = 14;
 /**
  * This field contains a table which contains the
  * ArrayListOfArrayList day1,day2,...,day14 on each cell.
  */
   private static ArrayListOfArrayList[] fourteendays =
-      new ArrayListOfArrayList[daysCovidLasts];
+      new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
