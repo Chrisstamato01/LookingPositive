@@ -85,11 +85,4 @@ public class Event {
   public final void setProfiles(final ArrayList<Profile> newProfiles) {
     profiles = newProfiles;
   }
-
-  @Override
-  public final String toString() {
-    return "Γεγονός -> Ημερομηνία: " + date + "Μέρος: " + place + "Άτομ: "
-        + profiles + ".";
-  }
-
 }
