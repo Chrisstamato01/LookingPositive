@@ -3,9 +3,9 @@ package lookingpositive.lookingpositive;
 public class aeknfoeknf {
 
   public static void main(String[] args) {
-    Calendar.melenekosta();
-    ArrayListOfArrayList.melenekoula();
-    AddDelEvents.melenekoula();
+    Profile elisavet = new Profile("elisavet", "exarxopoulou", 69850, "voula",
+        1, 44, false, "pass1", "papadopoulos@gmail.com");
+    AddDelEvents.addEvent(1, 1);
     /*
      * LocalDate veryoldDate = LocalDate.of(2020, 9, 25); LocalDate oldDate =
      * LocalDate.of(2020, 8, 14); LocalDate newDate = LocalDate.of(2020, 12,
@@ -16,7 +16,7 @@ public class aeknfoeknf {
      * "voula", 1, "f", "oxi", 44, false, 1, "papadopoulos@gmail.com"); Profile
      * mpampinos = new Profile("mpampinos", "mpazndekas", "6985078434",
      * "alimos", 2, "m", "oxi", 55, false, 2, "papadopoulos@gmail.com");
-     * 
+     *
      * // int x = c.compareTo(k); contactedpeople.add(katerina);
      * contactedpeople.add(elisavet); contactedpeople.add(mpampinos);
      * Eventsaver.fourteendays[0] = Eventsaver.day1; Eventsaver.fourteendays[1]
@@ -30,7 +30,7 @@ public class aeknfoeknf {
      * Eventsaver.fourteendays[11] = Eventsaver.day12;
      * Eventsaver.fourteendays[12] = Eventsaver.day13;
      * Eventsaver.fourteendays[13] = Eventsaver.day14;
-     * 
+     *
      * /* for(int i = 0 ; 13> i ; i++) { Eventsaver.fourteendays[i] = new
      * ArraylistofArraylist();
      * Eventsaver.fourteendays[i].createarraylistofevents(0);
@@ -44,31 +44,31 @@ public class aeknfoeknf {
      * Event(LocalDate.of(2020, 12, 07), "koulis", contactedpeople); Event
      * event5 = new Event(LocalDate.of(2020, 12, 06), "masalia",
      * contactedpeople);
-     * 
+     *
      * System.out.println(Eventsaver.addevent(event1, 0, 1));
-     * 
+     *
      * System.out.println(Eventsaver.addevent(event2, 0, 2));
-     * 
+     *
      * System.out.println(Eventsaver.addevent(event3, 1, 2));
-     * 
+     *
      * System.out.println(Eventsaver.addevent(event4, 1, 2));
-     * 
+     *
      * System.out.println(Eventsaver.addevent(event5, 2, 2));
-     * 
+     *
      * // Eventsaver.deleteexpiredevents(p,c);
-     * 
+     *
      * Eventsaver.deleteexpiredevents(LocalDate.of(2020, 12, 06),
      * LocalDate.of(2020, 11, 25));
-     * 
+     *
      * Eventsaver.deleteexpiredevents(LocalDate.of(2020, 12, 07),
      * LocalDate.of(2020, 12, 06));
-     * 
+     *
      * Eventsaver.deleteexpiredevents(LocalDate.of(2020, 12, 14),
      * LocalDate.of(2020, 12, 07));
-     * 
+     *
      * // Eventsaver.deleteexpiredevents(LocalDate.of(2020,12,05) //
      * ,LocalDate.of(2020, 12, 04));
-     * 
+     *
      * // Eventsaver.deleteexpiredevents(k,p); // System.out.println(x) //
      * Eventsaver.future.deleteevent(); /* System.out.println("BegintodayMain");
      * for(int i = 0 ; i < Eventsaver.today.eventlist.size() ; i++ ) { for(int j
@@ -85,7 +85,7 @@ public class aeknfoeknf {
      * System.out.println("person" + i); for (int j = 0; j <
      * Eventsaver.fourteendays[kol].eventlist.get(i) .size(); j++) { System.out
      * .println(Eventsaver.fourteendays[kol].eventlist.get(i).get(j));
-     * 
+     *
      * } } } System.out.println(veryoldDate.until(oldDate, ChronoUnit.DAYS));
      * System.out.println(LocalDate.of(2020, 12, 14) .until(LocalDate.of(2020,
      * 114, 78), ChronoUnit.DAYS));
