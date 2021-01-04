@@ -3,9 +3,9 @@ package lookingpositive.lookingpositive;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public final class EventSaver {
+public final class eventsaver {
 //The class can't be initialized.
-  private EventSaver() {
+  private eventsaver() {
   }
 
   /**

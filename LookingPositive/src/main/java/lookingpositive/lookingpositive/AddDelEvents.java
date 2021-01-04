@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public final class AddDelEvents {
+public class AddDelEvents {
 
   private AddDelEvents() {
   }
@@ -23,7 +23,7 @@ public final class AddDelEvents {
    * @param dateOfCreation the date when the event was created(ΝΑΑΑΑΣΒΗΣΤΕΙ)
    */
   public static void addEvent(final int userId, final int dateOfCreation) {
-    EventSaver.addToCalendar(
+    Calendar.addToCalendar(
         new Event(dateInput(), addGeography(), profileListInput()), userId,
         dateOfCreation);
 
@@ -145,11 +145,11 @@ public final class AddDelEvents {
    * @param userID specific user
    */
   public static void viewEvents(final int userID) {
-    for (int i = 0; i < EventSaver.getFuture()
+    for (int i = 0; i < Calendar.getFuture()
         .getUsersEventListsSize(userID); i++) {
 
       System.out.println(
-          i + 1 + " " + EventSaver.getFuture().getCurrentEvent(userID, i));
+          i + 1 + " " + Calendar.getFuture().getCurrentEvent(userID, i));
     }
   }
 
@@ -173,7 +173,7 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > EventSaver.getFuture().getUsersEventListsSize(userID) - 1
+          if (n > Calendar.getFuture().getUsersEventListsSize(userID) - 1
               || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
@@ -187,7 +187,7 @@ public final class AddDelEvents {
         }
       }
     }
-    EventSaver.getFuture().removeCurrentEvent(userID, n - 1);
+    Calendar.getFuture().removeCurrentEvent(userID, n - 1);
     sc.close();
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }

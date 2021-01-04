@@ -2,11 +2,8 @@ package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
 
-/**
- * The class ArraylistofArraylist creates a two dimensional ArrayList and
- * process it.
- */
 public class ArrayListOfArrayList {
+
   /**
    * This field is an ArrayList which contains the ArrayLists of the Events for
    * each user.
