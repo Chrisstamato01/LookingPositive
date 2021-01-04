@@ -1,25 +1,27 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public final class AddDelEvents {
 
   private AddDelEvents() {
   }
+
   // πρεπει να σβηστει η dayofcreation ειναι για το τεστινγκ
   // the event is created and registered in the calendar
-/**
- * This method adds an event to the calendar.
- * @param userId the user whose event we want to add
- * @param dateOfCreation the date when the event was created(ΝΑΑΑΑΣΒΗΣΤΕΙ)
- */
+  /**
+   * This method adds an event to the calendar.
+   *
+   * @param userId         the user whose event we want to add
+   * @param dateOfCreation the date when the event was created(ΝΑΑΑΑΣΒΗΣΤΕΙ)
+   */
   public static void addEvent(final int userId, final int dateOfCreation) {
     EventSaver.addToCalendar(
         new Event(dateInput(), addGeography(), profileListInput()), userId,
@@ -30,6 +32,7 @@ public final class AddDelEvents {
   // the user chooses the day of the event (today/future)
   /**
    * This method asks the date of the event that the user wants to create.
+   *
    * @return the date of the new event
    */
   public static LocalDate dateInput() {
@@ -63,6 +66,7 @@ public final class AddDelEvents {
   // the user gives the a list of names he/she will see at the event
   /**
    * This method asks the user which people he will meet at the event.
+   *
    * @return the people he will meet
    */
   public static ArrayList<Profile> profileListInput() {
@@ -110,10 +114,11 @@ public final class AddDelEvents {
 
   // checks if the names exist as users otherwise creates the profiles
   /**
-   * This method validates the profile that are being added to
-   * the contactedPeople list.
+   * This method validates the profile that are being added to the
+   * contactedPeople list.
+   *
    * @param firstName the name of the person
-   * @param lastName the last name of the person
+   * @param lastName  the last name of the person
    * @return the profiles he/she will meet
    */
   public static Profile addContactedPeople(final String firstName,
@@ -136,11 +141,12 @@ public final class AddDelEvents {
 
   /**
    * This method prints all the events a user has planed.
+   *
    * @param userID specific user
    */
   public static void viewEvents(final int userID) {
-    for (int i = 0; i < EventSaver
-        .getFuture().getUsersEventListsSize(userID); i++) {
+    for (int i = 0; i < EventSaver.getFuture()
+        .getUsersEventListsSize(userID); i++) {
 
       System.out.println(
           i + 1 + " " + EventSaver.getFuture().getCurrentEvent(userID, i));
@@ -150,6 +156,7 @@ public final class AddDelEvents {
   // the user deletes a future event from his calendar
   /**
    * This method deletes an event for a specific user.
+   *
    * @param userID the id of a specific user
    * @return a message of success
    */
@@ -166,8 +173,8 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > EventSaver
-              .getFuture().getUsersEventListsSize(userID) - 1 || n < 1) {
+          if (n > EventSaver.getFuture().getUsersEventListsSize(userID) - 1
+              || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
           } else {
@@ -188,12 +195,12 @@ public final class AddDelEvents {
   // the user chooses where his/her event will take place
   /**
    * This method asks the place the event will take place.
+   *
    * @return the place of the event
    */
   public static Geography addGeography() {
     Scanner sc = new Scanner(System.in);
-    System.out.println(
-        "Ποιόν δήμο θα θέλατε να επισκευτείτε"
+    System.out.println("Ποιόν δήμο θα θέλατε να επισκευτείτε"
         + "(δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
     boolean flag = true;
     int number = 0;
@@ -232,8 +239,7 @@ public final class AddDelEvents {
         break;
       }
     }
-    System.out.println(
-        "Εισάγεται τον αριθμό του/της κατάστημος"
+    System.out.println("Εισάγεται τον αριθμό του/της κατάστημος"
         + "/υπηρεσίας που θα θέλατε να επισκευτειτε. ");
     flag = true;
     int choice = -1;

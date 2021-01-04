@@ -1,9 +1,8 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;

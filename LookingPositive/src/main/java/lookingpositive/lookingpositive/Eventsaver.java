@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -7,16 +7,16 @@ public final class EventSaver {
 //The class can't be initialized.
   private EventSaver() {
   }
+
   /**
    * This field contains an integer which is the days Covid-Sars-19 lasts.
    */
   private static final int DAYS_COVID_LASTS = 14;
-/**
- * This field contains a table which contains the
- * ArrayListOfArrayList day1,day2,...,day14 on each cell.
- */
-  private static ArrayListOfArrayList[] fourteendays =
-      new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  /**
+   * This field contains a table which contains the ArrayListOfArrayList
+   * day1,day2,...,day14 on each cell.
+   */
+  private static ArrayListOfArrayList[] fourteendays = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -26,89 +26,90 @@ public final class EventSaver {
    */
   private static ArrayListOfArrayList future = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user one day
-   * before the last user signed in.
+   * This field contains the events for each user one day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day1 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user two day
-   * before the last user signed in.
+   * This field contains the events for each user two day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day2 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user three day
-   * before the last user signed in.
+   * This field contains the events for each user three day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day3 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user four day
-   * before the last user signed in.
+   * This field contains the events for each user four day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day4 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user five day
-   * before the last user signed in.
+   * This field contains the events for each user five day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day5 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user six day
-   * before the last user signed in.
+   * This field contains the events for each user six day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day6 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user seven day
-   * before the last user signed in.
+   * This field contains the events for each user seven day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day7 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user eight day
-   * before the last user signed in.
+   * This field contains the events for each user eight day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day8 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user nine day
-   * before the last user signed in.
+   * This field contains the events for each user nine day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day9 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user ten day
-   * before the last user signed in.
+   * This field contains the events for each user ten day before the last user
+   * signed in.
    */
   private static ArrayListOfArrayList day10 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user eleven day
-   * before the last user signed in.
+   * This field contains the events for each user eleven day before the last
+   * user signed in.
    */
   private static ArrayListOfArrayList day11 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user twelve day
-   * before the last user signed in.
+   * This field contains the events for each user twelve day before the last
+   * user signed in.
    */
   private static ArrayListOfArrayList day12 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user thirteen day
-   * before the last user signed in.
+   * This field contains the events for each user thirteen day before the last
+   * user signed in.
    */
   private static ArrayListOfArrayList day13 = new ArrayListOfArrayList();
   /**
-   * This field contains the events for each user fourteen day
-   * before the last user signed in.
+   * This field contains the events for each user fourteen day before the last
+   * user signed in.
    */
   private static ArrayListOfArrayList day14 = new ArrayListOfArrayList();
 
   // na sviso to localdate today gt to
-  //xrisimopoioumne gia ton sxediasmo kanonika.
+  // xrisimopoioumne gia ton sxediasmo kanonika.
   // sigrinoume tin simerini hmerominia
   // Η ΜΕΘΟΔΟΣ ΕΠΙΛΕΓΕΙ ΑΝ ΘΑ ΤΟΠΟΘΕΤΗΣΕΙ ΤΑ EVENT ΣΤΟΝ TODAY Η ΣΤΟΝ FUTURE
   /**
    * This method adds a new Event on the calendar of user.
-   * @param ev is the event
+   *
+   * @param ev     is the event
    * @param userId is the user's id
-   * @param x ΠΡΕΠΕΙ ΝΑ ΣΒΗΣΤΕΙ ΚΑΙ ΜΠΕΙ ΗΜ/ΜΗΝΙΑ ΣΤΗΝ ΘΕΣΗ ΤΟΥ
+   * @param x      ΠΡΕΠΕΙ ΝΑ ΣΒΗΣΤΕΙ ΚΑΙ ΜΠΕΙ ΗΜ/ΜΗΝΙΑ ΣΤΗΝ ΘΕΣΗ ΤΟΥ
    * @return a string that registration was completed successfully
    */
-  public static String addToCalendar(final Event ev,
-      final int userId, final int x) {
+  public static String addToCalendar(final Event ev, final int userId,
+      final int x) {
 
     if (x == 1) {
       today.addEventToUsersList(userId, ev);
@@ -117,11 +118,13 @@ public final class EventSaver {
     }
     return "Καταχωρήθηκε η εκδήλωση σας " + ev;
   }
-/**
- * This method renews the events because day/days have passed.
- * @param newDate the current date that the last user has singed in
- * @param oldDate the date that the previews user had signed in
- */
+
+  /**
+   * This method renews the events because day/days have passed.
+   *
+   * @param newDate the current date that the last user has singed in
+   * @param oldDate the date that the previews user had signed in
+   */
   public static void deleteExpiredEvents(final LocalDate newDate,
       final LocalDate oldDate) {
     // ΒΡΙΣΚΟΥΜΕ ΤΗΝ ΔΙΑΦΟΡΑ ΜΕΤΑΞΥ ΤΩΝ ΗΜΕΡΟΜΗΝΙΩΝ
@@ -178,14 +181,14 @@ public final class EventSaver {
       System.out.println(replicaOldDate);
 
       // ΓΕΜΙΣΜΑ ΤΟΥ TODAY ΜΕ ΤΑ ΑΝΑΝΕΟΜΕΝΑ ΣΤΟΙΧΕΙΑ ΤΗΣ ΕΠΟΜΕΝΗΣ
-      //ΜΕΡΑΣ ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ
+      // ΜΕΡΑΣ ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ
       // ΣΤΟΝ FUTURE
       System.out.println("filling today");
       for (int i = 0; i < future.getEventListsSize(); i++) {
         for (int j = 0; j < future.getUsersEventListsSize(i); j++) {
           if (replicaOldDate
               .isEqual((future.getCurrentEvent(i, j).getDate()))) {
-            //today.eventList.get(i).add(future.eventList.get(i).get(j));
+            // today.eventList.get(i).add(future.eventList.get(i).get(j));
             today.addEventToUsersList(i, future.getCurrentEvent(i, j));
             // System.out.println(today.eventlist.get(i).get(j));
           }
@@ -200,7 +203,7 @@ public final class EventSaver {
           if (replicaOldDate
               .isEqual((future.getCurrentEvent(i, j).getDate()))) {
             System.out.println(future.getUsersEventListsSize(i) + "before");
-            //future.eventlist.get(i).remove(j);
+            // future.eventlist.get(i).remove(j);
             future.removeCurrentEvent(i, j);
             System.out.println(future.getUsersEventListsSize(i) + "after");
           }
@@ -213,18 +216,22 @@ public final class EventSaver {
 
     }
   }
+
   /**
    * This method returns the Events of all users of today.
+   *
    * @return ArrayListOfArrayList object
    */
-    public static ArrayListOfArrayList getToday() {
-      return today;
-    }
-    /**
-     * This method returns the Events of all users of future.
-     * @return ArrayListOfArrayList object
-     */
-    public static ArrayListOfArrayList getFuture() {
-      return future;
-    }
+  public static ArrayListOfArrayList getToday() {
+    return today;
+  }
+
+  /**
+   * This method returns the Events of all users of future.
+   *
+   * @return ArrayListOfArrayList object
+   */
+  public static ArrayListOfArrayList getFuture() {
+    return future;
+  }
 }

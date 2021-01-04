@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
 
@@ -7,12 +7,11 @@ import java.util.ArrayList;
  * process it.
  */
 public class ArrayListOfArrayList {
-/**
- * This field is an ArrayList which contains the ArrayLists
- * of the Events for each user.
- */
-  private ArrayList<ArrayList<Event>> eventList
-  = new ArrayList<ArrayList<Event>>();
+  /**
+   * This field is an ArrayList which contains the ArrayLists of the Events for
+   * each user.
+   */
+  private ArrayList<ArrayList<Event>> eventList = new ArrayList<ArrayList<Event>>();
   // Creates a list of Events and adds them to the instance's eventLst.
 
   /**
@@ -23,9 +22,10 @@ public class ArrayListOfArrayList {
     eventList.add(usereventlist);
   }
 
-  //ΜΠΟΡΕΙ ΝΑ ΜΗΝ ΜΑΣ ΧΡΕΙΑΣΤΕΙ ΓΤ ΔΕΝ ΞΕΡΟΥΜΕ ΠΩ΅ΝΑ ΤΟ ΧΡΗΣΙΜΟΠΟΙΗΣΟΥΜΕ.
+  // ΜΠΟΡΕΙ ΝΑ ΜΗΝ ΜΑΣ ΧΡΕΙΑΣΤΕΙ ΓΤ ΔΕΝ ΞΕΡΟΥΜΕ ΠΩ΅ΝΑ ΤΟ ΧΡΗΣΙΜΟΠΟΙΗΣΟΥΜΕ.
   /**
    * This method returns the eventList.
+   *
    * @return the eventList
    */
   public ArrayList<ArrayList<Event>> getEventList() {
@@ -34,6 +34,7 @@ public class ArrayListOfArrayList {
 
   /**
    * This method modify the eventList.
+   *
    * @param newEventList is the renewed eventList of the event.
    */
   public void setEventList(final ArrayList<ArrayList<Event>> newEventList) {
@@ -79,42 +80,51 @@ public class ArrayListOfArrayList {
     }
   }
 
-/**
- * This method adds an event to a specific user's list of the eventList.
- * @param userId is a specific user
- * @param ev the is the new event
- */
+  /**
+   * This method adds an event to a specific user's list of the eventList.
+   *
+   * @param userId is a specific user
+   * @param ev     the is the new event
+   */
   public void addEventToUsersList(final int userId, final Event ev) {
     eventList.get(userId).add(ev);
   }
+
   /**
    * This method returns the size of the eventList.
+   *
    * @return the size of the evenList
    */
   public int getEventListsSize() {
     return eventList.size();
   }
+
   /**
-   * This method returns the size of the list of events
-   * for the specific row of eventList.
+   * This method returns the size of the list of events for the specific row of
+   * eventList.
+   *
    * @param rowCounter is the specific row
    * @return the number of the events of the user
    */
   public int getUsersEventListsSize(final int rowCounter) {
     return eventList.get(rowCounter).size();
   }
+
   /**
    * This method returns a specific event.
-   * @param rowCounter the row with the events of a user
+   *
+   * @param rowCounter   the row with the events of a user
    * @param eventCounter the number of the event of a user
    * @return a specific event
    */
   public Event getCurrentEvent(final int rowCounter, final int eventCounter) {
     return eventList.get(rowCounter).get(eventCounter);
   }
+
   /**
    * This method removes a specific event.
-   * @param rowCounter the user's calendar where the event is
+   *
+   * @param rowCounter   the user's calendar where the event is
    * @param eventCounter the event we want to remove
    */
   public void removeCurrentEvent(final int rowCounter, final int eventCounter) {

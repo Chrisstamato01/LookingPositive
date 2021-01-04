@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 public class Geography {
   private String type; // Π.Χ. ΝΟΣΟΚΟΜΕΙΟ, ΦΑΡΜΑΚΕΙΟ, ΕΣΤΙΑΡΟΡΙΟ ΚΤΛ.
@@ -41,7 +41,7 @@ public class Geography {
     float current = 0;
     float q;
     String color;
-// ΟΠΟΥ CASES1,2,3 ΤΑ ΚΡΟΥΣΜΑΤΑ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ 3 ΗΜΕΡΩΝ (TO BE FIXED)	
+// ΟΠΟΥ CASES1,2,3 ΤΑ ΚΡΟΥΣΜΑΤΑ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ 3 ΗΜΕΡΩΝ (TO BE FIXED)
     if (mun.endsWith("3Β")) {
 //			current = cases1 + cases2 + cases3;
       q = current / population3B;

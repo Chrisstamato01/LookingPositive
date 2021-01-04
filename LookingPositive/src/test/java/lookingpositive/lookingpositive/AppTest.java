@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

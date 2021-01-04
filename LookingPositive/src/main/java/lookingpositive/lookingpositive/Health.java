@@ -1,4 +1,4 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

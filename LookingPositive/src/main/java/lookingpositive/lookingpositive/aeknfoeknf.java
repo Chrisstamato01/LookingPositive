@@ -1,6 +1,6 @@
-package LookingPositive.LookingPositive;
+package lookingpositive.lookingpositive;
 
-import java.time.*;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
@@ -84,9 +84,9 @@ public class aeknfoeknf {
      * System.out.println("BegintodayMain"); for(int i = 0 ; i <
      * Eventsaver.today.eventlist.size() ; i++ ) { for(int j = 0; j <
      * Eventsaver.today.eventlist.get(i).size(); j++) {
-     * 
+     *
      * System.out.println(Eventsaver.today.eventlist.get(i).get(j));
-     * 
+     *
      * } } System.out.println("EndtodayMain");
      */
     for (int kol = 0; kol < 14; kol++) {
