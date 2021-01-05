@@ -25,13 +25,13 @@ public final class Tracking {
    * @param userID case ID
    */
   public static void track(final int userID) {
-    for (int k = 0; Eventsaver.fourteendays.length < DAYS; k++) {
-      for (int j = 0; j < Eventsaver.fourteendays[k].eventlist.get(userID)
-          .size(); j++) {
-        for (int l = 0; l < Eventsaver.fourteendays[k].eventlist.get(userID)
-            .get(j).getProfiles().size(); l++) {
-          contactstoinform.add(Eventsaver.fourteendays[k].eventlist.get(userID)
-              .get(j).getProfiles().get(l).getEmail());
+    for (int k = 0; k < DAYS; k++) {
+      for (int l = 0; l < Calendar.getFourteenDaysCell(k)
+          .getUsersEventListsSize(userID); l++) {
+        for (int p = 0; p < Calendar.getFourteenDaysCell(k)
+            .getCurrentEvent(userID, l).getProfiles().size(); p++) {
+          contactstoinform.add(Calendar.getFourteenDaysCell(k)
+              .getCurrentEvent(userID, l).getProfiles().get(p).getEmail());
         }
       }
     }
