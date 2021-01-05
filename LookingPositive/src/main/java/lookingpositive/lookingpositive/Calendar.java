@@ -17,7 +17,7 @@ public class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteendays = new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -139,40 +139,40 @@ public class Calendar {
       // ΣΕ ΠΕΡΙΠΤΩΣΗ ΠΟΥ Ο ΧΡΗΣΤΗΣ ΜΠΑΙΝΕΙ ΚΑΘΕ ΜΕΡΑ
       System.out.println(counter);
 
-      day14.deleteevent();
-      day14.copydoublearralist(day13);
-      day13.deleteevent();
-      day13.copydoublearralist(day12);
-      day12.deleteevent();
-      day12.copydoublearralist(day11);
-      day11.deleteevent();
-      day11.copydoublearralist(day10);
-      day10.deleteevent();
-      day10.copydoublearralist(day9);
-      day9.deleteevent();
-      day9.copydoublearralist(day8);
-      day8.deleteevent();
-      day8.copydoublearralist(day7);
-      day7.deleteevent();
-      day7.copydoublearralist(day6);
-      day6.deleteevent();
-      day6.copydoublearralist(day5);
-      day5.deleteevent();
-      day5.copydoublearralist(day4);
-      day4.deleteevent();
-      day4.copydoublearralist(day3);
-      day3.deleteevent();
-      day3.copydoublearralist(day2);
-      day2.deleteevent();
-      day2.copydoublearralist(day1);
-      day1.deleteevent();
-      day1.copydoublearralist(today);
+      day14.deleteEvent();
+      day14.copyDoubleArraList(day13);
+      day13.deleteEvent();
+      day13.copyDoubleArraList(day12);
+      day12.deleteEvent();
+      day12.copyDoubleArraList(day11);
+      day11.deleteEvent();
+      day11.copyDoubleArraList(day10);
+      day10.deleteEvent();
+      day10.copyDoubleArraList(day9);
+      day9.deleteEvent();
+      day9.copyDoubleArraList(day8);
+      day8.deleteEvent();
+      day8.copyDoubleArraList(day7);
+      day7.deleteEvent();
+      day7.copyDoubleArraList(day6);
+      day6.deleteEvent();
+      day6.copyDoubleArraList(day5);
+      day5.deleteEvent();
+      day5.copyDoubleArraList(day4);
+      day4.deleteEvent();
+      day4.copyDoubleArraList(day3);
+      day3.deleteEvent();
+      day3.copyDoubleArraList(day2);
+      day2.deleteEvent();
+      day2.copyDoubleArraList(day1);
+      day1.deleteEvent();
+      day1.copyDoubleArraList(today);
 
       System.out.println("Beginfourteen cell[0]");
-      fourteendays[0].printcheck();
+      fourteenDays[0].printcheck();
       System.out.println("ENDfourteen cell[0]");
       // ΔΙΑΓΡΑΦΗ ΤΟΥ ΠΕΡΙΕΧΟΜΕΝΟΥ ΤΟΥ TODAY
-      today.deleteevent();
+      today.deleteEvent();
 
       System.out.println("Begintoday");
       today.printcheck();
@@ -234,5 +234,32 @@ public class Calendar {
    */
   public static ArrayListOfArrayList getFuture() {
     return future;
+  }
+
+  // ΝΑ ΤΗΝ ΒΑΛΟΥΜΕ ΣΤΗΝ ΚΛΑΣΗ ΤΟΥ ΧΡΗΣΤΟΥ.
+  /**
+   * This method initialize every ArrayListOfArrayList object for each user.
+   */
+  public static void daysInitializer() {
+    today.createarraylistofevents();
+    future.createarraylistofevents();
+    day1.createarraylistofevents();
+    day2.createarraylistofevents();
+    day3.createarraylistofevents();
+    day4.createarraylistofevents();
+    day5.createarraylistofevents();
+    day6.createarraylistofevents();
+    day7.createarraylistofevents();
+    day8.createarraylistofevents();
+    day9.createarraylistofevents();
+    day10.createarraylistofevents();
+    day11.createarraylistofevents();
+    day12.createarraylistofevents();
+    day13.createarraylistofevents();
+    day14.createarraylistofevents();
+  }
+
+  public static ArrayListOfArrayList getFourteenDaysCell(final int cell) {
+    return fourteenDays[cell];
   }
 }

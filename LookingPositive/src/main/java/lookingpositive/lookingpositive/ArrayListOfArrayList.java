@@ -43,12 +43,12 @@ public class ArrayListOfArrayList {
    * This method copies the content of a type ArraylistofArraylist object to
    * another.
    *
-   * @param tocopy the object ArraylistofArraylist which will be copied
+   * @param toCopy the object ArraylistofArraylist which will be copied
    */
-  public void copydoublearralist(final ArrayListOfArrayList tocopy) {
-    for (int i = 0; i < tocopy.eventList.size(); i++) {
-      for (int j = 0; j < tocopy.eventList.get(i).size(); j++) {
-        eventList.get(i).add(tocopy.eventList.get(i).get(j));
+  public void copyDoubleArraList(final ArrayListOfArrayList toCopy) {
+    for (int i = 0; i < toCopy.eventList.size(); i++) {
+      for (int j = 0; j < toCopy.eventList.get(i).size(); j++) {
+        eventList.get(i).add(toCopy.eventList.get(i).get(j));
       }
     }
   }
@@ -57,7 +57,7 @@ public class ArrayListOfArrayList {
   /**
    * This method removes every Event object from every user's list.
    */
-  public void deleteevent() {
+  public void deleteEvent() {
     for (int i = 0; i < eventList.size(); i++) {
       for (int j = eventList.get(i).size() - 1; j >= 0; j--) {
         eventList.get(i).remove(j);
