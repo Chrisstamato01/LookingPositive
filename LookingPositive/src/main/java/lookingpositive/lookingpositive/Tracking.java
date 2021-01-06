@@ -30,8 +30,11 @@ public final class Tracking {
           .getUsersEventListsSize(userID); l++) {
         for (int p = 0; p < Calendar.getFourteenDaysCell(k)
             .getCurrentEvent(userID, l).getProfiles().size(); p++) {
-          contactstoinform.add(Calendar.getFourteenDaysCell(k)
-              .getCurrentEvent(userID, l).getProfiles().get(p).getEmail());
+          if (Calendar.getFourteenDaysCell(k).getCurrentEvent(userID, l)
+              .getProfiles().get(p).getEmail() != null) {
+            contactstoinform.add(Calendar.getFourteenDaysCell(k)
+                .getCurrentEvent(userID, l).getProfiles().get(p).getEmail());
+          }
         }
       }
     }
