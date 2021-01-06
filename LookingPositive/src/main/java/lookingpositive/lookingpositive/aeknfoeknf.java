@@ -5,7 +5,7 @@ public class aeknfoeknf {
   public static void main(String[] args) {
     Profile elisavet = new Profile("elisavet", "exarxopoulou", 69850, "voula",
         1, 44, false, "pass1", "papadopoulos@gmail.com");
-    AddDelEvents.addEvent(1, 1);
+   AddDelEvents.chooseFunction(1);
     /*
      * LocalDate veryoldDate = LocalDate.of(2020, 9, 25); LocalDate oldDate =
      * LocalDate.of(2020, 8, 14); LocalDate newDate = LocalDate.of(2020, 12,

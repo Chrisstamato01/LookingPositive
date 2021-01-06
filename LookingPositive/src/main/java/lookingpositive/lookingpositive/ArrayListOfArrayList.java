@@ -8,7 +8,8 @@ public class ArrayListOfArrayList {
    * This field is an ArrayList which contains the ArrayLists of the Events for
    * each user.
    */
-  private ArrayList<ArrayList<Event>> eventList = new ArrayList<ArrayList<Event>>();
+  private ArrayList<ArrayList<Event>> eventList
+  = new ArrayList<ArrayList<Event>>();
   // Creates a list of Events and adds them to the instance's eventLst.
 
   /**

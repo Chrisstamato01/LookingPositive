@@ -3,7 +3,7 @@ package lookingpositive.lookingpositive;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Calendar {
+public final class Calendar {
 
 //The class can't be initialized.
   private Calendar() {
@@ -17,7 +17,8 @@ public class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays = new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays
+  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -97,22 +98,16 @@ public class Calendar {
    */
   private static ArrayListOfArrayList day14 = new ArrayListOfArrayList();
 
-  // na sviso to localdate today gt to
-  // xrisimopoioumne gia ton sxediasmo kanonika.
-  // sigrinoume tin simerini hmerominia
-  // Η ΜΕΘΟΔΟΣ ΕΠΙΛΕΓΕΙ ΑΝ ΘΑ ΤΟΠΟΘΕΤΗΣΕΙ ΤΑ EVENT ΣΤΟΝ TODAY Η ΣΤΟΝ FUTURE
   /**
    * This method adds a new Event on the calendar of user.
    *
    * @param ev     is the event
    * @param userId is the user's id
-   * @param x      ΠΡΕΠΕΙ ΝΑ ΣΒΗΣΤΕΙ ΚΑΙ ΜΠΕΙ ΗΜ/ΜΗΝΙΑ ΣΤΗΝ ΘΕΣΗ ΤΟΥ
    * @return a string that registration was completed successfully
    */
-  public static String addToCalendar(final Event ev, final int userId,
-      final int x) {
+  public static String addToCalendar(final Event ev, final int userId) {
 
-    if (x == 1) {
+    if (ev.getDate().equals(LocalDate.now())) {
       today.addEventToUsersList(userId, ev);
     } else {
       future.addEventToUsersList(userId, ev);
@@ -258,7 +253,11 @@ public class Calendar {
     day13.createarraylistofevents();
     day14.createarraylistofevents();
   }
-
+  /**
+   * This method returns a chosen cell of fourteenDays table.
+   * @param cell is one out of fourteen cells of fourteenDays
+   * @return an ArrayListOfArrayList object
+   */
   public static ArrayListOfArrayList getFourteenDaysCell(final int cell) {
     return fourteenDays[cell];
   }

@@ -9,23 +9,66 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class AddDelEvents {
+public final class AddDelEvents {
 
   private AddDelEvents() {
   }
 
-  // πρεπει να σβηστει η dayofcreation ειναι για το τεστινγκ
+  /**
+   * This method is used as user's interface.
+   *
+   * @param userId is each user's id
+   */
+  public static void chooseFunction(final int userId) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Επιλέξτε μία απο τις παρακάτω ενέργειε:"
+        + "\n1.Δημιουργία γεγονότος." + "\nΔιαγραφή γεγονότος."
+        + "\nΕμφανιση των μελλοντικων γεγονότων.");
+    int choice = -1;
+    boolean flag = true;
+    final int firstCase = 1;
+    final int secondCase = 2;
+    final int thirdCase = 3;
+    while (flag) {
+      try {
+        choice = sc.nextInt();
+        if (choice == firstCase || choice == secondCase
+            || choice == thirdCase) {
+          flag = false;
+        } else {
+          System.out.println("Παρακαλώ εισάγεται αριθμό μεταξύ των 1,2,3.");
+        }
+      } catch (InputMismatchException e) {
+        System.out.println("Παρακαλώ εισάγεται αριθμό.");
+      } catch (Exception e) {
+        System.err.println(e);
+      }
+    }
+    switch (choice) {
+    case firstCase:
+      addEvent(userId);
+      break;
+    case secondCase:
+      delEvent(userId);
+      break;
+    case thirdCase:
+      viewEvents(userId);
+      break;
+    default:
+      break;
+    }
+
+  }
+
   // the event is created and registered in the calendar
   /**
    * This method adds an event to the calendar.
    *
    * @param userId         the user whose event we want to add
-   * @param dateOfCreation the date when the event was created(ΝΑΑΑΑΣΒΗΣΤΕΙ)
    */
-  public static void addEvent(final int userId, final int dateOfCreation) {
+  public static void addEvent(final int userId) {
     Calendar.addToCalendar(
-        new Event(dateInput(), addGeography(), profileListInput()), userId,
-        dateOfCreation);
+        new Event(dateInput(), addGeography(), profileListInput()), userId);
 
   }
 
@@ -142,14 +185,14 @@ public class AddDelEvents {
   /**
    * This method prints all the events a user has planed.
    *
-   * @param userID specific user
+   * @param userId specific user
    */
-  public static void viewEvents(final int userID) {
+  public static void viewEvents(final int userId) {
     for (int i = 0; i < Calendar.getFuture()
-        .getUsersEventListsSize(userID); i++) {
+        .getUsersEventListsSize(userId); i++) {
 
       System.out.println(
-          i + 1 + " " + Calendar.getFuture().getCurrentEvent(userID, i));
+          i + 1 + " " + Calendar.getFuture().getCurrentEvent(userId, i));
     }
   }
 
@@ -157,13 +200,13 @@ public class AddDelEvents {
   /**
    * This method deletes an event for a specific user.
    *
-   * @param userID the id of a specific user
+   * @param userId the id of a specific user
    * @return a message of success
    */
-  public static String delEvent(final int userID) {
+  public static String delEvent(final int userId) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Οι προγραμματισμένες σας εκδηλώσεις είναι οι εξής : ");
-    viewEvents(userID);
+    viewEvents(userId);
     System.out
         .println("Επιλέξτε τον αριθμό της εκδήλωσης που θέλετε να διαγράψετε.");
     boolean foundException = true;
@@ -173,7 +216,7 @@ public class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > Calendar.getFuture().getUsersEventListsSize(userID) - 1
+          if (n > Calendar.getFuture().getUsersEventListsSize(userId) - 1
               || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
@@ -187,7 +230,7 @@ public class AddDelEvents {
         }
       }
     }
-    Calendar.getFuture().removeCurrentEvent(userID, n - 1);
+    Calendar.getFuture().removeCurrentEvent(userId, n - 1);
     sc.close();
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }
