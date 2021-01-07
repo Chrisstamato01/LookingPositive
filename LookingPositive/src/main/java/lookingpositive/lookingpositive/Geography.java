@@ -1,3 +1,6 @@
+/**
+ * Looking Positive Geography.
+ */
 package lookingpositive.lookingpositive;
 
 /**
