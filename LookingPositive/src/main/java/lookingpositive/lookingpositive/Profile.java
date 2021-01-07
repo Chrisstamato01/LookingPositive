@@ -2,117 +2,186 @@ package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
 
+/**
+ * This class is the model for users' profiles. It includes the private
+ * variables that make up the object, two constructors and getters.
+ *
+ */
 public class Profile {
-  private String firstName, lastName, residenceRegion,
-      /* gender, */ /* dateOfInfection, */ email, password;
-  private int age, userID, mobilePhone;
+  /**
+   * User's first name.
+   */
+  private String firstName;
+  /**
+   * User's last name.
+   */
+  private String lastName;
+  /**
+   * User's residence region.
+   */
+  private String residenceRegion;
+  /**
+   * User's email.
+   */
+  private String email;
+  /**
+   * User's password.
+   */
+  private String password;
+  /**
+   * User's mobile phone.
+   */
+  private String mobilePhone;
+  /**
+   * User's age.
+   */
+  private int age;
+  /**
+   * User's ID.
+   */
+  private int userID;
+  /**
+   * Susceptible or not.
+   */
   private boolean isSusceptible;
-  private String[] closeContactWith;
-  public static int counter = 0;
+  /**
+   * Counter variable.
+   */
+  private static int counter = 0;       //was public
+  /**
+   * Array list in which profiles are saved.
+   */
+  private static ArrayList<Profile> profilesSave = new ArrayList<Profile>();
+  //was protected
 
-  protected static ArrayList<Profile> profilesSave = new ArrayList<Profile>();
-
-  public Profile(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  /**
+   * This constructor is used to create objects of people who are not users of
+   * the app, in case that a user declares that they were in contact with them.
+   * It keeps their first and last names.
+   *
+   * @param name user's first name
+   * @param surname  user's last name
+   */
+  public Profile(final String name, final String surname) {
+    this.firstName = name;
+    this.lastName = surname;
+    email = null;
   }
 
-  public Profile(String firstName, String lastName, int mobilePhone,
-      String residenceRegion, int userID, /* String gender, */
-      /* String dateOfInfection, */ int age, boolean isSusceptible,
-      String password, String email) {
+  /**
+   * This constructor creates the profiles using the private variables.
+   *
+   * @param name     is the user's first name
+   * @param surname      is the user's last name
+   * @param residenceReg is the user's residence region
+   * @param a          is the user's age
+   * @param isSus      if the user belongs to high risk groups
+   * @param pass       is the user's password
+   * @param mail       is the user's email
+   */
+  public Profile(final String name, final String surname,
+      final String residenceReg, final int a, final boolean isSus,
+      final String pass, final String mail) {
 
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.mobilePhone = mobilePhone;
-    this.residenceRegion = residenceRegion;
+    this.firstName = name;
+    this.lastName = surname;
+    this.residenceRegion = residenceReg;
     this.userID = counter;
     counter++;
-    /* this.gender = gender; */
-    /* this.dateOfInfection = dateOfInfection; */
-    this.age = age;
-    this.isSusceptible = isSusceptible;
-    this.closeContactWith = closeContactWith;
-    this.password = password;
-    this.email = email;
+    this.age = a;
+    this.isSusceptible = isSus;
+    this.password = pass;
+    this.email = mail;
     profilesSave.add(this);
-//		createarraylistofevents();
-    Eventsaver.today.createarraylistofevents();
 
-    Eventsaver.future.createarraylistofevents();
-
-    Eventsaver.day1.createarraylistofevents();
-
-    Eventsaver.day2.createarraylistofevents();
-
-    Eventsaver.day3.createarraylistofevents();
-
-    Eventsaver.day4.createarraylistofevents();
-
-    Eventsaver.day5.createarraylistofevents();
-
-    Eventsaver.day6.createarraylistofevents();
-
-    Eventsaver.day7.createarraylistofevents();
-
-    Eventsaver.day8.createarraylistofevents();
-
-    Eventsaver.day9.createarraylistofevents();
-
-    Eventsaver.day10.createarraylistofevents();
-
-    Eventsaver.day11.createarraylistofevents();
-
-    Eventsaver.day12.createarraylistofevents();
-
-    Eventsaver.day13.createarraylistofevents();
-
-    Eventsaver.day14.createarraylistofevents();
+    Calendar.daysInitializer();
 
   }
-
+  /**
+   * Returns first name.
+   *
+   * @return first name
+   */
   public String getFirstName() {
     return firstName;
   }
-
+  /**
+   * Returns last name.
+   *
+   * @return last name
+   */
   public String getLastName() {
     return lastName;
   }
-
-  public int getMobilePhone() {
+  /**
+   * Returns mobile number.
+   *
+   * @return mobile number
+   */
+  public String getMobilePhone() {
     return mobilePhone;
   }
-
+  /**
+   * Returns residence region.
+   *
+   * @return residence region
+   */
   public String getResidenceRegion() {
     return residenceRegion;
   }
-
+  /**
+   * Returns user ID.
+   *
+   * @return user ID
+   */
   public int getUserID() {
     return userID;
   }
-
-  /* public String getGender() { return gender; } */
-
-  /* public String getDateOfInfection() { return dateOfInfection; } */
-
+  /**
+   * Returns age.
+   *
+   * @return age
+   */
   public int getAge() {
     return age;
   }
-
+  /**
+   * Returns whether susceptible or not.
+   *
+   * @return whether susceptible or not
+   */
   public boolean isSusceptible() {
     return isSusceptible;
   }
-
-  public String[] getCloseContactWith() {
-    return closeContactWith;
-  }
-
+  /**
+   * Returns user's email.
+   *
+   * @return email
+   */
   public String getEmail() {
     return email;
   }
-
+  /**
+   * Returns user's password.
+   *
+   * @return password
+   */
   public String getPassword() {
     return password;
   }
-
+  /**
+   *
+   * @param i
+   * @return profile line
+   */
+  public static Profile profilesSaveLine(final int i) {
+    return profilesSave.get(i);
+  }
+  /**
+   *
+   * @return profile size
+   */
+  public static int profilesSaveSize() {
+    return profilesSave.size();
+  }
 }

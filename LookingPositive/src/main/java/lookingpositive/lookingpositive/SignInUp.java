@@ -2,7 +2,15 @@ package lookingpositive.lookingpositive;
 
 import java.util.Scanner;
 
-public class SignInUp {
+public final class SignInUp {
+
+  private SignInUp() {
+
+  }
+
+  /**
+   * Login method.
+   */
   public static void login() {
     System.out.println("Εισάγετε email/n Για εγγραφή εισάγετε 1");
     Scanner sc = new Scanner(System.in);
@@ -31,12 +39,18 @@ public class SignInUp {
     Operations.run(checkUser(email, password));
   }
 
-  public static int checkUser(String email, String password) {
+  /**
+   *
+   * @param email    is User's email
+   * @param password is User's password
+   * @return integer
+   */
+  public static int checkUser(final String email, final String password) {
     int id = -1;
-    for (int i = 0; i < Profile.profilesSave.size(); i++) {
-      if (email.equals(Profile.profilesSave.get(i).getEmail())
-          && password.equals(Profile.profilesSave.get(i).getPassword())) {
-        id = Profile.profilesSave.get(i).getUserID();
+    for (int i = 0; i < Profile.profilesSaveSize(); i++) {
+      if (email.equals(Profile.profilesSaveLine(i).getEmail())
+          && password.equals(Profile.profilesSaveLine(i).getPassword())) {
+        id = Profile.profilesSaveLine(i).getUserID();
       }
     }
     return id;

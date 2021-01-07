@@ -3,31 +3,49 @@ package lookingpositive.lookingpositive;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class AddUser {
-  static int id = 0;
-  static int password = 1000;
+/**
+ * This class creates users' profiles.
+ *
+ */
+public final class AddUser {
+  private AddUser() {
 
+  }
+  /**
+   * initializes User IDs.
+   */
+  private static int id = 0;            //was not private
+  /**
+   * initializes User IDs.
+   */
+  private static final int PASSWORD = 1000;   //was not private
+
+  /**
+   * Nvm.
+   */
   private static boolean hasError = false;
-
+  /**
+   * Handles the addition of new users.
+   */
   public static void add() {
     Profile profile = new Profile(handleFirstName(), handleLastName(),
-        handleMobilePhone(), handleResidenceRegion(), handleUserID(), /*
-                                                                       * handleGender
-                                                                       * (),
-                                                                       */
-        /* handleDateOfInfection(), */ handleAge(), handleIsSusceptible(),
+        handleResidenceRegion(), handleAge(), handleIsSusceptible(),
         handlePassword(), handleEmail());
 
     hasError = false;
   }
-
+  /**
+   * Requires user to add his name.
+   *
+   * @return first name
+   */
   protected static String handleFirstName() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Όνομα: ");
     String firstName = null;
 
     boolean flag = true;
-    while (flag == true) {
+    while (flag) {
 
       try {
         firstName = sc.next();
@@ -41,15 +59,18 @@ public class AddUser {
 
     return firstName;
   }
-
+  /**
+   * Requires user to add his surname.
+   *
+   * @return last name
+   */
   protected static String handleLastName() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Επώνυμο: ");
     String lastName = "ka Tzortziia";
 
     boolean flag = false;
-    while (flag == false) {
-//			flag = false;
+    while (flag) {
       try {
         lastName = sc.next();
         flag = true;
@@ -63,16 +84,16 @@ public class AddUser {
     return lastName;
   }
 
-  private static int handleMobilePhone() {
+/*  private static String handleMobilePhone() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Κινητό Τηλέφωνο: ");
 
-    int mobileNumber = 0;
+    String mobileNumber = "-";
     boolean flag = true;
-    while (flag == true) {
+    while (flag) {
       flag = false;
       try {
-        mobileNumber = sc.nextInt();
+        mobileNumber = sc.next();
       } catch (InputMismatchException e) {
         flag = true;
         System.out.println("Εισάγετε έγκυρο αριθμό τηλεφώνου");
@@ -82,7 +103,12 @@ public class AddUser {
 
     return mobileNumber;
   }
-
+*/
+  /**
+   * Requires user to add his residence region.
+   *
+   * @return residence region
+   */
   private static String handleResidenceRegion() {
     Scanner sc = new Scanner(System.in);
     int a = -1;
@@ -96,7 +122,6 @@ public class AddUser {
     while (flag) {
       flag = false;
       exceptionNotOccured = false;
-//			System.out.println("Δήμος Κατοικίας[Γλυφάδα(1), Άλιμος(2), Βάρη-Βούλα-Βουλιαγμένη(3)]: ");
       while (!exceptionNotOccured) {
 
         try {
@@ -118,7 +143,7 @@ public class AddUser {
         residenceRegion = "'Αλιμος";
         break;
 
-      case 3:
+      case 2 + 1:
         residenceRegion = "Βάρη-Βούλα-Βουλιαγμένη";
         break;
 
@@ -133,29 +158,25 @@ public class AddUser {
 
     return residenceRegion;
   }
-
+  /**
+   * Generates users' private IDs.
+   *
+   * @return users' IDs
+   */
   private static int handleUserID() {
     return id++;
   }
-
-  /*
-   * private static String handleGender() { Scanner sc = new Scanner(System.in);
-   * System.out.println("Φύλο: "); String gender = sc.next(); return gender; }
-   */
-  /*
-   * private static String handleDateOfInfection() { Scanner sc = new
-   * Scanner(System.in); // να την φτιαξουμε με if (αν εχει κοβιντ ή οχι)
-   * System.out.println("Έχετε μολυνθεί; (Ν/Ο)"); String isInfected = sc.next();
-   * if (isInfected == "Ν") { System.out.println("Ημερομήνια μολύνσεως: ");
-   * String dateOfInfection = sc.next(); return dateOfInfection; }else { return
-   * null; } }
+  /**
+   * Requires user to add his age.
+   *
+   * @return age
    */
   private static int handleAge() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Ηλικία: ");
     int age = 0;
     boolean flag = true;
-    while (flag == true) {
+    while (flag) {
       flag = false;
       try {
 
@@ -172,43 +193,57 @@ public class AddUser {
     return age;
 
   }
-
+  /**
+   * Requires user to declare whether he/she belongs to high risk groups or not.
+   *
+   * @return whether he/she susceptible
+   */
   private static Boolean handleIsSusceptible() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Ανήκετε σε ευπαθή ομάδα; (Ν/Ο)");
 
     boolean w = true;
-    String Susceptible = null;
+    String susceptible = null;
 
     while (w) {
       w = false;
-      Susceptible = sc.next();
-      if (!(Susceptible.equals("N") || Susceptible.equals("O"))) {
+      susceptible = sc.next();
+      if (!(susceptible.equals("N") || susceptible.equals("O"))) {
         System.out.println("Εισάγετε έγκυρο χαρακτήρα");
         w = true;
       }
     }
 
     boolean isSuspectible;
-    if (Susceptible == "Ν") {
+    if (susceptible == "Ν") {
       isSuspectible = true;
     } else {
       isSuspectible = false;
     }
     return isSuspectible;
   }
-
+  /**
+   * Requires user to set his password.
+   *
+   * @return User's password
+   */
   private static String handlePassword() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Εισάγετε τον κωδικό σας");
-    String password = sc.next();
-    return password;
+    String pass = sc.next();
+    return pass;
   }
 
+  /**
+  * Requires user to add his email.
+  *
+  * @return User's email
+  */
   private static String handleEmail() {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Email: ");
-    String email = sc.next();
+    System.out.println("Email(until @. EX.: lookingPositive@gmail.com"
+    + " -> lookingPositive): ");
+    String email = sc.next() + "@gmail.com";
     System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
     return email;
   }
