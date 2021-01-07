@@ -240,12 +240,21 @@ public final class AddUser {
   * @return User's email
   */
   private static String handleEmail() {
+    boolean a = false;
     Scanner sc = new Scanner(System.in);
-    System.out.println("Email(until @. EX.: lookingPositive@gmail.com"
+    System.out.println("Email(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
     + " -> lookingPositive): ");
-    String email = sc.next() + "@gmail.com";
-    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
-    return email;
+    String email = sc.next();
+    while (!a) {
+      if (email.contains("@") || email.contains(".com")
+          || email.contains(".gr")) {
+        System.out.println("Μη έγκυρη καταχώρηση email."
+          + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
+      } else {
+        System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
+        a = true;
+      }
+    }
+    return email + "@gmail.com";
   }
-
 }

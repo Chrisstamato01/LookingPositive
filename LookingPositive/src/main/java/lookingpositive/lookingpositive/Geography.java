@@ -91,8 +91,19 @@ public class Geography {
   public static Geography getFacilitiesCells(final int cell) {
     return facilities[cell];
   }
-
-//  @Override
+  /**
+   * @return facilities;
+   */
+  public static Geography[] getFacilities() {
+    return facilities;
+  }
+  /**
+   *
+   * @return facilitiesLength
+   */
+  public static int getFacilitiesLength() {
+    return facilities.length;
+  }
 
   /**
    * toString method.

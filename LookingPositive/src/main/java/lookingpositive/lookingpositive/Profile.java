@@ -170,7 +170,7 @@ public class Profile {
     return password;
   }
   /**
-   *
+   * Returns the line from profileSave.
    * @param i
    * @return profile line
    */
@@ -178,10 +178,17 @@ public class Profile {
     return profilesSave.get(i);
   }
   /**
-   *
+   * Returns the size of profileSave.
    * @return profile size
    */
   public static int profilesSaveSize() {
     return profilesSave.size();
+  }
+  /**
+   * Returns profilesSave.
+   * @return ArrayList
+   */
+  public static ArrayList<Profile> getProfilesSave() {
+    return profilesSave;
   }
 }
