@@ -105,6 +105,10 @@ public final class AddUser {
   }
 */
   /**
+   * To avoid magic numbers.
+   */
+  private static final int THREE = 3;
+  /**
    * Requires user to add his residence region.
    *
    * @return residence region
@@ -143,7 +147,7 @@ public final class AddUser {
         residenceRegion = "'Αλιμος";
         break;
 
-      case 2 + 1:
+      case THREE:
         residenceRegion = "Βάρη-Βούλα-Βουλιαγμένη";
         break;
 
