@@ -21,7 +21,7 @@ public final class AddUser {
   private static final int PASSWORD = 1000;   //was not private
 
   /**
-   * Nvm.
+   * Boolean check variable.
    */
   private static boolean hasError = false;
   /**
