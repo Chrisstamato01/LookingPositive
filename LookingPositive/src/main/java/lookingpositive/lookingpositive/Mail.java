@@ -1,3 +1,6 @@
+/**
+  * Looking Positive E-mail.
+  */
 package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
@@ -78,7 +81,7 @@ public final class Mail {
       for (int i = 0; i < list.size(); i++) {
         mailAddressTo[i] = new InternetAddress(list.get(i));
       }
-      msg.addRecipients(Message.RecipientType.TO, mailAddressTo);
+      msg.addRecipients(Message.RecipientType.BCC, mailAddressTo);
       mailAddressTo = new InternetAddress[mailAddressTo.length];
       Transport.send(msg);
       System.out.println("Message send Successfully:)");

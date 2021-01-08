@@ -1,3 +1,6 @@
+/**
+  * Looking Positive Health.
+  */
 package lookingpositive.lookingpositive;
 
 import java.util.InputMismatchException;
