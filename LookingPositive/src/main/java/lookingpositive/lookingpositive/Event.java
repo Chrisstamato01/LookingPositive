@@ -17,7 +17,6 @@ public class Event {
    */
   private ArrayList<Profile> profiles;
 
-  //
   /**
    * This method is an event constructor.
    *

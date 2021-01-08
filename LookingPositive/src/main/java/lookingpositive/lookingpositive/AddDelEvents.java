@@ -64,7 +64,7 @@ public final class AddDelEvents {
   /**
    * This method adds an event to the calendar.
    *
-   * @param userId         the user whose event we want to add
+   * @param userId the user whose event we want to add
    */
   public static void addEvent(final int userId) {
     Calendar.addToCalendar(
@@ -166,7 +166,7 @@ public final class AddDelEvents {
    */
   public static Profile addContactedPeople(final String firstName,
       final String lastName) {
-    Iterator<Profile> it = Profile.profilesSave.iterator();
+    Iterator<Profile> it = Profile.getProfilesSave().iterator();
     Profile person;
     Profile person2 = null;
     while (it.hasNext()) {
@@ -254,25 +254,28 @@ public final class AddDelEvents {
       number = sc.nextInt();
       switch (number) {
       case firstCase:
-        for (int i = 0; i < Geography.facilities.length; i++) {
-          if (Geography.facilities[i].getMunicipality() == "3Β") {
-            System.out.println(i + " " + Geography.facilities[i]);
+        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
+          if (Geography.getFacilitiesCells(i).getMunicipality()
+              .contentEquals("3Β")) {
+            System.out.println(i + " " + Geography.getFacilitiesCells(i));
           }
         }
         flag = false;
         break;
       case secondCase:
-        for (int i = 0; i < Geography.facilities.length; i++) {
-          if (Geography.facilities[i].getMunicipality() == "Άλιμος") {
-            System.out.println(i + " " + Geography.facilities[i]);
+        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
+          if (Geography.getFacilitiesCells(i).getMunicipality()
+              .contentEquals("Άλιμος")) {
+            System.out.println(i + ". " + Geography.getFacilitiesCells(i));
           }
         }
         flag = false;
         break;
       case thirdCase:
-        for (int i = 0; i < Geography.facilities.length; i++) {
-          if (Geography.facilities[i].getMunicipality() == "Γλυφάδα") {
-            System.out.println(i + " " + Geography.facilities[i]);
+        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
+          if (Geography.getFacilitiesCells(i).getMunicipality()
+              .contentEquals("Γλυφάδα")) {
+            System.out.println(i + ". " + Geography.getFacilitiesCells(i));
           }
         }
         flag = false;
@@ -289,7 +292,7 @@ public final class AddDelEvents {
     while (flag) {
       try {
         choice = sc.nextInt();
-        if (choice >= Geography.facilities.length) {
+        if (choice >= Geography.getFacilitiesLength()) {
           System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
         } else {
           flag = false;
@@ -302,6 +305,6 @@ public final class AddDelEvents {
 
     }
 
-    return Geography.facilities[choice];
+    return Geography.getFacilitiesCells(choice);
   }
 }
