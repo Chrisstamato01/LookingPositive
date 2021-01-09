@@ -63,8 +63,8 @@ public class Profile {
    * @param surname  user's last name
    */
   public Profile(final String name, final String surname) {
-    this.firstName = name;
-    this.lastName = surname;
+    firstName = name;
+    lastName = surname;
     email = null;
   }
 
@@ -74,24 +74,24 @@ public class Profile {
    * @param name     is the user's first name
    * @param surname      is the user's last name
    * @param residenceReg is the user's residence region
-   * @param a          is the user's age
+   * @param usersAge     is the user's age
    * @param isSus      if the user belongs to high risk groups
    * @param pass       is the user's password
    * @param mail       is the user's email
    */
   public Profile(final String name, final String surname,
-      final String residenceReg, final int a, final boolean isSus,
+      final String residenceReg, final int usersAge, final boolean isSus,
       final String pass, final String mail) {
 
-    this.firstName = name;
-    this.lastName = surname;
-    this.residenceRegion = residenceReg;
-    this.userID = counter;
+    firstName = name;
+    lastName = surname;
+    residenceRegion = residenceReg;
+    userID = counter;
     counter++;
-    this.age = a;
-    this.isSusceptible = isSus;
-    this.password = pass;
-    this.email = mail;
+    age = usersAge;
+    isSusceptible = isSus;
+    password = pass;
+    email = mail;
     profilesSave.add(this);
 
     Calendar.daysInitializer();
@@ -175,6 +175,7 @@ public class Profile {
    * @return profile line
    */
   public static Profile profilesSaveLine(final int i) {
+    //na eksigisw sholio (param)
     return profilesSave.get(i);
   }
   /**

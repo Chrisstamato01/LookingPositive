@@ -67,8 +67,8 @@ public final class AddUser {
   protected static String handleLastName() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Επώνυμο: ");
-    String lastName = "ka Tzortziia";
-
+    String lastName = sc.next();
+//      String lastName = "ka Tzortzia";
     boolean flag = false;
     while (flag) {
       try {
@@ -84,26 +84,6 @@ public final class AddUser {
     return lastName;
   }
 
-/*  private static String handleMobilePhone() {
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Κινητό Τηλέφωνο: ");
-
-    String mobileNumber = "-";
-    boolean flag = true;
-    while (flag) {
-      flag = false;
-      try {
-        mobileNumber = sc.next();
-      } catch (InputMismatchException e) {
-        flag = true;
-        System.out.println("Εισάγετε έγκυρο αριθμό τηλεφώνου");
-      }
-      sc.nextLine();
-    }
-
-    return mobileNumber;
-  }
-*/
   /**
    * To avoid magic numbers.
    */
@@ -168,6 +148,7 @@ public final class AddUser {
    * @return users' IDs
    */
   private static int handleUserID() {
+    //na vgei
     return id++;
   }
   /**
@@ -244,21 +225,64 @@ public final class AddUser {
   * @return User's email
   */
   private static String handleEmail() {
+    //oti eipame, na sviso megala sholia (oracle), hasError
     boolean a = false;
     Scanner sc = new Scanner(System.in);
-    System.out.println("Email(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
+    System.out.println("Email(μόνο gmail)/n"
+    + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
     + " -> lookingPositive): ");
     String email = sc.next();
+    String domain = null;
     while (!a) {
       if (email.contains("@") || email.contains(".com")
           || email.contains(".gr")) {
         System.out.println("Μη έγκυρη καταχώρηση email."
           + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
       } else {
-        System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
+        int b = -1;
+//        String domain = null;
+
+        boolean flag = true;
+
+        boolean exceptionNotOccured = false;
+        System.out.println(
+            "Είδος gmail[@gmail.com(1), @gmail.gr(2)]: ");
+        while (flag) {
+          flag = false;
+          exceptionNotOccured = false;
+          while (!exceptionNotOccured) {
+
+            try {
+              b = sc.nextInt();
+              exceptionNotOccured = true;
+            } catch (InputMismatchException e) {
+              System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+              sc.nextLine();
+            }
+
+          }
+          switch (b) {
+
+          case 1:
+            domain = "@gmail.com";
+            break;
+
+          case 2:
+            domain = "@gmail.gr";
+            break;
+
+          default:
+            flag = true;
+            System.out.println("Εισάγετε έγκυρο αριθμό(1,2,)");
+            break;
+          }
+          sc.nextLine();
+        }
         a = true;
       }
+      System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
     }
-    return email + "@gmail.com";
+    String usersEmail = email + domain;
+    return usersEmail;
   }
 }
