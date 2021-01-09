@@ -11,28 +11,14 @@ public final class AddUser {
   private AddUser() {
 
   }
-  /**
-   * initializes User IDs.
-   */
-  private static int id = 0;            //was not private
-  /**
-   * initializes User IDs.
-   */
-  private static final int PASSWORD = 1000;   //was not private
 
   /**
-   * Boolean check variable.
-   */
-  private static boolean hasError = false;
-  /**
-   * Handles the addition of new users.
+   * Adds user in profile array.
    */
   public static void add() {
     Profile profile = new Profile(handleFirstName(), handleLastName(),
         handleResidenceRegion(), handleAge(), handleIsSusceptible(),
         handlePassword(), handleEmail());
-
-    hasError = false;
   }
   /**
    * Requires user to add his name.
@@ -68,7 +54,6 @@ public final class AddUser {
     Scanner sc = new Scanner(System.in);
     System.out.println("Επώνυμο: ");
     String lastName = sc.next();
-//      String lastName = "ka Tzortzia";
     boolean flag = false;
     while (flag) {
       try {
@@ -85,11 +70,11 @@ public final class AddUser {
   }
 
   /**
-   * To avoid magic numbers.
+   * Case 3 constant.
    */
   private static final int THREE = 3;
   /**
-   * Requires user to add his residence region.
+   * User adds his residence region.
    *
    * @return residence region
    */
@@ -142,17 +127,9 @@ public final class AddUser {
 
     return residenceRegion;
   }
+
   /**
-   * Generates users' private IDs.
-   *
-   * @return users' IDs
-   */
-  private static int handleUserID() {
-    //na vgei
-    return id++;
-  }
-  /**
-   * Requires user to add his age.
+   * User adds his age.
    *
    * @return age
    */
@@ -179,7 +156,7 @@ public final class AddUser {
 
   }
   /**
-   * Requires user to declare whether he/she belongs to high risk groups or not.
+   * User declares whether he/she is susceptible.
    *
    * @return whether he/she susceptible
    */
@@ -194,13 +171,14 @@ public final class AddUser {
       w = false;
       susceptible = sc.next();
       if (!(susceptible.equals("N") || susceptible.equals("O"))) {
-        System.out.println("Εισάγετε έγκυρο χαρακτήρα");
+        System.out.println("Εισάγετε έγκυρο χαρακτήρα "
+            + "(Ν/Ο λατινικοί χαρακτήρες)");
         w = true;
       }
     }
 
     boolean isSuspectible;
-    if (susceptible == "Ν") {
+    if (susceptible == "N") {
       isSuspectible = true;
     } else {
       isSuspectible = false;
@@ -208,7 +186,7 @@ public final class AddUser {
     return isSuspectible;
   }
   /**
-   * Requires user to set his password.
+   * User set his password.
    *
    * @return User's password
    */
@@ -220,12 +198,11 @@ public final class AddUser {
   }
 
   /**
-  * Requires user to add his email.
+  * User adds his email.
   *
   * @return User's email
   */
   private static String handleEmail() {
-    //oti eipame, na sviso megala sholia (oracle), hasError
     boolean a = false;
     Scanner sc = new Scanner(System.in);
     System.out.println("Email(μόνο gmail)/n"
@@ -238,9 +215,9 @@ public final class AddUser {
           || email.contains(".gr")) {
         System.out.println("Μη έγκυρη καταχώρηση email."
           + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
+          email = sc.next();
       } else {
         int b = -1;
-//        String domain = null;
 
         boolean flag = true;
 
@@ -280,8 +257,8 @@ public final class AddUser {
         }
         a = true;
       }
-      System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
     }
+    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
     String usersEmail = email + domain;
     return usersEmail;
   }

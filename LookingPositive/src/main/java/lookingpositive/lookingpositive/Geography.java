@@ -3,6 +3,8 @@
  */
 package lookingpositive.lookingpositive;
 
+import java.util.ArrayList;
+
 /**
  * This class stores and organizes all the facilities according to their
  * municipality.
@@ -21,17 +23,9 @@ public class Geography {
    */
   private final String municipality;
   /**
-   * Counter for the table.
-   */
-  private static int count = 0;
-  /**
-   *
-   */
-  private static final int FAC_LENGTH = 100;
-  /**
    * Table for the facilities.
    */
-  private static Geography[] facilities = new Geography[FAC_LENGTH];
+  private static ArrayList<Geography> facilities = new ArrayList<Geography>();
   /**
    * Population of municipality 3B.
    */
@@ -46,19 +40,17 @@ public class Geography {
   private static final int POPULATION_GLYFADA = 87305;
 
   /**
-   * Constructor for the class Geography. Creates objects and stores them in the
-   * table.
+   * Constructor for the class Geography.
    *
    * @param t   is the type of the facility
    * @param n   is the name
    * @param mun is the municipality
    */
   public Geography(final String t, final String n, final String mun) {
-    facilities[count] = this;
-    this.type = t;
-    this.name = n;
-    this.municipality = mun;
-    count++;
+    type = t;
+    name = n;
+    municipality = mun;
+    facilities.add(this);
   }
 
   /**
@@ -87,26 +79,27 @@ public class Geography {
   }
 
   /**
-   *
-   * @param cell is the cell called
-   * @return facilities
+   * @return the whole facilities arraylist.
    */
-  public static Geography getFacilitiesCells(final int cell) {
-    return facilities[cell];
-  }
-  /**
-   * @return facilities;
-   */
-  public static Geography[] getFacilities() {
+  public static ArrayList<Geography> getFacilities() {
     return facilities;
   }
+
   /**
    *
-   * @return facilitiesLength
+   * @param i line to be returned
+   * @return the whole line
    */
-  public static int getFacilitiesLength() {
-    return facilities.length;
+  public static Geography getFacilitiesLine(final int i) {
+    return facilities.get(i);
   }
+
+  /**
+   *
+   * @return size of arraylist facilities
+   */
+  public static int getFacilitiesSize() {
+    return facilities.size();  }
 
   /**
    * toString method.
@@ -158,51 +151,45 @@ public class Geography {
   }
 
   /**
-   * Fills the table with the facilities.
+   * Fills the arraylist with the facilities.
    */
   public static void fillTables() {
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");
-    facilities[count] = new Geography("Φαρμακείο", "Αντωνόπουλος", "3Β");
-    facilities[count] = new Geography("Φαρμακείο", "Γιαννακίδης", "3Β");
-    facilities[count] = new Geography("Νοσοκομείο", "Ασκληπείο", "3Β");
-    facilities[count] = new Geography("Νοσοκομείο", "S.P. Clinic", "3Β");
-    facilities[count] = new Geography("Εστιατόριο", "Τα Βλάχικα", "3Β");
-    facilities[count] = new Geography("Εστιατόριο", "Μαγειρευτά", "3Β");
-    facilities[count] = new Geography("Εστιατόριο", "Pizzeria Pomodori", "3Β");
-    facilities[count] = new Geography("Πάρκο", "Πλατεία Βούλας", "3Β");
-    facilities[count] = new Geography("Πάρκο", "Αθ. Διάκου", "3Β");
-    facilities[count] = new Geography("Γυμναστήριο", "Vari Sports Club", "3Β");
-    facilities[count] = new Geography("Κομμωτήριο", "Barber Shop", "3Β");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος",
-        "Άλιμος");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "Άλιμος");
-    facilities[count] = new Geography("Φαρμακείο", "Ζαχαριάδης", "Άλιμος");
-    facilities[count] = new Geography("Φαρμακείο", "Κολοβός", "Άλιμος");
-    facilities[count] = new Geography("Νοσοκομείο", "BioMed", "Άλιμος");
-    facilities[count] = new Geography("Νοσοκομείο", "Health", "Άλιμος");
-    facilities[count] = new Geography("Εστιατόριο", "Σουβλάκια", "Άλιμος");
-    facilities[count] = new Geography("Εστιατόριο", "Cuisine205", "Άλιμος");
-    facilities[count] = new Geography("Πάρκο", "Πάρκο Αλίμου", "Άλιμος");
-    facilities[count] = new Geography("Γυμναστήριο", "True Fitness", "Άλιμος");
-    facilities[count] = new Geography("Κομμωτήριο", "Salon Coiffure", "Άλιμος");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "Σκλαβενίτης",
-        "Γλυφάδα");
-    facilities[count] = new Geography("Σούπερ Μάρκετ", "SuperFoodsMarket",
-        "Γλυφάδα");
-    facilities[count] = new Geography("Φαρμακείο", "Βασιλακάκης", "Γλυφάδα");
-    facilities[count] = new Geography("Νοσοκομείο", "Medical 23", "Γλυφάδα");
-    facilities[count] = new Geography("Φαρμακείο", "Γεωργούλης", "Γλυφάδα");
-    facilities[count] = new Geography("Εστατόριο", "Mexican de Glyfada",
-        "Γλυφάδα");
-    facilities[count] = new Geography("Εστατόριο", "Sushi Esperidon",
-        "Γλυφάδα");
-    facilities[count] = new Geography("Πάρκο", "Πλατεία Εσπερίδων", "Γλυφάδα");
-    facilities[count] = new Geography("Πάρκο", "Μαυρολέωντος", "Γλυφάδα");
-    facilities[count] = new Geography("Γυμναστήριο", "L.F.F. GYM", "Γλυφάδα");
-    facilities[count] = new Geography("Κομμωτήριο", "Pretty Hair", "Γλυφάδα");
-
+    //Geography a = new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
+    new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
+    new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
+    new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");
+    new Geography("Φαρμακείο", "Αντωνόπουλος", "3Β");
+    new Geography("Φαρμακείο", "Γιαννακίδης", "3Β");
+    new Geography("Νοσοκομείο", "Ασκληπείο", "3Β");
+    new Geography("Νοσοκομείο", "S.P. Clinic", "3Β");
+    new Geography("Εστιατόριο", "Τα Βλάχικα", "3Β");
+    new Geography("Εστιατόριο", "Μαγειρευτά", "3Β");
+    new Geography("Εστιατόριο", "Pizzeria Pomodori", "3Β");
+    new Geography("Πάρκο", "Πλατεία Βούλας", "3Β");
+    new Geography("Πάρκο", "Αθ. Διάκου", "3Β");
+    new Geography("Γυμναστήριο", "Vari Sports Club", "3Β");
+    new Geography("Κομμωτήριο", "Barber Shop", "3Β");
+    new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "Άλιμος");
+    new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "Άλιμος");
+    new Geography("Φαρμακείο", "Ζαχαριάδης", "Άλιμος");
+    new Geography("Φαρμακείο", "Κολοβός", "Άλιμος");
+    new Geography("Νοσοκομείο", "BioMed", "Άλιμος");
+    new Geography("Νοσοκομείο", "Health", "Άλιμος");
+    new Geography("Εστιατόριο", "Σουβλάκια", "Άλιμος");
+    new Geography("Εστιατόριο", "Cuisine205", "Άλιμος");
+    new Geography("Πάρκο", "Πάρκο Αλίμου", "Άλιμος");
+    new Geography("Γυμναστήριο", "True Fitness", "Άλιμος");
+    new Geography("Κομμωτήριο", "Salon Coiffure", "Άλιμος");
+    new Geography("Σούπερ Μάρκετ", "Σκλαβενίτης", "Γλυφάδα");
+    new Geography("Σούπερ Μάρκετ", "SuperFoodsMarket", "Γλυφάδα");
+    new Geography("Φαρμακείο", "Βασιλακάκης", "Γλυφάδα");
+    new Geography("Νοσοκομείο", "Medical 23", "Γλυφάδα");
+    new Geography("Φαρμακείο", "Γεωργούλης", "Γλυφάδα");
+    new Geography("Εστατόριο", "Mexican de Glyfada", "Γλυφάδα");
+    new Geography("Εστατόριο", "Sushi Esperidon", "Γλυφάδα");
+    new Geography("Πάρκο", "Πλατεία Εσπερίδων", "Γλυφάδα");
+    new Geography("Πάρκο", "Μαυρολέωντος", "Γλυφάδα");
+    new Geography("Γυμναστήριο", "L.F.F. GYM", "Γλυφάδα");
+    new Geography("Κομμωτήριο", "Pretty Hair", "Γλυφάδα");
   }
 }
-

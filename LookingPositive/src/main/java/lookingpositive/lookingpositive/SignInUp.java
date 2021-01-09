@@ -2,6 +2,9 @@ package lookingpositive.lookingpositive;
 
 import java.util.Scanner;
 
+/**
+ * This method is used to implement the user's Sign In and Sign Up.
+ */
 public final class SignInUp {
 
   private SignInUp() {
@@ -9,7 +12,7 @@ public final class SignInUp {
   }
 
   /**
-   * Login method.
+   * User Sign Up method.
    */
   public static void login() {
     System.out.println("Εισάγετε email/n Για εγγραφή εισάγετε 1");
@@ -40,6 +43,7 @@ public final class SignInUp {
   }
 
   /**
+   * Checks if the user already exists.
    *
    * @param email    is User's email
    * @param password is User's password

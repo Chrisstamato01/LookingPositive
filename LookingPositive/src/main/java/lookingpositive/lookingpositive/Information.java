@@ -2,6 +2,9 @@ package lookingpositive.lookingpositive;
 
 import java.util.Scanner;
 
+/**
+ * This class is used to inform the user about Covid 19.
+ */
 public final class Information {
 
   /**

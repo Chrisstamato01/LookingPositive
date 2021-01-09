@@ -3,8 +3,7 @@ package lookingpositive.lookingpositive;
 import java.util.ArrayList;
 
 /**
- * This class is the model for users' profiles. It includes the private
- * variables that make up the object, two constructors and getters.
+ * This class is the model for users' profiles.
  *
  */
 public class Profile {
@@ -29,10 +28,6 @@ public class Profile {
    */
   private String password;
   /**
-   * User's mobile phone.
-   */
-  private String mobilePhone;
-  /**
    * User's age.
    */
   private int age;
@@ -52,12 +47,9 @@ public class Profile {
    * Array list in which profiles are saved.
    */
   private static ArrayList<Profile> profilesSave = new ArrayList<Profile>();
-  //was protected
 
   /**
-   * This constructor is used to create objects of people who are not users of
-   * the app, in case that a user declares that they were in contact with them.
-   * It keeps their first and last names.
+   * This constructor is used to create objects of users.
    *
    * @param name user's first name
    * @param surname  user's last name
@@ -113,14 +105,7 @@ public class Profile {
   public String getLastName() {
     return lastName;
   }
-  /**
-   * Returns mobile number.
-   *
-   * @return mobile number
-   */
-  public String getMobilePhone() {
-    return mobilePhone;
-  }
+
   /**
    * Returns residence region.
    *
@@ -171,11 +156,10 @@ public class Profile {
   }
   /**
    * Returns the line from profileSave.
-   * @param i
+   * @param i line to be returned
    * @return profile line
    */
   public static Profile profilesSaveLine(final int i) {
-    //na eksigisw sholio (param)
     return profilesSave.get(i);
   }
   /**
