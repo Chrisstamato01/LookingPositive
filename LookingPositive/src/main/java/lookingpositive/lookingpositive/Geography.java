@@ -13,15 +13,15 @@ public class Geography {
   /**
    * Facility type.
    */
-  private final String type; // Π.Χ. ΝΟΣΟΚΟΜΕΙΟ, ΦΑΡΜΑΚΕΙΟ, ΕΣΤΙΑΡΟΡΙΟ ΚΤΛ.
+  private String type; // Π.Χ. ΝΟΣΟΚΟΜΕΙΟ, ΦΑΡΜΑΚΕΙΟ, ΕΣΤΙΑΡΟΡΙΟ ΚΤΛ.
   /**
    * Facility name.
    */
-  private final String name;
+  private String name;
   /**
    * Facility Municipality.
    */
-  private final String municipality;
+  private String municipality;
   /**
    * Table for the facilities.
    */
@@ -51,6 +51,13 @@ public class Geography {
     name = n;
     municipality = mun;
     facilities.add(this);
+  }
+
+  /**
+   * Default constructor Geography.
+   */
+  public Geography() {
+
   }
 
   /**
