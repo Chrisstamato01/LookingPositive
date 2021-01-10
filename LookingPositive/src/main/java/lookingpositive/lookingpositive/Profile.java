@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * This class is the model for users' profiles.
  *
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Profile {
   /**
    * User's first name.
