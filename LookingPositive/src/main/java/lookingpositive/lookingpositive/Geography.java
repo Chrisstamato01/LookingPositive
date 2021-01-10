@@ -42,14 +42,15 @@ public class Geography {
   /**
    * Constructor for the class Geography.
    *
-   * @param t   is the type of the facility
-   * @param n   is the name
-   * @param mun is the municipality
+   * @param facType   is the type of the facility
+   * @param facName   is the name
+   * @param facMunicipality is the municipality
    */
-  public Geography(final String t, final String n, final String mun) {
-    type = t;
-    name = n;
-    municipality = mun;
+  public Geography(final String facType, final String facName,
+                   final String facMunicipality) {
+    type = facType;
+    name = facName;
+    municipality = facMunicipality;
     facilities.add(this);
   }
 
@@ -86,7 +87,7 @@ public class Geography {
   }
 
   /**
-   * @return the whole facilities arraylist.
+   * @return the whole facilities table.
    */
   public static ArrayList<Geography> getFacilities() {
     return facilities;
@@ -103,7 +104,7 @@ public class Geography {
 
   /**
    *
-   * @return size of arraylist facilities
+   * @return size of facilities
    */
   public static int getFacilitiesSize() {
     return facilities.size();  }
@@ -120,7 +121,7 @@ public class Geography {
   }
 
   /**
-   * Finds the color of a municipality according to the number of covid cases.
+   * Finds the color of a municipality according to the number of Covid cases.
    *
    * @param mun is the municipality
    * @return String
@@ -158,10 +159,9 @@ public class Geography {
   }
 
   /**
-   * Fills the arraylist with the facilities.
+   * Fills the table with the facilities.
    */
   public static void fillTables() {
-    //Geography a = new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
     new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
     new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
     new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");

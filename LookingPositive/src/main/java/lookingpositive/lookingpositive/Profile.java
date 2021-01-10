@@ -183,4 +183,15 @@ public class Profile {
   public static ArrayList<Profile> getProfilesSave() {
     return profilesSave;
   }
+
+  /**
+   * ToString method.
+   */
+  @Override
+  public String toString() {
+    return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
+        + ", Δήμος Κατοικίας=" + residenceRegion + ", Email=" + email
+        + ", Κωδικός=" + password + ", Ηλικία=" + age + ", ID χρήστη=" + userID
+        + ", Ευπαθής Ομάδα;" + isSusceptible + "]";
+  }
 }
