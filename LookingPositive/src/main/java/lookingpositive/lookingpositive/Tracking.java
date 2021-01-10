@@ -1,5 +1,5 @@
 /**
- * Looking Positive Tracking
+ * Looking Positive Tracking.
  */
 package lookingpositive.lookingpositive;
 

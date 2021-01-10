@@ -22,11 +22,11 @@ public final class Mail {
   /**
    * sender's E-mail.
    */
-  private static final String FROM = "lookingprositive@gmail.com";
+  private static final String FROM = "LookingPositiveApp@gmail.com";
   /**
    * sender's E-mail password.
    */
-  private static final String PASSWORD = "lookingpositive1!";
+  private static final String PASSWORD = "lookingpositive123";
   /**
    * G-mail SMTP server.
    */
