@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * This class is the model for users' profiles.
  *
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Profile {
   /**
    * User's first name.
@@ -20,37 +21,37 @@ public class Profile {
   /**
    * User's residence region.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+ // @JsonInclude(JsonInclude.Include.NON_NULL)
   private String residenceRegion;
   /**
    * User's email.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+ // @JsonInclude(JsonInclude.Include.NON_NULL)
   private String email;
   /**
    * User's password.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String password;
   /**
    * User's age.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+ // @JsonInclude(JsonInclude.Include.NON_NULL)
   private int age;
   /**
    * User's ID.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private int userID;
   /**
    * Susceptible or not.
    */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
+//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private boolean isSusceptible;
   /**
    * Counter variable.
    */
-  private static int counter = 0;       //was public
+  private static int counter = 0;
   /**
    * Array list in which profiles are saved.
    */
