@@ -2,13 +2,13 @@ package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * This class is the model for users' profiles.
  *
  */
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Profile {
   /**
    * User's first name.
@@ -21,32 +21,26 @@ public class Profile {
   /**
    * User's residence region.
    */
- // @JsonInclude(JsonInclude.Include.NON_NULL)
   private String residenceRegion;
   /**
    * User's email.
    */
- // @JsonInclude(JsonInclude.Include.NON_NULL)
   private String email;
   /**
    * User's password.
    */
-//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String password;
   /**
    * User's age.
    */
- // @JsonInclude(JsonInclude.Include.NON_NULL)
   private int age;
   /**
    * User's ID.
    */
-//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private int userID;
   /**
    * Susceptible or not.
    */
-//  @JsonInclude(JsonInclude.Include.NON_NULL)
   private boolean isSusceptible;
   /**
    * Counter variable.
