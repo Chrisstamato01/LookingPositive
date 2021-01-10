@@ -61,6 +61,13 @@ public class Profile {
   }
 
   /**
+   * Default constructor.
+   */
+  public Profile() {
+
+  }
+
+  /**
    * This constructor creates the profiles using the private variables.
    *
    * @param name     is the user's first name
