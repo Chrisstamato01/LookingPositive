@@ -192,9 +192,13 @@ public class Profile {
    */
   @Override
   public String toString() {
-    return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
-        + ", Δήμος Κατοικίας=" + residenceRegion + ", Email=" + email
-        + ", Κωδικός=" + password + ", Ηλικία=" + age + ", ID χρήστη=" + userID
-        + ", Ευπαθής Ομάδα;" + isSusceptible + "]";
-  }
+    if (email == null) {
+      return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
+    } else {
+      return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
+          + ", Δήμος Κατοικίας=" + residenceRegion + ", Email=" + email
+          + ", Κωδικός=" + password + ", Ηλικία=" + age + ", ID χρήστη=" + userID
+          + ", Ευπαθής Ομάδα;" + isSusceptible + "]";
+    }
+   }
 }

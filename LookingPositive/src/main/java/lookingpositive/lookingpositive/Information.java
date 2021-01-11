@@ -126,6 +126,7 @@ public final class Information {
         System.out.println("Μη έγκυρη επιλογή. Προσπαθήστε ξανά.");
         break;
       }
+      sc.close(); 
     }
   }
 }
