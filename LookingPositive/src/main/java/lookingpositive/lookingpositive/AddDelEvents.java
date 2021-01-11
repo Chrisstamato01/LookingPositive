@@ -22,8 +22,8 @@ public final class AddDelEvents {
   public static void chooseFunction(final int userId) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Επιλέξτε μία απο τις παρακάτω ενέργειε:"
-        + "\n1.Δημιουργία γεγονότος." + "\nΔιαγραφή γεγονότος."
-        + "\nΕμφανιση των μελλοντικων γεγονότων.");
+        + "\n1. Δημιουργία γεγονότος." + "\n2. Διαγραφή γεγονότος."
+        + "\n3. Εμφανιση των μελλοντικων γεγονότων.");
     int choice = -1;
     boolean flag = true;
     final int firstCase = 1;
@@ -49,7 +49,7 @@ public final class AddDelEvents {
       addEvent(userId);
       break;
     case secondCase:
-      delEvent(userId);
+      System.out.println(delEvent(userId));
       break;
     case thirdCase:
       viewEvents(userId);
@@ -67,8 +67,8 @@ public final class AddDelEvents {
    * @param userId the user whose event we want to add
    */
   public static void addEvent(final int userId) {
-    Calendar.addToCalendar(
-        new Event(dateInput(), addGeography(), profileListInput()), userId);
+    System.out.println(Calendar.addToCalendar(
+        new Event(dateInput(), addGeography(), profileListInput()), userId));
 
   }
 
@@ -80,13 +80,14 @@ public final class AddDelEvents {
    */
   public static LocalDate dateInput() {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Εισάγεται ημερομηνία για την εκδήλωση σας (d/m/yyyy).");
+    System.out
+        .println("Εισάγεται ημερομηνία για την εκδήλωση σας (dd/MM/yyyy).");
     boolean flag = true;
     LocalDate date = null;
     while (flag) {
       flag = false;
       String sDate = sc.nextLine();
-      DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
+      DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       try {
         date = LocalDate.parse(sDate, dateFormat);
       } catch (DateTimeParseException e) {
@@ -102,7 +103,7 @@ public final class AddDelEvents {
         System.out.println("Η ημερομηνία που εισάγατε ειναι παρελθονιτκή.");
       }
     }
-    sc.close();
+
     return date;
   }
 
@@ -151,7 +152,6 @@ public final class AddDelEvents {
 
       }
     }
-    sc.close();
     return contactedPeople;
   }
 
@@ -188,11 +188,20 @@ public final class AddDelEvents {
    * @param userId specific user
    */
   public static void viewEvents(final int userId) {
-    for (int i = 0; i < Calendar.getFuture()
-        .getUsersEventListsSize(userId); i++) {
+    int i;
+    for (i = 0; i < Calendar.getToday().getUsersEventListsSize(userId); i++) {
+
+      System.out.println(
+          i + 1 + " " + Calendar.getToday().getCurrentEvent(userId, i));
+    }
+    int j;
+    for (j = 0; i < Calendar.getFuture().getUsersEventListsSize(userId); i++) {
 
       System.out.println(
           i + 1 + " " + Calendar.getFuture().getCurrentEvent(userId, i));
+    }
+    if (i == 0 && j == 0) {
+      System.out.println("Δεν έχετε προγραμματισμένα γεγονότα.");
     }
   }
 
@@ -207,6 +216,11 @@ public final class AddDelEvents {
     Scanner sc = new Scanner(System.in);
     System.out.println("Οι προγραμματισμένες σας εκδηλώσεις είναι οι εξής : ");
     viewEvents(userId);
+    if (Calendar.getFuture().getUsersEventListsSize(userId) == 0
+        && Calendar.getToday().getUsersEventListsSize(userId) == 0) {
+
+      return "Δεν έχετε γεγονότα να διαγράψετε.";
+    }
     System.out
         .println("Επιλέξτε τον αριθμό της εκδήλωσης που θέλετε να διαγράψετε.");
     boolean foundException = true;
@@ -216,22 +230,24 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > Calendar.getFuture().getUsersEventListsSize(userId) - 1
+          if (n > Calendar.getFuture().getUsersEventListsSize(userId)
               || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
           } else {
             numberNotFound = false;
           }
+          foundException = false;
         } catch (InputMismatchException e) {
           System.out.println("Παρακαλώ εισάγεται αριθμό.");
         } catch (Exception e) {
           System.err.println(e);
         }
+        sc.nextLine();
       }
     }
     Calendar.getFuture().removeCurrentEvent(userId, n - 1);
-    sc.close();
+
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }
 
@@ -242,40 +258,41 @@ public final class AddDelEvents {
    * @return the place of the event
    */
   public static Geography addGeography() {
-    Scanner sc = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     System.out.println("Ποιόν δήμο θα θέλατε να επισκευτείτε"
         + "(δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
     boolean flag = true;
-    int number = 0;
+
     final int firstCase = 1;
     final int secondCase = 2;
     final int thirdCase = 3;
     while (flag) {
-      number = sc.nextInt();
-      switch (number) {
+
+      int num = scanner.nextInt();
+      switch (num) {
       case firstCase:
-        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
-          if (Geography.getFacilitiesCells(i).getMunicipality()
+        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
+          if (Geography.getFacilitiesLine(i).getMunicipality()
               .contentEquals("3Β")) {
-            System.out.println(i + " " + Geography.getFacilitiesCells(i));
+            System.out.println((i + 1) + " " + Geography.getFacilitiesLine(i));
           }
         }
         flag = false;
         break;
       case secondCase:
-        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
-          if (Geography.getFacilitiesCells(i).getMunicipality()
+        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
+          if (Geography.getFacilitiesLine(i).getMunicipality()
               .contentEquals("Άλιμος")) {
-            System.out.println(i + ". " + Geography.getFacilitiesCells(i));
+            System.out.println((i + 1) + ". " + Geography.getFacilitiesLine(i));
           }
         }
         flag = false;
         break;
       case thirdCase:
-        for (int i = 0; i < Geography.getFacilitiesLength(); i++) {
-          if (Geography.getFacilitiesCells(i).getMunicipality()
+        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
+          if (Geography.getFacilitiesLine(i).getMunicipality()
               .contentEquals("Γλυφάδα")) {
-            System.out.println(i + ". " + Geography.getFacilitiesCells(i));
+            System.out.println((i + 1) + ". " + Geography.getFacilitiesLine(i));
           }
         }
         flag = false;
@@ -291,8 +308,8 @@ public final class AddDelEvents {
     int choice = -1;
     while (flag) {
       try {
-        choice = sc.nextInt();
-        if (choice >= Geography.getFacilitiesLength()) {
+        choice = scanner.nextInt();
+        if (choice > Geography.getFacilitiesSize()) {
           System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
         } else {
           flag = false;
@@ -305,6 +322,6 @@ public final class AddDelEvents {
 
     }
 
-    return Geography.getFacilitiesCells(choice);
+    return Geography.getFacilitiesLine(choice - 1);
   }
 }

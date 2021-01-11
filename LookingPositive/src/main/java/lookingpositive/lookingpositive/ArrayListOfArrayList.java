@@ -93,7 +93,7 @@ public class ArrayListOfArrayList {
    *
    * @return the size of the evenList
    */
-  public int getEventListsSize() {
+  public int giveEventListsSize() {
     return eventList.size();
   }
 

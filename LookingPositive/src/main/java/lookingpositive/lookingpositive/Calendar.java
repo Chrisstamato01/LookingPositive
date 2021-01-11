@@ -1,7 +1,15 @@
 package lookingpositive.lookingpositive;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.type.TypeReference;
+
 
 public final class Calendar {
 
@@ -126,13 +134,14 @@ public final class Calendar {
     // ΒΡΙΣΚΟΥΜΕ ΤΗΝ ΔΙΑΦΟΡΑ ΜΕΤΑΞΥ ΤΩΝ ΗΜΕΡΟΜΗΝΙΩΝ
     long differenceOfDays = oldDate.until(newDate, ChronoUnit.DAYS);
     LocalDate replicaOldDate;
-    System.out.println(differenceOfDays);
+
+    // System.out.println(differenceOfDays);
     // ΔΗΜΙΟΘΡΓΙΑ ΒΡΟΓΧΟΥ ΓΙΑ ΤΗΝ ΔΙΑΧΕΙΡΗΣΗ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΑΠΕΧΟΥΝ ΠΟΛΛΕΣ ΜΕΡΕΣ
     // ΜΕΤΑΞΥ ΤΟΥΣ
     for (int counter = 0; counter < differenceOfDays; counter++) {
 
       // ΣΕ ΠΕΡΙΠΤΩΣΗ ΠΟΥ Ο ΧΡΗΣΤΗΣ ΜΠΑΙΝΕΙ ΚΑΘΕ ΜΕΡΑ
-      System.out.println(counter);
+      // System.out.println(counter);
 
       day14.deleteEvent();
       day14.copyDoubleArraList(day13);
@@ -163,24 +172,24 @@ public final class Calendar {
       day1.deleteEvent();
       day1.copyDoubleArraList(today);
 
-      System.out.println("Beginfourteen cell[0]");
-      fourteenDays[0].printcheck();
-      System.out.println("ENDfourteen cell[0]");
+      // System.out.println("Beginfourteen cell[0]");
+      // fourteenDays[0].printcheck();
+      // System.out.println("ENDfourteen cell[0]");
       // ΔΙΑΓΡΑΦΗ ΤΟΥ ΠΕΡΙΕΧΟΜΕΝΟΥ ΤΟΥ TODAY
       today.deleteEvent();
 
-      System.out.println("Begintoday");
-      today.printcheck();
-      System.out.println("ENDtoday");
+      // System.out.println("Begintoday");
+      // today.printcheck();
+      // System.out.println("ENDtoday");
       // ΔΙΑΧΕΙΡΗΣΕΙ ΤΩΝ ΗΜΕΡΟΜΙΝΙΩΝ ΜΕΣΩ ΤΟΥ REPLICAOLDDATE
       replicaOldDate = oldDate.plusDays(counter + 1);
-      System.out.println(replicaOldDate);
+      // System.out.println(replicaOldDate);
 
       // ΓΕΜΙΣΜΑ ΤΟΥ TODAY ΜΕ ΤΑ ΑΝΑΝΕΟΜΕΝΑ ΣΤΟΙΧΕΙΑ ΤΗΣ ΕΠΟΜΕΝΗΣ
       // ΜΕΡΑΣ ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ
       // ΣΤΟΝ FUTURE
-      System.out.println("filling today");
-      for (int i = 0; i < future.getEventListsSize(); i++) {
+      // System.out.println("filling today");
+      for (int i = 0; i < future.giveEventListsSize(); i++) {
         for (int j = 0; j < future.getUsersEventListsSize(i); j++) {
           if (replicaOldDate
               .isEqual((future.getCurrentEvent(i, j).getDate()))) {
@@ -190,25 +199,25 @@ public final class Calendar {
           }
         }
       }
-      System.out.println("end filling today");
+      // System.out.println("end filling today");
       // ΔΙΑΓΡΑΦΗ ΤΩΝ ΣΤΟΙΧΕΙΩΝ ΠΟΥ ΜΠΗΚΑΝ ΣΤΟΝ TODAY ΑΡΑ Η ΗΜΕΡΟΜΗΝΙΑ ΤΟΥΣ ΔΕΝ
       // ΑΝΟΙΚΕΙ ΠΛΕΟΝ ΣΤΟ ΜΕΛΛΟΝ
-      System.out.println("removing future of day");
-      for (int i = 0; i < future.getEventListsSize(); i++) {
+      // System.out.println("removing future of day");
+      for (int i = 0; i < future.giveEventListsSize(); i++) {
         for (int j = future.getUsersEventListsSize(i) - 1; j >= 0; j--) {
           if (replicaOldDate
               .isEqual((future.getCurrentEvent(i, j).getDate()))) {
-            System.out.println(future.getUsersEventListsSize(i) + "before");
+            // System.out.println(future.getUsersEventListsSize(i) + "before");
             // future.eventlist.get(i).remove(j);
             future.removeCurrentEvent(i, j);
-            System.out.println(future.getUsersEventListsSize(i) + "after");
+            // System.out.println(future.getUsersEventListsSize(i) + "after");
           }
         }
       }
 
-      System.out.println("Afterrefilltoday");
-      today.printcheck();
-      System.out.println("Afterrefilltoday");
+      // System.out.println("Afterrefilltoday");
+      // today.printcheck();
+      // System.out.println("Afterrefilltoday");
 
     }
   }
@@ -253,6 +262,7 @@ public final class Calendar {
     day13.createarraylistofevents();
     day14.createarraylistofevents();
   }
+
   /**
    * This method returns a chosen cell of fourteenDays table.
    * @param cell is one out of fourteen cells of fourteenDays
@@ -260,5 +270,101 @@ public final class Calendar {
    */
   public static ArrayListOfArrayList getFourteenDaysCell(final int cell) {
     return fourteenDays[cell];
+  }
+  /**
+   * Saves Events to JSON file.
+   */
+  public static void eventSaver() {
+    ObjectMapper objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    try {
+      File file1 = new File("calendar\\today.json").getAbsoluteFile();
+      File file2 = new File("calendar\\future.json").getAbsoluteFile();
+
+      File file3 = new File("calendar\\day1.json").getAbsoluteFile();
+      File file4 = new File("calendar\\day2.json").getAbsoluteFile();
+      File file5 = new File("calendar\\day3.json").getAbsoluteFile();
+      File file6 = new File("calendar\\day4.json").getAbsoluteFile();
+      File file7 = new File("calendar\\day5.json").getAbsoluteFile();
+      File file8 = new File("calendar\\day6.json").getAbsoluteFile();
+      File file9 = new File("calendar\\day7.json").getAbsoluteFile();
+      File file10 = new File("calendar\\day8.json").getAbsoluteFile();
+      File file11 = new File("calendar\\day9.json").getAbsoluteFile();
+      File file12 = new File("calendar\\day10.json").getAbsoluteFile();
+      File file13 = new File("calendar\\day11.json").getAbsoluteFile();
+      File file14 = new File("calendar\\day12.json").getAbsoluteFile();
+      File file15 = new File("calendar\\day13.json").getAbsoluteFile();
+      File file16 = new File("calendar\\day14.json").getAbsoluteFile();
+
+      objectMapper.writeValue(file1, today);
+      objectMapper.writeValue(file2, future);
+      objectMapper.writeValue(file3, day1);
+      objectMapper.writeValue(file4, day2);
+      objectMapper.writeValue(file5, day3);
+      objectMapper.writeValue(file6, day4);
+      objectMapper.writeValue(file7, day5);
+      objectMapper.writeValue(file8, day6);
+      objectMapper.writeValue(file9, day7);
+      objectMapper.writeValue(file10, day8);
+      objectMapper.writeValue(file11, day9);
+      objectMapper.writeValue(file12, day10);
+      objectMapper.writeValue(file13, day11);
+      objectMapper.writeValue(file14, day12);
+      objectMapper.writeValue(file15, day13);
+      objectMapper.writeValue(file16, day14);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+  /**
+   * Retrieves Events from JSON file.
+   */
+  public static void eventRetriever() {
+    ObjectMapper objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    try {
+      File file1 = new File("calendar\\today.json").getAbsoluteFile();
+      File file2 = new File("calendar\\future.json").getAbsoluteFile();
+
+      File file3 = new File("calendar\\day1.json").getAbsoluteFile();
+      File file4 = new File("calendar\\day2.json").getAbsoluteFile();
+      File file5 = new File("calendar\\day3.json").getAbsoluteFile();
+      File file6 = new File("calendar\\day4.json").getAbsoluteFile();
+      File file7 = new File("calendar\\day5.json").getAbsoluteFile();
+      File file8 = new File("calendar\\day6.json").getAbsoluteFile();
+      File file9 = new File("calendar\\day7.json").getAbsoluteFile();
+      File file10 = new File("calendar\\day8.json").getAbsoluteFile();
+      File file11 = new File("calendar\\day9.json").getAbsoluteFile();
+      File file12 = new File("calendar\\day10.json").getAbsoluteFile();
+      File file13 = new File("calendar\\day11.json").getAbsoluteFile();
+      File file14 = new File("calendar\\day12.json").getAbsoluteFile();
+      File file15 = new File("calendar\\day13.json").getAbsoluteFile();
+      File file16 = new File("calendar\\day14.json").getAbsoluteFile();
+
+      today = objectMapper.readValue(file1, ArrayListOfArrayList.class);
+      future = objectMapper.readValue(file2, ArrayListOfArrayList.class);
+      day1 = objectMapper.readValue(file3, ArrayListOfArrayList.class);
+      day2 = objectMapper.readValue(file4, ArrayListOfArrayList.class);
+      day3 = objectMapper.readValue(file5, ArrayListOfArrayList.class);
+      day4 = objectMapper.readValue(file6, ArrayListOfArrayList.class);
+      day5 = objectMapper.readValue(file7, ArrayListOfArrayList.class);
+      day6 = objectMapper.readValue(file8, ArrayListOfArrayList.class);
+      day7 = objectMapper.readValue(file9, ArrayListOfArrayList.class);
+      day8 = objectMapper.readValue(file10, ArrayListOfArrayList.class);
+      day9 = objectMapper.readValue(file11, ArrayListOfArrayList.class);
+      day10 = objectMapper.readValue(file12, ArrayListOfArrayList.class);
+      day11 = objectMapper.readValue(file13, ArrayListOfArrayList.class);
+      day12 = objectMapper.readValue(file14, ArrayListOfArrayList.class);
+      day13 = objectMapper.readValue(file15, ArrayListOfArrayList.class);
+      day14 = objectMapper.readValue(file16, ArrayListOfArrayList.class);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
   }
 }

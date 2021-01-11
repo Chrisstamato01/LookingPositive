@@ -3,10 +3,23 @@ package lookingpositive.lookingpositive;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+/**
+ * @author masto
+ *
+ */
 public class Event {
   /**
    * date has the date of the event.
    */
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+  @JsonDeserialize(using = LocalDateDeserializer.class)
+  @JsonSerialize(using = LocalDateSerializer.class)
   private LocalDate date;
   /**
    * place has the place of the event.
@@ -29,6 +42,11 @@ public class Event {
     date = dateTime;
     place = placeOfTheEvent;
     profiles = peopleHeWillMeet;
+  }
+  /**
+   * Default constructor.
+   */
+  public Event() {
   }
 
   /**
@@ -84,4 +102,11 @@ public class Event {
   public final void setProfiles(final ArrayList<Profile> newProfiles) {
     profiles = newProfiles;
   }
+
+  @Override
+  public String toString() {
+    return "Event [date=" + date + ", place=" + place + ", profiles=" + profiles
+        + "]";
+  }
+
 }
