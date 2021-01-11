@@ -16,7 +16,7 @@ public final class AddUser {
    * Adds user in profile array.
    */
   public static void add() {
-    Profile profile = new Profile(handleFirstName(), handleLastName(),
+    new Profile(handleFirstName(), handleLastName(),
         handleResidenceRegion(), handleAge(), handleIsSusceptible(),
         handlePassword(), handleEmail());
   }
@@ -26,24 +26,31 @@ public final class AddUser {
    * @return first name
    */
   protected static String handleFirstName() {
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Όνομα: ");
-    String firstName = null;
+/*    Scanner sc = null;
+    try {*/
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Όνομα: ");
+      String firstName = null;
 
-    boolean flag = true;
-    while (flag) {
+      boolean flag = true;
+      while (flag) {
 
-      try {
-        firstName = sc.next();
-        flag = false;
-      } catch (Exception e) {
-        flag = true;
-        System.err.println("Εισάγετε έγκυρο όνομα" + e);
+        try {
+          firstName = sc.next();
+          flag = false;
+        } catch (Exception e) {
+          flag = true;
+          System.err.println("Εισάγετε έγκυρο όνομα" + e);
+        }
+       }
+      System.out.println(firstName);
+      //sc.close();
+      return firstName;
+/*    } finally {
+      if (sc != null) {
+        sc.close();
       }
-    }
-    System.out.println(firstName);
-
-    return firstName;
+    }*/
   }
   /**
    * Requires user to add his surname.
@@ -66,6 +73,7 @@ public final class AddUser {
     }
     System.out.println(lastName);
 
+    //sc.close();
     return lastName;
   }
 
@@ -125,6 +133,7 @@ public final class AddUser {
       sc.nextLine();
     }
 
+    //sc.close();
     return residenceRegion;
   }
 
@@ -152,8 +161,8 @@ public final class AddUser {
       }
       sc.nextLine();
     }
+    //sc.close();
     return age;
-
   }
   /**
    * User declares whether he/she is susceptible.
@@ -183,6 +192,7 @@ public final class AddUser {
     } else {
       isSuspectible = false;
     }
+    //sc.close();
     return isSuspectible;
   }
   /**
@@ -194,6 +204,7 @@ public final class AddUser {
     Scanner sc = new Scanner(System.in);
     System.out.println("Εισάγετε τον κωδικό σας");
     String pass = sc.next();
+    //sc.close();
     return pass;
   }
 
@@ -258,6 +269,7 @@ public final class AddUser {
         a = true;
       }
     }
+    //sc.close();
     System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
     String usersEmail = email + domain;
     return usersEmail;

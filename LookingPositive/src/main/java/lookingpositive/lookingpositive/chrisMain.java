@@ -2,13 +2,11 @@ package lookingpositive.lookingpositive;
 
 public class chrisMain {
   public static void main(String[] args) {
-//    AddUser.add();
-    
-    
-    Geography.fillTables();
-//    System.out.println(Geography.getFacilities());
-    for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
-      System.out.println(Geography.getFacilitiesLine(i));
+
+    AddUser.add();
+
+    for (int i = 0; i < Profile.profilesSaveSize(); i++) {
+      System.out.println(Profile.profilesSaveLine(i));
     }
   }
 

@@ -116,7 +116,7 @@ public class Geography {
    */
   @Override
   public String toString() {
-    return this.type + " Όνομα: " + this.name + " Ανήκει στον Δήμο: "
+    return this.type + " - Όνομα: " + this.name + " - Δήμος: "
         + this.municipality;
   }
 
