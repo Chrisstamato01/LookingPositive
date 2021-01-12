@@ -2,13 +2,13 @@ package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * This class is the model for users' profiles.
  *
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Profile {
   /**
    * User's first name.
@@ -197,7 +197,8 @@ public class Profile {
     } else {
       return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
           + ", Δήμος Κατοικίας=" + residenceRegion + ", Email=" + email
-          + ", Κωδικός=" + password + ", Ηλικία=" + age + ", ID χρήστη=" + userID
+          + ", Κωδικός=" + password + ", Ηλικία=" + age
+          + ", ID χρήστη=" + userID
           + ", Ευπαθής Ομάδα;" + isSusceptible + "]";
     }
    }

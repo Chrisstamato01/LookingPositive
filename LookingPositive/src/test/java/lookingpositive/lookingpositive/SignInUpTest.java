@@ -13,6 +13,9 @@ public class SignInUpTest {
  */
   @Before
   public void setUp() throws Exception {
+    final int nineteen = 19;
+    new Profile("Anna-Maria", "Petrou", "1", nineteen, false,
+        "111122223", "anna.maria@gmail.com");
   }
 /**
  *
@@ -27,8 +30,10 @@ public class SignInUpTest {
   @Test
   public void checkUserTest() {
     final String mail = "nomail@gmail.com";
-    final String pass = "1111";
+    final String pass = "11112222";
     assertEquals(SignInUp.checkUser(mail, pass), -1);
+    final String annaMariaMail = "anna.maria@gmail.com";
+    final String annaMariaPass = "111122223";
+    assertEquals(SignInUp.checkUser(annaMariaMail, annaMariaPass), 0);
   }
-
 }

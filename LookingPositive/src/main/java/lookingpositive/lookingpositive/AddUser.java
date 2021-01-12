@@ -16,64 +16,58 @@ public final class AddUser {
    * Adds user in profile array.
    */
   public static void add() {
-    new Profile(handleFirstName(), handleLastName(),
-        handleResidenceRegion(), handleAge(), handleIsSusceptible(),
-        handlePassword(), handleEmail());
+    Scanner sc = new Scanner(System.in);
+    new Profile(handleFirstName(sc), handleLastName(sc),
+        handleResidenceRegion(sc), handleAge(sc), handleIsSusceptible(sc),
+        handlePassword(sc), handleEmail(sc));
+    sc.close();
   }
   /**
    * Requires user to add his name.
-   *
+   * @param sc
    * @return first name
    */
-  protected static String handleFirstName() {
-/*    Scanner sc = null;
-    try {*/
-      Scanner sc = new Scanner(System.in);
+  protected static String handleFirstName(final Scanner sc) {
       System.out.println("Όνομα: ");
       String firstName = null;
-
       boolean flag = true;
       while (flag) {
-
         try {
-          firstName = sc.next();
+          firstName = sc.nextLine();
           flag = false;
         } catch (Exception e) {
           flag = true;
           System.err.println("Εισάγετε έγκυρο όνομα" + e);
         }
-       }
-      System.out.println(firstName);
-      //sc.close();
-      return firstName;
-/*    } finally {
-      if (sc != null) {
-        sc.close();
+        if (!alphabetCheck(firstName)) {
+          flag = true;
+          System.out.println("Εισάγετε έγκυρο όνομα");
+        }
       }
-    }*/
+      return firstName;
   }
   /**
    * Requires user to add his surname.
-   *
+   * @param sc
    * @return last name
    */
-  protected static String handleLastName() {
-    Scanner sc = new Scanner(System.in);
+  protected static String handleLastName(final Scanner sc) {
     System.out.println("Επώνυμο: ");
-    String lastName = sc.next();
-    boolean flag = false;
+    String lastName = null;
+    boolean flag = true;
     while (flag) {
       try {
-        lastName = sc.next();
-        flag = true;
+        lastName = sc.nextLine();
+        flag = false;
       } catch (Exception e) {
-
-        System.err.println("Εισάγετε έγκυρο επώνυμο" + e);
+        flag = true;
+        System.err.println("Εισάγετε έγκυρο επώνυμο." + e);
+      }
+      if (!alphabetCheck(lastName)) {
+        flag = true;
+        System.out.println("Εισάγετε έγκυρο επώνυμο.");
       }
     }
-    System.out.println(lastName);
-
-    //sc.close();
     return lastName;
   }
 
@@ -83,11 +77,11 @@ public final class AddUser {
   private static final int THREE = 3;
   /**
    * User adds his residence region.
-   *
+   * @param sc
    * @return residence region
    */
-  private static String handleResidenceRegion() {
-    Scanner sc = new Scanner(System.in);
+  private static String handleResidenceRegion(final Scanner sc) {
+
     int a = -1;
     String residenceRegion = null;
 
@@ -133,100 +127,108 @@ public final class AddUser {
       sc.nextLine();
     }
 
-    //sc.close();
     return residenceRegion;
   }
 
   /**
    * User adds his age.
-   *
+   * @param sc
    * @return age
    */
-  private static int handleAge() {
-    Scanner sc = new Scanner(System.in);
+  private static int handleAge(final Scanner sc) {
     System.out.println("Ηλικία: ");
     int age = 0;
     boolean flag = true;
     while (flag) {
-      flag = false;
-      try {
-
-        age = sc.nextInt();
-      } catch (InputMismatchException e) {
-        flag = true;
-        System.out.println("Εισάγετε σωστή ηλικία");
-      } catch (Exception e) {
-        flag = true;
-        System.out.println("Εισάγετε έγκυρο αριθμό");
-      }
-      sc.nextLine();
+       flag = false;
+       try {
+         age = sc.nextInt();
+       } catch (InputMismatchException e) {
+         flag = true;
+         System.out.println("Εισάγετε σωστή ηλικία.");
+       } catch (Exception e) {
+         flag = true;
+         System.out.println("Εισάγετε έγκυρο αριθμό.");
+       }
+       if (age < 0) {
+         System.out.println("Εισάγετε έγκυρη ηλικία.");
+         flag = true;
+       }
+       sc.nextLine();
     }
-    //sc.close();
     return age;
   }
   /**
    * User declares whether he/she is susceptible.
-   *
+   * @param sc
    * @return whether he/she susceptible
    */
-  private static Boolean handleIsSusceptible() {
-    Scanner sc = new Scanner(System.in);
+  private static Boolean handleIsSusceptible(final Scanner sc) {
     System.out.println("Ανήκετε σε ευπαθή ομάδα; (Ν/Ο)");
-
     boolean w = true;
     String susceptible = null;
 
     while (w) {
       w = false;
-      susceptible = sc.next();
-      if (!(susceptible.equals("N") || susceptible.equals("O"))) {
-        System.out.println("Εισάγετε έγκυρο χαρακτήρα "
-            + "(Ν/Ο λατινικοί χαρακτήρες)");
+      susceptible = sc.nextLine();
+      if (!(susceptible.equals("N") || susceptible.equals("O")
+         || susceptible.equals("Ν") || susceptible.equals("Ο")
+         || susceptible.equals("n") || susceptible.equals("o")
+         || susceptible.equals("ν") || susceptible.equals("ο"))) {
+        System.out.println("Εισάγετε έγκυρο χαρακτήρα (N/O)");
         w = true;
       }
     }
-
     boolean isSuspectible;
-    if (susceptible == "N") {
+    if (susceptible == "N" || susceptible == "n"
+     || susceptible == "Ν" || susceptible == "ν") {
       isSuspectible = true;
     } else {
       isSuspectible = false;
     }
-    //sc.close();
     return isSuspectible;
   }
   /**
    * User set his password.
-   *
+   * @param sc
    * @return User's password
    */
-  private static String handlePassword() {
-    Scanner sc = new Scanner(System.in);
+  private static String handlePassword(final Scanner sc) {
     System.out.println("Εισάγετε τον κωδικό σας");
-    String pass = sc.next();
-    //sc.close();
+    boolean w = true;
+    final int eight = 8;
+    final int twenty = 20;
+    String pass = "";
+    while (w) {
+      w = false;
+      pass = sc.nextLine();
+
+      if (pass.length() < eight || pass.length() > twenty) {
+        System.out.println("Ο κωδικός πρέπει να περιέχει 8 - 20 χαρακτήρες.");
+        w = true;
+      }
+    }
     return pass;
   }
 
   /**
   * User adds his email.
-  *
+  * @param sc
   * @return User's email
   */
-  private static String handleEmail() {
+  private static String handleEmail(final Scanner sc) {
     boolean a = false;
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Email(μόνο gmail)/n"
+    System.out.println("Email(μόνο gmail)\n"
     + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
     + " -> lookingPositive): ");
-    String email = sc.next();
+    String email = sc.nextLine();
     String domain = null;
     while (!a) {
       if (email.contains("@") || email.contains(".com")
           || email.contains(".gr")) {
         System.out.println("Μη έγκυρη καταχώρηση email."
           + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
-          email = sc.next();
+          email = sc.nextLine();
       } else {
         int b = -1;
 
@@ -261,7 +263,7 @@ public final class AddUser {
 
           default:
             flag = true;
-            System.out.println("Εισάγετε έγκυρο αριθμό(1,2,)");
+            System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
             break;
           }
           sc.nextLine();
@@ -269,9 +271,19 @@ public final class AddUser {
         a = true;
       }
     }
-    //sc.close();
-    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς");
+    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
     String usersEmail = email + domain;
     return usersEmail;
+  }
+  /**
+   * Checks if the input matches a real name.
+   * @param input
+   * @return true or false(alphabetic or not)
+   */
+  public static boolean alphabetCheck(final String input) {
+      return ((input != null)
+              && (!input.equals(""))
+              //Greek or Latin characters, plus spaces or - available
+              && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ- ]*$")));
   }
 }
