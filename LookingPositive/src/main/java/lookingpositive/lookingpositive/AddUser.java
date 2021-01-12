@@ -38,22 +38,7 @@ public final class AddUser {
    */
   protected static String handleLastName(final Scanner sc) {
     System.out.println("Επώνυμο: ");
-    String lastName = null;
-    boolean flag = true;
-    while (flag) {
-      try {
-        lastName = sc.nextLine();
-        flag = false;
-      } catch (Exception e) {
-        flag = true;
-        System.err.println("Εισάγετε έγκυρο επώνυμο." + e);
-      }
-      if (!alphabetCheck(lastName)) {
-        flag = true;
-        System.out.println("Εισάγετε έγκυρο επώνυμο.");
-      }
-    }
-    return lastName;
+    return handleName(sc);
   }
 
   /**
@@ -285,11 +270,11 @@ public final class AddUser {
         flag = false;
       } catch (Exception e) {
         flag = true;
-        System.err.println("Λανθασμένη καταχώρηση." + e);
+        System.err.println("Λανθασμένη καταχώρηση. Προσπαθήστε ξανά." + e);
       }
       if (!alphabetCheck(name)) {
         flag = true;
-        System.out.println("Λανθασμένη καταχώρηση.");
+        System.out.println("Λανθασμένη καταχώρηση. Προσπαθήστε ξανά.");
       }
     }
     return name;
