@@ -10,14 +10,23 @@ import org.junit.Test;
 
 public class TrackingTest {
 
+  /**
+   * @throws Exception
+   */
   @Before
   public void setUp() throws Exception {
   }
 
+  /**
+   * @throws Exception
+   */
   @After
   public void tearDown() throws Exception {
   }
 
+  /**
+   *Remove Duplicates from an ArrayList.
+   */
   @Test
   public void testRemoveDuplicates() {
     ArrayList<String> actual = new ArrayList<String>();

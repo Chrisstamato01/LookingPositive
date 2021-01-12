@@ -61,6 +61,7 @@ public final class Health {
         }
       }
       if (answer == 2) {
+        Geography.newCase();
         Tracking.track(userID);
       } else {
         areYouOk();
