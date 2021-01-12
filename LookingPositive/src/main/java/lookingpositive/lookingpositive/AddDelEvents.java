@@ -21,9 +21,9 @@ public final class AddDelEvents {
    */
   public static void chooseFunction(final int userId) {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Επιλέξτε μία απο τις παρακάτω ενέργειε:"
+    System.out.println("Επιλέξτε μία απο τις παρακάτω ενέργειες:"
         + "\n1. Δημιουργία γεγονότος." + "\n2. Διαγραφή γεγονότος."
-        + "\n3. Εμφανιση των μελλοντικων γεγονότων.");
+        + "\n3. Εμφανιση των μελλοντικών γεγονότων.");
     int choice = -1;
     boolean flag = true;
     final int firstCase = 1;
@@ -49,7 +49,7 @@ public final class AddDelEvents {
       addEvent(userId);
       break;
     case secondCase:
-      System.out.println(delEvent(userId));
+      System.out.println(deleteEvent(userId));
       break;
     case thirdCase:
       viewEvents(userId);
@@ -66,7 +66,7 @@ public final class AddDelEvents {
    *
    * @param userId the user whose event we want to add
    */
-  public static void addEvent(final int userId) {
+  private static void addEvent(final int userId) {
     System.out.println(Calendar.addToCalendar(
         new Event(dateInput(), addGeography(), profileListInput()), userId));
 
@@ -78,7 +78,7 @@ public final class AddDelEvents {
    *
    * @return the date of the new event
    */
-  public static LocalDate dateInput() {
+  private static LocalDate dateInput() {
     Scanner sc = new Scanner(System.in);
     System.out
         .println("Εισάγεται ημερομηνία για την εκδήλωση σας (dd/MM/yyyy).");
@@ -90,18 +90,19 @@ public final class AddDelEvents {
       DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       try {
         date = LocalDate.parse(sDate, dateFormat);
+        LocalDate now = LocalDate.now();
+        if (now.until(date, ChronoUnit.DAYS) < 0) {
+          flag = true;
+          System.out.println("Η ημερομηνία που εισάγατε είναι παρελθοντική. Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+        }
       } catch (DateTimeParseException e) {
-        System.err.println("AN ERROR OCCURED " + e);
+        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) και εύρος τιμών για μέρες 01-31 και για μήνες 01-12." );
         flag = true;
       } catch (Exception e) {
-        System.err.println("AN ERROR OCCURED");
+        System.out.println("AN ERROR OCCURED "+e);
         flag = true;
       }
-      LocalDate now = LocalDate.now();
-      if (now.until(date, ChronoUnit.DAYS) < 0) {
-        flag = true;
-        System.out.println("Η ημερομηνία που εισάγατε ειναι παρελθονιτκή.");
-      }
+      
     }
 
     return date;
@@ -113,26 +114,26 @@ public final class AddDelEvents {
    *
    * @return the people he will meet
    */
-  public static ArrayList<Profile> profileListInput() {
+  private static ArrayList<Profile> profileListInput() {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> contactedPeople = new ArrayList<Profile>();
     System.out.println(
         "Θα συναναστραφείτε και με αλλα άτομα κατά την έξοδο σας; (ΝΑΙ/ΟΧΙ).");
     boolean flag = true;
-    String answer = "Ν";
+    String answer = null;
     while (flag) {
       answer = sc.nextLine();
-      if (!(answer.equals("ΝΑΙ") || answer.equals("ΟΧΙ"))) {
+      if (!(answer.equalsIgnoreCase("ΝΑΙ") || answer.equalsIgnoreCase("ΟΧΙ"))) {
         System.out.println(
-            "Τα δεδομένα που εισάγατε δεν είναι σωστά επιλέξτε ΝΑΙ / ΟΧΙ ");
+            "Τα δεδομένα που εισάγατε δεν είναι σωστά. Eπιλέξτε ΝΑΙ / ΟΧΙ .");
       } else {
         flag = false;
       }
     }
-    if (answer.equals("ΝΑΙ")) {
+    if (answer.equalsIgnoreCase("ΝΑΙ")) {
       System.out.println("Εισάγεται τα άτομα με τα οποία θα συναντηθείτε.");
       String innerAnswer = "ΝΑΙ";
-      while (innerAnswer.equals("ΝΑΙ")) {
+      while (innerAnswer.equalsIgnoreCase("ΝΑΙ")) {
         System.out.println("Εισάγεται το όνομα του ατόμου.");
         String firstName = sc.nextLine();
         System.out.println("Εισάγεται το επίθετο του ατόμου.");
@@ -142,9 +143,9 @@ public final class AddDelEvents {
         flag = true;
         while (flag) {
           innerAnswer = sc.nextLine();
-          if (!(innerAnswer.equals("ΝΑΙ") || innerAnswer.equals("ΟΧΙ"))) {
+          if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ") || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
             System.out.println(
-                "Τα δεδομένα που εισάγατε δεν είναι σωστά επιλέξτε ΝΑΙ / ΟΧΙ ");
+                "Τα δεδομένα που εισάγατε δεν είναι σωστά. Eπιλέξτε ΝΑΙ / ΟΧΙ ");
           } else {
             flag = false;
           }
@@ -164,15 +165,15 @@ public final class AddDelEvents {
    * @param lastName  the last name of the person
    * @return the profiles he/she will meet
    */
-  public static Profile addContactedPeople(final String firstName,
+  private static Profile addContactedPeople(final String firstName,
       final String lastName) {
     Iterator<Profile> it = Profile.getProfilesSave().iterator();
     Profile person;
     Profile person2 = null;
     while (it.hasNext()) {
       person = it.next();
-      if (person.getFirstName().equals(firstName)
-          && person.getLastName().equals(lastName)) {
+      if (person.getFirstName().contentEquals(firstName)
+          && person.getLastName().contentEquals(lastName)) {
         person2 = person;
       } else {
         person = new Profile(firstName, lastName);
@@ -187,7 +188,7 @@ public final class AddDelEvents {
    *
    * @param userId specific user
    */
-  public static void viewEvents(final int userId) {
+  private static void viewEvents(final int userId) {
     int i;
     for (i = 0; i < Calendar.getToday().getUsersEventListsSize(userId); i++) {
 
@@ -212,8 +213,8 @@ public final class AddDelEvents {
    * @param userId the id of a specific user
    * @return a message of success
    */
-  public static String delEvent(final int userId) {
-    Scanner sc = new Scanner(System.in);
+  private static String deleteEvent(final int userId) {
+
     System.out.println("Οι προγραμματισμένες σας εκδηλώσεις είναι οι εξής : ");
     viewEvents(userId);
     if (Calendar.getFuture().getUsersEventListsSize(userId) == 0
@@ -221,6 +222,11 @@ public final class AddDelEvents {
 
       return "Δεν έχετε γεγονότα να διαγράψετε.";
     }
+      return deletingExistingEvent(userId);
+  }
+
+  private static String deletingExistingEvent(int userId) {
+    Scanner sc = new Scanner(System.in);
     System.out
         .println("Επιλέξτε τον αριθμό της εκδήλωσης που θέλετε να διαγράψετε.");
     boolean foundException = true;
@@ -257,71 +263,96 @@ public final class AddDelEvents {
    *
    * @return the place of the event
    */
-  public static Geography addGeography() {
+  private static Geography addGeography() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Ποιόν δήμο θα θέλατε να επισκευτείτε"
-        + "(δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
+    System.out.println("Ποιόν δήμο θα θέλατε να επισκεφθείτε"
+        + "(Δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
     boolean flag = true;
-
+ String municipality =null;
     final int firstCase = 1;
     final int secondCase = 2;
     final int thirdCase = 3;
+    int num= -1;
+    boolean exceptionFound=true;
     while (flag) {
-
-      int num = scanner.nextInt();
+      exceptionFound=true;
+      while (exceptionFound) {
+        try {
+      num = scanner.nextInt();
+      exceptionFound=false;
+      }catch(InputMismatchException e) {
+        System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
+      }
+      scanner.nextLine();
+      }
       switch (num) {
       case firstCase:
-        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
-          if (Geography.getFacilitiesLine(i).getMunicipality()
-              .contentEquals("3Β")) {
-            System.out.println((i + 1) + " " + Geography.getFacilitiesLine(i));
-          }
-        }
+        municipality ="3Β";
+        printFacilities( municipality);
         flag = false;
         break;
       case secondCase:
-        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
-          if (Geography.getFacilitiesLine(i).getMunicipality()
-              .contentEquals("Άλιμος")) {
-            System.out.println((i + 1) + ". " + Geography.getFacilitiesLine(i));
-          }
-        }
+        municipality ="Άλιμος";
+        printFacilities( municipality);
         flag = false;
         break;
       case thirdCase:
-        for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
-          if (Geography.getFacilitiesLine(i).getMunicipality()
-              .contentEquals("Γλυφάδα")) {
-            System.out.println((i + 1) + ". " + Geography.getFacilitiesLine(i));
-          }
-        }
+        municipality ="Γλυφάδα";
+        printFacilities( municipality);
         flag = false;
         break;
       default:
-        System.out.println("Εισάγεται έγκυρο αριθμό. ");
+        System.out.println("Εισάγεται αριθμό το 1, το 2 ή το 3. ");
         break;
       }
     }
-    System.out.println("Εισάγεται τον αριθμό του/της κατάστημος"
-        + "/υπηρεσίας που θα θέλατε να επισκευτειτε. ");
-    flag = true;
+   return  chooseFacility(municipality);
+  }
+  private static Geography chooseFacility(String municipality) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Εισάγετε τον αριθμό του/της κατάστημος"
+        + "/υπηρεσίας που θα θέλατε να επισκεφθείτε. ");
+    boolean flag = true;
     int choice = -1;
     while (flag) {
       try {
         choice = scanner.nextInt();
+        
         if (choice > Geography.getFacilitiesSize()) {
-          System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
+          System.out.println("Παρακαλώ εισάγετε έγκυρο αριθμό.");
         } else {
-          flag = false;
+          
+          flag = validatingFacility(choice, municipality);
+          if(flag) {
+            System.out.println("Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
+          }
         }
       } catch (InputMismatchException e) {
-        System.out.println("Παρακαλώ εισάγεται αριθμό.");
+        System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
+        flag=true;
       } catch (Exception e) {
         System.err.println(e);
+        flag=true;
       }
-
+      scanner.nextLine();
     }
-
     return Geography.getFacilitiesLine(choice - 1);
+  }
+  private static boolean validatingFacility(int choice, String municipality) {
+   
+    boolean notFoundFacility= true;
+   
+      if(Geography.getFacilitiesLine(choice-1).getMunicipality().contentEquals(municipality)) {
+        notFoundFacility = false;
+    }
+    return notFoundFacility;
+  }
+  private static void printFacilities(String municipality) {
+    for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
+      if (Geography.getFacilitiesLine(i).getMunicipality()
+          .contentEquals(municipality)) {
+        System.out.println((i + 1) + ". " + Geography.getFacilitiesLine(i));
+      }
+    }
   }
 }
