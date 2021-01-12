@@ -29,22 +29,7 @@ public final class AddUser {
    */
   protected static String handleFirstName(final Scanner sc) {
       System.out.println("Όνομα: ");
-      String firstName = null;
-      boolean flag = true;
-      while (flag) {
-        try {
-          firstName = sc.nextLine();
-          flag = false;
-        } catch (Exception e) {
-          flag = true;
-          System.err.println("Εισάγετε έγκυρο όνομα" + e);
-        }
-        if (!alphabetCheck(firstName)) {
-          flag = true;
-          System.out.println("Εισάγετε έγκυρο όνομα");
-        }
-      }
-      return firstName;
+      return handleName(sc);
   }
   /**
    * Requires user to add his surname.
@@ -285,5 +270,28 @@ public final class AddUser {
               && (!input.equals(""))
               //Greek or Latin characters, plus spaces or - available
               && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ- ]*$")));
+  }
+  /**
+   * Handles user name.
+   * @param sc
+   * @return user's name
+   */
+  public static String handleName(final Scanner sc) {
+    String name = null;
+    boolean flag = true;
+    while (flag) {
+      try {
+        name = sc.nextLine();
+        flag = false;
+      } catch (Exception e) {
+        flag = true;
+        System.err.println("Λανθασμένη καταχώρηση." + e);
+      }
+      if (!alphabetCheck(name)) {
+        flag = true;
+        System.out.println("Λανθασμένη καταχώρηση.");
+      }
+    }
+    return name;
   }
 }
