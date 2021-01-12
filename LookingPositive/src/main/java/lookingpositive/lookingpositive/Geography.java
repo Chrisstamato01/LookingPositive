@@ -27,6 +27,14 @@ public class Geography {
    */
   private static ArrayList<Geography> facilities = new ArrayList<Geography>();
   /**
+   * Length of table Cases.
+   */
+  private static final int CASES_LENGTH = 3;
+  /**
+   * Table for the cases.
+   */
+  private static int[] cases = new int[CASES_LENGTH];
+  /**
    * Population of municipality 3B.
    */
   private static final int POPULATION_3B = 49399;
@@ -38,6 +46,10 @@ public class Geography {
    * Population of municipality Glyfada.
    */
   private static final int POPULATION_GLYFADA = 87305;
+  /**
+   * Counts today's cases.
+   */
+  private static int todaysCases = 0;
 
   /**
    * Constructor for the class Geography.
@@ -107,7 +119,25 @@ public class Geography {
    * @return size of facilities
    */
   public static int getFacilitiesSize() {
-    return facilities.size();  }
+    return facilities.size();
+  }
+
+  /**
+   * Adds new case to the counter.
+   */
+  public static void newCase() {
+    todaysCases++;
+  }
+
+  /**
+   * Updates the table Cases.
+   */
+  public static void updateCases() {
+    cases[2] = cases[1];
+    cases[1] = cases[0];
+    cases[0] = todaysCases;
+    todaysCases = 0;
+  }
 
   /**
    * toString method.
@@ -127,8 +157,8 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    float current = 0;
-    float q;
+    int current = 0;
+    int q;
     String color;
 // ΟΠΟΥ CASES1,2,3 ΤΑ ΚΡΟΥΣΜΑΤΑ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ 3 ΗΜΕΡΩΝ (TO BE FIXED)
     if (mun.endsWith("3Β")) {
