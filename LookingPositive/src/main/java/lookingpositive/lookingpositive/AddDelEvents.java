@@ -93,16 +93,18 @@ public final class AddDelEvents {
         LocalDate now = LocalDate.now();
         if (now.until(date, ChronoUnit.DAYS) < 0) {
           flag = true;
-          System.out.println("Η ημερομηνία που εισάγατε είναι παρελθοντική. Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+          System.out.println(
+              "Η ημερομηνία που εισάγατε είναι παρελθοντική. Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
         }
       } catch (DateTimeParseException e) {
-        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) και εύρος τιμών για μέρες 01-31 και για μήνες 01-12." );
+        System.out.println(
+            "Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
         flag = true;
       } catch (Exception e) {
-        System.out.println("AN ERROR OCCURED "+e);
+        System.out.println("AN ERROR OCCURED " + e);
         flag = true;
       }
-      
+
     }
 
     return date;
@@ -143,7 +145,8 @@ public final class AddDelEvents {
         flag = true;
         while (flag) {
           innerAnswer = sc.nextLine();
-          if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ") || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
+          if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ")
+              || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
             System.out.println(
                 "Τα δεδομένα που εισάγατε δεν είναι σωστά. Eπιλέξτε ΝΑΙ / ΟΧΙ ");
           } else {
@@ -208,10 +211,10 @@ public final class AddDelEvents {
 
   // the user deletes a future event from his calendar
   /**
-   * This method deletes an event for a specific user.
+   * This method prints a user's Events so that the user can delete one of them.
    *
    * @param userId the id of a specific user
-   * @return a message of success
+   * @return a message of successful deletion
    */
   private static String deleteEvent(final int userId) {
 
@@ -222,9 +225,13 @@ public final class AddDelEvents {
 
       return "Δεν έχετε γεγονότα να διαγράψετε.";
     }
-      return deletingExistingEvent(userId);
+    return deletingExistingEvent(userId);
   }
-
+  /**
+   * This method deletes an Event
+   * @param userId the Id of the user who wants to delete an Event 
+   * @return a message of success
+   */
   private static String deletingExistingEvent(int userId) {
     Scanner sc = new Scanner(System.in);
     System.out
@@ -259,7 +266,7 @@ public final class AddDelEvents {
 
   // the user chooses where his/her event will take place
   /**
-   * This method asks the place the event will take place.
+   * This method asks the municipality the event will take place.
    *
    * @return the place of the event
    */
@@ -268,37 +275,37 @@ public final class AddDelEvents {
     System.out.println("Ποιόν δήμο θα θέλατε να επισκεφθείτε"
         + "(Δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
     boolean flag = true;
- String municipality =null;
+    String municipality = null;
     final int firstCase = 1;
     final int secondCase = 2;
     final int thirdCase = 3;
-    int num= -1;
-    boolean exceptionFound=true;
+    int num = -1;
+    boolean exceptionFound = true;
     while (flag) {
-      exceptionFound=true;
+      exceptionFound = true;
       while (exceptionFound) {
         try {
-      num = scanner.nextInt();
-      exceptionFound=false;
-      }catch(InputMismatchException e) {
-        System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
-      }
-      scanner.nextLine();
+          num = scanner.nextInt();
+          exceptionFound = false;
+        } catch (InputMismatchException e) {
+          System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
+        }
+        scanner.nextLine();
       }
       switch (num) {
       case firstCase:
-        municipality ="3Β";
-        printFacilities( municipality);
+        municipality = "3Β";
+        printFacilities(municipality);
         flag = false;
         break;
       case secondCase:
-        municipality ="Άλιμος";
-        printFacilities( municipality);
+        municipality = "Άλιμος";
+        printFacilities(municipality);
         flag = false;
         break;
       case thirdCase:
-        municipality ="Γλυφάδα";
-        printFacilities( municipality);
+        municipality = "Γλυφάδα";
+        printFacilities(municipality);
         flag = false;
         break;
       default:
@@ -306,8 +313,13 @@ public final class AddDelEvents {
         break;
       }
     }
-   return  chooseFacility(municipality);
+    return chooseFacility(municipality);
   }
+  /**
+   * This method allows the user to chose a facility.
+   * @param municipality the municipality the user wants to visit
+   * @return the facility which he wants to visit
+   */
   private static Geography chooseFacility(String municipality) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Εισάγετε τον αριθμό του/της κατάστημος"
@@ -317,36 +329,48 @@ public final class AddDelEvents {
     while (flag) {
       try {
         choice = scanner.nextInt();
-        
+
         if (choice > Geography.getFacilitiesSize()) {
           System.out.println("Παρακαλώ εισάγετε έγκυρο αριθμό.");
         } else {
-          
+
           flag = validatingFacility(choice, municipality);
-          if(flag) {
-            System.out.println("Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
+          if (flag) {
+            System.out.println(
+                "Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
           }
         }
       } catch (InputMismatchException e) {
         System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
-        flag=true;
+        flag = true;
       } catch (Exception e) {
         System.err.println(e);
-        flag=true;
+        flag = true;
       }
       scanner.nextLine();
     }
     return Geography.getFacilitiesLine(choice - 1);
   }
+  /**
+   * This method checks that the facility the user chooses belongs to the chosen municipality. 
+   * @param choice the facility the user chose 
+   * @param municipality the municipality the user has previously chosen
+   * @return a boolean which shows if the chosen facility belongs to the certain municipality
+   */
   private static boolean validatingFacility(int choice, String municipality) {
-   
-    boolean notFoundFacility= true;
-   
-      if(Geography.getFacilitiesLine(choice-1).getMunicipality().contentEquals(municipality)) {
-        notFoundFacility = false;
+
+    boolean notFoundFacility = true;
+
+    if (Geography.getFacilitiesLine(choice - 1).getMunicipality()
+        .contentEquals(municipality)) {
+      notFoundFacility = false;
     }
     return notFoundFacility;
   }
+  /**
+   * This method prints the facilities of a certain municipality.
+   * @param municipality the municipality the user wants to visit
+   */
   private static void printFacilities(String municipality) {
     for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
       if (Geography.getFacilitiesLine(i).getMunicipality()

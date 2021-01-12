@@ -142,35 +142,8 @@ public final class Calendar {
 
       // ΣΕ ΠΕΡΙΠΤΩΣΗ ΠΟΥ Ο ΧΡΗΣΤΗΣ ΜΠΑΙΝΕΙ ΚΑΘΕ ΜΕΡΑ
       // System.out.println(counter);
-
-      day14.deleteEvent();
-      day14.copyDoubleArraList(day13);
-      day13.deleteEvent();
-      day13.copyDoubleArraList(day12);
-      day12.deleteEvent();
-      day12.copyDoubleArraList(day11);
-      day11.deleteEvent();
-      day11.copyDoubleArraList(day10);
-      day10.deleteEvent();
-      day10.copyDoubleArraList(day9);
-      day9.deleteEvent();
-      day9.copyDoubleArraList(day8);
-      day8.deleteEvent();
-      day8.copyDoubleArraList(day7);
-      day7.deleteEvent();
-      day7.copyDoubleArraList(day6);
-      day6.deleteEvent();
-      day6.copyDoubleArraList(day5);
-      day5.deleteEvent();
-      day5.copyDoubleArraList(day4);
-      day4.deleteEvent();
-      day4.copyDoubleArraList(day3);
-      day3.deleteEvent();
-      day3.copyDoubleArraList(day2);
-      day2.deleteEvent();
-      day2.copyDoubleArraList(day1);
-      day1.deleteEvent();
-      day1.copyDoubleArraList(today);
+      rearrangingFourteenDays();
+      
 
       // System.out.println("Beginfourteen cell[0]");
       // fourteenDays[0].printcheck();
@@ -221,7 +194,39 @@ public final class Calendar {
 
     }
   }
-
+  /**
+   * This method moves the Events of the last 14 days because one day pasted.
+   */
+  private static void rearrangingFourteenDays() {
+    day14.deleteEvent();
+    day14.copyDoubleArraList(day13);
+    day13.deleteEvent();
+    day13.copyDoubleArraList(day12);
+    day12.deleteEvent();
+    day12.copyDoubleArraList(day11);
+    day11.deleteEvent();
+    day11.copyDoubleArraList(day10);
+    day10.deleteEvent();
+    day10.copyDoubleArraList(day9);
+    day9.deleteEvent();
+    day9.copyDoubleArraList(day8);
+    day8.deleteEvent();
+    day8.copyDoubleArraList(day7);
+    day7.deleteEvent();
+    day7.copyDoubleArraList(day6);
+    day6.deleteEvent();
+    day6.copyDoubleArraList(day5);
+    day5.deleteEvent();
+    day5.copyDoubleArraList(day4);
+    day4.deleteEvent();
+    day4.copyDoubleArraList(day3);
+    day3.deleteEvent();
+    day3.copyDoubleArraList(day2);
+    day2.deleteEvent();
+    day2.copyDoubleArraList(day1);
+    day1.deleteEvent();
+    day1.copyDoubleArraList(today);
+  }
   /**
    * This method returns the Events of all users of today.
    *
