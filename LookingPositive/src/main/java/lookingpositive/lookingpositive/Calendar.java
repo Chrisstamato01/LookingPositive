@@ -296,23 +296,23 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      File file1 = new File("calendar\\today.json").getAbsoluteFile();
-      File file2 = new File("calendar\\future.json").getAbsoluteFile();
+      File file1 = new File("src\\main\\resourses\\calendar\\today.json").getAbsoluteFile();
+      File file2 = new File("src\\main\\resourses\\calendar\\future.json").getAbsoluteFile();
 
-      File file3 = new File("calendar\\day1.json").getAbsoluteFile();
-      File file4 = new File("calendar\\day2.json").getAbsoluteFile();
-      File file5 = new File("calendar\\day3.json").getAbsoluteFile();
-      File file6 = new File("calendar\\day4.json").getAbsoluteFile();
-      File file7 = new File("calendar\\day5.json").getAbsoluteFile();
-      File file8 = new File("calendar\\day6.json").getAbsoluteFile();
-      File file9 = new File("calendar\\day7.json").getAbsoluteFile();
-      File file10 = new File("calendar\\day8.json").getAbsoluteFile();
-      File file11 = new File("calendar\\day9.json").getAbsoluteFile();
-      File file12 = new File("calendar\\day10.json").getAbsoluteFile();
-      File file13 = new File("calendar\\day11.json").getAbsoluteFile();
-      File file14 = new File("calendar\\day12.json").getAbsoluteFile();
-      File file15 = new File("calendar\\day13.json").getAbsoluteFile();
-      File file16 = new File("calendar\\day14.json").getAbsoluteFile();
+      File file3 = new File("src\\main\\resourses\\calendar\\day1.json").getAbsoluteFile();
+      File file4 = new File("src\\main\\resourses\\calendar\\day2.json").getAbsoluteFile();
+      File file5 = new File("src\\main\\resourses\\calendar\\day3.json").getAbsoluteFile();
+      File file6 = new File("src\\main\\resourses\\calendar\\day4.json").getAbsoluteFile();
+      File file7 = new File("src\\main\\resourses\\calendar\\day5.json").getAbsoluteFile();
+      File file8 = new File("src\\main\\resourses\\calendar\\day6.json").getAbsoluteFile();
+      File file9 = new File("src\\main\\resourses\\calendar\\day7.json").getAbsoluteFile();
+      File file10 = new File("src\\main\\resourses\\calendar\\day8.json").getAbsoluteFile();
+      File file11 = new File("src\\main\\resourses\\calendar\\day9.json").getAbsoluteFile();
+      File file12 = new File("src\\main\\resourses\\calendar\\day10.json").getAbsoluteFile();
+      File file13 = new File("src\\main\\resourses\\calendar\\day11.json").getAbsoluteFile();
+      File file14 = new File("src\\main\\resourses\\calendar\\day12.json").getAbsoluteFile();
+      File file15 = new File("src\\main\\resourses\\calendar\\day13.json").getAbsoluteFile();
+      File file16 = new File("src\\main\\resourses\\calendar\\day14.json").getAbsoluteFile();
 
       objectMapper.writeValue(file1, today);
       objectMapper.writeValue(file2, future);
@@ -344,23 +344,23 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      File file1 = new File("calendar\\today.json").getAbsoluteFile();
-      File file2 = new File("calendar\\future.json").getAbsoluteFile();
-
-      File file3 = new File("calendar\\day1.json").getAbsoluteFile();
-      File file4 = new File("calendar\\day2.json").getAbsoluteFile();
-      File file5 = new File("calendar\\day3.json").getAbsoluteFile();
-      File file6 = new File("calendar\\day4.json").getAbsoluteFile();
-      File file7 = new File("calendar\\day5.json").getAbsoluteFile();
-      File file8 = new File("calendar\\day6.json").getAbsoluteFile();
-      File file9 = new File("calendar\\day7.json").getAbsoluteFile();
-      File file10 = new File("calendar\\day8.json").getAbsoluteFile();
-      File file11 = new File("calendar\\day9.json").getAbsoluteFile();
-      File file12 = new File("calendar\\day10.json").getAbsoluteFile();
-      File file13 = new File("calendar\\day11.json").getAbsoluteFile();
-      File file14 = new File("calendar\\day12.json").getAbsoluteFile();
-      File file15 = new File("calendar\\day13.json").getAbsoluteFile();
-      File file16 = new File("calendar\\day14.json").getAbsoluteFile();
+      File file1 = new File("src\\main\\resourses\\calendar\\today.json").getAbsoluteFile();
+      File file2 = new File("src\\main\\resourses\\calendar\\future.json").getAbsoluteFile();
+      
+      File file3 = new File("src\\main\\resourses\\calendar\\day1.json").getAbsoluteFile();
+      File file4 = new File("src\\main\\resourses\\calendar\\day2.json").getAbsoluteFile();
+      File file5 = new File("src\\main\\resourses\\calendar\\day3.json").getAbsoluteFile();
+      File file6 = new File("src\\main\\resourses\\calendar\\day4.json").getAbsoluteFile();
+      File file7 = new File("src\\main\\resourses\\calendar\\day5.json").getAbsoluteFile();
+      File file8 = new File("src\\main\\resourses\\calendar\\day6.json").getAbsoluteFile();
+      File file9 = new File("src\\main\\resourses\\calendar\\day7.json").getAbsoluteFile();
+      File file10 = new File("src\\main\\resourses\\calendar\\day8.json").getAbsoluteFile();
+      File file11 = new File("src\\main\\resourses\\calendar\\day9.json").getAbsoluteFile();
+      File file12 = new File("src\\main\\resourses\\calendar\\day10.json").getAbsoluteFile();
+      File file13 = new File("src\\main\\resourses\\calendar\\day11.json").getAbsoluteFile();
+      File file14 = new File("src\\main\\resourses\\calendar\\day12.json").getAbsoluteFile();
+      File file15 = new File("src\\main\\resourses\\calendar\\day13.json").getAbsoluteFile();
+      File file16 = new File("src\\main\\resourses\\calendar\\day14.json").getAbsoluteFile();
 
       today = objectMapper.readValue(file1, ArrayListOfArrayList.class);
       future = objectMapper.readValue(file2, ArrayListOfArrayList.class);
