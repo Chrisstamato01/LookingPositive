@@ -7,8 +7,6 @@ import java.time.temporal.ChronoUnit;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 
 public final class Calendar {
@@ -143,7 +141,6 @@ public final class Calendar {
       // ΣΕ ΠΕΡΙΠΤΩΣΗ ΠΟΥ Ο ΧΡΗΣΤΗΣ ΜΠΑΙΝΕΙ ΚΑΘΕ ΜΕΡΑ
       // System.out.println(counter);
       rearrangingFourteenDays();
-      
 
       // System.out.println("Beginfourteen cell[0]");
       // fourteenDays[0].printcheck();
@@ -162,36 +159,51 @@ public final class Calendar {
       // ΜΕΡΑΣ ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ
       // ΣΤΟΝ FUTURE
       // System.out.println("filling today");
-      for (int i = 0; i < future.giveEventListsSize(); i++) {
-        for (int j = 0; j < future.getUsersEventListsSize(i); j++) {
-          if (replicaOldDate
-              .isEqual((future.getCurrentEvent(i, j).getDate()))) {
-            // today.eventList.get(i).add(future.eventList.get(i).get(j));
-            today.addEventToUsersList(i, future.getCurrentEvent(i, j));
-            // System.out.println(today.eventlist.get(i).get(j));
-          }
-        }
-      }
+      updatingToday(replicaOldDate);
       // System.out.println("end filling today");
       // ΔΙΑΓΡΑΦΗ ΤΩΝ ΣΤΟΙΧΕΙΩΝ ΠΟΥ ΜΠΗΚΑΝ ΣΤΟΝ TODAY ΑΡΑ Η ΗΜΕΡΟΜΗΝΙΑ ΤΟΥΣ ΔΕΝ
       // ΑΝΟΙΚΕΙ ΠΛΕΟΝ ΣΤΟ ΜΕΛΛΟΝ
       // System.out.println("removing future of day");
-      for (int i = 0; i < future.giveEventListsSize(); i++) {
-        for (int j = future.getUsersEventListsSize(i) - 1; j >= 0; j--) {
-          if (replicaOldDate
-              .isEqual((future.getCurrentEvent(i, j).getDate()))) {
-            // System.out.println(future.getUsersEventListsSize(i) + "before");
-            // future.eventlist.get(i).remove(j);
-            future.removeCurrentEvent(i, j);
-            // System.out.println(future.getUsersEventListsSize(i) + "after");
-          }
-        }
-      }
+      clearingFutureFromTodaysEvents(replicaOldDate);
 
       // System.out.println("Afterrefilltoday");
       // today.printcheck();
       // System.out.println("Afterrefilltoday");
 
+    }
+  }
+  /**
+   * This method clears the future list from old dates.
+   * @param replicaOldDate date which is compared with future's dates.
+   */
+  private static void clearingFutureFromTodaysEvents(
+      final LocalDate replicaOldDate) {
+    for (int i = 0; i < future.giveEventListsSize(); i++) {
+      for (int j = future.getUsersEventListsSize(i) - 1; j >= 0; j--) {
+        if (replicaOldDate
+            .isEqual((future.getCurrentEvent(i, j).getDate()))) {
+          // System.out.println(future.getUsersEventListsSize(i) + "before");
+          // future.eventlist.get(i).remove(j);
+          future.removeCurrentEvent(i, j);
+          // System.out.println(future.getUsersEventListsSize(i) + "after");
+        }
+      }
+    }
+  }
+  /**
+   * This method updates the today's list for each user with the current events.
+   * @param replicaOldDate date which is compared with future's dates
+   */
+  private static void updatingToday(final LocalDate replicaOldDate) {
+    for (int i = 0; i < future.giveEventListsSize(); i++) {
+      for (int j = 0; j < future.getUsersEventListsSize(i); j++) {
+        if (replicaOldDate
+            .isEqual((future.getCurrentEvent(i, j).getDate()))) {
+          // today.eventList.get(i).add(future.eventList.get(i).get(j));
+          today.addEventToUsersList(i, future.getCurrentEvent(i, j));
+          // System.out.println(today.eventlist.get(i).get(j));
+        }
+      }
     }
   }
   /**

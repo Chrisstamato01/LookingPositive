@@ -94,11 +94,13 @@ public final class AddDelEvents {
         if (now.until(date, ChronoUnit.DAYS) < 0) {
           flag = true;
           System.out.println(
-              "Η ημερομηνία που εισάγατε είναι παρελθοντική. Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+              "Η ημερομηνία που εισάγατε είναι παρελθοντική."
+              + " Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
         }
       } catch (DateTimeParseException e) {
         System.out.println(
-            "Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
+            "Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
+            + "και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
         flag = true;
       } catch (Exception e) {
         System.out.println("AN ERROR OCCURED " + e);
@@ -148,7 +150,8 @@ public final class AddDelEvents {
           if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ")
               || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
             System.out.println(
-                "Τα δεδομένα που εισάγατε δεν είναι σωστά. Eπιλέξτε ΝΑΙ / ΟΧΙ ");
+                "Τα δεδομένα που εισάγατε δεν είναι σωστά."
+                + " Eπιλέξτε ΝΑΙ / ΟΧΙ ");
           } else {
             flag = false;
           }
@@ -199,10 +202,10 @@ public final class AddDelEvents {
           i + 1 + " " + Calendar.getToday().getCurrentEvent(userId, i));
     }
     int j;
-    for (j = 0; i < Calendar.getFuture().getUsersEventListsSize(userId); i++) {
+    for (j = 0; j < Calendar.getFuture().getUsersEventListsSize(userId); j++) {
 
       System.out.println(
-          i + 1 + " " + Calendar.getFuture().getCurrentEvent(userId, i));
+          j + 1 + i + " " + Calendar.getFuture().getCurrentEvent(userId, j));
     }
     if (i == 0 && j == 0) {
       System.out.println("Δεν έχετε προγραμματισμένα γεγονότα.");
@@ -224,15 +227,15 @@ public final class AddDelEvents {
         && Calendar.getToday().getUsersEventListsSize(userId) == 0) {
 
       return "Δεν έχετε γεγονότα να διαγράψετε.";
-    }
+    }else 
     return deletingExistingEvent(userId);
   }
   /**
-   * This method deletes an Event
-   * @param userId the Id of the user who wants to delete an Event 
+   * This method deletes an Event.
+   * @param userId the Id of the user who wants to delete an Event
    * @return a message of success
    */
-  private static String deletingExistingEvent(int userId) {
+  private static String deletingExistingEvent(final int userId) {
     Scanner sc = new Scanner(System.in);
     System.out
         .println("Επιλέξτε τον αριθμό της εκδήλωσης που θέλετε να διαγράψετε.");
@@ -243,7 +246,7 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > Calendar.getFuture().getUsersEventListsSize(userId)
+          if (n > Calendar.getFuture().getUsersEventListsSize(userId)+Calendar.getToday().getUsersEventListsSize(userId)
               || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
@@ -259,8 +262,11 @@ public final class AddDelEvents {
         sc.nextLine();
       }
     }
-    Calendar.getFuture().removeCurrentEvent(userId, n - 1);
-
+    if(n > Calendar.getToday().getUsersEventListsSize(userId)) {
+      Calendar.getFuture().removeCurrentEvent(userId, n - 1 - Calendar.getToday().getUsersEventListsSize(userId));
+    }else {
+      Calendar.getToday().removeCurrentEvent(userId, n - 1 );
+    }
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }
 
@@ -309,7 +315,7 @@ public final class AddDelEvents {
         flag = false;
         break;
       default:
-        System.out.println("Εισάγεται αριθμό το 1, το 2 ή το 3. ");
+        System.out.println("Εισάγετε αριθμό το 1, το 2 ή το 3. ");
         break;
       }
     }
@@ -320,7 +326,7 @@ public final class AddDelEvents {
    * @param municipality the municipality the user wants to visit
    * @return the facility which he wants to visit
    */
-  private static Geography chooseFacility(String municipality) {
+  private static Geography chooseFacility(final String municipality) {
     Scanner scanner = new Scanner(System.in);
     System.out.println("Εισάγετε τον αριθμό του/της κατάστημος"
         + "/υπηρεσίας που θα θέλατε να επισκεφθείτε. ");
@@ -337,7 +343,8 @@ public final class AddDelEvents {
           flag = validatingFacility(choice, municipality);
           if (flag) {
             System.out.println(
-                "Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
+                "Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε "
+                + "επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
           }
         }
       } catch (InputMismatchException e) {
@@ -352,12 +359,15 @@ public final class AddDelEvents {
     return Geography.getFacilitiesLine(choice - 1);
   }
   /**
-   * This method checks that the facility the user chooses belongs to the chosen municipality. 
-   * @param choice the facility the user chose 
+   * This method checks that the facility the user chooses
+   * belongs to the chosen municipality.
+   * @param choice the facility the user chose
    * @param municipality the municipality the user has previously chosen
-   * @return a boolean which shows if the chosen facility belongs to the certain municipality
+   * @return a boolean which shows if the chosen
+   * facility belongs to the certain municipality
    */
-  private static boolean validatingFacility(int choice, String municipality) {
+  private static boolean validatingFacility(final int choice,
+      final String municipality) {
 
     boolean notFoundFacility = true;
 
@@ -371,7 +381,7 @@ public final class AddDelEvents {
    * This method prints the facilities of a certain municipality.
    * @param municipality the municipality the user wants to visit
    */
-  private static void printFacilities(String municipality) {
+  private static void printFacilities(final String municipality) {
     for (int i = 0; i < Geography.getFacilitiesSize(); i++) {
       if (Geography.getFacilitiesLine(i).getMunicipality()
           .contentEquals(municipality)) {

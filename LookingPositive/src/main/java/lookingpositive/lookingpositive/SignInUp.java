@@ -14,32 +14,30 @@ public final class SignInUp {
   /**
    * User Sign Up method.
    */
-  public static void login() {
-    System.out.println("Εισάγετε email/n Για εγγραφή εισάγετε 1");
+  public static int login() {
+    System.out.println("Εισάγετε email\nΓια εγγραφή εισάγετε 1");
     Scanner sc = new Scanner(System.in);
-    String email = sc.next();
     String password = null;
-    if (email.equals("1")) {
-      AddUser.add();
-    } else {
-      System.out.println("Εισάγετε κωδικό");
-      password = sc.next();
-      checkUser(email, password);
-      if (checkUser(email, password) == -1) {
-        while (checkUser(email, password) == -1) {
-          System.out.println("Τα στοιχεία σας δεν αντιστοιχούν.");
+    String email = null;
+    boolean flag = true;
+    while (flag) {
+      email = sc.nextLine();
+      if (email.equals("1")) {
+        AddUser.add();
+      } else {
+        System.out.println("Εισάγετε κωδικό");
+        password = sc.nextLine();
+        checkUser(email, password);
+        if (checkUser(email, password) == -1) {
+          System.out.println("Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
           System.out.println("Εισάγετε email/n Για εγγραφή εισάγετε 1");
-          email = sc.next();
-          if (email.equals("1")) {
-            AddUser.add();
-          } else {
-            password = sc.next();
-            checkUser(email, password);
-          }
+        } else {
+          flag = false;
         }
       }
     }
-    Operations.run(checkUser(email, password));
+
+    return checkUser(email, password);
   }
 
   /**
