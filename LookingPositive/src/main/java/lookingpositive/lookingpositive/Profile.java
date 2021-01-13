@@ -1,14 +1,16 @@
 package lookingpositive.lookingpositive;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * This class is the model for users' profiles.
  *
  */
-//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Profile {
   /**
    * User's first name.
@@ -42,10 +44,6 @@ public class Profile {
    * Susceptible or not.
    */
   private boolean isSusceptible;
-  /**
-   * Counter variable.
-   */
-  private static int counter = 0;
   /**
    * Array list in which profiles are saved.
    */
@@ -88,8 +86,7 @@ public class Profile {
     firstName = name;
     lastName = surname;
     residenceRegion = residenceReg;
-    userID = counter;
-    counter++;
+    userID = profilesSaveSize();
     age = usersAge;
     isSusceptible = isSus;
     password = pass;
@@ -145,7 +142,7 @@ public class Profile {
    *
    * @return whether susceptible or not
    */
-  public boolean isSusceptible() {
+  public boolean getIsSusceptible() {
     return isSusceptible;
   }
   /**
@@ -185,6 +182,39 @@ public class Profile {
    */
   public static ArrayList<Profile> getProfilesSave() {
     return profilesSave;
+  }
+  
+  /**
+   * Saves profiles to JSON file.
+   */
+  public static void profilesSaver() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File profilesfile = new File("profiles.json").getAbsoluteFile();
+      objectmapper.writeValue(profilesfile, profilesSave);
+    } catch(IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch(Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+  
+  /**
+   * Retrieves profiles from JSON file.
+   */
+  public static void profilesRetriever() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File profilesfile = new File("profiles.json").getAbsoluteFile();
+      profilesSave = objectmapper.readValue(profilesfile, new TypeReference<ArrayList<Profile>>(){});
+
+    } catch(IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch(Exception e) {
+      System.out.println("exception:" + e);
+    }
   }
 
   /**

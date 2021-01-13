@@ -3,7 +3,15 @@
  */
 package lookingpositive.lookingpositive;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * This class stores and organizes all the facilities according to their
@@ -191,7 +199,7 @@ public class Geography {
   /**
    * Fills the table with the facilities.
    */
-  public static void fillTables() {
+  /*public static void fillTables() {
     new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
     new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
     new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");
@@ -228,5 +236,39 @@ public class Geography {
     new Geography("Πάρκο", "Μαυρολέωντος", "Γλυφάδα");
     new Geography("Γυμναστήριο", "L.F.F. GYM", "Γλυφάδα");
     new Geography("Κομμωτήριο", "Pretty Hair", "Γλυφάδα");
+    new Geography("Κομμωτήριο", "Natasha's", "Γλυφάδα");
+  }*/
+
+  /**
+   * Saves facilities to JSON file.
+   */
+  public static void facilitiesSaver() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File facilitiesfile = new File("facilities.json").getAbsoluteFile();
+      objectmapper.writeValue(facilitiesfile, facilities);
+    } catch(IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch(Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+  
+  /**
+   * Retrieves facilities from JSON file.
+   */
+  public static void facilitiesRetriever() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File facilitiesfile = new File("facilities.json").getAbsoluteFile();
+      facilities = objectmapper.readValue(facilitiesfile, new TypeReference<ArrayList<Geography>>(){});
+
+    } catch(IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch(Exception e) {
+      System.out.println("exception:" + e);
+    }
   }
 }
