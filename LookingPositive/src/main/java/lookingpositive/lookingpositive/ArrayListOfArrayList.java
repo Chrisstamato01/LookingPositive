@@ -15,7 +15,7 @@ public class ArrayListOfArrayList {
   /**
    * This method creates for each user a list that is added to the eventList.
    */
-  public void createarraylistofevents() {
+  public void createArrayListOfEvents() {
     ArrayList<Event> usereventlist = new ArrayList<Event>();
     eventList.add(usereventlist);
   }
@@ -46,7 +46,7 @@ public class ArrayListOfArrayList {
    *
    * @param toCopy the object ArraylistofArraylist which will be copied
    */
-  public void copyDoubleArraList(final ArrayListOfArrayList toCopy) {
+  public void copyDoubleArrayList(final ArrayListOfArrayList toCopy) {
     for (int i = 0; i < toCopy.eventList.size(); i++) {
       for (int j = 0; j < toCopy.eventList.get(i).size(); j++) {
         eventList.get(i).add(toCopy.eventList.get(i).get(j));
@@ -70,7 +70,7 @@ public class ArrayListOfArrayList {
   /**
    * This method prints every event from a user's list.
    */
-  public void printcheck() {
+  public void printCheck() {
     for (int i = 0; i < eventList.size(); i++) {
       for (int j = 0; j < eventList.get(i).size(); j++) {
         System.out.println(eventList.get(i).get(j));

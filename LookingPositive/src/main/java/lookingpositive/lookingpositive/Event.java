@@ -10,7 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 
-public class Event {
+public final class Event {
   /**
    * date has the date of the event.
    */
@@ -51,7 +51,7 @@ public class Event {
    *
    * @return the date of the event
    */
-  public final LocalDate getDate() {
+  public LocalDate getDate() {
     return date;
   }
 
@@ -60,7 +60,7 @@ public class Event {
    *
    * @param newDate is the renewed date of the event.
    */
-  public final void setDate(final LocalDate newDate) {
+  public void setDate(final LocalDate newDate) {
     date = newDate;
   }
 
@@ -69,7 +69,7 @@ public class Event {
    *
    * @return the place of the event
    */
-  public final Geography getPlace() {
+  public Geography getPlace() {
     return place;
   }
 
@@ -78,7 +78,7 @@ public class Event {
    *
    * @param newPlace is the renewed place of the event
    */
-  public final void setPlace(final Geography newPlace) {
+  public void setPlace(final Geography newPlace) {
     place = newPlace;
   }
 
@@ -87,7 +87,7 @@ public class Event {
    *
    * @return the people he/she will meet
    */
-  public final ArrayList<Profile> getProfiles() {
+  public ArrayList<Profile> getProfiles() {
     return profiles;
   }
 
@@ -96,10 +96,13 @@ public class Event {
    *
    * @param newProfiles is the renewed profiles
    */
-  public final void setProfiles(final ArrayList<Profile> newProfiles) {
+  public void setProfiles(final ArrayList<Profile> newProfiles) {
     profiles = newProfiles;
   }
-
+  /*
+   * (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return "Event [date=" + date + ", place=" + place + ", profiles=" + profiles

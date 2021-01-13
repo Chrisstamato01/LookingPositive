@@ -93,13 +93,11 @@ public final class AddDelEvents {
         LocalDate now = LocalDate.now();
         if (now.until(date, ChronoUnit.DAYS) < 0) {
           flag = true;
-          System.out.println(
-              "Η ημερομηνία που εισάγατε είναι παρελθοντική."
+          System.out.println("Η ημερομηνία που εισάγατε είναι παρελθοντική."
               + " Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
         }
       } catch (DateTimeParseException e) {
-        System.out.println(
-            "Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
+        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
             + "και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
         flag = true;
       } catch (Exception e) {
@@ -149,8 +147,7 @@ public final class AddDelEvents {
           innerAnswer = sc.nextLine();
           if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ")
               || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
-            System.out.println(
-                "Τα δεδομένα που εισάγατε δεν είναι σωστά."
+            System.out.println("Τα δεδομένα που εισάγατε δεν είναι σωστά."
                 + " Eπιλέξτε ΝΑΙ / ΟΧΙ ");
           } else {
             flag = false;
@@ -227,9 +224,11 @@ public final class AddDelEvents {
         && Calendar.getToday().getUsersEventListsSize(userId) == 0) {
 
       return "Δεν έχετε γεγονότα να διαγράψετε.";
-    }else 
-    return deletingExistingEvent(userId);
+    } else {
+      return deletingExistingEvent(userId);
+      }
   }
+
   /**
    * This method deletes an Event.
    * @param userId the Id of the user who wants to delete an Event
@@ -246,8 +245,8 @@ public final class AddDelEvents {
       while (numberNotFound) {
         try {
           n = sc.nextInt();
-          if (n > Calendar.getFuture().getUsersEventListsSize(userId)+Calendar.getToday().getUsersEventListsSize(userId)
-              || n < 1) {
+          if (n > Calendar.getFuture().getUsersEventListsSize(userId)
+              + Calendar.getToday().getUsersEventListsSize(userId) || n < 1) {
 
             System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
           } else {
@@ -262,10 +261,11 @@ public final class AddDelEvents {
         sc.nextLine();
       }
     }
-    if(n > Calendar.getToday().getUsersEventListsSize(userId)) {
-      Calendar.getFuture().removeCurrentEvent(userId, n - 1 - Calendar.getToday().getUsersEventListsSize(userId));
-    }else {
-      Calendar.getToday().removeCurrentEvent(userId, n - 1 );
+    if (n > Calendar.getToday().getUsersEventListsSize(userId)) {
+      Calendar.getFuture().removeCurrentEvent(userId,
+          n - 1 - Calendar.getToday().getUsersEventListsSize(userId));
+    } else {
+      Calendar.getToday().removeCurrentEvent(userId, n - 1);
     }
     return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
   }
@@ -321,6 +321,7 @@ public final class AddDelEvents {
     }
     return chooseFacility(municipality);
   }
+
   /**
    * This method allows the user to chose a facility.
    * @param municipality the municipality the user wants to visit
@@ -344,7 +345,7 @@ public final class AddDelEvents {
           if (flag) {
             System.out.println(
                 "Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε "
-                + "επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
+                    + "επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
           }
         }
       } catch (InputMismatchException e) {
@@ -358,13 +359,14 @@ public final class AddDelEvents {
     }
     return Geography.getFacilitiesLine(choice - 1);
   }
+
   /**
-   * This method checks that the facility the user chooses
-   * belongs to the chosen municipality.
-   * @param choice the facility the user chose
+   * This method checks that the facility the user chooses belongs to the chosen
+   * municipality.
+   * @param choice       the facility the user chose
    * @param municipality the municipality the user has previously chosen
-   * @return a boolean which shows if the chosen
-   * facility belongs to the certain municipality
+   * @return a boolean which shows if the chosen facility belongs to the certain
+   *         municipality
    */
   private static boolean validatingFacility(final int choice,
       final String municipality) {
@@ -377,6 +379,7 @@ public final class AddDelEvents {
     }
     return notFoundFacility;
   }
+
   /**
    * This method prints the facilities of a certain municipality.
    * @param municipality the municipality the user wants to visit
