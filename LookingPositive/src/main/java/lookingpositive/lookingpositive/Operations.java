@@ -27,16 +27,15 @@ public class Operations {
     //dateSaver();// πρεπει να κελιθη την πρωτη φορα του ινσταλλ
     //dataSaver();πρεπει να κελιθη την πρωτη φορα του ινσταλλ
     dataRetriver();
-    //Geography.fillTables();
     
     if (dateLastUserSignedIn != null) {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
     
    // Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
-     //   "pass1", "papadopoulos@gmail.com");
-    //Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
-      //  "pass2", "papadakis@gmail.com");
+   //    "pass1", "papadopoulos@gmail.com");
+   // Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
+   //    "pass2", "papadakis@gmail.com");
     run(SignInUp.login());
 
   }
@@ -130,13 +129,13 @@ public class Operations {
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();
-    Profile.profilesRetriever();
+    //Profile.profilesRetriever();
   }
 
   private static void dataSaver() {
     Calendar.eventSaver();
     dateSaver();
-    Profile.profilesSaver();
+    //Profile.profilesSaver();
   }
 
   private static void dateSaver() {
@@ -144,8 +143,9 @@ public class Operations {
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
-      File date = new File("src\\main\\resourses\\calendar\\date.json").getAbsoluteFile();
-      objectMapper.writeValue(date, LocalDate.now());
+      objectMapper.writeValue(
+          new File("src\\main\\resourses\\calendar\\date.json")
+          .getAbsoluteFile(), LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -162,8 +162,9 @@ public class Operations {
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
-      File date = new File("src\\main\\resourses\\calendar\\date.json").getAbsoluteFile();
-      dateLastUserSignedIn = objectMapper.readValue(date, LocalDate.class);
+      dateLastUserSignedIn = objectMapper.readValue(
+          new File("src\\main\\resourses\\calendar\\date.json")
+          .getAbsoluteFile(), LocalDate.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
