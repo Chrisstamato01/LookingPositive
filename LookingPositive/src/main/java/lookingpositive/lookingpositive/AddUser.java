@@ -20,7 +20,7 @@ public final class AddUser {
     new Profile(handleFirstName(sc), handleLastName(sc),
         handleResidenceRegion(sc), handleAge(sc), handleIsSusceptible(sc),
         handlePassword(sc), handleEmail(sc));
-    sc.close();
+//    sc.close();
   }
   /**
    * Requires user to add his name.

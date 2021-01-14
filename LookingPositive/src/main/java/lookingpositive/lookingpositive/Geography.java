@@ -165,18 +165,17 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    int current = 0;
+    int current = 0; // the cases of the last three days
     int q;
     String color;
-// ΟΠΟΥ CASES1,2,3 ΤΑ ΚΡΟΥΣΜΑΤΑ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ 3 ΗΜΕΡΩΝ (TO BE FIXED)
     if (mun.endsWith("3Β")) {
-//current = cases1 + cases2 + cases3;
+      current = cases[1] + cases[2] + cases[3];
       q = current / POPULATION_3B;
     } else if (mun.endsWith("Alimos")) {
-//current = cases1 + cases2 + cases3;
+      current = cases[1] + cases[2] + cases[3];
       q = current / POPULATION_ALIMOS;
     } else {
-//current = cases1 + cases2 + cases3;
+      current = cases[1] + cases[2] + cases[3];
       q = current / POPULATION_GLYFADA;
     }
 
@@ -199,7 +198,7 @@ public class Geography {
   /**
    * Fills the table with the facilities.
    */
-  /*public static void fillTables() {
+  public static void fillTables() {
     new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
     new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
     new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");
@@ -237,7 +236,7 @@ public class Geography {
     new Geography("Γυμναστήριο", "L.F.F. GYM", "Γλυφάδα");
     new Geography("Κομμωτήριο", "Pretty Hair", "Γλυφάδα");
     new Geography("Κομμωτήριο", "Natasha's", "Γλυφάδα");
-  }*/
+  }
 
   /**
    * Saves facilities to JSON file.
@@ -246,15 +245,17 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File facilitiesfile = new File("facilities.json").getAbsoluteFile();
+      File facilitiesfile = new File(
+          "src\\main\\resourses\\"
+          + "facilities.json").getAbsoluteFile();
       objectmapper.writeValue(facilitiesfile, facilities);
-    } catch(IOException e) {
+    } catch (IOException e) {
       System.out.println("ioexception:" + e);
-    } catch(Exception e) {
+    } catch (Exception e) {
       System.out.println("exception:" + e);
     }
   }
-  
+
   /**
    * Retrieves facilities from JSON file.
    */
@@ -262,12 +263,15 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File facilitiesfile = new File("facilities.json").getAbsoluteFile();
-      facilities = objectmapper.readValue(facilitiesfile, new TypeReference<ArrayList<Geography>>(){});
+      File facilitiesfile = new File(
+          "src\\main\\resourses"
+          + "\\facilities.json").getAbsoluteFile();
+      facilities = objectmapper.readValue(
+          facilitiesfile, new TypeReference<ArrayList<Geography>>() { });
 
-    } catch(IOException e) {
+    } catch (IOException e) {
       System.out.println("ioexception:" + e);
-    } catch(Exception e) {
+    } catch (Exception e) {
       System.out.println("exception:" + e);
     }
   }

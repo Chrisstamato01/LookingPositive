@@ -191,7 +191,7 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("profiles.json").getAbsoluteFile();
+      File profilesfile = new File("LookingPositive\\src\\main\\resourses\\profiles.json").getAbsoluteFile();
       objectmapper.writeValue(profilesfile, profilesSave);
     } catch(IOException e) {
       System.out.println("ioexception:" + e);
@@ -207,7 +207,7 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("profiles.json").getAbsoluteFile();
+      File profilesfile = new File("LookingPositive\\src\\main\\resourses\\profiles.json").getAbsoluteFile();
       profilesSave = objectmapper.readValue(profilesfile, new TypeReference<ArrayList<Profile>>(){});
 
     } catch(IOException e) {
@@ -226,10 +226,7 @@ public class Profile {
       return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
     } else {
       return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
-          + ", Δήμος Κατοικίας=" + residenceRegion + ", Email=" + email
-          + ", Κωδικός=" + password + ", Ηλικία=" + age
-          + ", ID χρήστη=" + userID
-          + ", Ευπαθής Ομάδα;" + isSusceptible + "]";
+          + ", Δήμος Κατοικίας=" + residenceRegion + " Ηλικία=" + age;
     }
    }
 }
