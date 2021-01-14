@@ -17,31 +17,52 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-public class Operations {
+public final class Operations {
+  private Operations() {
+  }
+  /**
+   * Annotation that regulates the pattern of the date.
+   */
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
   @JsonDeserialize(using = LocalDateDeserializer.class)
   @JsonSerialize(using = LocalDateSerializer.class)
-  private static LocalDate dateLastUserSignedIn = LocalDate.of(2021, 02, 12);
+  private static LocalDate dateLastUserSignedIn = null;
 
-  public static void main(String[] args) {
-    //dateSaver();// πρεπει να κελιθη την πρωτη φορα του ινσταλλ
-    //dataSaver();πρεπει να κελιθη την πρωτη φορα του ινσταλλ
+  // την εκανα ναλλ να τσεκαρουμε αν τρεχει
+  /**
+   * This method retrieves the data and run the method which regulates the other
+   * methods.
+   * @param args is not used
+   */
+  public static void main(final String[] args) {
+    // dateSaver();// πρεπει να κελιθη την πρωτη φορα του ινσταλλ
+    // dataSaver();πρεπει να κελιθη την πρωτη φορα του ινσταλλ
     dataRetriver();
-    
+
     if (dateLastUserSignedIn != null) {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
-    
-   // Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
-   //    "pass1", "papadopoulos@gmail.com");
-   // Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
-   //    "pass2", "papadakis@gmail.com");
+
+    // Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
+    // "pass1", "papadopoulos@gmail.com");
+    // Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
+    // "pass2", "papadakis@gmail.com");
     run(SignInUp.login());
 
   }
 
-  public static void run(int userId) {
-
+  /**
+   * This method is used to regulate the methods executed.
+   * @param userId is the id of the current user who logged in
+   */
+  public static void run(final int userId) {
+    final int choiceOne = 1;
+    final int choiceTwo = 2;
+    final int choiceThree = 3;
+    final int choiceFour = 4;
+    final int choiceFive = 5;
+    final int choiceSix = 6;
+    final int choiceSeven = 7;
     boolean execution = true;
 
     while (execution) {
@@ -52,36 +73,36 @@ public class Operations {
 
       switch (menuChoice) {
 
-      case 1:
+      case choiceOne:
         AddDelEvents.chooseFunction(userId);
         break;
 
-      case 2:
+      case choiceTwo:
 
         break;
 
-      case 3:
+      case choiceThree:
 
         break;
 
-      case 4:
+      case choiceFour:
 
         break;
 
-      case 5:
+      case choiceFive:
 
         break;
 
-      case 6:
+      case choiceSix:
 
         break;
 
-      case 7:
+      case choiceSeven:
         execution = false;
         dataSaver();
         System.out.println("Τερματισμός Προγράμματος...");
         break;
-
+      default:
       }
 
     }
@@ -93,8 +114,9 @@ public class Operations {
     Scanner sc = new Scanner(System.in);
 
     int choice = 0;
-
-    while (choice < 1 || choice > 7) {
+    final int smallerChoice = 1;
+    final int biggerChoice = 7;
+    while (choice < smallerChoice || choice > biggerChoice) {
 
       try {
 
@@ -108,7 +130,7 @@ public class Operations {
         System.out.println(e);
       }
 
-      if (choice < 1 || choice > 7) {
+      if (choice < smallerChoice || choice > biggerChoice) {
         System.out.println("Εισάγετε επιλογή [1-7]");
       }
       sc.nextLine();
@@ -129,13 +151,13 @@ public class Operations {
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();
-    //Profile.profilesRetriever();
+    // Profile.profilesRetriever();
   }
 
   private static void dataSaver() {
     Calendar.eventSaver();
     dateSaver();
-    //Profile.profilesSaver();
+    // Profile.profilesSaver();
   }
 
   private static void dateSaver() {
@@ -143,9 +165,9 @@ public class Operations {
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
-      objectMapper.writeValue(
-          new File("src\\main\\resourses\\calendar\\date.json")
-          .getAbsoluteFile(), LocalDate.now());
+      objectMapper
+          .writeValue(new File("src\\main\\resourses\\calendar\\date.json")
+              .getAbsoluteFile(), LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -162,9 +184,9 @@ public class Operations {
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
-      dateLastUserSignedIn = objectMapper.readValue(
-          new File("src\\main\\resourses\\calendar\\date.json")
-          .getAbsoluteFile(), LocalDate.class);
+      dateLastUserSignedIn = objectMapper
+          .readValue(new File("src\\main\\resourses\\calendar\\date.json")
+              .getAbsoluteFile(), LocalDate.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -176,6 +198,10 @@ public class Operations {
     }
   }
 
+  /**
+   * This method gets the date the last person singed in.
+   * @return the last date the last person singed in
+   */
   public static LocalDate getDateLastUserSignedIn() {
     return dateLastUserSignedIn;
   }

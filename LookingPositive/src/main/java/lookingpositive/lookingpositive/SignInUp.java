@@ -11,9 +11,10 @@ public final class SignInUp {
 
   }
 
-  /**
-   * User Sign Up method.
-   */
+ /**
+  * This method handles the user's sing in or register.
+  * @return user's id
+  */
   public static int login() {
     System.out.println("Εισάγετε email\nΓια εγγραφή εισάγετε 1");
     Scanner sc = new Scanner(System.in);
@@ -29,7 +30,8 @@ public final class SignInUp {
         password = sc.nextLine();
         checkUser(email, password);
         if (checkUser(email, password) == -1) {
-          System.out.println("Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
+          System.out.println(
+              "Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
           System.out.println("Εισάγετε email/n Για εγγραφή εισάγετε 1");
         } else {
           flag = false;
