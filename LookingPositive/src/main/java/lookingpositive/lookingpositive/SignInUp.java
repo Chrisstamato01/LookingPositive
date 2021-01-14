@@ -17,17 +17,21 @@ public final class SignInUp {
   */
   public static int login() {
     System.out.println("Εισάγετε email\nΓια εγγραφή εισάγετε 1");
-    Scanner sc = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     String password = null;
     String email = null;
     boolean flag = true;
+    email = scanner.nextLine();
     while (flag) {
-      email = sc.nextLine();
+      
+      
       if (email.equals("1")) {
         AddUser.add();
-      } else {
+      } 
+        System.out.println("\nΕισάγετε email:");
+        email = scanner.nextLine();
         System.out.println("Εισάγετε κωδικό");
-        password = sc.nextLine();
+        password = scanner.nextLine();
         checkUser(email, password);
         if (checkUser(email, password) == -1) {
           System.out.println(
@@ -37,8 +41,6 @@ public final class SignInUp {
           flag = false;
         }
       }
-    }
-
     return checkUser(email, password);
   }
 

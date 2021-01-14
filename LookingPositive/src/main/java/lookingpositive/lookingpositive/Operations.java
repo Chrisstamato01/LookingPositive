@@ -112,7 +112,6 @@ public final class Operations {
   private static int menuChoice() {
 
     Scanner sc = new Scanner(System.in);
-
     int choice = 0;
     final int smallerChoice = 1;
     final int biggerChoice = 7;
@@ -133,7 +132,7 @@ public final class Operations {
       if (choice < smallerChoice || choice > biggerChoice) {
         System.out.println("Εισάγετε επιλογή [1-7]");
       }
-      sc.nextLine();
+     sc.nextLine();
     }
 
     return choice;
@@ -151,13 +150,13 @@ public final class Operations {
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();
-    // Profile.profilesRetriever();
+     Profile.profilesRetriever();
   }
 
   private static void dataSaver() {
     Calendar.eventSaver();
     dateSaver();
-    // Profile.profilesSaver();
+    Profile.profilesSaver();
   }
 
   private static void dateSaver() {
