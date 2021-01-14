@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * This class tracks the contacts that need to be informed.
+ */
 public final class Tracking {
+  /**
+   * private constructor.
+   */
   private Tracking() {
     // not called
   }

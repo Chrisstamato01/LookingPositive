@@ -6,7 +6,13 @@ package lookingpositive.lookingpositive;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This class processes Health informations about the user.
+ */
 public final class Health {
+  /**
+   * private constructor.
+   */
   private Health() {
   }
 

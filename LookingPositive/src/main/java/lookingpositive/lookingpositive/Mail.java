@@ -15,7 +15,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * This class sends E-mails to the contacts of infected users.
+ */
 public final class Mail {
+  /**
+   * private constructor.
+   */
   private Mail() {
   }
 
@@ -64,6 +70,9 @@ public final class Mail {
         "javax.net.ssl.SSLSocketFactory");
     props.put("mail.smtp.socketFactory.fallback", "false");
     SecurityManager security = System.getSecurityManager();
+    /**
+     * This class obtains authentication to the connection.
+     */
     class SMTPAuthenticator extends javax.mail.Authenticator {
       @Override
       public PasswordAuthentication getPasswordAuthentication() {
