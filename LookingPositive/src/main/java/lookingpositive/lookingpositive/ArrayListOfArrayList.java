@@ -29,7 +29,14 @@ public class ArrayListOfArrayList {
   public ArrayList<ArrayList<Event>> getEventList() {
     return eventList;
   }
-
+  /**
+   * This method returns the events of a user
+   * @param userId the Id of the user
+   * @return list of events 
+   */
+  public ArrayList<Event> getUserListOfEvents(final int userId){
+    return eventList.get(userId);
+  }
   /**
    * This method modify the eventList.
    *
@@ -53,7 +60,7 @@ public class ArrayListOfArrayList {
       }
     }
   }
-  // This method deletes the content from a two dimensional list.
+  // This method deletes the content from a two dimensional list.  ///// NA THN KOITAJOYME
 
   /**
    * This method removes every Event object from every user's list.
