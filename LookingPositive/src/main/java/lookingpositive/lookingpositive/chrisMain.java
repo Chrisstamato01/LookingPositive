@@ -43,9 +43,9 @@ public class chrisMain {
    */
   public static String test(final int id) {
     String a = " ";
-    for (int i = 0; i < Profile.profilesSaveSize(); i++) {
-      if (id == Profile.profilesSaveLine(i).getUserID()) {
-        a = Profile.profilesSaveLine(i).getResidenceRegion();
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (id == Profile.profilesLine(i).getUserID()) {
+        a = Profile.profilesLine(i).getResidenceRegion();
       } else {
         a = "No match";
       }
