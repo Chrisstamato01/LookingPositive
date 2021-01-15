@@ -8,6 +8,9 @@ import java.util.Scanner;
  *
  */
 public final class AddUser {
+  /**
+   * AddUser default constructor.
+   */
   private AddUser() {
 
   }
@@ -24,7 +27,7 @@ public final class AddUser {
   }
   /**
    * Requires user to add his name.
-   * @param sc
+   * @param sc is a Scanner
    * @return first name
    */
   protected static String handleFirstName(final Scanner sc) {
@@ -33,7 +36,7 @@ public final class AddUser {
   }
   /**
    * Requires user to add his surname.
-   * @param sc
+   * @param sc is a Scanner
    * @return last name
    */
   protected static String handleLastName(final Scanner sc) {
@@ -47,7 +50,7 @@ public final class AddUser {
   private static final int THREE = 3;
   /**
    * User adds his residence region.
-   * @param sc
+   * @param sc is a Scanner
    * @return residence region
    */
   private static String handleResidenceRegion(final Scanner sc) {
@@ -102,7 +105,7 @@ public final class AddUser {
 
   /**
    * User adds his age.
-   * @param sc
+   * @param sc is a Scanner
    * @return age
    */
   private static int handleAge(final Scanner sc) {
@@ -130,7 +133,7 @@ public final class AddUser {
   }
   /**
    * User declares whether he/she is susceptible.
-   * @param sc
+   * @param sc is a Scanner
    * @return whether he/she susceptible
    */
   private static Boolean handleIsSusceptible(final Scanner sc) {
@@ -160,7 +163,7 @@ public final class AddUser {
   }
   /**
    * User set his password.
-   * @param sc
+   * @param sc is a Scanner
    * @return User's password
    */
   private static String handlePassword(final Scanner sc) {
@@ -183,7 +186,7 @@ public final class AddUser {
 
   /**
   * User adds his email.
-  * @param sc
+  * @param sc is a Scanner
   * @return User's email
   */
   private static String handleEmail(final Scanner sc) {
@@ -247,7 +250,7 @@ public final class AddUser {
   }
   /**
    * Checks if the input matches a real name.
-   * @param input
+   * @param input is the word to be checked
    * @return true or false(alphabetic or not)
    */
   public static boolean alphabetCheck(final String input) {
@@ -258,7 +261,7 @@ public final class AddUser {
   }
   /**
    * Handles user name.
-   * @param sc
+   * @param sc is a Scanner
    * @return user's name
    */
   public static String handleName(final Scanner sc) {

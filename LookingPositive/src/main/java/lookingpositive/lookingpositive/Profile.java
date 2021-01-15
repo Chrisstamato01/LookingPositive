@@ -47,7 +47,7 @@ public class Profile {
   /**
    * Array list in which profiles are saved.
    */
-  private static ArrayList<Profile> profilesSave = new ArrayList<Profile>();
+  private static ArrayList<Profile> profiles = new ArrayList<Profile>();
 
   /**
    * This constructor is used to create objects of users.
@@ -71,27 +71,27 @@ public class Profile {
   /**
    * This constructor creates the profiles using the private variables.
    *
-   * @param name     is the user's first name
-   * @param surname      is the user's last name
+   * @param fName     is the user's first name
+   * @param sName      is the user's last name
    * @param residenceReg is the user's residence region
    * @param usersAge     is the user's age
    * @param isSus      if the user belongs to high risk groups
    * @param pass       is the user's password
    * @param mail       is the user's email
    */
-  public Profile(final String name, final String surname,
+  public Profile(final String fName, final String sName,
       final String residenceReg, final int usersAge, final boolean isSus,
       final String pass, final String mail) {
 
-    firstName = name;
-    lastName = surname;
+    firstName = fName;
+    lastName = sName;
     residenceRegion = residenceReg;
-    userID = profilesSaveSize();
+    userID = profilesSize();
     age = usersAge;
     isSusceptible = isSus;
     password = pass;
     email = mail;
-    profilesSave.add(this);
+    profiles.add(this);
 
     Calendar.daysInitializer();
 
@@ -101,7 +101,7 @@ public class Profile {
    *
    * @return first name
    */
-  public String getFirstName() {
+  public final String getFirstName() {
     return firstName;
   }
   /**
@@ -109,7 +109,7 @@ public class Profile {
    *
    * @return last name
    */
-  public String getLastName() {
+  public final String getLastName() {
     return lastName;
   }
 
@@ -118,7 +118,7 @@ public class Profile {
    *
    * @return residence region
    */
-  public String getResidenceRegion() {
+  public final String getResidenceRegion() {
     return residenceRegion;
   }
   /**
@@ -126,7 +126,7 @@ public class Profile {
    *
    * @return user ID
    */
-  public int getUserID() {
+  public final int getUserID() {
     return userID;
   }
   /**
@@ -134,7 +134,7 @@ public class Profile {
    *
    * @return age
    */
-  public int getAge() {
+  public final int getAge() {
     return age;
   }
   /**
@@ -142,7 +142,7 @@ public class Profile {
    *
    * @return whether susceptible or not
    */
-  public boolean getIsSusceptible() {
+  public final boolean getIsSusceptible() {
     return isSusceptible;
   }
   /**
@@ -150,7 +150,7 @@ public class Profile {
    *
    * @return email
    */
-  public String getEmail() {
+  public final String getEmail() {
     return email;
   }
   /**
@@ -158,7 +158,7 @@ public class Profile {
    *
    * @return password
    */
-  public String getPassword() {
+  public final String getPassword() {
     return password;
   }
   /**
@@ -166,24 +166,24 @@ public class Profile {
    * @param i line to be returned
    * @return profile line
    */
-  public static Profile profilesSaveLine(final int i) {
-    return profilesSave.get(i);
+  public static Profile profilesLine(final int i) {
+    return profiles.get(i);
   }
   /**
    * Returns the size of profileSave.
    * @return profile size
    */
-  public static int profilesSaveSize() {
-    return profilesSave.size();
+  public static int profilesSize() {
+    return profiles.size();
   }
   /**
    * Returns profilesSave.
    * @return ArrayList
    */
-  public static ArrayList<Profile> getProfilesSave() {
-    return profilesSave;
+  public static ArrayList<Profile> getProfiles() {
+    return profiles;
   }
-  
+
   /**
    * Saves profiles to JSON file.
    */
@@ -191,15 +191,16 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("LookingPositive\\src\\main\\resourses\\profiles.json").getAbsoluteFile();
-      objectmapper.writeValue(profilesfile, profilesSave);
-    } catch(IOException e) {
+      File profilesfile = new File(
+          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+      objectmapper.writeValue(profilesfile, profiles);
+    } catch (IOException e) {
       System.out.println("ioexception:" + e);
-    } catch(Exception e) {
+    } catch (Exception e) {
       System.out.println("exception:" + e);
     }
   }
-  
+
   /**
    * Retrieves profiles from JSON file.
    */
@@ -207,12 +208,14 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("LookingPositive\\src\\main\\resourses\\profiles.json").getAbsoluteFile();
-      profilesSave = objectmapper.readValue(profilesfile, new TypeReference<ArrayList<Profile>>(){});
+      File profilesfile = new File(
+          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+      profiles = objectmapper.readValue(
+          profilesfile, new TypeReference<ArrayList<Profile>>() { });
 
-    } catch(IOException e) {
+    } catch (IOException e) {
       System.out.println("ioexception:" + e);
-    } catch(Exception e) {
+    } catch (Exception e) {
       System.out.println("exception:" + e);
     }
   }
@@ -221,7 +224,7 @@ public class Profile {
    * ToString method.
    */
   @Override
-  public String toString() {
+  public final String toString() {
     if (email == null) {
       return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
     } else {

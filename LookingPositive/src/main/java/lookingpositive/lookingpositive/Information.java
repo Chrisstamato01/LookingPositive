@@ -28,6 +28,9 @@ public final class Information {
    */
   private static final int CASE_SEVEN = 7;
 
+  /**
+   * Information default constructor.
+   */
   private Information() {
 
   }

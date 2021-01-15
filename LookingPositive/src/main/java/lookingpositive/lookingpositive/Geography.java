@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+//import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * This class stores and organizes all the facilities according to their
@@ -86,7 +86,7 @@ public class Geography {
    *
    * @return type
    */
-  public String getType() {
+  public final String getType() {
     return type;
   }
 
@@ -95,14 +95,14 @@ public class Geography {
    *
    * @return name
    */
-  public String getName() {
+  public final String getName() {
     return name;
   }
 
   /**
    * @return municipality
    */
-  public String getMunicipality() {
+  public final String getMunicipality() {
     return municipality;
   }
 
@@ -153,7 +153,7 @@ public class Geography {
    * @return String
    */
   @Override
-  public String toString() {
+  public final String toString() {
     return this.type + " - Όνομα: " + this.name + " - Δήμος: "
         + this.municipality;
   }
@@ -169,13 +169,13 @@ public class Geography {
     int q;
     String color;
     if (mun.endsWith("3Β")) {
-      current = cases[1] + cases[2] + cases[3];
+      current = cases[0] + cases[1] + cases[2];
       q = current / POPULATION_3B;
     } else if (mun.endsWith("Alimos")) {
-      current = cases[1] + cases[2] + cases[3];
+      current = cases[0] + cases[1] + cases[2];
       q = current / POPULATION_ALIMOS;
     } else {
-      current = cases[1] + cases[2] + cases[3];
+      current = cases[0] + cases[1] + cases[2];
       q = current / POPULATION_GLYFADA;
     }
 

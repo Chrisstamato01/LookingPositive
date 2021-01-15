@@ -28,7 +28,7 @@ public class AddUserTest {
    *
    */
   @Test
-  public void test() {
+  public void alphabetCheckTest() {
     assertEquals(AddUser.alphabetCheck("Iasonas"), true);
     assertEquals(AddUser.alphabetCheck("Anna-Maria"), true);
     assertEquals(AddUser.alphabetCheck("Anna Maria"), true);
