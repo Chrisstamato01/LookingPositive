@@ -170,7 +170,7 @@ public final class AddDelEvents {
    */
   private static Profile addContactedPeople(final String firstName,
       final String lastName) {
-    Iterator<Profile> it = Profile.getProfilesSave().iterator();
+    Iterator<Profile> it = Profile.getProfiles().iterator();
     Profile person;
     Profile person2 = null;
     while (it.hasNext()) {

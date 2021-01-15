@@ -51,10 +51,10 @@ public final class SignInUp {
    */
   public static int checkUser(final String email, final String password) {
     int id = -1;
-    for (int i = 0; i < Profile.profilesSaveSize(); i++) {
-      if (email.equals(Profile.profilesSaveLine(i).getEmail())
-          && password.equals(Profile.profilesSaveLine(i).getPassword())) {
-        id = Profile.profilesSaveLine(i).getUserID();
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (email.equals(Profile.profilesLine(i).getEmail())
+          && password.equals(Profile.profilesLine(i).getPassword())) {
+        id = Profile.profilesLine(i).getUserID();
       }
     }
     return id;
