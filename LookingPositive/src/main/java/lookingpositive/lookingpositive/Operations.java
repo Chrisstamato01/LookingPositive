@@ -147,6 +147,7 @@ public final class Operations {
   }
 
   private static void dataRetriver() {
+    Calendar.fillingFourteenDays();
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();

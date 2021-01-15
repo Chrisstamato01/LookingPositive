@@ -23,11 +23,9 @@ public final class SignInUp {
     boolean flag = true;
     email = scanner.nextLine();
     while (flag) {
-      
-      
       if (email.equals("1")) {
         AddUser.add();
-      } 
+      }
         System.out.println("\nΕισάγετε email:");
         email = scanner.nextLine();
         System.out.println("Εισάγετε κωδικό");

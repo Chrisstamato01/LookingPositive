@@ -61,12 +61,11 @@ public class ArrayListOfArrayList {
     }
   }
   // This method deletes the content from a two dimensional list.
-  ///// NA THN KOITAJOYME
 
   /**
    * This method removes every Event object from every user's list.
    */
-  public void deleteEvent() {
+  public void deleteAllEvents() {
     for (int i = 0; i < eventList.size(); i++) {
       for (int j = eventList.get(i).size() - 1; j >= 0; j--) {
         eventList.get(i).remove(j);

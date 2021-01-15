@@ -1,7 +1,6 @@
 package lookingpositive.lookingpositive;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,7 +8,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class CalendarTest {
@@ -17,21 +15,10 @@ public class CalendarTest {
    * Age.
    */
   static final int AGE = 19;
-  /**
-   * This .
-   */
-  private ArrayListOfArrayList expectedDayOneList = new ArrayListOfArrayList();
-  /**
-   * This.
-   */
-  private ArrayListOfArrayList expectedTodayList = new ArrayListOfArrayList();
-  /**
-   * This.
-   */
-  private ArrayListOfArrayList expectedDayTwoList = new ArrayListOfArrayList();
 
   /**
    * This method creates profiles for testing later.
+   *
    * @throws Exception
    */
   @BeforeClass
@@ -49,6 +36,7 @@ public class CalendarTest {
 
   /**
    * This method .
+   *
    * @throws Exception
    */
   @AfterClass
@@ -57,6 +45,7 @@ public class CalendarTest {
 
   /**
    * This method .
+   *
    * @throws Exception
    */
   @Before
@@ -65,6 +54,7 @@ public class CalendarTest {
 
   /**
    * This method .
+   *
    * @throws Exception
    */
   @After
@@ -73,12 +63,12 @@ public class CalendarTest {
 
   /**
    * This method checks if method addToCalendar is working as supposed.
+   *
    * @throws Exception
    */
   @Test
   public void testAddToCalendar() {
     ArrayList<Profile> list = new ArrayList<Profile>();
-
     list.add(Profile.profilesSaveLine(0));
     list.add(Profile.profilesSaveLine(1));
     list.add(Profile.profilesSaveLine(2));
@@ -99,92 +89,171 @@ public class CalendarTest {
    * This method checks if method addToCalendar is working as supposed.
    */
   @Test
-  public  void testDeleteExpiredEvents() {
+  public void testDeleteExpiredEvents() {
+    final int magicNumber = 3;
+    Calendar.fillingFourteenDays();
+
     ArrayList<Profile> list = new ArrayList<Profile>();
     list.add(Profile.profilesSaveLine(0));
     list.add(Profile.profilesSaveLine(1));
     list.add(Profile.profilesSaveLine(2));
-    final int year = 2021;
-    final int month = 01;
-    final int toDate = 14;
-    final int futureDateOne = 17;// day2
-    final int futureDateTwo = 19;// today
-    final int futureDateThree = 25;
-    final int futureDateFour = 16;
-    final int futureDateFive = 20;
-    final int futureDateSix = 15;
-    final int futureDateSeven = 21;
-    final int userId = 3;
-    Calendar.getToday().addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getToday().addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getToday().addEventToUsersList(1,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getToday().addEventToUsersList(2,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getToday().addEventToUsersList(userId,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getToday().addEventToUsersList(userId,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getFuture().addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, futureDateOne),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.getFuture().addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, futureDateTwo),
-            Geography.getFacilitiesLine(0), list));
+
+    ArrayListOfArrayList expectedDayOneList = new ArrayListOfArrayList();
+    ArrayListOfArrayList expectedDayTwoList = new ArrayListOfArrayList();
+    ArrayListOfArrayList expectedDayThreeList = new ArrayListOfArrayList();
+    ArrayListOfArrayList expectedDayFourList = new ArrayListOfArrayList();
+
+    Event event1 = new Event(LocalDate.now(), Geography.getFacilitiesLine(0),
+        list);
+    Calendar.getToday().addEventToUsersList(0, event1);
+    Calendar.getToday().addEventToUsersList(1, event1);
+    Calendar.getToday().addEventToUsersList(2, event1);
+    Calendar.getToday().addEventToUsersList(magicNumber, event1);
+
     expectedDayOneList.createArrayListOfEvents();
-    expectedDayOneList.addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    expectedDayOneList.addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
     expectedDayOneList.createArrayListOfEvents();
-    expectedDayOneList.addEventToUsersList(1,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
     expectedDayOneList.createArrayListOfEvents();
-    expectedDayOneList.addEventToUsersList(2,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
     expectedDayOneList.createArrayListOfEvents();
-    expectedDayOneList.addEventToUsersList(userId,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    expectedDayOneList.addEventToUsersList(userId,
-        new Event(LocalDate.of(year, month, toDate),
-            Geography.getFacilitiesLine(0), list));
-    Calendar.deleteExpiredEvents(LocalDate.of(year, month, futureDateSix),
-        LocalDate.of(year, month, toDate));
-    assertEquals(Calendar.getFourteenDaysCell(0), expectedDayOneList);
-    expectedDayOneList.createArrayListOfEvents();
-    expectedTodayList.addEventToUsersList(0,
-        new Event(LocalDate.of(year, month, futureDateTwo),
-            Geography.getFacilitiesLine(0), list));
-    expectedDayOneList.createArrayListOfEvents();
-    expectedDayTwoList.addEventToUsersList(1,
-        new Event(LocalDate.of(year, month, futureDateOne),
-            Geography.getFacilitiesLine(1), list));
-    Calendar.deleteExpiredEvents(LocalDate.of(year, month, futureDateTwo),
-        LocalDate.of(year, month, toDate));
-    assertEquals(Calendar.getFourteenDaysCell(1), expectedDayTwoList);
-    assertEquals(Calendar.getFourteenDaysCell(0), expectedTodayList);
+    expectedDayOneList.addEventToUsersList(0, event1);
+    expectedDayOneList.addEventToUsersList(1, event1);
+    expectedDayOneList.addEventToUsersList(2, event1);
+    expectedDayOneList.addEventToUsersList(magicNumber, event1);
+
+    Calendar.deleteExpiredEvents(LocalDate.now().plusDays(1), LocalDate.now());
+    assertEquals(Calendar.getFourteenDaysCell(0).getUserListOfEvents(0),
+        expectedDayOneList.getUserListOfEvents(0));
+    assertEquals(Calendar.getFourteenDaysCell(0).getUserListOfEvents(1),
+        expectedDayOneList.getUserListOfEvents(1));
+    assertEquals(Calendar.getFourteenDaysCell(0).getUserListOfEvents(2),
+        expectedDayOneList.getUserListOfEvents(2));
+    assertEquals(
+        Calendar.getFourteenDaysCell(0).getUserListOfEvents(magicNumber),
+        expectedDayOneList.getUserListOfEvents(magicNumber));
+
+    expectedDayTwoList.createArrayListOfEvents();
+    expectedDayTwoList.createArrayListOfEvents();
+    expectedDayTwoList.createArrayListOfEvents();
+    expectedDayTwoList.createArrayListOfEvents();
+    expectedDayTwoList.addEventToUsersList(0, event1);
+    expectedDayTwoList.addEventToUsersList(1, event1);
+    expectedDayTwoList.addEventToUsersList(2, event1);
+    expectedDayTwoList.addEventToUsersList(magicNumber, event1);
+
+    Calendar.deleteExpiredEvents(LocalDate.now().plusDays(2),
+        LocalDate.now().plusDays(1));
+    assertEquals(Calendar.getFourteenDaysCell(1).getUserListOfEvents(0),
+        expectedDayTwoList.getUserListOfEvents(0));
+    assertEquals(Calendar.getFourteenDaysCell(1).getUserListOfEvents(1),
+        expectedDayTwoList.getUserListOfEvents(1));
+    assertEquals(Calendar.getFourteenDaysCell(1).getUserListOfEvents(2),
+        expectedDayTwoList.getUserListOfEvents(2));
+    assertEquals(
+        Calendar.getFourteenDaysCell(1).getUserListOfEvents(magicNumber),
+        expectedDayTwoList.getUserListOfEvents(magicNumber));
+
+    expectedDayThreeList.createArrayListOfEvents();
+    expectedDayThreeList.createArrayListOfEvents();
+    expectedDayThreeList.createArrayListOfEvents();
+    expectedDayThreeList.createArrayListOfEvents();
+    expectedDayThreeList.addEventToUsersList(0, event1);
+    expectedDayThreeList.addEventToUsersList(1, event1);
+    expectedDayThreeList.addEventToUsersList(2, event1);
+    expectedDayThreeList.addEventToUsersList(magicNumber, event1);
+
+    Calendar.deleteExpiredEvents(LocalDate.now().plusDays(magicNumber),
+        LocalDate.now().plusDays(2));
+    assertEquals(Calendar.getFourteenDaysCell(2).getUserListOfEvents(0),
+        expectedDayThreeList.getUserListOfEvents(0));
+    assertEquals(Calendar.getFourteenDaysCell(2).getUserListOfEvents(1),
+        expectedDayThreeList.getUserListOfEvents(1));
+    assertEquals(Calendar.getFourteenDaysCell(2).getUserListOfEvents(2),
+        expectedDayThreeList.getUserListOfEvents(2));
+    assertEquals(
+        Calendar.getFourteenDaysCell(2).getUserListOfEvents(magicNumber),
+        expectedDayThreeList.getUserListOfEvents(magicNumber));
+
+    expectedDayFourList.createArrayListOfEvents();
+    expectedDayFourList.createArrayListOfEvents();
+    expectedDayFourList.createArrayListOfEvents();
+    expectedDayFourList.createArrayListOfEvents();
+    expectedDayFourList.addEventToUsersList(0, event1);
+    expectedDayFourList.addEventToUsersList(1, event1);
+    expectedDayFourList.addEventToUsersList(2, event1);
+    expectedDayFourList.addEventToUsersList(magicNumber, event1);
+
+    Calendar.deleteExpiredEvents(LocalDate.now().plusDays(magicNumber),
+        LocalDate.now().plusDays(2));
+    assertEquals(
+        Calendar.getFourteenDaysCell(magicNumber).getUserListOfEvents(0),
+        expectedDayFourList.getUserListOfEvents(0));
+    assertEquals(
+        Calendar.getFourteenDaysCell(magicNumber).getUserListOfEvents(1),
+        expectedDayFourList.getUserListOfEvents(1));
+    assertEquals(
+        Calendar.getFourteenDaysCell(magicNumber).getUserListOfEvents(2),
+        expectedDayFourList.getUserListOfEvents(2));
+    assertEquals(Calendar.getFourteenDaysCell(magicNumber).getUserListOfEvents(
+        magicNumber), expectedDayFourList.getUserListOfEvents(magicNumber));
+
   }
 
   /**
    * This method.
    */
-  @Ignore
   @Test
   public void testDaysInitializer() {
-    fail("Not yet implemented");
+    ArrayListOfArrayList expectedInitializerSize = new ArrayListOfArrayList();
+    expectedInitializerSize.createArrayListOfEvents();
+    expectedInitializerSize.createArrayListOfEvents();
+    expectedInitializerSize.createArrayListOfEvents();
+    expectedInitializerSize.createArrayListOfEvents();
+    Calendar.fillingFourteenDays();
+    final int dayOne = 0;
+    final int dayTwo = 1;
+    final int dayThree = 2;
+    final int dayFour = 3;
+    final int dayFive = 4;
+    final int daySix = 5;
+    final int daySeven = 6;
+    final int dayEight = 7;
+    final int dayNine = 8;
+    final int dayTen = 9;
+    final int dayEleven = 10;
+    final int dayTwelve = 11;
+    final int dayThirteen = 12;
+    final int dayFourteen = 13;
+    assertEquals(Calendar.getToday().giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFuture().giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayOne).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayTwo).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayThree).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayFour).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayFive).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(daySix).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(daySeven).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayEight).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayNine).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayTen).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayEleven).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayTwelve).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayThirteen).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
+    assertEquals(Calendar.getFourteenDaysCell(dayFourteen).giveEventListsSize(),
+        expectedInitializerSize.giveEventListsSize());
   }
 
 }
