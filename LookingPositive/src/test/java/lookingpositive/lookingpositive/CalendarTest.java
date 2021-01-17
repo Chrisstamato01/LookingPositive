@@ -69,9 +69,9 @@ public class CalendarTest {
   @Test
   public void testAddToCalendar() {
     ArrayList<Profile> list = new ArrayList<Profile>();
-    list.add(Profile.profilesSaveLine(0));
-    list.add(Profile.profilesSaveLine(1));
-    list.add(Profile.profilesSaveLine(2));
+    list.add(Profile.profilesLine(0));
+    list.add(Profile.profilesLine(1));
+    list.add(Profile.profilesLine(2));
     Event event1 = new Event(LocalDate.now(), Geography.getFacilitiesLine(0),
         list);
     Calendar.addToCalendar(event1, 0);
@@ -94,9 +94,9 @@ public class CalendarTest {
     Calendar.fillingFourteenDays();
 
     ArrayList<Profile> list = new ArrayList<Profile>();
-    list.add(Profile.profilesSaveLine(0));
-    list.add(Profile.profilesSaveLine(1));
-    list.add(Profile.profilesSaveLine(2));
+    list.add(Profile.profilesLine(0));
+    list.add(Profile.profilesLine(1));
+    list.add(Profile.profilesLine(2));
 
     ArrayListOfArrayList expectedDayOneList = new ArrayListOfArrayList();
     ArrayListOfArrayList expectedDayTwoList = new ArrayListOfArrayList();

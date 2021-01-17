@@ -1,3 +1,6 @@
+/**
+ * Info about this package doing something for  file.
+ */
 package lookingpositive.lookingpositive;
 
 import java.io.File;
@@ -16,9 +19,15 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
+/**
+ *This class is the main and only thread of the program.
+ */
 public final class Operations {
+  /**
+   * This is the private default constructor.
+   */
   private Operations() {
+  //This class can not be initialized.
   }
   /**
    * Annotation that regulates the pattern of the date.
@@ -28,7 +37,6 @@ public final class Operations {
   @JsonSerialize(using = LocalDateSerializer.class)
   private static LocalDate dateLastUserSignedIn = null;
 
-  // την εκανα ναλλ να τσεκαρουμε αν τρεχει
   /**
    * This method retrieves the data and run the method which regulates the other
    * methods.
@@ -62,7 +70,6 @@ public final class Operations {
     final int choiceFour = 4;
     final int choiceFive = 5;
     final int choiceSix = 6;
-    final int choiceSeven = 7;
     boolean execution = true;
 
     while (execution) {
@@ -78,7 +85,7 @@ public final class Operations {
         break;
 
       case choiceTwo:
-
+        Health.chooseOperation(userId);
         break;
 
       case choiceThree:
@@ -86,7 +93,7 @@ public final class Operations {
         break;
 
       case choiceFour:
-
+        Information.infoMenu();
         break;
 
       case choiceFive:
@@ -94,10 +101,6 @@ public final class Operations {
         break;
 
       case choiceSix:
-
-        break;
-
-      case choiceSeven:
         execution = false;
         dataSaver();
         System.out.println("Τερματισμός Προγράμματος...");
@@ -108,13 +111,16 @@ public final class Operations {
     }
 
   }
-
+/**
+ * This method handles user's input.
+ * @return an integer which is the user's choice
+ */
   private static int menuChoice() {
 
     Scanner sc = new Scanner(System.in);
     int choice = 0;
     final int smallerChoice = 1;
-    final int biggerChoice = 7;
+    final int biggerChoice = 6;
     while (choice < smallerChoice || choice > biggerChoice) {
 
       try {
@@ -130,36 +136,45 @@ public final class Operations {
       }
 
       if (choice < smallerChoice || choice > biggerChoice) {
-        System.out.println("Εισάγετε επιλογή [1-7]");
+        System.out.println("Εισάγετε επιλογή [1-6]");
       }
      sc.nextLine();
     }
 
     return choice;
   }
-
+/**
+ * This method prints the choices the user has.
+ */
   private static void menu() {
     System.out.println("------------Μενού Επιλογών------------ \n"
         + "1. Γεγονότα \n" + "2. Υγεία \n" + "3. Γεωγραφική περιγραφή \n"
-        + "4. Πληροφορίες για τον ιό \n" + "5. Ειδοποιήσεις \n"
-        + "6. Ρυθμίσεις \n" + "7. Έξοδος \n" + "Εισάγετε επιλογή [1-7]");
+        + "4. Πληροφορίες για τον ιό \n"
+        + "5. Ρυθμίσεις \n" + "6. Έξοδος \n" + "Εισάγετε επιλογή [1-6]");
 
   }
-
+/**
+ * This method retrieves all the data from the files.
+ */
   private static void dataRetriver() {
     Calendar.fillingFourteenDays();
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();
-     Profile.profilesRetriever();
+    Profile.profilesRetriever();
   }
-
+/**
+ * This method saves any data created during the execution of the
+ * program after the user chose to terminate it.
+ */
   private static void dataSaver() {
     Calendar.eventSaver();
     dateSaver();
     Profile.profilesSaver();
   }
-
+/**
+ * This method saves the date the last user singed in.
+ */
   private static void dateSaver() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());
@@ -178,7 +193,9 @@ public final class Operations {
       System.out.println("exception:" + e);
     }
   }
-
+/**
+ * This method retrieves the date the last user signed in.
+ */
   private static void dateRetriever() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());

@@ -1,21 +1,23 @@
 package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
-
+/**
+ *This class creates and handles the objects ArrayListOfArrayList.
+ */
 public class ArrayListOfArrayList {
 
   /**
    * This field is an ArrayList which contains the ArrayLists of the Events for
    * each user.
    */
-  private ArrayList<ArrayList<Event>> eventList
-  = new ArrayList<ArrayList<Event>>();
+  private ArrayList<ArrayList<Event>> eventList =
+      new ArrayList<ArrayList<Event>>();
   // Creates a list of Events and adds them to the instance's eventLst.
 
   /**
    * This method creates for each user a list that is added to the eventList.
    */
-  public void createArrayListOfEvents() {
+  public final void createArrayListOfEvents() {
     ArrayList<Event> usereventlist = new ArrayList<Event>();
     eventList.add(usereventlist);
   }
@@ -26,23 +28,27 @@ public class ArrayListOfArrayList {
    *
    * @return the eventList
    */
-  public ArrayList<ArrayList<Event>> getEventList() {
+  public final ArrayList<ArrayList<Event>> getEventList() {
     return eventList;
   }
+
   /**
    * This method returns the events of a user.
+   *
    * @param userId the Id of the user
    * @return list of events
    */
-  public ArrayList<Event> getUserListOfEvents(final int userId) {
+  public final ArrayList<Event> getUserListOfEvents(final int userId) {
     return eventList.get(userId);
   }
+
   /**
    * This method modify the eventList.
    *
    * @param newEventList is the renewed eventList of the event.
    */
-  public void setEventList(final ArrayList<ArrayList<Event>> newEventList) {
+  public final void setEventList(
+      final ArrayList<ArrayList<Event>> newEventList) {
     eventList = newEventList;
   }
 
@@ -53,7 +59,7 @@ public class ArrayListOfArrayList {
    *
    * @param toCopy the object ArraylistofArraylist which will be copied
    */
-  public void copyDoubleArrayList(final ArrayListOfArrayList toCopy) {
+  public final void copyDoubleArrayList(final ArrayListOfArrayList toCopy) {
     for (int i = 0; i < toCopy.eventList.size(); i++) {
       for (int j = 0; j < toCopy.eventList.get(i).size(); j++) {
         eventList.get(i).add(toCopy.eventList.get(i).get(j));
@@ -65,7 +71,7 @@ public class ArrayListOfArrayList {
   /**
    * This method removes every Event object from every user's list.
    */
-  public void deleteAllEvents() {
+  public final void deleteAllEvents() {
     for (int i = 0; i < eventList.size(); i++) {
       for (int j = eventList.get(i).size() - 1; j >= 0; j--) {
         eventList.get(i).remove(j);
@@ -77,7 +83,7 @@ public class ArrayListOfArrayList {
   /**
    * This method prints every event from a user's list.
    */
-  public void printCheck() {
+  public final void printAllEvents() {
     for (int i = 0; i < eventList.size(); i++) {
       for (int j = 0; j < eventList.get(i).size(); j++) {
         System.out.println(eventList.get(i).get(j));
@@ -91,7 +97,7 @@ public class ArrayListOfArrayList {
    * @param userId is a specific user
    * @param ev     the is the new event
    */
-  public void addEventToUsersList(final int userId, final Event ev) {
+  public final void addEventToUsersList(final int userId, final Event ev) {
     eventList.get(userId).add(ev);
   }
 
@@ -100,7 +106,7 @@ public class ArrayListOfArrayList {
    *
    * @return the size of the evenList
    */
-  public int giveEventListsSize() {
+  public final int giveEventListsSize() {
     return eventList.size();
   }
 
@@ -111,7 +117,7 @@ public class ArrayListOfArrayList {
    * @param rowCounter is the specific row
    * @return the number of the events of the user
    */
-  public int getUsersEventListsSize(final int rowCounter) {
+  public final int getUsersEventListsSize(final int rowCounter) {
     return eventList.get(rowCounter).size();
   }
 
@@ -122,7 +128,8 @@ public class ArrayListOfArrayList {
    * @param eventCounter the number of the event of a user
    * @return a specific event
    */
-  public Event getCurrentEvent(final int rowCounter, final int eventCounter) {
+  public final Event getCurrentEvent(final int rowCounter,
+      final int eventCounter) {
     return eventList.get(rowCounter).get(eventCounter);
   }
 
@@ -132,7 +139,8 @@ public class ArrayListOfArrayList {
    * @param rowCounter   the user's calendar where the event is
    * @param eventCounter the event we want to remove
    */
-  public void removeCurrentEvent(final int rowCounter, final int eventCounter) {
+  public final void removeCurrentEvent(final int rowCounter,
+      final int eventCounter) {
     eventList.get(rowCounter).remove(eventCounter);
   }
 }

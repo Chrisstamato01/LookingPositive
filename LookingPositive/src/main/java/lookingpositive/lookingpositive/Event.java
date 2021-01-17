@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-
+/**
+ *This class contains the constructor of the events.
+ */
 public final class Event {
   /**
    * date has the date of the event.

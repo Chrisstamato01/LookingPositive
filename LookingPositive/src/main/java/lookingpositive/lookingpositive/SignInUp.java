@@ -6,9 +6,11 @@ import java.util.Scanner;
  * This method is used to implement the user's Sign In and Sign Up.
  */
 public final class SignInUp {
-
+/**
+ * This method is private Default constructor.
+ */
   private SignInUp() {
-
+  //This class can not be initialized.
   }
 
  /**
@@ -25,6 +27,7 @@ public final class SignInUp {
     while (flag) {
       if (email.equals("1")) {
         AddUser.add();
+        System.out.println("Εισάγεται τα στοιχεία με τα οποία εγγραφήκατε.");
       }
         System.out.println("\nΕισάγετε email:");
         email = scanner.nextLine();

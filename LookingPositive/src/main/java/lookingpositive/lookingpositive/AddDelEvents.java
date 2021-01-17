@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
-
+/**
+ * This class handles the user's events.
+ */
 public final class AddDelEvents {
-
+/**
+ * This is the private default constructor.
+ */
   private AddDelEvents() {
+    //This class can not be initialized.
   }
 
   /**

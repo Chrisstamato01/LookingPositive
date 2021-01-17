@@ -7,11 +7,17 @@ import java.time.temporal.ChronoUnit;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+/**
+ *This class handles every user's events when days pass.
+ */
 public final class Calendar {
 
 //The class can't be initialized.
+  /**
+   * This is the private default constructor.
+   */
   private Calendar() {
+  //This class can not be initialized.
   }
 
   /**

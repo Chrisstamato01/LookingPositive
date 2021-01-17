@@ -1,9 +1,20 @@
 package lookingpositive.lookingpositive;
 
 import java.util.Scanner;
-
+/*
+ * This class is nickola's and anna's dummy main NicksAndAnnasMain.
+ */
+/**
+ * This main is mine.
+ * @author nikgiann
+ *
+ */
 public final class NicksAndAnnasMain {
+  /**
+   * This is the private default constructor.
+   */
   private NicksAndAnnasMain() {
+  //This class can not be initialized.
   }
   /**
    * shit.
