@@ -1,17 +1,23 @@
 package lookingpositive.lookingpositive;
 
-import java.io.File;
-import java.io.IOException;
+//import java.io.File;
+//import java.io.IOException;
 import java.util.Scanner;
 /**
  * Main class for Chris.
  */
-public class chrisMain {
+public final class ChrisMain {
+  /**
+   * This is the private default constructor.
+   */
+  private ChrisMain() {
+
+  }
   /**
    * Executable main class.
-   * @param args
+   * @param args you know
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
 
     Scanner sc = new Scanner(System.in);
 //Profile.profilesRetriever();

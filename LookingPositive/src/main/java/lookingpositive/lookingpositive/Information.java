@@ -40,9 +40,7 @@ public final class Information {
    */
   public static void infoMenu() {
 
-    Scanner sc = null;
-      try {
-      sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
       int g = 0;
       while (g != -1) {
         System.out.println("Πιθανές ερωτήσεις:");
@@ -138,10 +136,5 @@ public final class Information {
           break;
         }
       }
-    } finally {
-      if (sc != null) {
-        sc.close();
-      }
-    }
   }
 }
