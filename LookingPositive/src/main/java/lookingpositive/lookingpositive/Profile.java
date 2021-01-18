@@ -161,6 +161,20 @@ public class Profile {
   public final String getPassword() {
     return password;
   }
+/**
+ * Sets new password.
+ * @param pass is the new password
+ */
+  public final void setPassword(final String pass) {
+    this.password = pass;
+  }
+  /**
+   * Sets new Email.
+   * @param mail is the new mail
+   */
+  public final void setEmail(final String mail) {
+    this.email = mail;
+  }
   /**
    * Returns the line from profileSave.
    * @param i line to be returned
@@ -229,7 +243,8 @@ public class Profile {
       return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
     } else {
       return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
-          + ", Δήμος Κατοικίας=" + residenceRegion + " Ηλικία=" + age;
+          + ", Δήμος Κατοικίας=" + residenceRegion + " Ηλικία=" + age
+          + "Κωδικος:" + password + "Mail:" + email + " ]";
     }
    }
 }

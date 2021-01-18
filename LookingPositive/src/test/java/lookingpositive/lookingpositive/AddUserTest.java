@@ -25,15 +25,27 @@ public class AddUserTest {
   }
 
   /**
-   *
+   * Test for alphabetCheck.
    */
   @Test
   public void alphabetCheckTest() {
     assertEquals(AddUser.alphabetCheck("Iasonas"), true);
+    assertEquals(AddUser.alphabetCheck("Ιάσων"), true);
     assertEquals(AddUser.alphabetCheck("Anna-Maria"), true);
     assertEquals(AddUser.alphabetCheck("Anna Maria"), true);
     assertEquals(AddUser.alphabetCheck("Chr1stos"), false);
     assertEquals(AddUser.alphabetCheck("Vassiliki66#-3."), false);
+  }
+  /**
+   * Test for passwordCheck.
+   */
+  public void passwordCheckTest() {
+    assertEquals(AddUser.alphabetCheck("IasonasCode"), true);
+    assertEquals(AddUser.alphabetCheck("Anna-MariaCode"), true);
+    assertEquals(AddUser.alphabetCheck("Anna Maria"), false);
+    assertEquals(AddUser.alphabetCheck("Chr1stos"), true);
+    assertEquals(AddUser.alphabetCheck("Vassiliki66#-3."), true);
+    assertEquals(AddUser.alphabetCheck("New$$Code"), true);
   }
 
 }

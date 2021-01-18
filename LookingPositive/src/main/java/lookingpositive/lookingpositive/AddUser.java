@@ -23,8 +23,61 @@ public final class AddUser {
     new Profile(handleFirstName(sc), handleLastName(sc),
         handleResidenceRegion(sc), handleAge(sc), handleIsSusceptible(sc),
         handlePassword(sc), handleEmail(sc));
-//    sc.close();
   }
+
+  /**
+   * Changes the user's data.
+   * @param id is the user's id
+   */
+  public static void change(final int id) {
+    Scanner sc = new Scanner(System.in);
+    boolean flag = false;
+    System.out.println("Θα θέλατε να αλλάξετε email ή κωδικό; \n"
+        + "1. Email \n"
+        + "2. Κωδικό");
+    while (!flag) {
+      int choice = sc.nextInt();
+      if (choice == 1) {
+        changeEmail(id, sc);
+        flag = true;
+      } else if (choice == 2) {
+        changePassword(id, sc);
+        flag = true;
+      } else {
+        System.out.println("Εισάγετε έγκυρη επιλογή:\n"
+            + "[1] για mail ή [2] για κωδικό");
+      }
+    }
+  }
+
+  /**
+   * Changes user's password.
+   * @param id is the user's id
+   * @param sc is the Scanner
+   */
+  public static void changePassword(final int id, final Scanner sc) {
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (Profile.profilesLine(i).getUserID() == id) {
+        Profile profile = Profile.profilesLine(i);
+        profile.setPassword(handlePassword(sc));
+      }
+    }
+  }
+
+  /**
+   * Changes user's mail.
+   * @param id is the user's id
+   * @param sc is the Scanner
+   */
+  public static void changeEmail(final int id, final Scanner sc) {
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (Profile.profilesLine(i).getUserID() == id) {
+        Profile profile = Profile.profilesLine(i);
+        profile.setEmail(mailChanger(sc));
+      }
+    }
+  }
+
   /**
    * Requires user to add his name.
    * @param sc is a Scanner
@@ -167,7 +220,7 @@ public final class AddUser {
    * @return User's password
    */
   private static String handlePassword(final Scanner sc) {
-    System.out.println("Εισάγετε τον κωδικό σας");
+    System.out.println("Δημιουργείστε τον κωδικό σας");
     boolean w = true;
     final int eight = 8;
     final int twenty = 20;
@@ -175,9 +228,10 @@ public final class AddUser {
     while (w) {
       w = false;
       pass = sc.nextLine();
-
-      if (pass.length() < eight || pass.length() > twenty) {
-        System.out.println("Ο κωδικός πρέπει να περιέχει 8 - 20 χαρακτήρες.");
+      if (pass.length() < eight || pass.length() > twenty
+          || !passwordCheck(pass)) {
+        System.out.println("Ο κωδικός πρέπει να περιέχει 8 - 20 χαρακτήρες"
+            + " χωρίς κενά.");
         w = true;
       }
     }
@@ -193,7 +247,7 @@ public final class AddUser {
     boolean a = false;
     System.out.println("Email(μόνο gmail)\n"
     + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
-    + " -> lookingPositive): ");
+    + " -> lookingPositive):");
     String email = sc.nextLine();
     String domain = null;
     while (!a) {
@@ -248,6 +302,73 @@ public final class AddUser {
     String usersEmail = email + domain;
     return usersEmail;
   }
+
+  /**
+   * User changes his email.
+   * @param sc is a Scanner
+   * @return User's email
+   */
+   private static String mailChanger(final Scanner sc) {
+     boolean a = false;
+     System.out.println("Εισαγετε νεο e-mail(μόνο gmail)\n"
+     + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
+     + " -> lookingPositive): \n"
+     + "Aν εισάγετε κενό, το mail σας θα καταχωρηθεί μέχρι αυτό.");
+     String email = sc.next();
+     String domain = null;
+     while (!a) {
+       if (email.contains("@") || email.contains(".com")
+           || email.contains(".gr")) {
+         System.out.println("Μη έγκυρη καταχώρηση email."
+           + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
+           email = sc.next();
+       } else {
+         int b = -1;
+
+         boolean flag = true;
+
+         boolean exceptionNotOccured = false;
+         System.out.println(
+             "Είδος gmail[@gmail.com(1), @gmail.gr(2)]: ");
+         while (flag) {
+           flag = false;
+           exceptionNotOccured = false;
+           while (!exceptionNotOccured) {
+
+             try {
+               b = sc.nextInt();
+               exceptionNotOccured = true;
+             } catch (InputMismatchException e) {
+               System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+               sc.nextLine();
+             }
+
+           }
+           switch (b) {
+
+           case 1:
+             domain = "@gmail.com";
+             break;
+
+           case 2:
+             domain = "@gmail.gr";
+             break;
+
+           default:
+             flag = true;
+             System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+             break;
+           }
+           sc.nextLine();
+         }
+         a = true;
+       }
+     }
+     System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
+     String usersEmail = email + domain;
+     return usersEmail;
+   }
+
   /**
    * Checks if the input matches a real name.
    * @param input is the word to be checked
@@ -258,6 +379,17 @@ public final class AddUser {
               && (!input.equals(""))
               //Greek or Latin characters, plus spaces or - available
               && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ- ]*$")));
+  }
+/**
+ * Checks if the password is valid.
+ * @param input is the password to be checked
+ * @return true or false
+ */
+  public static boolean passwordCheck(final String input) {
+    return ((input != null)
+            && (!input.equals(""))
+            //Greek or Latin characters, plus spaces or symbols available
+            && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ0-9!@#$%&-_]*$")));
   }
   /**
    * Handles user name.
