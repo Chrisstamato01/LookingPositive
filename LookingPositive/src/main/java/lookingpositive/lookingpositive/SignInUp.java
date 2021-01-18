@@ -6,42 +6,43 @@ import java.util.Scanner;
  * This method is used to implement the user's Sign In and Sign Up.
  */
 public final class SignInUp {
-/**
- * This method is private Default constructor.
- */
+  /**
+   * This method is private Default constructor.
+   */
   private SignInUp() {
-  //This class can not be initialized.
+    // This class can not be initialized.
   }
 
- /**
-  * This method handles the user's sing in or register.
-  * @return user's id
-  */
+  /**
+   * This method handles the user's sing in or register.
+   * @return user's id
+   */
   public static int login() {
-    System.out.println("Εισάγετε email ή\nΓια εγγραφή εισάγετε 1");
+
     Scanner scanner = new Scanner(System.in);
     String password = null;
     String email = null;
     boolean flag = true;
-    email = scanner.nextLine();
+
     while (flag) {
+      System.out.println("Εισάγετε email ή Για εγγραφή εισάγετε 1");
+      email = scanner.nextLine();
       if (email.equals("1")) {
         AddUser.add();
         System.out.println("Εισάγετε τα στοιχεία με τα οποία εγγραφήκατε.");
+      } else {
+      System.out.println("Εισάγετε κωδικό");
+      password = scanner.nextLine();
+      checkUser(email, password);
+      if (checkUser(email, password) == -1) {
+        System.out
+            .println("Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
+        System.out.println("Εισάγετε email ή Για εγγραφή εισάγετε 1");
+      } else {
+        flag = false;
       }
-        System.out.println("\nΕισάγετε email:");
-        email = scanner.nextLine();
-        System.out.println("Εισάγετε κωδικό");
-        password = scanner.nextLine();
-        checkUser(email, password);
-        if (checkUser(email, password) == -1) {
-          System.out.println(
-              "Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
-          System.out.println("Εισάγετε email\n Για εγγραφή εισάγετε 1");
-        } else {
-          flag = false;
-        }
-      }
+    }
+    }
     return checkUser(email, password);
   }
 

@@ -97,7 +97,7 @@ public final class Operations {
         break;
 
       case choiceFive:
-
+        AddUser.change(userId);
         break;
 
       case choiceSix:
