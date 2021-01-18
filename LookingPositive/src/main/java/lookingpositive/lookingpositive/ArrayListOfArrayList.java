@@ -147,8 +147,8 @@ public class ArrayListOfArrayList {
    * This method clears every list from an object ArrayListOfArrayList.
    */
   public final void clearArrayListOfArrayList() {
-    for (int i = 0; i < eventList.size(); i++) {
-      eventList.get(i).clear();
+    for (int i = eventList.size() - 1; i >= 0; i--) {
+      eventList.remove(i);
     }
   }
 }

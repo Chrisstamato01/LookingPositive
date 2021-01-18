@@ -23,6 +23,7 @@ public class CalendarTest {
    */
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
+    Calendar.fillingFourteenDays();
     new Profile("Άννα-Μαρία", "Πέτρου", "Γλυφάδα", AGE, false, "annamariacode1",
         "annamariapetrouu@gmail.com");
     new Profile("Χρήστος", "Σταματόπουλος", "Γλυφάδα", AGE, false,
@@ -258,8 +259,9 @@ public class CalendarTest {
     Calendar.getToday().clearArrayListOfArrayList();
     Calendar.getFuture().clearArrayListOfArrayList();
     for (int i = 0; i <= dayFourteen; i++) {
-      Calendar.getFourteenDaysCell(i);
+      Calendar.getFourteenDaysCell(i).clearArrayListOfArrayList();
     }
+    Profile.getProfiles().clear();
   }
 
 }
