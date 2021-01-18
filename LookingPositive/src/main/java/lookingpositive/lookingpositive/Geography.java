@@ -5,6 +5,8 @@ package lookingpositive.lookingpositive;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -41,7 +43,15 @@ public class Geography {
   /**
    * Table for the cases.
    */
-  private static int[] cases = new int[CASES_LENGTH];
+  private static int[] cases3B = new int[CASES_LENGTH];
+  /**
+   * Table for the cases of Glyfada.
+   */
+  private static int[] casesGlyfada = new int[CASES_LENGTH];
+  /**
+   * Table for the cases of Alimos.
+   */
+  private static int[] casesAlimos = new int[CASES_LENGTH];
   /**
    * Population of municipality 3B.
    */
@@ -55,9 +65,17 @@ public class Geography {
    */
   private static final int POPULATION_GLYFADA = 87305;
   /**
-   * Counts today's cases.
+   * Counts today's cases in 3B.
    */
-  private static int todaysCases = 0;
+  private static int todaysCases3B = 0;
+  /**
+   * Counts today's cases in Alimos.
+   */
+  private static int todaysCasesAlimos = 0;
+  /**
+   * Counts today's cases in Glyfada.
+   */
+  private static int todaysCasesGlyfada = 0;
 
   /**
    * Constructor for the class Geography.
@@ -132,19 +150,43 @@ public class Geography {
 
   /**
    * Adds new case to the counter.
+   * @param id is the user's id
    */
-  public static void newCase() {
-    todaysCases++;
+  public static void newCase(final int id) {
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (Profile.profilesLine(i).getUserID() == id) {
+        Profile profile = Profile.profilesLine(i);
+        if (profile.getResidenceRegion().equals("3Β")) {
+          todaysCases3B++;
+        } else if (profile.getResidenceRegion().equals("Γλυφάδα")) {
+          todaysCasesGlyfada++;
+        } else {
+          todaysCasesAlimos++;
+        }
+      }
+    }
   }
 
   /**
    * Updates the table Cases.
+   * @param oldDate id the last login day
    */
-  public static void updateCases() {
-    cases[2] = cases[1];
-    cases[1] = cases[0];
-    cases[0] = todaysCases;
-    todaysCases = 0;
+  public static void updateCases(final LocalDate oldDate) {
+    long differenceOfDays = oldDate.until(LocalDate.now(), ChronoUnit.DAYS);
+    for (int counter = 0; counter < differenceOfDays; counter++) {
+      cases3B[2] = cases3B[1];
+      cases3B[1] = cases3B[0];
+      cases3B[0] = todaysCases3B;
+      todaysCases3B = 0;
+      casesGlyfada[2] = casesGlyfada[1];
+      casesGlyfada[1] = casesGlyfada[0];
+      casesGlyfada[0] = todaysCasesGlyfada;
+      todaysCasesGlyfada = 0;
+      casesAlimos[2] = casesAlimos[1];
+      casesAlimos[1] = casesAlimos[0];
+      casesAlimos[0] = todaysCasesAlimos;
+      todaysCasesAlimos = 0;
+    }
   }
 
   /**
@@ -165,26 +207,27 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    int current = 0; // the cases of the last three days
-    int q;
+    updateCases();
+    double current = 0; // the cases of the last three days
+    double quotient;
     String color;
     if (mun.endsWith("3Β")) {
-      current = cases[0] + cases[1] + cases[2];
-      q = current / POPULATION_3B;
+      current = cases3B[0] + cases3B[1] + cases3B[2];
+      quotient = current / POPULATION_3B;
     } else if (mun.endsWith("Alimos")) {
-      current = cases[0] + cases[1] + cases[2];
-      q = current / POPULATION_ALIMOS;
+      current = casesAlimos[0] + casesAlimos[1] + casesAlimos[2];
+      quotient = current / POPULATION_ALIMOS;
     } else {
-      current = cases[0] + cases[1] + cases[2];
-      q = current / POPULATION_GLYFADA;
+      current = casesGlyfada[0] + casesGlyfada[1] + casesGlyfada[2];
+      quotient = current / POPULATION_GLYFADA;
     }
 
     final double redCodeLimit = 0.001;
     final double orangeCodeLimit = 0.0001;
 
-    if (q > redCodeLimit) {
+    if (quotient > redCodeLimit) {
       color = "Κόκκινο";
-    } else if (q > orangeCodeLimit) {
+    } else if (quotient > orangeCodeLimit) {
       color = "Πορτοκαλί";
     } else {
       color = "Πράσινο";

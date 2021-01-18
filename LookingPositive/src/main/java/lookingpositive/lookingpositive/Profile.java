@@ -242,9 +242,8 @@ public class Profile {
     if (email == null) {
       return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
     } else {
-      return "Profile [Όνομα=" + firstName + ", Επώνυμο=" + lastName
-          + ", Δήμος Κατοικίας=" + residenceRegion + " Ηλικία=" + age
-          + "Κωδικος:" + password + "Mail:" + email + " ]";
+      return "Profile [ Όνομα=" + firstName + ", Επώνυμο=" + lastName
+          + ", Δήμος Κατοικίας=" + residenceRegion + ", Ηλικία=" + age + " ]";
     }
    }
 }

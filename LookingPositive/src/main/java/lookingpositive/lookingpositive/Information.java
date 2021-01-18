@@ -46,9 +46,8 @@ public final class Information {
         System.out.println("Πιθανές ερωτήσεις:");
         System.out.println("1.Τι είναι covid; \r\n" + "2.Μέτρα προστασιας\r\n"
             + "3.Πληροφοριες 13033 σε περιπτωη lockdown \r\n"
-            + "4.Χρωμα περιοχης\r\n"
-            + "5.Σωστη χρηση μασκας [Ποιες μασκες επιτρεπονται]\r\n"
-            + "6.Προστιμα\r\n" + "7.Πίσω");
+            + "4.Σωστη χρηση μασκας [Ποιες μασκες επιτρεπονται]\r\n"
+            + "5.Προστιμα\r\n" + "7.Πίσω");
         System.out.println("Επιλέξτε μια ερώτηση μέ βάση τον αριθμο:");
         g = sc.nextInt();
 
@@ -110,11 +109,6 @@ public final class Information {
           break;
         case CASE_FOUR:
           System.out.println(
-              "Τα χρώματα των Δήμων με βάση την επικυνδηνότητάς τους είναι: ");
-          // call method
-          break;
-        case CASE_FIVE:
-          System.out.println(
               "Οι μάσκες που επιτρέπονται είναι οι χειρουργικές, οι "
               + "εγκεκρυμένες "
               + "μη χειρουργικές και οι υψηλής προστασίας."
@@ -124,11 +118,11 @@ public final class Information {
               + "Η μάσκα πρέπει να καλύπτει το στόμα"
               + " και τη μύτη σε κάθε περίπτωση.");
           break;
-        case CASE_SIX:
+        case CASE_FIVE:
           System.out.println("Το προστιμο για τη μη χρηση μασκας καθως και για "
               + "την κυκλοφορια εκτος κανονων ανερχεται στα 300 ευρω");
           break;
-        case CASE_SEVEN:
+        case CASE_SIX:
           g = -1;
           break;
         default:
