@@ -18,7 +18,7 @@ public final class SignInUp {
   * @return user's id
   */
   public static int login() {
-    System.out.println("Εισάγετε email\nΓια εγγραφή εισάγετε 1");
+    System.out.println("Εισάγετε email ή\nΓια εγγραφή εισάγετε 1");
     Scanner scanner = new Scanner(System.in);
     String password = null;
     String email = null;
@@ -27,7 +27,7 @@ public final class SignInUp {
     while (flag) {
       if (email.equals("1")) {
         AddUser.add();
-        System.out.println("Εισάγεται τα στοιχεία με τα οποία εγγραφήκατε.");
+        System.out.println("Εισάγετε τα στοιχεία με τα οποία εγγραφήκατε.");
       }
         System.out.println("\nΕισάγετε email:");
         email = scanner.nextLine();

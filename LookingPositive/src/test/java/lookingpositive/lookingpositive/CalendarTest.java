@@ -39,15 +39,6 @@ public class CalendarTest {
    *
    * @throws Exception
    */
-  @AfterClass
-  public static void tearDownAfterClass() throws Exception {
-  }
-
-  /**
-   * This method .
-   *
-   * @throws Exception
-   */
   @Before
   public void setUp() throws Exception {
   }
@@ -222,8 +213,8 @@ public class CalendarTest {
     final int dayTwelve = 11;
     final int dayThirteen = 12;
     final int dayFourteen = 13;
-    assertEquals(Calendar.getToday().giveEventListsSize(),
-        expectedInitializerSize.giveEventListsSize());
+    assertEquals(expectedInitializerSize.giveEventListsSize(),
+        Calendar.getToday().giveEventListsSize());
     assertEquals(Calendar.getFuture().giveEventListsSize(),
         expectedInitializerSize.giveEventListsSize());
     assertEquals(Calendar.getFourteenDaysCell(dayOne).giveEventListsSize(),
@@ -254,6 +245,21 @@ public class CalendarTest {
         expectedInitializerSize.giveEventListsSize());
     assertEquals(Calendar.getFourteenDaysCell(dayFourteen).giveEventListsSize(),
         expectedInitializerSize.giveEventListsSize());
+  }
+
+  /**
+   * This method .
+   *
+   * @throws Exception
+   */
+  @AfterClass
+  public static void tearDownAfterClass() throws Exception {
+    final int dayFourteen = 13;
+    Calendar.getToday().clearArrayListOfArrayList();
+    Calendar.getFuture().clearArrayListOfArrayList();
+    for (int i = 0; i <= dayFourteen; i++) {
+      Calendar.getFourteenDaysCell(i);
+    }
   }
 
 }

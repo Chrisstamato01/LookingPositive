@@ -103,7 +103,7 @@ public final class Operations {
       case choiceSix:
         execution = false;
         dataSaver();
-        System.out.println("Τερματισμός Προγράμματος...");
+        System.out.println("Το πρόγραμμα τερματίστηκε επιτυχώς.");
         break;
       default:
       }

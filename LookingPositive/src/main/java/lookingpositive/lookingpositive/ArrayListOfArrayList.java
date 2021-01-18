@@ -143,4 +143,12 @@ public class ArrayListOfArrayList {
       final int eventCounter) {
     eventList.get(rowCounter).remove(eventCounter);
   }
+  /**
+   * This method clears every list from an object ArrayListOfArrayList.
+   */
+  public final void clearArrayListOfArrayList() {
+    for (int i = 0; i < eventList.size(); i++) {
+      eventList.get(i).clear();
+    }
+  }
 }
