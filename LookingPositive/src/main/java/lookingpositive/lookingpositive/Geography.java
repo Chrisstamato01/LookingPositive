@@ -207,7 +207,7 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    updateCases();
+    //updateCases();
     double current = 0; // the cases of the last three days
     double quotient;
     String color;
