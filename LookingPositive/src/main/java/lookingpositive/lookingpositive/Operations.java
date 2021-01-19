@@ -51,10 +51,10 @@ public final class Operations {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
 
-     //Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
-     //"pass1", "papadopoulos@gmail.com");
-     //Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
-     //"pass2", "papadakis@gmail.com");
+     Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
+     "pass1", "papadopoulos@gmail.com");
+     Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
+     "pass2", "papadakis@gmail.com");
     run(SignInUp.login());
 
   }
@@ -89,7 +89,7 @@ public final class Operations {
         break;
 
       case choiceThree:
-
+        Geography.showMunColor(dateLastUserSignedIn);
         break;
 
       case choiceFour:
@@ -162,6 +162,7 @@ public final class Operations {
     Geography.facilitiesRetriever();
     Profile.profilesRetriever();
     Calendar.fillingFourteenDays();
+    Geography.casesRetriever();
   }
 /**
  * This method saves any data created during the execution of the
@@ -171,6 +172,7 @@ public final class Operations {
     Calendar.eventSaver();
     dateSaver();
     Profile.profilesSaver();
+    Geography.casesSaver();
   }
 /**
  * This method saves the date the last user singed in.
