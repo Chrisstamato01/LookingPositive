@@ -30,7 +30,6 @@ public final class Tracking {
 
   /**
    * this method tracks.
-   *
    * @param userID case ID
    */
   public static void track(final int userID) {
@@ -55,7 +54,6 @@ public final class Tracking {
 
   /**
    * this method removes duplicates.
-   *
    * @param <String> contains E-mails
    * @param list     contains unique E-mails
    * @return unique E-mails

@@ -53,9 +53,7 @@ public final class Mail {
 
   /**
    * this method sends E-mails.
-   *
    * @param list unique E-mails
-   * @exception SendFailedException
    */
   @SuppressWarnings("unused")
   public static void email(final ArrayList<String> list) {
@@ -92,8 +90,9 @@ public final class Mail {
       }
       msg.addRecipients(Message.RecipientType.BCC, mailAddressTo);
       mailAddressTo = new InternetAddress[mailAddressTo.length];
+      System.out.println("Παρακαλώ περιμένετε");
       Transport.send(msg);
-      System.out.println("Message send Successfully:)");
+      System.out.println("Ευχαριστούμε για την ενημέρωση");
     } catch (SendFailedException mex) {
       mex.printStackTrace();
     } catch (Exception mex) {
