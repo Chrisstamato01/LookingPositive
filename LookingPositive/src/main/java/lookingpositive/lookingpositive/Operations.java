@@ -157,11 +157,11 @@ public final class Operations {
  * This method retrieves all the data from the files.
  */
   private static void dataRetriver() {
-    Calendar.fillingFourteenDays();
     Calendar.eventRetriever();
     dateRetriever();
     Geography.facilitiesRetriever();
     Profile.profilesRetriever();
+    Calendar.fillingFourteenDays();
   }
 /**
  * This method saves any data created during the execution of the
