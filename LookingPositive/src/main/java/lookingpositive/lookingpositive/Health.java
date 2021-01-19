@@ -53,7 +53,7 @@ public final class Health {
     try {
       sc = new Scanner(System.in);
       int answer = 0;
-      while (answer != 1 || answer != 2) {
+      while (answer != 1 && answer != 2) {
         try {
           answer = sc.nextInt();
 
@@ -62,7 +62,7 @@ public final class Health {
           System.out.println("Μη έγκυρη τιμή");
         }
 
-        if (answer != 1 || answer != 2) {
+        if (answer != 1 && answer != 2) {
           System.out.println("Εισάγετε επιλογή [1-2]");
         }
       }
