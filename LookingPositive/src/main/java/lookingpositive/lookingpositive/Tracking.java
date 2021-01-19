@@ -41,8 +41,10 @@ public final class Tracking {
             .getCurrentEvent(userID, l).getProfiles().size(); p++) {
           if (Calendar.getFourteenDaysCell(k).getCurrentEvent(userID, l)
               .getProfiles().get(p).getEmail() != null) {
-            contactstoinform.add(Calendar.getFourteenDaysCell(k)
-                .getCurrentEvent(userID, l).getProfiles().get(p).getEmail());
+            contactstoinform.add(Profile.profilesLine(
+                Calendar.getFourteenDaysCell(k).getCurrentEvent(userID, l)
+                    .getProfiles().get(p).getUserID())
+                .getEmail());
           }
         }
       }
