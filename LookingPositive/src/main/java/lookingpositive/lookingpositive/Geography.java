@@ -39,7 +39,7 @@ public class Geography {
   /**
    * Length of table Cases.
    */
-  private static final int CASES_LENGTH = 3;
+  private static final int CASES_LENGTH = 4;
   /**
    * Table for the cases.
    */
@@ -64,18 +64,6 @@ public class Geography {
    * Population of municipality Glyfada.
    */
   private static final int POPULATION_GLYFADA = 87305;
-  /**
-   * Counts today's cases in 3B.
-   */
-  private static int todaysCases3B = 0;
-  /**
-   * Counts today's cases in Alimos.
-   */
-  private static int todaysCasesAlimos = 0;
-  /**
-   * Counts today's cases in Glyfada.
-   */
-  private static int todaysCasesGlyfada = 0;
 
   /**
    * Constructor for the class Geography.
@@ -147,21 +135,34 @@ public class Geography {
   public static int getFacilitiesSize() {
     return facilities.size();
   }
+  /**
+   * Shows the color of each municipality.
+   * @param oldDate is the last date
+   */
+  public static void showMunColor(final LocalDate oldDate) {
+    updateCases(oldDate);
+    System.out.println("Το επιδημιολογικό φορτίο κάθε περιοχής"
+        + " σήμερα έχει ως εξής:\n");
+    munColor("3Β");
+    munColor("Γλυφάδα");
+    munColor("Άλιμος");
+  }
 
   /**
    * Adds new case to the counter.
    * @param id is the user's id
    */
   public static void newCase(final int id) {
+    final int three = 3;
     for (int i = 0; i < Profile.profilesSize(); i++) {
       if (Profile.profilesLine(i).getUserID() == id) {
         Profile profile = Profile.profilesLine(i);
         if (profile.getResidenceRegion().equals("3Β")) {
-          todaysCases3B++;
+          cases3B[three]++;
         } else if (profile.getResidenceRegion().equals("Γλυφάδα")) {
-          todaysCasesGlyfada++;
+          casesGlyfada[three]++;
         } else {
-          todaysCasesAlimos++;
+          casesAlimos[three]++;
         }
       }
     }
@@ -172,20 +173,21 @@ public class Geography {
    * @param oldDate id the last login day
    */
   public static void updateCases(final LocalDate oldDate) {
+    final int three = 3;
     long differenceOfDays = oldDate.until(LocalDate.now(), ChronoUnit.DAYS);
     for (int counter = 0; counter < differenceOfDays; counter++) {
       cases3B[2] = cases3B[1];
       cases3B[1] = cases3B[0];
-      cases3B[0] = todaysCases3B;
-      todaysCases3B = 0;
+      cases3B[0] = cases3B[three];
+      cases3B[three] = 0;
       casesGlyfada[2] = casesGlyfada[1];
       casesGlyfada[1] = casesGlyfada[0];
-      casesGlyfada[0] = todaysCasesGlyfada;
-      todaysCasesGlyfada = 0;
+      casesGlyfada[0] = casesGlyfada[three];
+      casesGlyfada[three] = 0;
       casesAlimos[2] = casesAlimos[1];
       casesAlimos[1] = casesAlimos[0];
-      casesAlimos[0] = todaysCasesAlimos;
-      todaysCasesAlimos = 0;
+      casesAlimos[0] = casesAlimos[three];
+      casesAlimos[three] = 0;
     }
   }
 
@@ -208,18 +210,18 @@ public class Geography {
    */
   public static String munColor(final String mun) {
     //updateCases();
-    double current = 0; // the cases of the last three days
+    int current = 0; // the cases of the last three days
     double quotient;
     String color;
-    if (mun.endsWith("3Β")) {
+    if (mun.equals("3Β")) {
       current = cases3B[0] + cases3B[1] + cases3B[2];
-      quotient = current / POPULATION_3B;
-    } else if (mun.endsWith("Alimos")) {
+      quotient = (double) current / POPULATION_3B;
+    } else if (mun.equals("Άλιμος")) {
       current = casesAlimos[0] + casesAlimos[1] + casesAlimos[2];
-      quotient = current / POPULATION_ALIMOS;
+      quotient = (double) current / POPULATION_ALIMOS;
     } else {
       current = casesGlyfada[0] + casesGlyfada[1] + casesGlyfada[2];
-      quotient = current / POPULATION_GLYFADA;
+      quotient = (double) current / POPULATION_GLYFADA;
     }
 
     final double redCodeLimit = 0.001;
@@ -311,6 +313,63 @@ public class Geography {
           + "\\facilities.json").getAbsoluteFile();
       facilities = objectmapper.readValue(
           facilitiesfile, new TypeReference<ArrayList<Geography>>() { });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Saves the cases to the JSON file.
+   */
+  public static void casesSaver() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File casesfile = new File(
+          "src\\main\\resourses\\"
+          + "cases3b.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile, cases3B);
+      File casesfile2 = new File(
+          "src\\main\\resourses\\"
+          + "casesglyfada.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile2, casesGlyfada);
+      File casesfile3 = new File(
+          "src\\main\\resourses\\"
+          + "casesalimos.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile3, casesAlimos);
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Retrieves facilities from the JSON file.
+   */
+  public static void casesRetriever() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File casesfile = new File(
+          "src\\main\\resourses"
+          + "\\cases3b.json").getAbsoluteFile();
+      cases3B = objectmapper.readValue(
+          casesfile, new TypeReference<int[]>() { });
+      File casesfile2 = new File(
+          "src\\main\\resourses"
+          + "\\casesglyfada.json").getAbsoluteFile();
+      casesGlyfada = objectmapper.readValue(
+          casesfile2, new TypeReference<int[]>() { });
+      File casesfile3 = new File(
+          "src\\main\\resourses"
+          + "\\cases3b.json").getAbsoluteFile();
+      casesAlimos = objectmapper.readValue(
+          casesfile3, new TypeReference<int[]>() { });
 
     } catch (IOException e) {
       System.out.println("ioexception:" + e);

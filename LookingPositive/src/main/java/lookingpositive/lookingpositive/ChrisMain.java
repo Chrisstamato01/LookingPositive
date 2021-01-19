@@ -1,8 +1,10 @@
 package lookingpositive.lookingpositive;
 
+//import java.util.Iterator;
 //import java.io.File;
 //import java.io.IOException;
-import java.util.Scanner;
+//import java.io.IOException;
+//import java.util.Scanner;
 /**
  * Main class for Chris.
  */
@@ -19,16 +21,15 @@ public final class ChrisMain {
    */
   public static void main(final String[] args) {
 
-    Profile.profilesRetriever();
+    //Profile.profilesRetriever();
+    Geography.casesRetriever();
 
-    System.out.println("Give me the id mfcker.");
-    Scanner sc = new Scanner(System.in);
-    int id = sc.nextInt();
+    //Geography.newCase(2);
 
-    AddUser.change(id);
+    //Geography.fillCases();
 
-    for (int i = 0; i < Profile.profilesSize(); i++) {
-      System.out.println(Profile.profilesLine(i));
-    }
+    //Geography.printCases();
+
+    //Geography.casesSaver();
   }
 }
