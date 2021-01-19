@@ -37,7 +37,6 @@ public final class SignInUp {
       if (checkUser(email, password) == -1) {
         System.out
             .println("Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
-        System.out.println("Εισάγετε email ή Για εγγραφή εισάγετε 1");
       } else {
         flag = false;
       }
