@@ -51,10 +51,10 @@ public final class Operations {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
 
-     Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
+   /*  Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
      "pass1", "papadopoulos@gmail.com");
      Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
-     "pass2", "papadakis@gmail.com");
+     "pass2", "papadakis@gmail.com");*/
     run(SignInUp.login());
 
   }
