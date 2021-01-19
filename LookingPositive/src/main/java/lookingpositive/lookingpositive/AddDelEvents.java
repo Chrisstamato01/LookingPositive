@@ -183,6 +183,7 @@ public final class AddDelEvents {
       if (person.getFirstName().contentEquals(firstName)
           && person.getLastName().contentEquals(lastName)) {
         person2 = person;
+        break;
       } else {
         person = new Profile(firstName, lastName);
         person2 = person;
