@@ -206,7 +206,7 @@ public class Profile {
 
     try {
       File profilesfile = new File(
-          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+          "src\\main\\resources\\profiles.json").getAbsoluteFile();
       objectmapper.writeValue(profilesfile, profiles);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -223,7 +223,7 @@ public class Profile {
 
     try {
       File profilesfile = new File(
-          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+          "src\\main\\resources\\profiles.json").getAbsoluteFile();
       profiles = objectmapper.readValue(
           profilesfile, new TypeReference<ArrayList<Profile>>() { });
 

@@ -291,7 +291,7 @@ public class Geography {
 
     try {
       File facilitiesfile = new File(
-          "src\\main\\resourses\\"
+          "src\\main\\resources\\"
           + "facilities.json").getAbsoluteFile();
       objectmapper.writeValue(facilitiesfile, facilities);
     } catch (IOException e) {
@@ -309,7 +309,7 @@ public class Geography {
 
     try {
       File facilitiesfile = new File(
-          "src\\main\\resourses"
+          "src\\main\\resources"
           + "\\facilities.json").getAbsoluteFile();
       facilities = objectmapper.readValue(
           facilitiesfile, new TypeReference<ArrayList<Geography>>() { });
@@ -329,15 +329,15 @@ public class Geography {
 
     try {
       File casesfile = new File(
-          "src\\main\\resourses\\"
+          "src\\main\\resources\\"
           + "cases3b.json").getAbsoluteFile();
       objectmapper.writeValue(casesfile, cases3B);
       File casesfile2 = new File(
-          "src\\main\\resourses\\"
+          "src\\main\\resources\\"
           + "casesglyfada.json").getAbsoluteFile();
       objectmapper.writeValue(casesfile2, casesGlyfada);
       File casesfile3 = new File(
-          "src\\main\\resourses\\"
+          "src\\main\\resources\\"
           + "casesalimos.json").getAbsoluteFile();
       objectmapper.writeValue(casesfile3, casesAlimos);
 
@@ -356,17 +356,17 @@ public class Geography {
 
     try {
       File casesfile = new File(
-          "src\\main\\resourses"
+          "src\\main\\resources"
           + "\\cases3b.json").getAbsoluteFile();
       cases3B = objectmapper.readValue(
           casesfile, new TypeReference<int[]>() { });
       File casesfile2 = new File(
-          "src\\main\\resourses"
+          "src\\main\\resources"
           + "\\casesglyfada.json").getAbsoluteFile();
       casesGlyfada = objectmapper.readValue(
           casesfile2, new TypeReference<int[]>() { });
       File casesfile3 = new File(
-          "src\\main\\resourses"
+          "src\\main\\resources"
           + "\\cases3b.json").getAbsoluteFile();
       casesAlimos = objectmapper.readValue(
           casesfile3, new TypeReference<int[]>() { });
