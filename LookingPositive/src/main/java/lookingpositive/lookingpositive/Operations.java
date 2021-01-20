@@ -183,7 +183,7 @@ public final class Operations {
 
     try {
       objectMapper
-          .writeValue(new File("src\\main\\resourses\\calendar\\date.json")
+          .writeValue(new File("src\\main\\resources\\calendar\\date.json")
               .getAbsoluteFile(), LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
@@ -204,7 +204,7 @@ public final class Operations {
 
     try {
       dateLastUserSignedIn = objectMapper
-          .readValue(new File("src\\main\\resourses\\calendar\\date.json")
+          .readValue(new File("src\\main\\resources\\calendar\\date.json")
               .getAbsoluteFile(), LocalDate.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();

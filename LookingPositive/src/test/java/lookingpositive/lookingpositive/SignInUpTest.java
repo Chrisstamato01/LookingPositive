@@ -1,3 +1,6 @@
+/**
+ * This class belongs to package lookingpositive.lookingpositive.
+ */
 package lookingpositive.lookingpositive;
 
 import static org.junit.Assert.assertEquals;
