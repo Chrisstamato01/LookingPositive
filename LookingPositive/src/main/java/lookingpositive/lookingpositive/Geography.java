@@ -143,9 +143,9 @@ public class Geography {
     updateCases(oldDate);
     System.out.println("Το επιδημιολογικό φορτίο κάθε περιοχής"
         + " σήμερα έχει ως εξής:\n");
-    munColor("3Β");
-    munColor("Γλυφάδα");
-    munColor("Άλιμος");
+    System.out.println(munColor("3Β"));
+    System.out.println(munColor("Γλυφάδα"));
+    System.out.println(munColor("Άλιμος"));
   }
 
   /**

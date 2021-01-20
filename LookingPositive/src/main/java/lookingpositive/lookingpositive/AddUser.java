@@ -84,7 +84,7 @@ public final class AddUser {
    * @return first name
    */
   protected static String handleFirstName(final Scanner sc) {
-      System.out.println("Όνομα: ");
+      System.out.println("Εισάγετε όνομα: ");
       return handleName(sc);
   }
   /**
@@ -93,7 +93,7 @@ public final class AddUser {
    * @return last name
    */
   protected static String handleLastName(final Scanner sc) {
-    System.out.println("Επώνυμο: ");
+    System.out.println("Εισάγετε επώνυμο: ");
     return handleName(sc);
   }
 
