@@ -76,6 +76,7 @@ public final class AddUser {
         profile.setEmail(mailChanger(sc));
       }
     }
+    System.out.println("Το email άλλαξε επιτυχώς.");
   }
 
   /**
@@ -239,11 +240,27 @@ public final class AddUser {
   }
 
   /**
+   * Handles the email.
+   * @param sc Scanner
+   * @return the email of the user.
+   */
+  private static String handleEmail(final Scanner sc) {
+    String email = makeEmail(sc);
+    while (checkEmail(email)) {
+      System.out.println("Υπάρχει ήδη χρήστης με αυτό το email."
+          + " Προσπαθήστε ξανά.");
+      email = makeEmail(sc);
+    }
+    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
+    return email;
+  }
+
+  /**
   * User adds his email.
   * @param sc is a Scanner
   * @return User's email
   */
-  private static String handleEmail(final Scanner sc) {
+  private static String makeEmail(final Scanner sc) {
     boolean a = false;
     System.out.println("Email(μόνο gmail)\n"
     + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
@@ -298,9 +315,38 @@ public final class AddUser {
         a = true;
       }
     }
-    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
     String usersEmail = email + domain;
     return usersEmail;
+  }
+
+  /**
+   * Handles the email.
+   * @param sc Scanner
+   * @return the email of the user.
+   */
+  private static String mailChanger(final Scanner sc) {
+    String email = newEmail(sc);
+    while (checkEmail(email)) {
+      System.out.println("Αυτό το email είναι ήδη σε χρήση."
+          + " Προσπαθήστε ξανά.");
+      email = newEmail(sc);
+    }
+    return email;
+  }
+
+  /**
+   * Checks if email is already in use.
+   * @param email
+   * @return true or false
+   */
+  public static boolean checkEmail(final String email) {
+    boolean flag = false;
+    for (int i = 0; i < Profile.profilesSize(); i++) {
+      if (email.equals(Profile.profilesLine(i).getEmail())) {
+        flag = true;
+      }
+    }
+    return flag;
   }
 
   /**
@@ -308,7 +354,9 @@ public final class AddUser {
    * @param sc is a Scanner
    * @return User's email
    */
-   private static String mailChanger(final Scanner sc) {
+   private static String newEmail(final Scanner sc) {
+     final int shortestMail = 6;
+     final int longestMail = 6;
      boolean a = false;
      System.out.println("Εισαγετε νεο e-mail(μόνο gmail)\n"
      + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
@@ -364,7 +412,6 @@ public final class AddUser {
          a = true;
        }
      }
-     System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
      String usersEmail = email + domain;
      return usersEmail;
    }
