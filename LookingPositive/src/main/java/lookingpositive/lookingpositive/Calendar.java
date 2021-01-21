@@ -2,8 +2,10 @@ package lookingpositive.lookingpositive;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -405,11 +407,10 @@ public final class Calendar {
 
     try {
       today = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\today.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
+          .readValue(streamToString("calendar/today.json"),
+              ArrayListOfArrayList.class);
       future = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\future.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
+          .readValue(streamToString("calendar/future.json"), ArrayListOfArrayList.class);
       day1 = objectMapper
           .readValue(new File("src\\main\\resources\\calendar\\day1.json")
               .getAbsoluteFile(), ArrayListOfArrayList.class);
@@ -457,5 +458,28 @@ public final class Calendar {
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
+  }
+  /**
+   * This is method.
+   * @param path name
+   * @return str
+   */
+  private static String streamToString(final String path) {
+   ClassLoader cl = Thread.currentThread().getContextClassLoader();
+   StringBuffer sb = new StringBuffer();
+   try {
+     InputStream in = cl.getResourceAsStream(path);
+     //Creating a Scanner object
+     Scanner sc = new Scanner(in);
+     //Reading line by line from scanner to StringBuffer
+
+     while (sc.hasNext()) {
+        sb.append(sc.nextLine());
+     }
+     System.out.println(sb.toString());
+   } catch (Exception e) {
+     System.out.println("exception:" + e);
+   }
+   return sb.toString();
   }
 }
