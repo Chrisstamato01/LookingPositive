@@ -6,6 +6,8 @@ package lookingpositive.lookingpositive;
 import java.io.File;
 
 import java.io.IOException;
+
+
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -49,7 +51,7 @@ public final class Operations {
     // dateSaver();// πρεπει να κελιθη την πρωτη φορα του ινσταλλ
     // dataSaver();πρεπει να κελιθη την πρωτη φορα του ινσταλλ
     dataRetriver();
-
+    makeDirectory();
     if (dateLastUserSignedIn != null) {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
@@ -194,7 +196,7 @@ public final class Operations {
 
     try {
       objectMapper
-          .writeValue(new File("src\\main\\resources\\calendar\\date.json")
+          .writeValue(new File("LookingPositive/date.json")
               .getAbsoluteFile(), LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
@@ -236,4 +238,39 @@ public final class Operations {
   public static LocalDate getDateLastUserSignedIn() {
     return dateLastUserSignedIn;
   }
+  /**
+   *This.
+   *
+   */
+  public static void makeDirectory() {
+    try {
+      String path = getProgramPath2();
+
+      String fileSeparator = System.getProperty("file.separator");
+      String newDir = path + fileSeparator + "LookingPositive" + fileSeparator;
+
+
+      File file = new File(newDir);
+      file.mkdir();
+   } catch (Exception e) {
+      e.printStackTrace();
+   }
+  }
+  /**
+   *This.
+   * @return string
+   *
+   */
+  public static String getProgramPath2() {
+    String currentdir = System.getProperty("user.dir");
+    currentdir = currentdir.replace("\\", "/");
+    return currentdir;
+ }
+  /**
+   * This.
+   */
+  public static void writeData() {
+    //
+  }
+
 }
