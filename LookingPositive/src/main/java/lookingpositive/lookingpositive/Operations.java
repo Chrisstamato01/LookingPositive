@@ -19,16 +19,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 /**
- *This class is the main and only thread of the program.
+ * This class is the main and only thread of the program.
  */
 public final class Operations {
   /**
    * This is the private default constructor.
    */
   private Operations() {
-  //This class can not be initialized.
+    // This class can not be initialized.
   }
+
   /**
    * Annotation that regulates the pattern of the date.
    */
@@ -40,6 +42,7 @@ public final class Operations {
   /**
    * This method retrieves the data and run the method which regulates the other
    * methods.
+   *
    * @param args is not used
    */
   public static void main(final String[] args) {
@@ -51,16 +54,18 @@ public final class Operations {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
 
-   /*  Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
-     "pass1", "papadopoulos@gmail.com");
-     Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", 47, false,
-     "pass2", "papadakis@gmail.com");*/
+    /*
+     * Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
+     * "pass1", "papadopoulos@gmail.com"); Profile pr2 = new Profile("maria",
+     * "exarxopoulou", "glyfada", 47, false, "pass2", "papadakis@gmail.com");
+     */
     run(SignInUp.login());
 
   }
 
   /**
    * This method is used to regulate the methods executed.
+   *
    * @param userId is the id of the current user who logged in
    */
   public static void run(final int userId) {
@@ -111,10 +116,12 @@ public final class Operations {
     }
 
   }
-/**
- * This method handles user's input.
- * @return an integer which is the user's choice
- */
+
+  /**
+   * This method handles user's input.
+   *
+   * @return an integer which is the user's choice
+   */
   private static int menuChoice() {
 
     Scanner sc = new Scanner(System.in);
@@ -138,24 +145,26 @@ public final class Operations {
       if (choice < smallerChoice || choice > biggerChoice) {
         System.out.println("Εισάγετε επιλογή [1-6]");
       }
-     sc.nextLine();
+      sc.nextLine();
     }
 
     return choice;
   }
-/**
- * This method prints the choices the user has.
- */
+
+  /**
+   * This method prints the choices the user has.
+   */
   private static void menu() {
     System.out.println("------------Μενού Επιλογών------------ \n"
         + "1. Γεγονότα \n" + "2. Υγεία \n" + "3. Γεωγραφική περιγραφή \n"
-        + "4. Πληροφορίες για τον ιό \n"
-        + "5. Ρυθμίσεις \n" + "6. Έξοδος \n" + "Εισάγετε επιλογή [1-6]");
+        + "4. Πληροφορίες για τον ιό \n" + "5. Ρυθμίσεις \n" + "6. Έξοδος \n"
+        + "Εισάγετε επιλογή [1-6]");
 
   }
-/**
- * This method retrieves all the data from the files.
- */
+
+  /**
+   * This method retrieves all the data from the files.
+   */
   private static void dataRetriver() {
     Calendar.eventRetriever();
     dateRetriever();
@@ -164,19 +173,21 @@ public final class Operations {
     Calendar.fillingFourteenDays();
     Geography.casesRetriever();
   }
-/**
- * This method saves any data created during the execution of the
- * program after the user chose to terminate it.
- */
+
+  /**
+   * This method saves any data created during the execution of the program
+   * after the user chose to terminate it.
+   */
   private static void dataSaver() {
     Calendar.eventSaver();
     dateSaver();
     Profile.profilesSaver();
     Geography.casesSaver();
   }
-/**
- * This method saves the date the last user singed in.
- */
+
+  /**
+   * This method saves the date the last user singed in.
+   */
   private static void dateSaver() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());
@@ -195,17 +206,17 @@ public final class Operations {
       System.out.println("exception:" + e);
     }
   }
-/**
- * This method retrieves the date the last user signed in.
- */
+
+  /**
+   * This method retrieves the date the last user signed in.
+   */
   private static void dateRetriever() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
-      dateLastUserSignedIn = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\date.json")
-              .getAbsoluteFile(), LocalDate.class);
+      dateLastUserSignedIn = objectMapper.readValue(
+          Calendar.streamToString("calendar/date.json"), LocalDate.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -219,6 +230,7 @@ public final class Operations {
 
   /**
    * This method gets the date the last person singed in.
+   *
    * @return the last date the last person singed in
    */
   public static LocalDate getDateLastUserSignedIn() {

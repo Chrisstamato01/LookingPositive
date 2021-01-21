@@ -9,8 +9,9 @@ import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
- *This class handles every user's events when days pass.
+ * This class handles every user's events when days pass.
  */
 public final class Calendar {
 
@@ -19,7 +20,7 @@ public final class Calendar {
    * This is the private default constructor.
    */
   private Calendar() {
-  //This class can not be initialized.
+    // This class can not be initialized.
   }
 
   /**
@@ -406,80 +407,67 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      today = objectMapper
-          .readValue(streamToString("calendar/today.json"),
-              ArrayListOfArrayList.class);
-      future = objectMapper
-          .readValue(streamToString("calendar/future.json"), ArrayListOfArrayList.class);
-      day1 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day1.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day2 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day2.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day3 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day3.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day4 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day4.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day5 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day5.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day6 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day6.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day7 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day7.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day8 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day8.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day9 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day9.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day10 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day10.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day11 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day11.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day12 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day12.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day13 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day13.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
-      day14 = objectMapper
-          .readValue(new File("src\\main\\resources\\calendar\\day14.json")
-              .getAbsoluteFile(), ArrayListOfArrayList.class);
+      today = objectMapper.readValue(streamToString("calendar/today.json"),
+          ArrayListOfArrayList.class);
+      future = objectMapper.readValue(streamToString("calendar/future.json"),
+          ArrayListOfArrayList.class);
+      day1 = objectMapper.readValue(streamToString("calendar/day1.json"),
+          ArrayListOfArrayList.class);
+      day2 = objectMapper.readValue(streamToString("calendar/day2.json"),
+          ArrayListOfArrayList.class);
+      day3 = objectMapper.readValue(streamToString("calendar/day3.json"),
+          ArrayListOfArrayList.class);
+      day4 = objectMapper.readValue(streamToString("calendar/day4.json"),
+          ArrayListOfArrayList.class);
+      day5 = objectMapper.readValue(streamToString("calendar/day5.json"),
+          ArrayListOfArrayList.class);
+      day6 = objectMapper.readValue(streamToString("calendar/day6.json"),
+          ArrayListOfArrayList.class);
+      day7 = objectMapper.readValue(streamToString("calendar/day7.json"),
+          ArrayListOfArrayList.class);
+      day8 = objectMapper.readValue(streamToString("calendar/day8.json"),
+          ArrayListOfArrayList.class);
+      day9 = objectMapper.readValue(streamToString("calendar/day9.json"),
+          ArrayListOfArrayList.class);
+      day10 = objectMapper.readValue(streamToString("calendar/day10.json"),
+          ArrayListOfArrayList.class);
+      day11 = objectMapper.readValue(streamToString("calendar/day11.json"),
+          ArrayListOfArrayList.class);
+      day12 = objectMapper.readValue(streamToString("calendar/day12.json"),
+          ArrayListOfArrayList.class);
+      day13 = objectMapper.readValue(streamToString("calendar/day13.json"),
+          ArrayListOfArrayList.class);
+      day14 = objectMapper.readValue(streamToString("calendar/day14.json"),
+          ArrayListOfArrayList.class);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
   }
+
   /**
    * This is method.
+   *
    * @param path name
    * @return str
    */
-  private static String streamToString(final String path) {
-   ClassLoader cl = Thread.currentThread().getContextClassLoader();
-   StringBuffer sb = new StringBuffer();
-   try {
-     InputStream in = cl.getResourceAsStream(path);
-     //Creating a Scanner object
-     Scanner sc = new Scanner(in);
-     //Reading line by line from scanner to StringBuffer
+  protected static String streamToString(final String path) {
+    ClassLoader cl = Thread.currentThread().getContextClassLoader();
+    StringBuffer sb = new StringBuffer();
+    try {
+      InputStream in = cl.getResourceAsStream(path);
+      // Creating a Scanner object
+      Scanner sc = new Scanner(in);
+      // Reading line by line from scanner to StringBuffer
 
-     while (sc.hasNext()) {
+      while (sc.hasNext()) {
         sb.append(sc.nextLine());
-     }
-     System.out.println(sb.toString());
-   } catch (Exception e) {
-     System.out.println("exception:" + e);
-   }
-   return sb.toString();
+      }
+     // System.out.println(sb.toString());
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+    return sb.toString();
   }
 }
