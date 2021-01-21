@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
-//import java.time.Period;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * This class is the model for users' profiles.
@@ -308,6 +308,44 @@ public class Profile {
       profiles = objectmapper.readValue(
           Calendar.streamToString("profiles.json"),
           new TypeReference<ArrayList<Profile>>() {
+          });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Saves birthdays to JSON file.
+   */
+  public static void birthdaysSaver() {
+    ObjectMapper objectmapper = new ObjectMapper();
+    objectmapper.registerModule(new JavaTimeModule());
+
+    try {
+      File birthdaysfile = new File("src\\main\\resources\\birthdays.json")
+          .getAbsoluteFile();
+      objectmapper.writeValue(birthdaysfile, birthdays);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Retrieves birthdays from JSON file.
+   */
+  public static void birthdaysRetriever() {
+    ObjectMapper objectmapper = new ObjectMapper();
+    objectmapper.registerModule(new JavaTimeModule());
+
+    try {
+      birthdays = objectmapper.readValue(
+          Calendar.streamToString("birthdays.json"),
+          new TypeReference<ArrayList<LocalDate>>() {
           });
 
     } catch (IOException e) {
