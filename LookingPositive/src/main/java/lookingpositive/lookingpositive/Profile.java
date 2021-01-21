@@ -284,7 +284,7 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("src\\main\\resources\\profiles.json")
+      File profilesfile = new File("LookingPositive/profiles.json")
           .getAbsoluteFile();
       objectmapper.writeValue(profilesfile, profiles);
     } catch (IOException e) {
@@ -306,7 +306,7 @@ public class Profile {
        * "src\\main\\resources\\profiles.json").getAbsoluteFile();
        */
       profiles = objectmapper.readValue(
-          Calendar.streamToString("profiles.json"),
+          FileManager.streamToString("profiles.json"),
           new TypeReference<ArrayList<Profile>>() {
           });
 
@@ -325,7 +325,7 @@ public class Profile {
     objectmapper.registerModule(new JavaTimeModule());
 
     try {
-      File birthdaysfile = new File("src\\main\\resources\\birthdays.json")
+      File birthdaysfile = new File("LookingPositive/birthdays.json")
           .getAbsoluteFile();
       objectmapper.writeValue(birthdaysfile, birthdays);
     } catch (IOException e) {
@@ -344,7 +344,7 @@ public class Profile {
 
     try {
       birthdays = objectmapper.readValue(
-          Calendar.streamToString("birthdays.json"),
+          FileManager.streamToString("birthdays.json"),
           new TypeReference<ArrayList<LocalDate>>() {
           });
 

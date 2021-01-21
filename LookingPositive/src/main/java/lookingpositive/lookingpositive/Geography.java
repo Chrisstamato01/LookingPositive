@@ -295,7 +295,7 @@ public class Geography {
 
     try {
       File facilitiesfile = new File(
-          "src\\main\\resources\\" + "facilities.json").getAbsoluteFile();
+          "LookingPositive/" + "facilities.json").getAbsoluteFile();
       objectmapper.writeValue(facilitiesfile, facilities);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -316,7 +316,7 @@ public class Geography {
        * "\\facilities.json").getAbsoluteFile();
        */
       facilities = objectmapper.readValue(
-          Calendar.streamToString("facilities.json"),
+          FileManager.streamToString("facilities.json"),
           new TypeReference<ArrayList<Geography>>() {
           });
 
@@ -334,13 +334,13 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File casesfile = new File("src\\main\\resources\\" + "cases3b.json")
+      File casesfile = new File("LookingPositive/" + "cases3b.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile, cases3B);
-      File casesfile2 = new File("src\\main\\resources\\" + "casesglyfada.json")
+      File casesfile2 = new File("LookingPositive/" + "casesglyfada.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile2, casesGlyfada);
-      File casesfile3 = new File("src\\main\\resources\\" + "casesalimos.json")
+      File casesfile3 = new File("LookingPositive/" + "casesalimos.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile3, casesAlimos);
 
@@ -362,7 +362,8 @@ public class Geography {
        * File casesfile = new File("src\\main\\resources" + "\\cases3b.json")
        * .getAbsoluteFile();
        */
-      cases3B = objectmapper.readValue(Calendar.streamToString("cases3b.json"),
+      cases3B = objectmapper.readValue(
+          FileManager.streamToString("cases3b.json"),
           new TypeReference<int[]>() {
           });
       /*
@@ -370,7 +371,7 @@ public class Geography {
        * "\\casesglyfada.json") .getAbsoluteFile();
        */
       casesGlyfada = objectmapper.readValue(
-          Calendar.streamToString("casesglyfada.json"),
+          FileManager.streamToString("casesglyfada.json"),
           new TypeReference<int[]>() {
           });
       /*
@@ -379,7 +380,7 @@ public class Geography {
        * .getAbsoluteFile();
        */
       casesAlimos = objectmapper.readValue(
-          Calendar.streamToString("casesalimos.json"),
+          FileManager.streamToString("casesalimos.json"),
           new TypeReference<int[]>() {
           });
 
