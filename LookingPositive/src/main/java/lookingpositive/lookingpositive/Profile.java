@@ -54,14 +54,13 @@ public class Profile {
   /**
    * Array list in which the birthdays are saved.
    */
-  private static ArrayList<LocalDate> birthdays =
-      new ArrayList<LocalDate>();
+  private static ArrayList<LocalDate> birthdays = new ArrayList<LocalDate>();
 
   /**
    * This constructor is used to create objects of users.
    *
-   * @param name user's first name
-   * @param surname  user's last name
+   * @param name    user's first name
+   * @param surname user's last name
    */
   public Profile(final String name, final String surname) {
     firstName = name;
@@ -79,13 +78,13 @@ public class Profile {
   /**
    * This constructor creates the profiles using the private variables.
    *
-   * @param fName     is the user's first name
-   * @param sName      is the user's last name
+   * @param fName        is the user's first name
+   * @param sName        is the user's last name
    * @param residenceReg is the user's residence region
    * @param usersAge     is the user's age
-   * @param isSus      if the user belongs to high risk groups
-   * @param pass       is the user's password
-   * @param mail       is the user's email
+   * @param isSus        if the user belongs to high risk groups
+   * @param pass         is the user's password
+   * @param mail         is the user's email
    */
   public Profile(final String fName, final String sName,
       final String residenceReg, final int usersAge, final boolean isSus,
@@ -104,6 +103,7 @@ public class Profile {
     Calendar.daysInitializer();
 
   }
+
   /**
    * Returns first name.
    *
@@ -112,6 +112,7 @@ public class Profile {
   public final String getFirstName() {
     return firstName;
   }
+
   /**
    * Returns last name.
    *
@@ -129,6 +130,7 @@ public class Profile {
   public final String getResidenceRegion() {
     return residenceRegion;
   }
+
   /**
    * Returns user ID.
    *
@@ -137,6 +139,7 @@ public class Profile {
   public final int getUserID() {
     return userID;
   }
+
   /**
    * Returns age.
    *
@@ -145,6 +148,7 @@ public class Profile {
   public final int getAge() {
     return age;
   }
+
   /**
    * Returns whether susceptible or not.
    *
@@ -153,6 +157,7 @@ public class Profile {
   public final boolean getIsSusceptible() {
     return isSusceptible;
   }
+
   /**
    * Returns user's email.
    *
@@ -161,6 +166,7 @@ public class Profile {
   public final String getEmail() {
     return email;
   }
+
   /**
    * Returns user's password.
    *
@@ -169,44 +175,56 @@ public class Profile {
   public final String getPassword() {
     return password;
   }
-/**
- * Sets new password.
- * @param pass is the new password
- */
+
+  /**
+   * Sets new password.
+   *
+   * @param pass is the new password
+   */
   public final void setPassword(final String pass) {
     this.password = pass;
   }
+
   /**
    * Sets new Email.
+   *
    * @param mail is the new mail
    */
   public final void setEmail(final String mail) {
     this.email = mail;
   }
+
   /**
    * Changes the age of the user.
+   *
    * @param usersAge is the age
    */
   public final void setAge(final int usersAge) {
     this.age = usersAge;
   }
+
   /**
    * Returns the line from profiles.
+   *
    * @param i line to be returned
    * @return profile line
    */
   public static Profile profilesLine(final int i) {
     return profiles.get(i);
   }
+
   /**
    * Returns the size of profiles.
+   *
    * @return profile size
    */
   public static int profilesSize() {
     return profiles.size();
   }
+
   /**
    * Returns profiles.
+   *
    * @return ArrayList
    */
   public static ArrayList<Profile> getProfiles() {
@@ -215,6 +233,7 @@ public class Profile {
 
   /**
    * Returns the line from profiles.
+   *
    * @param i line to be returned
    * @return profile line
    */
@@ -224,6 +243,7 @@ public class Profile {
 
   /**
    * Returns the size of profiles.
+   *
    * @return profile size
    */
   public static int birthdaysSize() {
@@ -232,6 +252,7 @@ public class Profile {
 
   /**
    * Returns profiles.
+   *
    * @return ArrayList
    */
   public static ArrayList<LocalDate> getBirthdays() {
@@ -263,8 +284,8 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File(
-          "src\\main\\resources\\profiles.json").getAbsoluteFile();
+      File profilesfile = new File("src\\main\\resources\\profiles.json")
+          .getAbsoluteFile();
       objectmapper.writeValue(profilesfile, profiles);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -280,10 +301,14 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File(
-          "src\\main\\resources\\profiles.json").getAbsoluteFile();
+      /*
+       * File profilesfile = new File(
+       * "src\\main\\resources\\profiles.json").getAbsoluteFile();
+       */
       profiles = objectmapper.readValue(
-          profilesfile, new TypeReference<ArrayList<Profile>>() { });
+          Calendar.streamToString("profiles.json"),
+          new TypeReference<ArrayList<Profile>>() {
+          });
 
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -303,5 +328,5 @@ public class Profile {
       return "Profile [ Όνομα=" + firstName + ", Επώνυμο=" + lastName
           + ", Δήμος Κατοικίας=" + residenceRegion + ", Ηλικία=" + age + " ]";
     }
-   }
+  }
 }

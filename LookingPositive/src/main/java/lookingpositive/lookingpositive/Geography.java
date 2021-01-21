@@ -68,12 +68,12 @@ public class Geography {
   /**
    * Constructor for the class Geography.
    *
-   * @param facType   is the type of the facility
-   * @param facName   is the name
+   * @param facType         is the type of the facility
+   * @param facName         is the name
    * @param facMunicipality is the municipality
    */
   public Geography(final String facType, final String facName,
-                   final String facMunicipality) {
+      final String facMunicipality) {
     type = facType;
     name = facName;
     municipality = facMunicipality;
@@ -135,14 +135,16 @@ public class Geography {
   public static int getFacilitiesSize() {
     return facilities.size();
   }
+
   /**
    * Shows the color of each municipality.
+   *
    * @param oldDate is the last date
    */
   public static void showMunColor(final LocalDate oldDate) {
     updateCases(oldDate);
-    System.out.println("Το επιδημιολογικό φορτίο κάθε περιοχής"
-        + " σήμερα έχει ως εξής:\n");
+    System.out.println(
+        "Το επιδημιολογικό φορτίο κάθε περιοχής" + " σήμερα έχει ως εξής:\n");
     System.out.println(munColor("3Β"));
     System.out.println(munColor("Γλυφάδα"));
     System.out.println(munColor("Άλιμος"));
@@ -150,6 +152,7 @@ public class Geography {
 
   /**
    * Adds new case to the counter.
+   *
    * @param id is the user's id
    */
   public static void newCase(final int id) {
@@ -170,6 +173,7 @@ public class Geography {
 
   /**
    * Updates the table Cases.
+   *
    * @param oldDate id the last login day
    */
   public static void updateCases(final LocalDate oldDate) {
@@ -209,7 +213,7 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    //updateCases();
+    // updateCases();
     int current = 0; // the cases of the last three days
     double quotient;
     String color;
@@ -291,8 +295,7 @@ public class Geography {
 
     try {
       File facilitiesfile = new File(
-          "src\\main\\resources\\"
-          + "facilities.json").getAbsoluteFile();
+          "src\\main\\resources\\" + "facilities.json").getAbsoluteFile();
       objectmapper.writeValue(facilitiesfile, facilities);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -308,11 +311,14 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File facilitiesfile = new File(
-          "src\\main\\resources"
-          + "\\facilities.json").getAbsoluteFile();
+      /*
+       * File facilitiesfile = new File( "src\\main\\resources" +
+       * "\\facilities.json").getAbsoluteFile();
+       */
       facilities = objectmapper.readValue(
-          facilitiesfile, new TypeReference<ArrayList<Geography>>() { });
+          Calendar.streamToString("facilities.json"),
+          new TypeReference<ArrayList<Geography>>() {
+          });
 
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -328,17 +334,14 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File casesfile = new File(
-          "src\\main\\resources\\"
-          + "cases3b.json").getAbsoluteFile();
+      File casesfile = new File("src\\main\\resources\\" + "cases3b.json")
+          .getAbsoluteFile();
       objectmapper.writeValue(casesfile, cases3B);
-      File casesfile2 = new File(
-          "src\\main\\resources\\"
-          + "casesglyfada.json").getAbsoluteFile();
+      File casesfile2 = new File("src\\main\\resources\\" + "casesglyfada.json")
+          .getAbsoluteFile();
       objectmapper.writeValue(casesfile2, casesGlyfada);
-      File casesfile3 = new File(
-          "src\\main\\resources\\"
-          + "casesalimos.json").getAbsoluteFile();
+      File casesfile3 = new File("src\\main\\resources\\" + "casesalimos.json")
+          .getAbsoluteFile();
       objectmapper.writeValue(casesfile3, casesAlimos);
 
     } catch (IOException e) {
@@ -355,21 +358,30 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File casesfile = new File(
-          "src\\main\\resources"
-          + "\\cases3b.json").getAbsoluteFile();
-      cases3B = objectmapper.readValue(
-          casesfile, new TypeReference<int[]>() { });
-      File casesfile2 = new File(
-          "src\\main\\resources"
-          + "\\casesglyfada.json").getAbsoluteFile();
+      /*
+       * File casesfile = new File("src\\main\\resources" + "\\cases3b.json")
+       * .getAbsoluteFile();
+       */
+      cases3B = objectmapper.readValue(Calendar.streamToString("cases3b.json"),
+          new TypeReference<int[]>() {
+          });
+      /*
+       * File casesfile2 = new File("src\\main\\resources" +
+       * "\\casesglyfada.json") .getAbsoluteFile();
+       */
       casesGlyfada = objectmapper.readValue(
-          casesfile2, new TypeReference<int[]>() { });
-      File casesfile3 = new File(
-          "src\\main\\resources"
-          + "\\cases3b.json").getAbsoluteFile();
+          Calendar.streamToString("casesglyfada.json"),
+          new TypeReference<int[]>() {
+          });
+      /*
+       * File casesfile3 = new File(
+       * "src\\main\\resources" + "\\casesalimos.json")
+       * .getAbsoluteFile();
+       */
       casesAlimos = objectmapper.readValue(
-          casesfile3, new TypeReference<int[]>() { });
+          Calendar.streamToString("casesalimos.json"),
+          new TypeReference<int[]>() {
+          });
 
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
