@@ -289,12 +289,7 @@ public final class AddUser {
     return day;
   }
 
-  /**
-   * User adds his age.
-   * @param sc is a Scanner
-   * @return age
-   */
-  private static int handleAg(final Scanner sc) {
+/*  private static int handleAg(final Scanner sc) {
     System.out.println("Ηλικία: ");
     int age = 0;
     boolean flag = true;
@@ -316,7 +311,7 @@ public final class AddUser {
        sc.nextLine();
     }
     return age;
-  }
+  }*/
 
   /**
    * User declares whether he/she is susceptible.
@@ -488,8 +483,8 @@ public final class AddUser {
    * @return User's email
    */
    private static String newEmail(final Scanner sc) {
-     final int shortestMail = 6;
-     final int longestMail = 6;
+/*     final int shortestMail = 6;
+     final int longestMail = 6;*/
      boolean a = false;
      System.out.println("Εισαγετε νεο e-mail(μόνο gmail)\n"
      + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"

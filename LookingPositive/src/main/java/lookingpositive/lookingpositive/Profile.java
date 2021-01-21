@@ -3,6 +3,7 @@ package lookingpositive.lookingpositive;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.Period;
 //import java.time.Period;
 import java.util.ArrayList;
 
@@ -183,6 +184,13 @@ public class Profile {
     this.email = mail;
   }
   /**
+   * Changes the age of the user.
+   * @param usersAge is the age
+   */
+  public final void setAge(final int usersAge) {
+    this.age = usersAge;
+  }
+  /**
    * Returns the line from profiles.
    * @param i line to be returned
    * @return profile line
@@ -235,13 +243,18 @@ public class Profile {
    */
   public static void updateBirthdays() {
     LocalDate currentDate = LocalDate.now();
-    for (int i = 1; i < profilesSize(); i++) {
-      //LocalDate birthdate
-      //if ((birthdate != null) && (currentDate != null)
-          //&& Period.between(birthdate, currentDate).getYears() > age) {
-        System.out.println("Yo");
+    for (int i = 0; i < profilesSize(); i++) {
+      Profile profile = profilesLine(i);
+      System.out.println("Yo");
+      System.out.println(profile.age);
+      LocalDate birthdate = birthdaysLine(i);
+      if (birthdate.getDayOfMonth() == currentDate.getDayOfMonth()
+          && birthdate.getMonth() == currentDate.getMonth()
+          && Period.between(birthdate, currentDate).getYears() > profile.age) {
+        profile.setAge(Period.between(birthdate, currentDate).getYears());
       }
     }
+  }
 
   /**
    * Saves profiles to JSON file.
