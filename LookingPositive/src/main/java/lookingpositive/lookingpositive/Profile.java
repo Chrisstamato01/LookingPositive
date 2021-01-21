@@ -2,6 +2,8 @@ package lookingpositive.lookingpositive;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+//import java.time.Period;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -48,6 +50,11 @@ public class Profile {
    * Array list in which profiles are saved.
    */
   private static ArrayList<Profile> profiles = new ArrayList<Profile>();
+  /**
+   * Array list in which the birthdays are saved.
+   */
+  private static ArrayList<LocalDate> birthdays =
+      new ArrayList<LocalDate>();
 
   /**
    * This constructor is used to create objects of users.
@@ -176,7 +183,7 @@ public class Profile {
     this.email = mail;
   }
   /**
-   * Returns the line from profileSave.
+   * Returns the line from profiles.
    * @param i line to be returned
    * @return profile line
    */
@@ -184,19 +191,57 @@ public class Profile {
     return profiles.get(i);
   }
   /**
-   * Returns the size of profileSave.
+   * Returns the size of profiles.
    * @return profile size
    */
   public static int profilesSize() {
     return profiles.size();
   }
   /**
-   * Returns profilesSave.
+   * Returns profiles.
    * @return ArrayList
    */
   public static ArrayList<Profile> getProfiles() {
     return profiles;
   }
+
+  /**
+   * Returns the line from profiles.
+   * @param i line to be returned
+   * @return profile line
+   */
+  public static LocalDate birthdaysLine(final int i) {
+    return birthdays.get(i);
+  }
+
+  /**
+   * Returns the size of profiles.
+   * @return profile size
+   */
+  public static int birthdaysSize() {
+    return birthdays.size();
+  }
+
+  /**
+   * Returns profiles.
+   * @return ArrayList
+   */
+  public static ArrayList<LocalDate> getBirthdays() {
+    return birthdays;
+  }
+
+  /**
+   * Updates the user's birthdays.
+   */
+  public static void updateBirthdays() {
+    LocalDate currentDate = LocalDate.now();
+    for (int i = 1; i < profilesSize(); i++) {
+      //LocalDate birthdate
+      //if ((birthdate != null) && (currentDate != null)
+          //&& Period.between(birthdate, currentDate).getYears() > age) {
+        System.out.println("Yo");
+      }
+    }
 
   /**
    * Saves profiles to JSON file.
