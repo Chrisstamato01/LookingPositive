@@ -48,7 +48,7 @@ public final class FileManager {
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
-   // System.out.print(sb.toString());
+    // System.out.print(sb.toString());
     return sb.toString();
   }
 
@@ -61,7 +61,8 @@ public final class FileManager {
       String path = getProgramPath();
 
       String fileSeparator = System.getProperty("file.separator");
-      String newDir = path + fileSeparator + "LookingPositive" + fileSeparator;
+      String newDir = path + fileSeparator + "LookingPositiveAppData"
+          + fileSeparator;
 
       File file = new File(newDir);
       file.mkdir();
@@ -82,21 +83,28 @@ public final class FileManager {
     return currentdir;
   }
 
-  /*
-   * δεν χρειαζεται μαλλον
+  /**
    *
    * This method retrieves the date the last user signed in.
-   *
-   * protected static void dateRetriever() { ObjectMapper objectMapper = new
-   * ObjectMapper(); objectMapper.registerModule(new JavaTimeModule());
-   *
-   * try { Operations.getdateLastUserSignedIn(); = objectMapper.readValue(
-   * FileManager.streamToString("calendar/date.json"), LocalDate.class); } catch
-   * (JsonMappingException e) { e.printStackTrace(); } catch
-   * (JsonGenerationException e) { e.printStackTrace(); } catch (IOException e)
-   * { System.out.println("ioexception:" + e); } catch (Exception e) {
-   * System.out.println("exception:" + e); } }
    */
+  protected static void dateRetriever() {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+
+    try {
+      Operations.setDateLastUserSignedIn(objectMapper
+          .readValue(FileManager.streamToString("date.json"), LocalDate.class));
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
   /**
    * This method saves the date the last user singed in.
    */
@@ -106,7 +114,7 @@ public final class FileManager {
 
     try {
       objectMapper.writeValue(
-          new File("LookingPositive/date.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/date.json").getAbsoluteFile(),
           LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
@@ -118,16 +126,17 @@ public final class FileManager {
       System.out.println("exception:" + e);
     }
   }
-/**
- * This method reads a date from a JSON file.
- */
+
+  /**
+   * This method reads a date from a JSON file.
+   */
   private static void dateReader() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.registerModule(new JavaTimeModule());
 
     try {
       Operations.setDateLastUserSignedIn(objectMapper.readValue(
-          new File("LookingPositive/date.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/date.json").getAbsoluteFile(),
           new TypeReference<LocalDate>() {
           }));
     } catch (JsonMappingException e) {
@@ -146,7 +155,7 @@ public final class FileManager {
    */
   public static void dataRetriever() {
     Calendar.eventRetriever();
-    // dateRetriever();
+    dateRetriever();
     Geography.facilitiesRetriever();
     Profile.profilesRetriever();
     Calendar.fillingFourteenDays();
@@ -181,14 +190,14 @@ public final class FileManager {
    *
    * @return true if the data has been installed.
    * @throws FileNotFoundException if the file is not found
-   * @throws IOException if a problem occurs
+   * @throws IOException           if a problem occurs
    */
   public static boolean booleanReader()
       throws FileNotFoundException, IOException {
     ObjectMapper objectMapper = new ObjectMapper();
 
     return (objectMapper.readValue(
-        new File("LookingPositive/dataRetrieved.json").getAbsoluteFile(),
+        new File("LookingPositiveAppData/dataRetrieved.json").getAbsoluteFile(),
         Boolean.class));
   }
 
@@ -215,9 +224,9 @@ public final class FileManager {
     ObjectMapper objectMapper = new ObjectMapper();
 
     try {
-      objectMapper.writeValue(
-          new File("LookingPositive/dataRetrieved.json").getAbsoluteFile(),
-          true);
+      objectMapper
+          .writeValue(new File("LookingPositiveAppData/dataRetrieved.json")
+              .getAbsoluteFile(), true);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {

@@ -31,8 +31,8 @@ public final class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays =
-      new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays
+  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -345,37 +345,44 @@ public final class Calendar {
 
     try {
       objectMapper.writeValue(
-          new File("LookingPositive/today.json").getAbsoluteFile(), today);
+          new File("LookingPositiveAppData/today.json").getAbsoluteFile(),
+          today);
       objectMapper.writeValue(
-          new File("LookingPositive/future.json").getAbsoluteFile(), future);
+          new File("LookingPositiveAppData/future.json").getAbsoluteFile(),
+          future);
       objectMapper.writeValue(
-          new File("LookingPositive/day1.json").getAbsoluteFile(), day1);
+          new File("LookingPositiveAppData/day1.json").getAbsoluteFile(), day1);
       objectMapper.writeValue(
-          new File("LookingPositive/day2.json").getAbsoluteFile(), day2);
+          new File("LookingPositiveAppData/day2.json").getAbsoluteFile(), day2);
       objectMapper.writeValue(
-          new File("LookingPositive/day3.json").getAbsoluteFile(), day3);
+          new File("LookingPositiveAppData/day3.json").getAbsoluteFile(), day3);
       objectMapper.writeValue(
-          new File("LookingPositive/day4.json").getAbsoluteFile(), day4);
+          new File("LookingPositiveAppData/day4.json").getAbsoluteFile(), day4);
       objectMapper.writeValue(
-          new File("LookingPositive/day5.json").getAbsoluteFile(), day5);
+          new File("LookingPositiveAppData/day5.json").getAbsoluteFile(), day5);
       objectMapper.writeValue(
-          new File("LookingPositive/day6.json").getAbsoluteFile(), day6);
+          new File("LookingPositiveAppData/day6.json").getAbsoluteFile(), day6);
       objectMapper.writeValue(
-          new File("LookingPositive/day7.json").getAbsoluteFile(), day7);
+          new File("LookingPositiveAppData/day7.json").getAbsoluteFile(), day7);
       objectMapper.writeValue(
-          new File("LookingPositive/day8.json").getAbsoluteFile(), day8);
+          new File("LookingPositiveAppData/day8.json").getAbsoluteFile(), day8);
       objectMapper.writeValue(
-          new File("LookingPositive/day9.json").getAbsoluteFile(), day9);
+          new File("LookingPositiveAppData/day9.json").getAbsoluteFile(), day9);
       objectMapper.writeValue(
-          new File("LookingPositive/day10.json").getAbsoluteFile(), day10);
+          new File("LookingPositiveAppData/day10.json").getAbsoluteFile(),
+          day10);
       objectMapper.writeValue(
-          new File("LookingPositive/day11.json").getAbsoluteFile(), day11);
+          new File("LookingPositiveAppData/day11.json").getAbsoluteFile(),
+          day11);
       objectMapper.writeValue(
-          new File("LookingPositive/day12.json").getAbsoluteFile(), day12);
+          new File("LookingPositiveAppData/day12.json").getAbsoluteFile(),
+          day12);
       objectMapper.writeValue(
-          new File("LookingPositive/day13.json").getAbsoluteFile(), day13);
+          new File("LookingPositiveAppData/day13.json").getAbsoluteFile(),
+          day13);
       objectMapper.writeValue(
-          new File("LookingPositive/day14.json").getAbsoluteFile(), day14);
+          new File("LookingPositiveAppData/day14.json").getAbsoluteFile(),
+          day14);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -444,52 +451,52 @@ public final class Calendar {
 
     try {
       today = objectMapper.readValue(
-          new File("LookingPositive/today.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/today.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       future = objectMapper.readValue(
-          new File("LookingPositive/future.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/future.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day1 = objectMapper.readValue(
-          new File("LookingPositive/day1.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day1.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day2 = objectMapper.readValue(
-          new File("LookingPositive/day2.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day2.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day3 = objectMapper.readValue(
-          new File("LookingPositive/day3.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day3.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day4 = objectMapper.readValue(
-          new File("LookingPositive/day4.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day4.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day5 = objectMapper.readValue(
-          new File("LookingPositive/day5.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day5.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day6 = objectMapper.readValue(
-          new File("LookingPositive/day6.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day6.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day7 = objectMapper.readValue(
-          new File("LookingPositive/day7.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day7.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day8 = objectMapper.readValue(
-          new File("LookingPositive/day8.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day8.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day9 = objectMapper.readValue(
-          new File("LookingPositive/day9.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day9.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day10 = objectMapper.readValue(
-          new File("LookingPositive/day10.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day10.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day11 = objectMapper.readValue(
-          new File("LookingPositive/day11.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day11.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day12 = objectMapper.readValue(
-          new File("LookingPositive/day12.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day12.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day13 = objectMapper.readValue(
-          new File("LookingPositive/day13.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day13.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
       day14 = objectMapper.readValue(
-          new File("LookingPositive/day14.json").getAbsoluteFile(),
+          new File("LookingPositiveAppData/day14.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
