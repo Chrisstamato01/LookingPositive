@@ -271,7 +271,7 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("LookingPositive/profiles.json")
+      File profilesfile = new File("LookingPositiveAppData/profiles.json")
           .getAbsoluteFile();
       objectmapper.writeValue(profilesfile, profiles);
     } catch (IOException e) {
@@ -289,7 +289,7 @@ public class Profile {
 
     try {
       profiles = objectmapper.readValue(
-          new File("LookingPositive/profiles.json")
+          new File("LookingPositiveAppData/profiles.json")
           .getAbsoluteFile(),
           new TypeReference<ArrayList<Profile>>() {
           });

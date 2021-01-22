@@ -291,13 +291,14 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File casesfile = new File("LookingPositive/" + "cases3b.json")
+      File casesfile = new File("LookingPositiveAppData/" + "cases3b.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile, cases3B);
-      File casesfile2 = new File("LookingPositive/" + "casesglyfada.json")
+      File casesfile2 = new File("LookingPositiveAppData/"
+      + "casesglyfada.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile2, casesGlyfada);
-      File casesfile3 = new File("LookingPositive/" + "casesalimos.json")
+      File casesfile3 = new File("LookingPositiveAppData/" + "casesalimos.json")
           .getAbsoluteFile();
       objectmapper.writeValue(casesfile3, casesAlimos);
 
@@ -316,17 +317,17 @@ public class Geography {
 
     try {
       cases3B = objectmapper.readValue(
-          new File("LookingPositive/" + "cases3b.json")
+          new File("LookingPositiveAppData/" + "cases3b.json")
           .getAbsoluteFile(),
           new TypeReference<int[]>() {
           });
       casesGlyfada = objectmapper.readValue(
-          new File("LookingPositive/" + "casesglyfada.json")
+          new File("LookingPositiveAppData/" + "casesglyfada.json")
           .getAbsoluteFile(),
           new TypeReference<int[]>() {
           });
       casesAlimos = objectmapper.readValue(
-          new File("LookingPositive/" + "casesalimos.json")
+          new File("LookingPositiveAppData/" + "casesalimos.json")
           .getAbsoluteFile(),
           new TypeReference<int[]>() {
           });
