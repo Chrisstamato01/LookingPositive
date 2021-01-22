@@ -10,7 +10,10 @@ To run this project, install it locally using:
 java -jar install filename.jar
 ```
 ## HandBook
-The application enables you to implement the following functions.
+When you open the application you have to enter your cradentials.
+If you do not have an account, you have to create one.
+To create an account you have to add your G-mail and some of your personal details.
+When you succesfully login, the application enables you to implement the following operations.
 
 #### Option 1
 In this part you can manage your events.
@@ -19,24 +22,23 @@ In particular, you can create and see current and future events, as well as dele
 In this part, you can renew your health status.
 You have the ability to add any symptoms and verify that you are a Covid-19 case.
 #### Option 3
-In this part, you can see the epidemiological burden / status of each area.
+In this part, you can see the epidemiological status of each area.
 #### Option 4
 In this part, you can find relevant information about Covid-19.
 #### Option 5
-In this part, you can create your account.
-#### Option 6
-In this part, you can Sign-in to your account.
-#### Option 7 
 In this part, you can change your personal information.
+#### Option 6
+This option allows you to exit the application.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
 Please make sure to update tests as appropriate.
 
 ## Status
 Project is _in progress_
+
 ## Support
 For help contact LookingPositiveApp@gmail.com
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
