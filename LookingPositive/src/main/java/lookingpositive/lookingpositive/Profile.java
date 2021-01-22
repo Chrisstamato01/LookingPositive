@@ -295,6 +295,26 @@ public class Profile {
   }
 
   /**
+   * Reads profiles from local JSON.
+   */
+  public static void profilesReader() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      profiles = objectmapper.readValue(
+          new File("LookingPositive/profiles.json")
+          .getAbsoluteFile(),
+          new TypeReference<ArrayList<Profile>>() {
+          });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
    * Retrieves profiles from JSON file.
    */
   public static void profilesRetriever() {

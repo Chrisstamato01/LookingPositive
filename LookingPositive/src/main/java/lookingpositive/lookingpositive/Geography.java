@@ -352,33 +352,50 @@ public class Geography {
   }
 
   /**
+   * Reads facilities from the local JSON file.
+   */
+  public static void casesReader() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      cases3B = objectmapper.readValue(
+          new File("LookingPositive/" + "cases3b.json")
+          .getAbsoluteFile(),
+          new TypeReference<int[]>() {
+          });
+      casesGlyfada = objectmapper.readValue(
+          new File("LookingPositive/" + "casesglyfada.json")
+          .getAbsoluteFile(),
+          new TypeReference<int[]>() {
+          });
+      casesAlimos = objectmapper.readValue(
+          new File("LookingPositive/" + "casesalimos.json")
+          .getAbsoluteFile(),
+          new TypeReference<int[]>() {
+          });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
    * Retrieves facilities from the JSON file.
    */
   public static void casesRetriever() {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      /*
-       * File casesfile = new File("src\\main\\resources" + "\\cases3b.json")
-       * .getAbsoluteFile();
-       */
       cases3B = objectmapper.readValue(
           FileManager.streamToString("cases3b.json"),
           new TypeReference<int[]>() {
           });
-      /*
-       * File casesfile2 = new File("src\\main\\resources" +
-       * "\\casesglyfada.json") .getAbsoluteFile();
-       */
       casesGlyfada = objectmapper.readValue(
           FileManager.streamToString("casesglyfada.json"),
           new TypeReference<int[]>() {
           });
-      /*
-       * File casesfile3 = new File(
-       * "src\\main\\resources" + "\\casesalimos.json")
-       * .getAbsoluteFile();
-       */
       casesAlimos = objectmapper.readValue(
           FileManager.streamToString("casesalimos.json"),
           new TypeReference<int[]>() {
