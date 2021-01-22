@@ -23,7 +23,7 @@ public class Geography {
   /**
    * Facility type.
    */
-  private String type; // Π.Χ. ΝΟΣΟΚΟΜΕΙΟ, ΦΑΡΜΑΚΕΙΟ, ΕΣΤΙΑΡΟΡΙΟ ΚΤΛ.
+  private String type;
   /**
    * Facility name.
    */
@@ -144,10 +144,10 @@ public class Geography {
   public static void showMunColor(final LocalDate oldDate) {
     updateCases(oldDate);
     System.out.println(
-        "Το επιδημιολογικό φορτίο κάθε περιοχής" + " σήμερα έχει ως εξής:\n");
-    System.out.println(munColor("3Β"));
-    System.out.println(munColor("Γλυφάδα"));
-    System.out.println(munColor("Άλιμος"));
+        "Today's epidemiological profile is: ");
+    System.out.println(munColor("3B"));
+    System.out.println(munColor("Glyfada"));
+    System.out.println(munColor("Alimos"));
   }
 
   /**
@@ -160,9 +160,9 @@ public class Geography {
     for (int i = 0; i < Profile.profilesSize(); i++) {
       if (Profile.profilesLine(i).getUserID() == id) {
         Profile profile = Profile.profilesLine(i);
-        if (profile.getResidenceRegion().equals("3Β")) {
+        if (profile.getResidenceRegion().equals("3B")) {
           cases3B[three]++;
-        } else if (profile.getResidenceRegion().equals("Γλυφάδα")) {
+        } else if (profile.getResidenceRegion().equals("Glyfada")) {
           casesGlyfada[three]++;
         } else {
           casesAlimos[three]++;
@@ -202,7 +202,7 @@ public class Geography {
    */
   @Override
   public final String toString() {
-    return this.type + " - Όνομα: " + this.name + " - Δήμος: "
+    return this.type + " - Name: " + this.name + " - Municipality: "
         + this.municipality;
   }
 
@@ -217,10 +217,10 @@ public class Geography {
     int current = 0; // the cases of the last three days
     double quotient;
     String color;
-    if (mun.equals("3Β")) {
+    if (mun.equals("3B")) {
       current = cases3B[0] + cases3B[1] + cases3B[2];
       quotient = (double) current / POPULATION_3B;
-    } else if (mun.equals("Άλιμος")) {
+    } else if (mun.equals("Alimos")) {
       current = casesAlimos[0] + casesAlimos[1] + casesAlimos[2];
       quotient = (double) current / POPULATION_ALIMOS;
     } else {
@@ -232,59 +232,16 @@ public class Geography {
     final double orangeCodeLimit = 0.0001;
 
     if (quotient > redCodeLimit) {
-      color = "Κόκκινο";
+      color = "Red";
     } else if (quotient > orangeCodeLimit) {
-      color = "Πορτοκαλί";
+      color = "Orange";
     } else {
-      color = "Πράσινο";
+      color = "Green";
     }
 
-    return "Ο Δήμος " + mun
-        + ", με βάση τα κρούσματα των τελευταίων ημερών, έχει χρώμα "
-        + "επικινδυνότητας " + color;
-  }
-
-  /**
-   * Fills the table with the facilities.
-   */
-  public static void fillTables() {
-    new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
-    new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "3Β");
-    new Geography("Σούπερ Μάρκετ", "Carrefour", "3Β");
-    new Geography("Φαρμακείο", "Αντωνόπουλος", "3Β");
-    new Geography("Φαρμακείο", "Γιαννακίδης", "3Β");
-    new Geography("Νοσοκομείο", "Ασκληπείο", "3Β");
-    new Geography("Νοσοκομείο", "S.P. Clinic", "3Β");
-    new Geography("Εστιατόριο", "Τα Βλάχικα", "3Β");
-    new Geography("Εστιατόριο", "Μαγειρευτά", "3Β");
-    new Geography("Εστιατόριο", "Pizzeria Pomodori", "3Β");
-    new Geography("Πάρκο", "Πλατεία Βούλας", "3Β");
-    new Geography("Πάρκο", "Αθ. Διάκου", "3Β");
-    new Geography("Γυμναστήριο", "Vari Sports Club", "3Β");
-    new Geography("Κομμωτήριο", "Barber Shop", "3Β");
-    new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "Άλιμος");
-    new Geography("Σούπερ Μάρκετ", "Σκλαβενιτης", "Άλιμος");
-    new Geography("Φαρμακείο", "Ζαχαριάδης", "Άλιμος");
-    new Geography("Φαρμακείο", "Κολοβός", "Άλιμος");
-    new Geography("Νοσοκομείο", "BioMed", "Άλιμος");
-    new Geography("Νοσοκομείο", "Health", "Άλιμος");
-    new Geography("Εστιατόριο", "Σουβλάκια", "Άλιμος");
-    new Geography("Εστιατόριο", "Cuisine205", "Άλιμος");
-    new Geography("Πάρκο", "Πάρκο Αλίμου", "Άλιμος");
-    new Geography("Γυμναστήριο", "True Fitness", "Άλιμος");
-    new Geography("Κομμωτήριο", "Salon Coiffure", "Άλιμος");
-    new Geography("Σούπερ Μάρκετ", "Σκλαβενίτης", "Γλυφάδα");
-    new Geography("Σούπερ Μάρκετ", "SuperFoodsMarket", "Γλυφάδα");
-    new Geography("Φαρμακείο", "Βασιλακάκης", "Γλυφάδα");
-    new Geography("Νοσοκομείο", "Medical 23", "Γλυφάδα");
-    new Geography("Φαρμακείο", "Γεωργούλης", "Γλυφάδα");
-    new Geography("Εστατόριο", "Mexican de Glyfada", "Γλυφάδα");
-    new Geography("Εστατόριο", "Sushi Esperidon", "Γλυφάδα");
-    new Geography("Πάρκο", "Πλατεία Εσπερίδων", "Γλυφάδα");
-    new Geography("Πάρκο", "Μαυρολέωντος", "Γλυφάδα");
-    new Geography("Γυμναστήριο", "L.F.F. GYM", "Γλυφάδα");
-    new Geography("Κομμωτήριο", "Pretty Hair", "Γλυφάδα");
-    new Geography("Κομμωτήριο", "Natasha's", "Γλυφάδα");
+    return "The municpality's: " + mun
+        + " epidemiological profile is: "
+        + color;
   }
 
   /**

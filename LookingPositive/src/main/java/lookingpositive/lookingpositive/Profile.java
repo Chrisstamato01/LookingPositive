@@ -330,10 +330,10 @@ public class Profile {
   @Override
   public final String toString() {
     if (email == null) {
-      return "Όνομα=" + firstName + ", Επώνυμο=" + lastName;
+      return "Name=" + firstName + ", Surname=" + lastName;
     } else {
-      return "Profile [ Όνομα=" + firstName + ", Επώνυμο=" + lastName
-          + ", Δήμος Κατοικίας=" + residenceRegion + ", Ηλικία=" + age + " ]";
+      return "Profile [ Name=" + firstName + ", Surname=" + lastName
+          + ", Residence Region=" + residenceRegion + ", Age=" + age + " ]";
     }
   }
 }

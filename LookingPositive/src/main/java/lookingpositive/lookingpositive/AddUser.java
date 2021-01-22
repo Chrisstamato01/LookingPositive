@@ -37,9 +37,9 @@ public final class AddUser {
   public static void change(final int id) {
     Scanner sc = new Scanner(System.in);
     boolean flag = false;
-    System.out.println("Θα θέλατε να αλλάξετε email ή κωδικό; \n"
+    System.out.println("Would you like to change your email or password? \n"
         + "1. Email \n"
-        + "2. Κωδικό");
+        + "2. Password");
     while (!flag) {
       int choice = sc.nextInt();
       if (choice == 1) {
@@ -49,8 +49,8 @@ public final class AddUser {
         changePassword(id, sc);
         flag = true;
       } else {
-        System.out.println("Εισάγετε έγκυρη επιλογή:\n"
-            + "[1] για mail ή [2] για κωδικό");
+        System.out.println("Insert valid number:\n"
+            + "[1] for email ή [2] for password.");
       }
     }
   }
@@ -81,7 +81,7 @@ public final class AddUser {
         profile.setEmail(mailChanger(sc));
       }
     }
-    System.out.println("Το email άλλαξε επιτυχώς.");
+    System.out.println("Your email has been changed successfully.");
   }
 
   /**
@@ -90,7 +90,7 @@ public final class AddUser {
    * @return first name
    */
   protected static String handleFirstName(final Scanner sc) {
-      System.out.println("Εισάγετε όνομα: ");
+      System.out.println("Enter your name: ");
       return handleName(sc);
   }
   /**
@@ -99,7 +99,7 @@ public final class AddUser {
    * @return last name
    */
   protected static String handleLastName(final Scanner sc) {
-    System.out.println("Εισάγετε επώνυμο: ");
+    System.out.println("Enter your surname: ");
     return handleName(sc);
   }
 
@@ -121,7 +121,8 @@ public final class AddUser {
 
     boolean exceptionNotOccured = false;
     System.out.println(
-        "Δήμος Κατοικίας[Γλυφάδα(1), Άλιμος(2), Βάρη-Βούλα-Βουλιαγμένη(3)]: ");
+        "Enter Residence Region:\n"
+        + "[Glyfada(1), Alimos(2), Vari-Voula-Vouliagmeni(3)]: ");
     while (flag) {
       flag = false;
       exceptionNotOccured = false;
@@ -131,7 +132,7 @@ public final class AddUser {
           a = sc.nextInt();
           exceptionNotOccured = true;
         } catch (InputMismatchException e) {
-          System.out.println("Εισάγετε έγκυρο αριθμό(1,2,3)");
+          System.out.println("Enter valid number: (1,2,3)");
           sc.nextLine();
         }
 
@@ -139,20 +140,20 @@ public final class AddUser {
       switch (a) {
 
       case 1:
-        residenceRegion = "Γλυφάδα";
+        residenceRegion = "Glyfada";
         break;
 
       case 2:
-        residenceRegion = "'Αλιμος";
+        residenceRegion = "Alimos";
         break;
 
       case THREE:
-        residenceRegion = "Βάρη-Βούλα-Βουλιαγμένη";
+        residenceRegion = "Vari-Voula-Vouliagmeni";
         break;
 
       default:
         flag = true;
-        System.out.println("Εισάγετε έγκυρο αριθμό(1,2,3)");
+        System.out.println("Enter valid number(1,2,3)");
         break;
 
       }
@@ -169,7 +170,7 @@ public final class AddUser {
    */
   private static LocalDate handleBirthday(final Scanner sc) {
     System.out
-        .println("Εισάγεται birthday (dd/MM/yyyy).");
+        .println("Enter birthday. (dd/MM/yyyy)");
     boolean flag = true;
     LocalDate date = null;
     while (flag) {
@@ -181,12 +182,11 @@ public final class AddUser {
         LocalDate now = LocalDate.now();
         if (now.until(date, ChronoUnit.DAYS) > 0) {
           flag = true;
-          System.out.println("Η ημερομηνία που εισάγατε είναι μελλοντική."
-              + " Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+          System.out.println("Enter valid birth date.");
         }
       } catch (DateTimeParseException e) {
-        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
-            + "και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
+        System.out.println("Enter valid date in this form: (dd/MM/yyyy)\n"
+            + "Days can be 01-31 and months can be 01-12.");
         flag = true;
       } catch (Exception e) {
         System.out.println("AN ERROR OCCURED " + e);
@@ -204,24 +204,22 @@ public final class AddUser {
    * @return whether he/she susceptible
    */
   private static Boolean handleIsSusceptible(final Scanner sc) {
-    System.out.println("Ανήκετε σε ευπαθή ομάδα; (Ν/Ο)");
+    System.out.println("Are you susceptible (Y/N)");
     boolean w = true;
     String susceptible = null;
 
     while (w) {
       w = false;
       susceptible = sc.nextLine();
-      if (!(susceptible.equals("N") || susceptible.equals("O")
-         || susceptible.equals("Ν") || susceptible.equals("Ο")
-         || susceptible.equals("n") || susceptible.equals("o")
-         || susceptible.equals("ν") || susceptible.equals("ο"))) {
-        System.out.println("Εισάγετε έγκυρο χαρακτήρα (N/O)");
+      if (!(susceptible.equals("Y") || susceptible.equals("N")
+         || susceptible.equals("y") || susceptible.equals("n")
+         )) {
+        System.out.println("Enter valid character (Y for yes/N for No)");
         w = true;
       }
     }
     boolean isSuspectible;
-    if (susceptible == "N" || susceptible == "n"
-     || susceptible == "Ν" || susceptible == "ν") {
+    if (susceptible == "Y" || susceptible == "y") {
       isSuspectible = true;
     } else {
       isSuspectible = false;
@@ -234,7 +232,7 @@ public final class AddUser {
    * @return User's password
    */
   private static String handlePassword(final Scanner sc) {
-    System.out.println("Δημιουργείστε τον κωδικό σας");
+    System.out.println("Create your password:");
     boolean w = true;
     final int eight = 8;
     final int twenty = 20;
@@ -244,8 +242,8 @@ public final class AddUser {
       pass = sc.nextLine();
       if (pass.length() < eight || pass.length() > twenty
           || !passwordCheck(pass)) {
-        System.out.println("Ο κωδικός πρέπει να περιέχει 8 - 20 χαρακτήρες"
-            + " χωρίς κενά.");
+        System.out.println("Password must be between 8 - 20 characters"
+            + " without spaces.");
         w = true;
       }
     }
@@ -260,11 +258,11 @@ public final class AddUser {
   private static String handleEmail(final Scanner sc) {
     String email = makeEmail(sc);
     while (checkEmail(email)) {
-      System.out.println("Υπάρχει ήδη χρήστης με αυτό το email."
-          + " Προσπαθήστε ξανά.");
+      System.out.println("This email is already in use,"
+          + " try again.");
       email = makeEmail(sc);
     }
-    System.out.println("Τα στοιχεία καταχωρήθηκαν επιτυχώς.");
+    System.out.println("Email entered successfully.");
     return email;
   }
 
@@ -275,16 +273,16 @@ public final class AddUser {
   */
   private static String makeEmail(final Scanner sc) {
     boolean a = false;
-    System.out.println("Email(μόνο gmail)\n"
-    + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
+    System.out.println("Email(only gmail)\n"
+    + "(until @. exmaple: lookingPositive@gmail.com"
     + " -> lookingPositive):");
     String email = sc.nextLine();
     String domain = null;
     while (!a) {
       if (email.contains("@") || email.contains(".com")
           || email.contains(".gr")) {
-        System.out.println("Μη έγκυρη καταχώρηση email."
-          + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
+        System.out.println("Invalid input."
+          + " Try again without the suffix @...");
           email = sc.nextLine();
       } else {
         int b = -1;
@@ -293,7 +291,7 @@ public final class AddUser {
 
         boolean exceptionNotOccured = false;
         System.out.println(
-            "Είδος gmail[@gmail.com(1), @gmail.gr(2)]: ");
+            "Domain: [@gmail.com(1), @gmail.gr(2)]: ");
         while (flag) {
           flag = false;
           exceptionNotOccured = false;
@@ -303,7 +301,7 @@ public final class AddUser {
               b = sc.nextInt();
               exceptionNotOccured = true;
             } catch (InputMismatchException e) {
-              System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+              System.out.println("Enter valid number (1,2)");
               sc.nextLine();
             }
 
@@ -320,7 +318,7 @@ public final class AddUser {
 
           default:
             flag = true;
-            System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+            System.out.println("Enter valid number (1,2)");
             break;
           }
           sc.nextLine();
@@ -340,8 +338,8 @@ public final class AddUser {
   private static String mailChanger(final Scanner sc) {
     String email = newEmail(sc);
     while (checkEmail(email)) {
-      System.out.println("Αυτό το email είναι ήδη σε χρήση."
-          + " Προσπαθήστε ξανά.");
+      System.out.println("This email is already in use,"
+          + " try again.");
       email = newEmail(sc);
     }
     return email;
@@ -371,17 +369,18 @@ public final class AddUser {
 /*     final int shortestMail = 6;
      final int longestMail = 6;*/
      boolean a = false;
-     System.out.println("Εισαγετε νεο e-mail(μόνο gmail)\n"
-     + "(μέχρι πριν @. πχ.: lookingPositive@gmail.com"
+     System.out.println("Enter new e-mail (only gmail)\n"
+     + "(until @. example: lookingPositive@gmail.com"
      + " -> lookingPositive): \n"
-     + "Aν εισάγετε κενό, το mail σας θα καταχωρηθεί μέχρι αυτό.");
+     + "If you include a space character, your email will "
+     + "be entered until the space.");
      String email = sc.next();
      String domain = null;
      while (!a) {
        if (email.contains("@") || email.contains(".com")
            || email.contains(".gr")) {
-         System.out.println("Μη έγκυρη καταχώρηση email."
-           + " Προσπαθήστε ξανά χωρίς την κατάληξη @...");
+         System.out.println("Invalid email input."
+           + " Try again without the suffix @...");
            email = sc.next();
        } else {
          int b = -1;
@@ -390,7 +389,7 @@ public final class AddUser {
 
          boolean exceptionNotOccured = false;
          System.out.println(
-             "Είδος gmail[@gmail.com(1), @gmail.gr(2)]: ");
+             "Domain: [@gmail.com(1), @gmail.gr(2)]: ");
          while (flag) {
            flag = false;
            exceptionNotOccured = false;
@@ -400,7 +399,7 @@ public final class AddUser {
                b = sc.nextInt();
                exceptionNotOccured = true;
              } catch (InputMismatchException e) {
-               System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+               System.out.println("Enter valid number (1,2)");
                sc.nextLine();
              }
 
@@ -417,7 +416,7 @@ public final class AddUser {
 
            default:
              flag = true;
-             System.out.println("Εισάγετε έγκυρο αριθμό(1,2)");
+             System.out.println("Enter valid number (1,2)");
              break;
            }
            sc.nextLine();
@@ -438,7 +437,7 @@ public final class AddUser {
       return ((input != null)
               && (!input.equals(""))
               //Greek or Latin characters, plus spaces or - available
-              && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ- ]*$")));
+              && (input.matches("^[a-zA-Z- ]*$")));
   }
 /**
  * Checks if the password is valid.
@@ -449,7 +448,7 @@ public final class AddUser {
     return ((input != null)
             && (!input.equals(""))
             //Greek or Latin characters, plus spaces or symbols available
-            && (input.matches("^[a-zA-Zα-ωΑ-Ωά-ώΆ-Ώ0-9!@#$%&-_]*$")));
+            && (input.matches("^[a-zA-Z0-9!@#$%&-_]*$")));
   }
   /**
    * Handles user name.
@@ -465,11 +464,11 @@ public final class AddUser {
         flag = false;
       } catch (Exception e) {
         flag = true;
-        System.err.println("Λανθασμένη καταχώρηση. Προσπαθήστε ξανά." + e);
+        System.err.println("Invalid input. Try again." + e);
       }
       if (!alphabetCheck(name)) {
         flag = true;
-        System.out.println("Λανθασμένη καταχώρηση. Προσπαθήστε ξανά.");
+        System.out.println("Invalid input. Try again.");
       }
     }
     return name;
