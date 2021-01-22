@@ -364,4 +364,61 @@ public class Geography {
       System.out.println("exception:" + e);
     }
   }
+
+  /**
+   * Saves the cases to the JSON file.
+   */
+  public static void casesSaverTwo() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File casesfile = new File(
+          "src\\main\\resourses\\"
+          + "cases3b.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile, cases3B);
+      File casesfile2 = new File(
+          "src\\main\\resourses\\"
+          + "casesglyfada.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile2, casesGlyfada);
+      File casesfile3 = new File(
+          "src\\main\\resourses\\"
+          + "casesalimos.json").getAbsoluteFile();
+      objectmapper.writeValue(casesfile3, casesAlimos);
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Retrieves facilities from the JSON file.
+   */
+  public static void casesRetrieverTwo() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File casesfile = new File(
+          "src\\main\\resourses"
+          + "\\cases3b.json").getAbsoluteFile();
+      cases3B = objectmapper.readValue(
+          casesfile, new TypeReference<int[]>() { });
+      File casesfile2 = new File(
+          "src\\main\\resourses"
+          + "\\casesglyfada.json").getAbsoluteFile();
+      casesGlyfada = objectmapper.readValue(
+          casesfile2, new TypeReference<int[]>() { });
+      File casesfile3 = new File(
+          "src\\main\\resourses"
+          + "\\cases3b.json").getAbsoluteFile();
+      casesAlimos = objectmapper.readValue(
+          casesfile3, new TypeReference<int[]>() { });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
 }

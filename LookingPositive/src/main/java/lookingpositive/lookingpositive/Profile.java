@@ -325,6 +325,42 @@ public class Profile {
   }
 
   /**
+   * Saves profiles to JSON file.
+   */
+  public static void profilesSaverTwo() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File profilesfile = new File(
+          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+      objectmapper.writeValue(profilesfile, profiles);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
+   * Retrieves profiles from JSON file.
+   */
+  public static void profilesRetrieverTwo() {
+    ObjectMapper objectmapper = new ObjectMapper();
+
+    try {
+      File profilesfile = new File(
+          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
+      profiles = objectmapper.readValue(
+          profilesfile, new TypeReference<ArrayList<Profile>>() { });
+
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
+  }
+
+  /**
    * ToString method.
    */
   @Override
