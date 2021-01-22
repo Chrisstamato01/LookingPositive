@@ -8,15 +8,16 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
+
 /**
  * This class handles the user's events.
  */
 public final class AddDelEvents {
-/**
- * This is the private default constructor.
- */
+  /**
+   * This is the private default constructor.
+   */
   private AddDelEvents() {
-    //This class can not be initialized.
+    // This class can not be initialized.
   }
 
   /**
@@ -26,9 +27,9 @@ public final class AddDelEvents {
    */
   public static void chooseFunction(final int userId) {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Επιλέξτε μία απο τις παρακάτω ενέργειες:"
-        + "\n1. Δημιουργία γεγονότος." + "\n2. Διαγραφή γεγονότος."
-        + "\n3. Εμφανιση των μελλοντικών γεγονότων.");
+    System.out
+        .println("Choose one of the following options:" + "\n1. Event registry."
+            + "\n2. Event deletion." + "\n3. Print of future events.");
     int choice = -1;
     boolean flag = true;
     final int firstCase = 1;
@@ -41,10 +42,10 @@ public final class AddDelEvents {
             || choice == thirdCase) {
           flag = false;
         } else {
-          System.out.println("Παρακαλώ εισάγεται αριθμό μεταξύ των 1,2,3.");
+          System.out.println("Please enter 1, 2 or 3.");
         }
       } catch (InputMismatchException e) {
-        System.out.println("Παρακαλώ εισάγεται αριθμό.");
+        System.out.println("Please enter an integer number.");
       } catch (Exception e) {
         System.err.println(e);
       }
@@ -85,8 +86,7 @@ public final class AddDelEvents {
    */
   private static LocalDate dateInput() {
     Scanner sc = new Scanner(System.in);
-    System.out
-        .println("Εισάγεται ημερομηνία για την εκδήλωση σας (dd/MM/yyyy).");
+    System.out.println("Enter the date of your event (dd/MM/yyyy).");
     boolean flag = true;
     LocalDate date = null;
     while (flag) {
@@ -98,12 +98,12 @@ public final class AddDelEvents {
         LocalDate now = LocalDate.now();
         if (now.until(date, ChronoUnit.DAYS) < 0) {
           flag = true;
-          System.out.println("Η ημερομηνία που εισάγατε είναι παρελθοντική."
-              + " Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+          System.out.println(
+              "Your date input is past date." + " Please enter a future date.");
         }
       } catch (DateTimeParseException e) {
-        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
-            + "και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
+        System.out.println("Enter a date with the proper pattern (dd/MM/yyyy) "
+            + "with range of days 01-31 and range of months 01-12.");
         flag = true;
       } catch (Exception e) {
         System.out.println("AN ERROR OCCURED " + e);
@@ -124,15 +124,13 @@ public final class AddDelEvents {
   private static ArrayList<Profile> profileListInput() {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> contactedPeople = new ArrayList<Profile>();
-    System.out.println(
-        "Θα συναναστραφείτε και με αλλα άτομα κατά την έξοδο σας; (ΝΑΙ/ΟΧΙ).");
+    System.out.println("Will you meet up with other people during (ΝΑΙ/ΟΧΙ).");
     boolean flag = true;
     String answer = null;
     while (flag) {
       answer = sc.nextLine();
-      if (!(answer.equalsIgnoreCase("ΝΑΙ") || answer.equalsIgnoreCase("ΟΧΙ"))) {
-        System.out.println(
-            "Τα δεδομένα που εισάγατε δεν είναι σωστά. Eπιλέξτε ΝΑΙ / ΟΧΙ .");
+      if (!(answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("N"))) {
+        System.out.println("Your input is not valid.Please try again. Y/N");
       } else {
         flag = false;
       }
@@ -211,7 +209,7 @@ public final class AddDelEvents {
           j + 1 + i + " " + Calendar.getFuture().getCurrentEvent(userId, j));
     }
     if (i == 0 && j == 0) {
-      System.out.println("Δεν έχετε προγραμματισμένα γεγονότα.");
+      System.out.println("There are no scheduled events.");
     }
   }
 
@@ -224,26 +222,26 @@ public final class AddDelEvents {
    */
   private static String deleteEvent(final int userId) {
 
-    System.out.println("Οι προγραμματισμένες σας εκδηλώσεις είναι οι εξής : ");
+    System.out.println("The scheduled events are : ");
     viewEvents(userId);
     if (Calendar.getFuture().getUsersEventListsSize(userId) == 0
         && Calendar.getToday().getUsersEventListsSize(userId) == 0) {
 
-      return "Δεν έχετε γεγονότα να διαγράψετε.";
+      return "There are no events to be deleted.";
     } else {
       return deletingExistingEvent(userId);
-      }
+    }
   }
 
   /**
    * This method deletes an Event.
+   *
    * @param userId the Id of the user who wants to delete an Event
    * @return a message of success
    */
   private static String deletingExistingEvent(final int userId) {
     Scanner sc = new Scanner(System.in);
-    System.out
-        .println("Επιλέξτε τον αριθμό της εκδήλωσης που θέλετε να διαγράψετε.");
+    System.out.println("Choose the number of the event you wish to delete.");
     boolean foundException = true;
     boolean numberNotFound = true;
     int n = -1;
@@ -254,13 +252,13 @@ public final class AddDelEvents {
           if (n > Calendar.getFuture().getUsersEventListsSize(userId)
               + Calendar.getToday().getUsersEventListsSize(userId) || n < 1) {
 
-            System.out.println("Παρακαλώ εισάγεται έγκειρο αριθμό.");
+            System.out.println("Please enter a valid number.");
           } else {
             numberNotFound = false;
           }
           foundException = false;
         } catch (InputMismatchException e) {
-          System.out.println("Παρακαλώ εισάγεται αριθμό.");
+          System.out.println("Please enter an integer number.");
         } catch (Exception e) {
           System.err.println(e);
         }
@@ -273,7 +271,7 @@ public final class AddDelEvents {
     } else {
       Calendar.getToday().removeCurrentEvent(userId, n - 1);
     }
-    return "Η εκδήλωση " + n + " διαγράφηκε επιτυχώς. ";
+    return "The event" + n + " has been successfuly deleted.";
   }
 
   // the user chooses where his/her event will take place
@@ -284,8 +282,8 @@ public final class AddDelEvents {
    */
   private static Geography addGeography() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Ποιόν δήμο θα θέλατε να επισκεφθείτε"
-        + "(Δήμος Βάρης/Βούλας/Βουλιαγμένης(1) - Άλιμος(2) - Γλυφάδα(3). ");
+    System.out.println("Which municipality do you want to visti"
+        + "(Vari-Voula-Vouliagmeni(1) - Alimos(2) - Glyfada(3). ");
     boolean flag = true;
     String municipality = null;
     final int firstCase = 1;
@@ -300,28 +298,28 @@ public final class AddDelEvents {
           num = scanner.nextInt();
           exceptionFound = false;
         } catch (InputMismatchException e) {
-          System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
+          System.out.println("Please enter an integer number.");
         }
         scanner.nextLine();
       }
       switch (num) {
       case firstCase:
-        municipality = "3Β";
+        municipality = "3B";
         printFacilities(municipality);
         flag = false;
         break;
       case secondCase:
-        municipality = "Άλιμος";
+        municipality = "Alimos";
         printFacilities(municipality);
         flag = false;
         break;
       case thirdCase:
-        municipality = "Γλυφάδα";
+        municipality = "Glyfada";
         printFacilities(municipality);
         flag = false;
         break;
       default:
-        System.out.println("Εισάγετε αριθμό το 1, το 2 ή το 3. ");
+        System.out.println("Enter 1, 2 or 3. ");
         break;
       }
     }
@@ -330,13 +328,14 @@ public final class AddDelEvents {
 
   /**
    * This method allows the user to chose a facility.
+   *
    * @param municipality the municipality the user wants to visit
    * @return the facility which he wants to visit
    */
   private static Geography chooseFacility(final String municipality) {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Εισάγετε τον αριθμό του/της κατάστημος"
-        + "/υπηρεσίας που θα θέλατε να επισκεφθείτε. ");
+    System.out
+        .println("Enter the number of the facility" + "you want to visit. ");
     boolean flag = true;
     int choice = -1;
     while (flag) {
@@ -344,18 +343,19 @@ public final class AddDelEvents {
         choice = scanner.nextInt();
 
         if (choice > Geography.getFacilitiesSize()) {
-          System.out.println("Παρακαλώ εισάγετε έγκυρο αριθμό.");
+          System.out.println("Please enter a valid number.");
         } else {
 
           flag = validatingFacility(choice, municipality);
           if (flag) {
             System.out.println(
-                "Το κατάστημα που επιλέξατε δεν ανήκει στον Δήμο που έχετε "
-                    + "επιλέξει. Παρακαλω εισάγετε έγκυρο κατάστημα.");
+                "The facility you chose to visit does "
+                + "3not belong to the municipality "
+                    + "you chose. Please enter a valid number.");
           }
         }
       } catch (InputMismatchException e) {
-        System.out.println("Παρακαλώ εισάγετε ακέραιο αριθμό.");
+        System.out.println("Please enter a valid number.");
         flag = true;
       } catch (Exception e) {
         System.err.println(e);
@@ -369,6 +369,7 @@ public final class AddDelEvents {
   /**
    * This method checks that the facility the user chooses belongs to the chosen
    * municipality.
+   *
    * @param choice       the facility the user chose
    * @param municipality the municipality the user has previously chosen
    * @return a boolean which shows if the chosen facility belongs to the certain
@@ -388,6 +389,7 @@ public final class AddDelEvents {
 
   /**
    * This method prints the facilities of a certain municipality.
+   *
    * @param municipality the municipality the user wants to visit
    */
   private static void printFacilities(final String municipality) {
