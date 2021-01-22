@@ -1,7 +1,10 @@
 package lookingpositive.lookingpositive;
 
 import java.time.LocalDate;
-import java.time.Period;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,7 +26,7 @@ public final class AddUser {
   public static void add() {
     Scanner sc = new Scanner(System.in);
     new Profile(handleFirstName(sc), handleLastName(sc),
-        handleResidenceRegion(sc), handleAge(sc), handleIsSusceptible(sc),
+        handleResidenceRegion(sc), handleBirthday(sc), handleIsSusceptible(sc),
         handlePassword(sc), handleEmail(sc));
   }
 
@@ -160,158 +163,40 @@ public final class AddUser {
   }
 
   /**
-   * Handles the user's age.
-   * @param sc is the Scanner
-   * @return user's age
+   * Handles user's birthday.
+   * @param sc is the scanner
+   * @return user's birthday
    */
-  public static int handleAge(final Scanner sc) {
-    LocalDate birthdate = dateOfBirth(sc);
-    int age = calculateAge(birthdate);
-    return age;
-  }
-
-  /**
-   * Calculates age from date of birth.
-   * @param birthdate is the date of birth
-   * @return age
-   */
-  public static int calculateAge(final LocalDate birthdate) {
-    LocalDate currentDate = LocalDate.now();
-    if ((birthdate != null) && (currentDate != null)) {
-        return Period.between(birthdate, currentDate).getYears();
-    } else {
-        return 0;
-    }
-  }
-
-  /**
-   * Handles the user's date of birth.
-   * @param sc is the Scanner
-   * @return the birth date
-   */
-  private static LocalDate dateOfBirth(final Scanner sc) {
-    int day = handleDay(sc);
-    int month = handleMonth(sc);
-    int year = handleYear(sc);
-    LocalDate birthDate = LocalDate.of(year, month, day);
-    Profile.getBirthdays().add(birthDate);
-    return birthDate;
-  }
-
-  /**
-   * User adds his birth day.
-   * @param sc is a Scanner
-   * @return day of birth
-   */
-  private static int handleDay(final Scanner sc) {
-    final int biggestDay = 31;
-    System.out.println("Εισάγετε μέρα γέννησης: ");
-    int day = 0;
+  private static LocalDate handleBirthday(final Scanner sc) {
+    System.out
+        .println("Εισάγεται birthday (dd/MM/yyyy).");
     boolean flag = true;
+    LocalDate date = null;
     while (flag) {
-       flag = false;
-       try {
-         day = sc.nextInt();
-       } catch (InputMismatchException e) {
-         flag = true;
-         System.out.println("Εισάγετε σωστή μέρα.");
-       } catch (Exception e) {
-         flag = true;
-         System.out.println("Εισάγετε έγκυρο αριθμό.");
-       }
-       if (day < 1 || day > biggestDay) {
-         System.out.println("Εισάγετε έγκυρη ημέρα. [1-31]");
-         flag = true;
-       }
-       sc.nextLine();
-    }
-    return day;
-  }
+      flag = false;
+      String sDate = sc.nextLine();
+      DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+      try {
+        date = LocalDate.parse(sDate, dateFormat);
+        LocalDate now = LocalDate.now();
+        if (now.until(date, ChronoUnit.DAYS) > 0) {
+          flag = true;
+          System.out.println("Η ημερομηνία που εισάγατε είναι μελλοντική."
+              + " Παρακαλώ εισάγετε έγκυρη ημερομηνία.");
+        }
+      } catch (DateTimeParseException e) {
+        System.out.println("Δώστε έγκυρη ημερομηνία με μορφή (dd/MM/yyyy) "
+            + "και εύρος τιμών για μέρες 01-31 και για μήνες 01-12.");
+        flag = true;
+      } catch (Exception e) {
+        System.out.println("AN ERROR OCCURED " + e);
+        flag = true;
+      }
 
-  /**
-   * User adds his birth month.
-   * @param sc is a Scanner
-   * @return month of birth
-   */
-  private static int handleMonth(final Scanner sc) {
-    final int biggestMonth = 12;
-    System.out.println("Εισάγετε μήνα γέννησης: ");
-    int month = 0;
-    boolean flag = true;
-    while (flag) {
-       flag = false;
-       try {
-         month = sc.nextInt();
-       } catch (InputMismatchException e) {
-         flag = true;
-         System.out.println("Εισάγετε σωστό μήνα.");
-       } catch (Exception e) {
-         flag = true;
-         System.out.println("Εισάγετε έγκυρο αριθμό.");
-       }
-       if (month < 1 || month > biggestMonth) {
-         System.out.println("Εισάγετε έγκυρο μήνα. [1-12]");
-         flag = true;
-       }
-       sc.nextLine();
     }
-    return month;
-  }
 
-  /**
-   * User adds his birth year.
-   * @param sc is a Scanner
-   * @return year of birth
-   */
-  private static int handleYear(final Scanner sc) {
-    final int smallestYear = 1900;
-    final int biggestYear = 2020;
-    System.out.println("Εισάγετε έτος γέννησης: ");
-    int day = 0;
-    boolean flag = true;
-    while (flag) {
-       flag = false;
-       try {
-         day = sc.nextInt();
-       } catch (InputMismatchException e) {
-         flag = true;
-         System.out.println("Εισάγετε σωστό έτος.");
-       } catch (Exception e) {
-         flag = true;
-         System.out.println("Εισάγετε έγκυρο αριθμό.");
-       }
-       if (day < smallestYear || day > biggestYear) {
-         System.out.println("Εισάγετε έγκυρο έτος. [1900-2021]");
-         flag = true;
-       }
-       sc.nextLine();
-    }
-    return day;
+    return date;
   }
-
-/*  private static int handleAg(final Scanner sc) {
-    System.out.println("Ηλικία: ");
-    int age = 0;
-    boolean flag = true;
-    while (flag) {
-       flag = false;
-       try {
-         age = sc.nextInt();
-       } catch (InputMismatchException e) {
-         flag = true;
-         System.out.println("Εισάγετε σωστή ηλικία.");
-       } catch (Exception e) {
-         flag = true;
-         System.out.println("Εισάγετε έγκυρο αριθμό.");
-       }
-       if (age < 0) {
-         System.out.println("Εισάγετε έγκυρη ηλικία.");
-         flag = true;
-       }
-       sc.nextLine();
-    }
-    return age;
-  }*/
 
   /**
    * User declares whether he/she is susceptible.

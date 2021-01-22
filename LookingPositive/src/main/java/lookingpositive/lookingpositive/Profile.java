@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * This class is the model for users' profiles.
@@ -40,6 +40,10 @@ public class Profile {
    */
   private int age;
   /**
+   * User's birthday.
+   */
+  private LocalDate birthday;
+  /**
    * User's ID.
    */
   private int userID;
@@ -51,10 +55,6 @@ public class Profile {
    * Array list in which profiles are saved.
    */
   private static ArrayList<Profile> profiles = new ArrayList<Profile>();
-  /**
-   * Array list in which the birthdays are saved.
-   */
-  private static ArrayList<LocalDate> birthdays = new ArrayList<LocalDate>();
 
   /**
    * This constructor is used to create objects of users.
@@ -81,20 +81,21 @@ public class Profile {
    * @param fName        is the user's first name
    * @param sName        is the user's last name
    * @param residenceReg is the user's residence region
-   * @param usersAge     is the user's age
+   * @param bday         is the user's birthday
    * @param isSus        if the user belongs to high risk groups
    * @param pass         is the user's password
    * @param mail         is the user's email
    */
   public Profile(final String fName, final String sName,
-      final String residenceReg, final int usersAge, final boolean isSus,
+      final String residenceReg, final LocalDate bday, final boolean isSus,
       final String pass, final String mail) {
 
     firstName = fName;
     lastName = sName;
     residenceRegion = residenceReg;
     userID = profilesSize();
-    age = usersAge;
+    birthday = bday;
+    age = calculateAge(birthday);
     isSusceptible = isSus;
     password = pass;
     email = mail;
@@ -232,31 +233,17 @@ public class Profile {
   }
 
   /**
-   * Returns the line from profiles.
-   *
-   * @param i line to be returned
-   * @return profile line
+   * Calculates age from date of birth.
+   * @param birthdate is the date of birth
+   * @return age
    */
-  public static LocalDate birthdaysLine(final int i) {
-    return birthdays.get(i);
-  }
-
-  /**
-   * Returns the size of profiles.
-   *
-   * @return profile size
-   */
-  public static int birthdaysSize() {
-    return birthdays.size();
-  }
-
-  /**
-   * Returns profiles.
-   *
-   * @return ArrayList
-   */
-  public static ArrayList<LocalDate> getBirthdays() {
-    return birthdays;
+  public static int calculateAge(final LocalDate birthdate) {
+    LocalDate currentDate = LocalDate.now();
+    if ((birthdate != null) && (currentDate != null)) {
+        return Period.between(birthdate, currentDate).getYears();
+    } else {
+        return 0;
+    }
   }
 
   /**
@@ -268,7 +255,7 @@ public class Profile {
       Profile profile = profilesLine(i);
       System.out.println("Yo");
       System.out.println(profile.age);
-      LocalDate birthdate = birthdaysLine(i);
+      LocalDate birthdate = profile.birthday;
       if (birthdate.getDayOfMonth() == currentDate.getDayOfMonth()
           && birthdate.getMonth() == currentDate.getMonth()
           && Period.between(birthdate, currentDate).getYears() > profile.age) {
@@ -328,44 +315,6 @@ public class Profile {
       profiles = objectmapper.readValue(
           FileManager.streamToString("profiles.json"),
           new TypeReference<ArrayList<Profile>>() {
-          });
-
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * Saves birthdays to JSON file.
-   */
-  public static void birthdaysSaver() {
-    ObjectMapper objectmapper = new ObjectMapper();
-    objectmapper.registerModule(new JavaTimeModule());
-
-    try {
-      File birthdaysfile = new File("LookingPositive/birthdays.json")
-          .getAbsoluteFile();
-      objectmapper.writeValue(birthdaysfile, birthdays);
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * Retrieves birthdays from JSON file.
-   */
-  public static void birthdaysRetriever() {
-    ObjectMapper objectmapper = new ObjectMapper();
-    objectmapper.registerModule(new JavaTimeModule());
-
-    try {
-      birthdays = objectmapper.readValue(
-          FileManager.streamToString("birthdays.json"),
-          new TypeReference<ArrayList<LocalDate>>() {
           });
 
     } catch (IOException e) {
