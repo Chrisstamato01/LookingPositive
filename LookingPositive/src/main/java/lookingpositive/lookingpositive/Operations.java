@@ -3,22 +3,15 @@
  */
 package lookingpositive.lookingpositive;
 
-import java.io.File;
-
+import java.io.FileNotFoundException;
 import java.io.IOException;
-
-
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
@@ -48,19 +41,27 @@ public final class Operations {
    * @param args is not used
    */
   public static void main(final String[] args) {
-    // dateSaver();// πρεπει να κελιθη την πρωτη φορα του ινσταλλ
-    // dataSaver();πρεπει να κελιθη την πρωτη φορα του ινσταλλ
-    dataRetriver();
-    makeDirectory();
+
+    // dataRetrieved =FileManager.booleanRetriever();
+    FileManager.makeDirectory();
+    try {
+      FileManager.booleanReader();
+      FileManager.dataReader();
+
+    } catch (FileNotFoundException e) {
+
+      FileManager.booleanWriter();
+      FileManager.dataRetriever();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
     if (dateLastUserSignedIn != null) {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
 
-    /*
-     * Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", 44, false,
-     * "pass1", "papadopoulos@gmail.com"); Profile pr2 = new Profile("maria",
-     * "exarxopoulou", "glyfada", 47, false, "pass2", "papadakis@gmail.com");
-     */
+    // dataReader καθε φορά εκτοσ απ την πρωτη δεν θα διαβαζει απο τζαρ
     run(SignInUp.login());
 
   }
@@ -109,7 +110,7 @@ public final class Operations {
 
       case choiceSix:
         execution = false;
-        dataSaver();
+        FileManager.dataSaver();
         System.out.println("Το πρόγραμμα τερματίστηκε επιτυχώς.");
         break;
       default:
@@ -165,72 +166,6 @@ public final class Operations {
   }
 
   /**
-   * This method retrieves all the data from the files.
-   */
-  private static void dataRetriver() {
-    Calendar.eventRetriever();
-    dateRetriever();
-    Geography.facilitiesRetriever();
-    Profile.profilesRetriever();
-    Calendar.fillingFourteenDays();
-    Geography.casesRetriever();
-  }
-
-  /**
-   * This method saves any data created during the execution of the program
-   * after the user chose to terminate it.
-   */
-  private static void dataSaver() {
-    Calendar.eventSaver();
-    dateSaver();
-    Profile.profilesSaver();
-    Geography.casesSaver();
-  }
-
-  /**
-   * This method saves the date the last user singed in.
-   */
-  private static void dateSaver() {
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.registerModule(new JavaTimeModule());
-
-    try {
-      objectMapper
-          .writeValue(new File("LookingPositive/date.json")
-              .getAbsoluteFile(), LocalDate.now());
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * This method retrieves the date the last user signed in.
-   */
-  private static void dateRetriever() {
-    ObjectMapper objectMapper = new ObjectMapper();
-    objectMapper.registerModule(new JavaTimeModule());
-
-    try {
-      dateLastUserSignedIn = objectMapper.readValue(
-          Calendar.streamToString("calendar/date.json"), LocalDate.class);
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
    * This method gets the date the last person singed in.
    *
    * @return the last date the last person singed in
@@ -238,39 +173,14 @@ public final class Operations {
   public static LocalDate getDateLastUserSignedIn() {
     return dateLastUserSignedIn;
   }
+
   /**
-   *This.
+   * This is a setter for dateLastUserSignedIn.
    *
+   * @param newdate the new date
    */
-  public static void makeDirectory() {
-    try {
-      String path = getProgramPath2();
-
-      String fileSeparator = System.getProperty("file.separator");
-      String newDir = path + fileSeparator + "LookingPositive" + fileSeparator;
-
-
-      File file = new File(newDir);
-      file.mkdir();
-   } catch (Exception e) {
-      e.printStackTrace();
-   }
-  }
-  /**
-   *This.
-   * @return string
-   *
-   */
-  public static String getProgramPath2() {
-    String currentdir = System.getProperty("user.dir");
-    currentdir = currentdir.replace("\\", "/");
-    return currentdir;
- }
-  /**
-   * This.
-   */
-  public static void writeData() {
-    //
+  public static void setDateLastUserSignedIn(final LocalDate newdate) {
+    dateLastUserSignedIn = newdate;
   }
 
 }

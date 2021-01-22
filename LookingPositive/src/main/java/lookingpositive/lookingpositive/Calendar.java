@@ -2,10 +2,8 @@ package lookingpositive.lookingpositive;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,8 +29,8 @@ public final class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays =
-      new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays
+  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -344,54 +342,38 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      objectMapper
-          .writeValue(new File("LookingPositive/today.json")
-              .getAbsoluteFile(), today);
-      objectMapper
-          .writeValue(new File("LookingPositive/future.json")
-              .getAbsoluteFile(), future);
-      objectMapper
-          .writeValue(new File("LookingPositive/day1.json")
-              .getAbsoluteFile(), day1);
-      objectMapper
-          .writeValue(new File("LookingPositive/day2.json")
-              .getAbsoluteFile(), day2);
-      objectMapper
-          .writeValue(new File("LookingPositive/day3.json")
-              .getAbsoluteFile(), day3);
-      objectMapper
-          .writeValue(new File("LookingPositive/day4.json")
-              .getAbsoluteFile(), day4);
-      objectMapper
-          .writeValue(new File("LookingPositive/day5.json")
-              .getAbsoluteFile(), day5);
-      objectMapper
-          .writeValue(new File("LookingPositive/day6.json")
-              .getAbsoluteFile(), day6);
-      objectMapper
-          .writeValue(new File("LookingPositive/day7.json")
-              .getAbsoluteFile(), day7);
-      objectMapper
-          .writeValue(new File("LookingPositive/day8.json")
-              .getAbsoluteFile(), day8);
-      objectMapper
-          .writeValue(new File("LookingPositive/day9.json")
-              .getAbsoluteFile(), day9);
-      objectMapper
-          .writeValue(new File("LookingPositive/day10.json")
-              .getAbsoluteFile(), day10);
-      objectMapper
-          .writeValue(new File("LookingPositive/day11.json")
-              .getAbsoluteFile(), day11);
-      objectMapper
-          .writeValue(new File("LookingPositive/day12.json")
-              .getAbsoluteFile(), day12);
-      objectMapper
-          .writeValue(new File("LookingPositive/day13.json")
-              .getAbsoluteFile(), day13);
-      objectMapper
-          .writeValue(new File("LookingPositive/day14.json")
-              .getAbsoluteFile(), day14);
+      objectMapper.writeValue(
+          new File("LookingPositive/today.json").getAbsoluteFile(), today);
+      objectMapper.writeValue(
+          new File("LookingPositive/future.json").getAbsoluteFile(), future);
+      objectMapper.writeValue(
+          new File("LookingPositive/day1.json").getAbsoluteFile(), day1);
+      objectMapper.writeValue(
+          new File("LookingPositive/day2.json").getAbsoluteFile(), day2);
+      objectMapper.writeValue(
+          new File("LookingPositive/day3.json").getAbsoluteFile(), day3);
+      objectMapper.writeValue(
+          new File("LookingPositive/day4.json").getAbsoluteFile(), day4);
+      objectMapper.writeValue(
+          new File("LookingPositive/day5.json").getAbsoluteFile(), day5);
+      objectMapper.writeValue(
+          new File("LookingPositive/day6.json").getAbsoluteFile(), day6);
+      objectMapper.writeValue(
+          new File("LookingPositive/day7.json").getAbsoluteFile(), day7);
+      objectMapper.writeValue(
+          new File("LookingPositive/day8.json").getAbsoluteFile(), day8);
+      objectMapper.writeValue(
+          new File("LookingPositive/day9.json").getAbsoluteFile(), day9);
+      objectMapper.writeValue(
+          new File("LookingPositive/day10.json").getAbsoluteFile(), day10);
+      objectMapper.writeValue(
+          new File("LookingPositive/day11.json").getAbsoluteFile(), day11);
+      objectMapper.writeValue(
+          new File("LookingPositive/day12.json").getAbsoluteFile(), day12);
+      objectMapper.writeValue(
+          new File("LookingPositive/day13.json").getAbsoluteFile(), day13);
+      objectMapper.writeValue(
+          new File("LookingPositive/day14.json").getAbsoluteFile(), day14);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {
@@ -407,37 +389,36 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      today = objectMapper.readValue(streamToString("calendar/today.json"),
+      today = objectRetriever("today");
+      future = objectMapper.readValue(FileManager.streamToString("future.json"),
           ArrayListOfArrayList.class);
-      future = objectMapper.readValue(streamToString("calendar/future.json"),
+      day1 = objectMapper.readValue(FileManager.streamToString("day1.json"),
           ArrayListOfArrayList.class);
-      day1 = objectMapper.readValue(streamToString("calendar/day1.json"),
+      day2 = objectMapper.readValue(FileManager.streamToString("day2.json"),
           ArrayListOfArrayList.class);
-      day2 = objectMapper.readValue(streamToString("calendar/day2.json"),
+      day3 = objectMapper.readValue(FileManager.streamToString("day3.json"),
           ArrayListOfArrayList.class);
-      day3 = objectMapper.readValue(streamToString("calendar/day3.json"),
+      day4 = objectMapper.readValue(FileManager.streamToString("day4.json"),
           ArrayListOfArrayList.class);
-      day4 = objectMapper.readValue(streamToString("calendar/day4.json"),
+      day5 = objectMapper.readValue(FileManager.streamToString("day5.json"),
           ArrayListOfArrayList.class);
-      day5 = objectMapper.readValue(streamToString("calendar/day5.json"),
+      day6 = objectMapper.readValue(FileManager.streamToString("day6.json"),
           ArrayListOfArrayList.class);
-      day6 = objectMapper.readValue(streamToString("calendar/day6.json"),
+      day7 = objectMapper.readValue(FileManager.streamToString("day7.json"),
           ArrayListOfArrayList.class);
-      day7 = objectMapper.readValue(streamToString("calendar/day7.json"),
+      day8 = objectMapper.readValue(FileManager.streamToString("day8.json"),
           ArrayListOfArrayList.class);
-      day8 = objectMapper.readValue(streamToString("calendar/day8.json"),
+      day9 = objectMapper.readValue(FileManager.streamToString("day9.json"),
           ArrayListOfArrayList.class);
-      day9 = objectMapper.readValue(streamToString("calendar/day9.json"),
+      day10 = objectMapper.readValue(FileManager.streamToString("day10.json"),
           ArrayListOfArrayList.class);
-      day10 = objectMapper.readValue(streamToString("calendar/day10.json"),
+      day11 = objectMapper.readValue(FileManager.streamToString("day11.json"),
           ArrayListOfArrayList.class);
-      day11 = objectMapper.readValue(streamToString("calendar/day11.json"),
+      day12 = objectMapper.readValue(FileManager.streamToString("day12.json"),
           ArrayListOfArrayList.class);
-      day12 = objectMapper.readValue(streamToString("calendar/day12.json"),
+      day13 = objectMapper.readValue(FileManager.streamToString("day13.json"),
           ArrayListOfArrayList.class);
-      day13 = objectMapper.readValue(streamToString("calendar/day13.json"),
-          ArrayListOfArrayList.class);
-      day14 = objectMapper.readValue(streamToString("calendar/day14.json"),
+      day14 = objectMapper.readValue(FileManager.streamToString("day14.json"),
           ArrayListOfArrayList.class);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -447,27 +428,86 @@ public final class Calendar {
   }
 
   /**
-   * This is method.
+   * This method retrieves from the file one day's data.
    *
-   * @param path name
-   * @return str
+   * @param day the day we want to retrieve
+   * @return an ArrayListOfArrayList
    */
-  protected static String streamToString(final String path) {
-    ClassLoader cl = Thread.currentThread().getContextClassLoader();
-    StringBuffer sb = new StringBuffer();
-    try {
-      InputStream in = cl.getResourceAsStream(path);
-      // Creating a Scanner object
-      Scanner sc = new Scanner(in);
-      // Reading line by line from scanner to StringBuffer
+  private static ArrayListOfArrayList objectRetriever(final String day) {
+    ObjectMapper objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-      while (sc.hasNext()) {
-        sb.append(sc.nextLine());
-      }
-     // System.out.println(sb.toString());
+    try {
+      return objectMapper.readValue(FileManager.streamToString(day + ".json"),
+          ArrayListOfArrayList.class);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
-    return sb.toString();
+    return null;
+  }
+
+  /**
+   * Reads Events from the local directory the JSON files.
+   */
+  public static void eventReader() {
+    ObjectMapper objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    try {
+      today = objectMapper.readValue(
+          new File("LookingPositive/today.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      future = objectMapper.readValue(
+          new File("LookingPositive/future.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day1 = objectMapper.readValue(
+          new File("LookingPositive/day1.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day2 = objectMapper.readValue(
+          new File("LookingPositive/day2.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day3 = objectMapper.readValue(
+          new File("LookingPositive/day3.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day4 = objectMapper.readValue(
+          new File("LookingPositive/day4.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day5 = objectMapper.readValue(
+          new File("LookingPositive/day5.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day6 = objectMapper.readValue(
+          new File("LookingPositive/day6.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day7 = objectMapper.readValue(
+          new File("LookingPositive/day7.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day8 = objectMapper.readValue(
+          new File("LookingPositive/day8.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day9 = objectMapper.readValue(
+          new File("LookingPositive/day9.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day10 = objectMapper.readValue(
+          new File("LookingPositive/day10.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day11 = objectMapper.readValue(
+          new File("LookingPositive/day11.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day12 = objectMapper.readValue(
+          new File("LookingPositive/day12.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day13 = objectMapper.readValue(
+          new File("LookingPositive/day13.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+      day14 = objectMapper.readValue(
+          new File("LookingPositive/day14.json").getAbsoluteFile(),
+          ArrayListOfArrayList.class);
+    } catch (IOException e) {
+      System.out.println("ioexception:" + e);
+    } catch (Exception e) {
+      System.out.println("exception:" + e);
+    }
   }
 }
