@@ -170,7 +170,10 @@ public final class FileManager {
   public static void dataReader() {
     dateReader();
     Calendar.eventReader();
-    //xristou kai iasona readers
+    Geography.facilitiesRetriever();
+    Geography.casesReader();
+    Profile.profilesReader();
+    Calendar.fillingFourteenDays();
   }
 
   /**
