@@ -33,7 +33,7 @@ public class AddUserTest {
   @Test
   public void alphabetCheckTest() {
     assertEquals(AddUser.alphabetCheck("Iasonas"), true);
-    assertEquals(AddUser.alphabetCheck("Ιάσων"), true);
+    assertEquals(AddUser.alphabetCheck("Ιάσων"), false);
     assertEquals(AddUser.alphabetCheck("Anna-Maria"), true);
     assertEquals(AddUser.alphabetCheck("Anna Maria"), true);
     assertEquals(AddUser.alphabetCheck("Chr1stos"), false);
@@ -49,6 +49,7 @@ public class AddUserTest {
     assertEquals(AddUser.alphabetCheck("Chr1stos"), true);
     assertEquals(AddUser.alphabetCheck("Vassiliki66#-3."), true);
     assertEquals(AddUser.alphabetCheck("New$$Code"), true);
+    assertEquals(AddUser.alphabetCheck("Κωδικος"), false);
   }
 
 }
