@@ -48,7 +48,7 @@ public final class FileManager {
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
-    System.out.print(sb.toString());
+   // System.out.print(sb.toString());
     return sb.toString();
   }
 
@@ -169,7 +169,8 @@ public final class FileManager {
    */
   public static void dataReader() {
     dateReader();
-    // tha kalo tis alles methods gia writing
+    Calendar.eventReader();
+    //xristou kai iasona readers
   }
 
   /**
