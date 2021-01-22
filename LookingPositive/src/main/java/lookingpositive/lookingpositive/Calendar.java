@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -374,6 +376,10 @@ public final class Calendar {
           new File("LookingPositive/day13.json").getAbsoluteFile(), day13);
       objectMapper.writeValue(
           new File("LookingPositive/day14.json").getAbsoluteFile(), day14);
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {
@@ -420,6 +426,10 @@ public final class Calendar {
           ArrayListOfArrayList.class);
       day14 = objectMapper.readValue(FileManager.streamToString("day14.json"),
           ArrayListOfArrayList.class);
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {
@@ -440,6 +450,10 @@ public final class Calendar {
     try {
       return objectMapper.readValue(FileManager.streamToString(day + ".json"),
           ArrayListOfArrayList.class);
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {
@@ -504,6 +518,10 @@ public final class Calendar {
       day14 = objectMapper.readValue(
           new File("LookingPositive/day14.json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
+    } catch (JsonMappingException e) {
+      e.printStackTrace();
+    } catch (JsonGenerationException e) {
+      e.printStackTrace();
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
     } catch (Exception e) {

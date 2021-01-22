@@ -26,7 +26,6 @@ public final class NicksAndAnnasMain {
    * @param args more shit
    */
   public static void main(final String[] args) {
-    Geography.fillTables();
     ArrayListOfArrayList expectedInitializerSize = new ArrayListOfArrayList();
     System.out.println(expectedInitializerSize.giveEventListsSize());
     ArrayList<Profile> list = new ArrayList<Profile>();
@@ -37,10 +36,7 @@ public final class NicksAndAnnasMain {
     final int year = 2021;
     final int month = 2;
     final int day = 13;
-    Profile pr1 = new Profile("elisavet", "exarxopoulou", "voula", age1, false,
-        "pass1", "papadopoulos@gmail.com");
-    Profile pr2 = new Profile("maria", "exarxopoulou", "glyfada", age2, false,
-        "pass2", "papadakis@gmail.com");
+
     Event event1 = new Event(LocalDate.now(), Geography.getFacilitiesLine(0),
         list);
     Event event2 = new Event(LocalDate.of(year, month, day),

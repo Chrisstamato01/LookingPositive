@@ -24,13 +24,18 @@ public class CalendarTest {
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
     Calendar.fillingFourteenDays();
-    new Profile("Άννα-Μαρία", "Πέτρου", "Γλυφάδα", AGE, false, "annamariacode1",
-        "annamariapetrouu@gmail.com");
-    new Profile("Χρήστος", "Σταματόπουλος", "Γλυφάδα", AGE, false,
+    final int year = 2001;
+    final int month = 02;
+    final int day = 04;
+
+    final LocalDate date = LocalDate.of(year, month, day);
+    new Profile("Άννα-Μαρία", "Πέτρου", "Γλυφάδα", date, false,
+        "annamariacode1", "annamariapetrouu@gmail.com");
+    new Profile("Χρήστος", "Σταματόπουλος", "Γλυφάδα", date, false,
         "chriscode22", "chrisstamatopoulos@gmail.com");
-    new Profile("Ιάσων-Χαράλαμπος", "Γιαννίτσας", "Βάρη-Βούλα-Βουλιαγμένη", AGE,
-        false, "jasoncode25", "jasongiann@gmail.gr");
-    new Profile("Νικόλας", "Γιαννάτος", "Γλυφάδα", AGE, false, "nikolascode34",
+    new Profile("Ιάσων-Χαράλαμπος", "Γιαννίτσας", "Βάρη-Βούλα-Βουλιαγμένη",
+        date, false, "jasoncode25", "jasongiann@gmail.gr");
+    new Profile("Νικόλας", "Γιαννάτος", "Γλυφάδα", date, false, "nikolascode34",
         "nikgiann@gmail.com");
     new Geography("Σούπερ Μάρκετ", "ΑΒ Βασιλοπουλος", "3Β");
   }

@@ -5,6 +5,8 @@ package lookingpositive.lookingpositive;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,8 +20,12 @@ public class SignInUpTest {
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
     Calendar.fillingFourteenDays();
-    final int nineteen = 19;
-    new Profile("Anna-Maria", "Petrou", "1", nineteen, false,
+    final int year = 2001;
+    final int month = 02;
+    final int day = 04;
+
+    final LocalDate date = LocalDate.of(year, month, day);
+    new Profile("Anna-Maria", "Petrou", "1", date, false,
         "111122223", "anna.maria@gmail.com");
   }
 /**
