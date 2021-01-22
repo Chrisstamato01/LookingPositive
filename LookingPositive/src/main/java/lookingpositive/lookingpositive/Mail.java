@@ -44,12 +44,13 @@ public final class Mail {
   /**
    * E-mail subject.
    */
-  private static final String EMAIL_SUBJECT = " Επείγον μήνυμα ";
+  private static final String EMAIL_SUBJECT = "Urgent Message";
   /**
    * E-mail body.
    */
-  private static final String EMAIL_BODY = " Έχετε έρθει σε επαφή με "
-      + "επιβεβαιωμένο κρούσμα. Μείνετε προληπτικά σπίτι ";
+  private static final String EMAIL_BODY = "You have contacted"
+      + "a verified Covid case."
+      + "Stay home precautionarily ";
 
   /**
    * this method sends E-mails.
@@ -90,9 +91,9 @@ public final class Mail {
       }
       msg.addRecipients(Message.RecipientType.BCC, mailAddressTo);
       mailAddressTo = new InternetAddress[mailAddressTo.length];
-      System.out.println("Παρακαλώ περιμένετε");
+      System.out.println("Please wait...");
       Transport.send(msg);
-      System.out.println("Ευχαριστούμε για την ενημέρωση");
+      System.out.println("Thanks for the update!");
     } catch (SendFailedException mex) {
       mex.printStackTrace();
     } catch (Exception mex) {

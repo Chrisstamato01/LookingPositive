@@ -45,9 +45,8 @@ public final class Health {
    * @param userID current userID
    */
   public static void chooseOperation(final int userID) {
-    System.out.println(
-        " Αν θέλετε να ενημερώσετε την κατάσταση υγεία σας, πιέστε 1 ");
-    System.out.println(" Αν είστε θετικός στο Κορωνοϊό, πιέστε 2 ");
+    System.out.println("If you want to update your health status, press 1");
+    System.out.println("If you have Coronavirus, press 2 ");
     Scanner sc = new Scanner(System.in);
     int answer = 0;
     while (answer != 1 && answer != 2) {
@@ -55,14 +54,14 @@ public final class Health {
         answer = sc.nextInt();
       } catch (InputMismatchException ex) {
         sc.next();
-        System.out.println("Μη έγκυρη τιμή");
+        System.out.println("Invalid value");
       } catch (Exception e) {
         System.out.println(e);
         sc.next();
       }
 
       if (answer != 1 && answer != 2) {
-        System.out.println("Εισάγετε επιλογή [1-2]");
+        System.out.println("Enter an option [1-2]");
       }
     }
     if (answer == 2) {
@@ -77,7 +76,7 @@ public final class Health {
    * this method records symptoms.
    */
   public static void areYouOk() {
-    System.out.println(" Νιώθετε καλά σήμερα ;(ΝΑΙ/ΟΧΙ) ");
+    System.out.println("Do you feel good today? (YES/NO)");
     Scanner sc = new Scanner(System.in);
     String answer = null;
     boolean flag = true;
@@ -87,23 +86,22 @@ public final class Health {
         flag = false;
       } catch (Exception e) {
         flag = true;
-        System.out.println("Εισάγετε (ΝΑΙ/ΟΧΙ) ");
+        System.out.println("Enter (YES/NO)");
       }
     }
-    if (answer.equalsIgnoreCase("ΟΧΙ")) {
+    if (answer.equalsIgnoreCase("NO")) {
       flag = false;
       int countsymptoma = 0;
       while (!flag) {
-        System.out.println("Άν έχετε πυρετό πατήστε 1");
-        System.out.println("Άν έχετε βήχα πατήστε 2");
-        System.out.println("Άν αισθάνεστε κόπωση πατήστε 3");
-        System.out.println("Άν έχετε απώλεια γεύσης πατήστε 4");
-        System.out.println("Άν έχετε απώλεια όσφρισης πατήστε 5");
-        System.out.println("Άν έχετε λαιμόπονο πατήστε 6");
-        System.out.println("Άν έχετε πονοκέφαλο πατήστε 7");
-        System.out.println("Άν έχετε δύσποια πατήστε 8");
-        System.out.println(
-            "Άν δεν επιθυμείτε να προσθέσετε κάποιο σύμπτωμα πατήστε 0");
+        System.out.println("If you have a fever, press 1 ");
+        System.out.println("If you have a cough, press 2");
+        System.out.println("If you feel tired, press 3");
+        System.out.println("If you have a loss of taste, press 4");
+        System.out.println("If you have a loss of smell, press 5");
+        System.out.println("If you have a sore throat, press 6");
+        System.out.println("If you have a headache, press 7");
+        System.out.println("If you have dyspnea, press 8");
+        System.out.println("If you do not want to add a symptom, press 0");
         int choice = -1;
         while (choice < 0 || choice > EIGHT) {
           try {
@@ -111,13 +109,13 @@ public final class Health {
 
           } catch (InputMismatchException ex) {
             sc.next();
-            System.out.println("Μη έγκυρη τιμή");
+            System.out.println("Invalid value");
           } catch (Exception ex) {
             System.out.println(ex);
             sc.next();
           }
           if (choice < 0 || choice > EIGHT) {
-            System.out.println("Εισάγετε επιλογή [0-8]");
+            System.out.println("Enter an option [0-8]");
           }
 
         }
@@ -126,11 +124,11 @@ public final class Health {
           flag = true;
           break;
         case 1:
-          countsymptoma = countsymptoma + 2; // Σε κάποια συμπτώματα
-                                             // προστίθονται δύο γιατι
-                                             // θεωρείται
-                                             // οτι
-                                             // έχουν μεγαλύτερη βαρύτητα
+          countsymptoma = countsymptoma + 2; // Some symptoms are
+                                             // increase by two
+                                             // because they are
+                                             // considered to
+                                             // have greater weight
           break;
         case 2:
           countsymptoma = countsymptoma + 2;
@@ -156,19 +154,19 @@ public final class Health {
         default:
           break;
         }
-        // ΝΑ ΞΑΝΑ ΕΛΕΓΞΟΥΜΕ ΤΗ SWITCH
       }
       if (countsymptoma == 0) {
-        System.out.println("Δεν υπάρχει λόγος ανησυχίας");
+        System.out.println("There is no reason to worry.");
       } else if (countsymptoma < THREE) {
-        System.out.println("Παρακαλώ επικοινωνίστε με τον γιατρό σας και "
-            + "μέινετε προληπτικά σπιτι και να είστε σε επιφυλακή");
+        System.out.println(
+            "Please contact your doctor and stay at home as a precaution.");
       } else {
-        System.out.println("Παρακαλώ επικοινωνίστε το συντομότερο με το "
-            + "γιατρό σας, πιθανως να εχετε Covid-19");
+        System.out.println(
+            "Please contact your doctor as soon as possible,"
+            + " you may have Covid-19.");
       }
     } else {
-      System.out.println("Τέλεια! Να έχετε μια καλή μέρα και να προσέχετε!");
+      System.out.println("Perfect! Have a nice day and be careful!");
     }
   }
 }
