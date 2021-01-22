@@ -23,10 +23,6 @@ public final class Information {
    * Case 6.
    */
   private static final int CASE_SIX = 6;
-  /**
-   * Case 7.
-   */
-  private static final int CASE_SEVEN = 7;
 
   /**
    * Information default constructor.
@@ -41,94 +37,91 @@ public final class Information {
   public static void infoMenu() {
 
     Scanner sc = new Scanner(System.in);
-      int g = 0;
-      while (g != -1) {
-        System.out.println("Πιθανές ερωτήσεις:");
-        System.out.println("1.Τι είναι covid; \r\n" + "2.Μέτρα προστασίας\r\n"
-            + "3.Πληροφορίες 13033 σε περίπτωη lockdown \r\n"
-            + "4.Σωστή χρήση μάσκας [Ποιές μάσκες επιτρέπονται]\r\n"
-            + "5.Πρόστιμα\r\n" + "6.Πίσω");
-        System.out.println("Επιλέξτε μια ερώτηση μέ βάση τον αριθμό:");
-        g = sc.nextInt();
+    int g = 0;
+    while (g != -1) {
+      System.out.println("FAQs: ");
+      System.out.println("1.What is Covid? \r\n" + "2.Safety measures\r\n"
+          + "3.Info 13033 in case of lockdown \r\n"
+          + "4.Mask's right usage [Which masks are allowed?]\r\n"
+          + "5.Fines\r\n" + "6.Back");
+      System.out.println("Chose a question corresponding to a number(1-6).:");
+      g = sc.nextInt();
 
-        switch (g) {
-        case 1:
-          System.out.println(
-              "Η ασθένεια κορωνοϊού 2019 (Corona virus disease 2019, COVID-19),"
-                  + " επίσης γνωστή ως οξεία αναπνευστική νόσος 2019-nCoV, "
-                  + "είναι μία μολυσματική ασθένεια που προκαλείται"
-                  + " από τον κορωνοϊό SARS-CoV-2. "
-                  + "Ο ιός και η ασθένεια που εντοπίστηκε για πρώτη φορά "
-                  + "στην πόλη Γουχάν της Κίνας στα τέλη του 2019.");
-          break;
-        case 2:
-          System.out.println(
-              "Τα μέτρα προστασίας είναι:\r\n"
-                  + "1.Αποφυγή επαφής με ασθενείς με συμπτώματα του ιου.\r\n"
-                  + "2.Τήρηση ατομικών μέτρων υγείας, "
-                  + "όπως είναι το πλύσιμο χεριών, "
-                  + "και η αποφυγή χειραψίας και επαφης των χεριών με το "
-                  + "στόμα και την μύτη.\r\n"
-                  + "3.Εαν εμφανιστούν συμπτώματα κορονοιου αποφυγετε "
-                  + "την επαφη με αλλα ατομα και καντε το τεστ.");
-          break;
-        case CASE_THREE:
-          System.out.println(
-              "Μπορείτε να στείλετε από το κινητό σας μήνυμα SMS στον αριθμό "
-                  + "13033 " + "χωρίς χρέωση \r\n"
-                  + "Το SMS πρέπει να είναι της μορφής:\r\n"
-                  + "X [κενό] ονοματεπώνυμο και διεύθυνση κατοικίας\r\n"
-                  + "όπου Χ ο λόγος εξόδου με τον αριθμό 1, 2, 3, 4, 5, 6 που "
-                  + "αντιστοιχεί στις παρακάτω αιτιολογίες:\r\n"
-                  + "όπου Χ ο λόγος εξόδου με τον αριθμό 1, 2, 3, 4, 5, 6 που "
-                  + "αντιστοιχεί στις παρακάτω αιτιολογίες:\r\n"
-                  + "1.Μετάβαση σε φαρμακείο ή επίσκεψη στον γιατρό, "
-                  + "εφόσον αυτό συνιστάται μετά από σχετική επικοινωνία.\r\n"
-                  + "2.Μετάβαση σε εν λειτουργία κατάστημα προμηθειών αγαθών "
-                  + "πρώτης ανάγκης (σούπερ μάρκετ, μίνι μάρκετ), "
-                  + "όπου δεν είναι δυνατή η αποστολή τους.\r\n"
-                  + "3.Μετάβαση στην τράπεζα, στο μέτρο που "
-                  + "δεν είναι δυνατή η ηλεκτρονική συναλλαγή.\r\n"
-                  + "4.Κίνηση για παροχή βοήθειας σε ανθρώπους που "
-                  + "βρίσκονται σε ανάγκη ή συνοδεία ανηλίκων"
-                  + " μαθητών από/προς το σχολείο.\r\n"
-                  + "5.Μετάβαση σε τελετή κηδείας υπό τους όρους που προβλέπει "
-                  + "ο νόμος ή μετάβαση διαζευγμένων"
-                  + " γονέων ή γονέων που τελούν "
-                  + "σε διάσταση που είναι αναγκαία για τη διασφάλιση της "
-                  + "επικοινωνίας γονέων και τέκνων, σύμφωνα με τις "
-                  + "κείμενες διατάξεις.\r\n"
-                  + "6.Σωματική άσκηση σε εξωτερικό"
-                  + " χώρο ή κίνηση με κατοικίδιο "
-                  + "ζώο, ατομικά ή ανά δύο άτομα,"
-                  + " τηρώντας στην τελευταία αυτή "
-                  + "περίπτωση την αναγκαία απόσταση 1,5 μέτρου.\r\n"
-                  + "Θα λαμβάνετε ως απάντηση:\r\n"
-                  + "Μετακίνηση [κενό] X [κενό] ονοματεπώνυμο "
-                  + "και διεύθυνση κατοικίας");
-          break;
-        case CASE_FOUR:
-          System.out.println(
-              "Οι μάσκες που επιτρέπονται είναι οι χειρουργικές, οι "
-              + "εγκεκρυμένες "
-              + "μη χειρουργικές και οι υψηλής προστασίας."
-              + "Η μάσκα πρέπει να χρησιμοποιείται σε όλους τους κλειστούς "
-              + "χώρους και σε χώρους υψηλού συνοστισμού "
-              + "(π.χ. στάσεις λεωφορείων)"
-              + "Η μάσκα πρέπει να καλύπτει το στόμα"
-              + " και τη μύτη σε κάθε περίπτωση.");
-          break;
-        case CASE_FIVE:
-          System.out.println("Το προστιμο για τη μη χρηση μασκας καθως και για "
-              + "την κυκλοφορια εκτος κανονων ανερχεται στα 300 ευρω");
-          break;
-        case CASE_SIX:
-          g = -1;
-          break;
-        default:
-          System.out.println("Μη έγκυρη επιλογή. Προσπαθήστε ξανά.");
-          break;
-        }
+      switch (g) {
+      case 1:
+        System.out.println(
+            "The disease of coronavirus 2019 "
+                + "(Corona virus disease 2019, COVID-19),"
+                + " also known as accute respiratory disease 2019-nCoV, "
+                + "is an infactory disease that is caused"
+                + " by coronavirus SARS-CoV-2. "
+                + "The virus first appeared in Wuhan,"
+                + " China in the end of 2019.");
+        break;
+      case 2:
+        System.out
+            .println("How to keep yourself safe:\r\n"
+                + "1.Avoid contact with patients that"
+                + " show symptoms of the virus.\r\n"
+                + "2.Obey the personal health measures, "
+                + "such as washing you hands, "
+                + "avoid handshakes and touching your face with your hands.\r\n"
+                + "3.In case you show symptoms of the virus, avoid "
+                + "contact with other people and take the test.");
+        break;
+      case CASE_THREE:
+        System.out.println(
+            "You can send a text SMS to the number "
+                + "13033 " + "charge free \r\n"
+                + "The SMS must be of format:\r\n"
+                + "X [Space] fullname and residence adress \r\n"
+                + "where X indicates the reason of exit with "
+                + "the number 1, 2, 3, 4, 5, 6 that "
+                + "corresponds to the reaons below:\r\n"
+                + "where Χ indicates the reason "
+                + "of exit with 1, 2, 3, 4, 5, 6 that "
+                + "corresponds to the reaons below:\r\n"
+                + "1.Transition to a pharmacy or visit to a doctor, "
+                + "after having booked an appointment.\r\n"
+                + "2.Transition to a store for first need goods "
+                + "(σούπερ μάρκετ, μίνι μάρκετ), "
+                + "where delivery is not applicable.\r\n"
+                + "3.Transition to a bank, in case that "
+                + "online transaction is not supported.\r\n"
+                + "4.Transition to help people in need or "
+                + "escort underage students to/from school.\r\n"
+                + "5.Transition to a funeral under "
+                + "the terms that the law states "
+                + "or transition of separated parents"
+                + " that is mantatory to ensure "
+                + "communication between them and their children"
+                + "according to existing provisions.\r\n "
+                + "6.Physical exercise outdoors or walking"
+                + " a pet alone or with a second "
+                + "person, abbiding by the safety distance of 1,5 meter.\r\n"
+                + "You will receive the response:\r\n"
+                + "Transition [Space] X [Space] fullname "
+                + "home adress");
+        break;
+      case CASE_FOUR:
+        System.out
+            .println("Allowed masks are the surgical, the "
+                + "approved non surgical and the high protection masks."
+                + "Masks should be used in every indoor space"
+                + "and in crowdedn places(ex. bus stops)"
+                + "The mask should cover your mouth and nose in every case.");
+        break;
+      case CASE_FIVE:
+        System.out.println("The fine for not using a mask as well as not "
+            + "following the transition rules comes to 300 euros.");
+        break;
+      case CASE_SIX:
+        g = -1;
+        break;
+      default:
+        System.out.println("Invalid selection. Try again.");
+        break;
       }
+    }
   }
 }

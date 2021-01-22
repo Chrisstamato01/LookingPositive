@@ -25,18 +25,18 @@ public final class SignInUp {
     boolean flag = true;
 
     while (flag) {
-      System.out.println("Εισάγετε email ή Για εγγραφή εισάγετε 1");
+      System.out.println("Enter email or to Sign Up enter 1.");
       email = scanner.nextLine();
       if (email.equals("1")) {
         AddUser.add();
-        System.out.println("Εισάγετε τα στοιχεία με τα οποία εγγραφήκατε.");
+        System.out.println("Enter the data with which you signed up.");
       } else {
-      System.out.println("Εισάγετε κωδικό");
+      System.out.println("Enter password.");
       password = scanner.nextLine();
       checkUser(email, password);
       if (checkUser(email, password) == -1) {
         System.out
-            .println("Τα στοιχεία σας δεν αντιστοιχούν σε κάποιο χρήστη.");
+            .println("Your data do not correspond to a user.");
       } else {
         flag = false;
       }
