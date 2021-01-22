@@ -31,8 +31,8 @@ public final class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays
-  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays =
+      new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -391,50 +391,23 @@ public final class Calendar {
    * Retrieves Events from JSON file.
    */
   public static void eventRetriever() {
-    ObjectMapper objectMapper = new ObjectMapper()
-        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    try {
-      today = objectRetriever("today");
-      future = objectMapper.readValue(FileManager.streamToString("future.json"),
-          ArrayListOfArrayList.class);
-      day1 = objectMapper.readValue(FileManager.streamToString("day1.json"),
-          ArrayListOfArrayList.class);
-      day2 = objectMapper.readValue(FileManager.streamToString("day2.json"),
-          ArrayListOfArrayList.class);
-      day3 = objectMapper.readValue(FileManager.streamToString("day3.json"),
-          ArrayListOfArrayList.class);
-      day4 = objectMapper.readValue(FileManager.streamToString("day4.json"),
-          ArrayListOfArrayList.class);
-      day5 = objectMapper.readValue(FileManager.streamToString("day5.json"),
-          ArrayListOfArrayList.class);
-      day6 = objectMapper.readValue(FileManager.streamToString("day6.json"),
-          ArrayListOfArrayList.class);
-      day7 = objectMapper.readValue(FileManager.streamToString("day7.json"),
-          ArrayListOfArrayList.class);
-      day8 = objectMapper.readValue(FileManager.streamToString("day8.json"),
-          ArrayListOfArrayList.class);
-      day9 = objectMapper.readValue(FileManager.streamToString("day9.json"),
-          ArrayListOfArrayList.class);
-      day10 = objectMapper.readValue(FileManager.streamToString("day10.json"),
-          ArrayListOfArrayList.class);
-      day11 = objectMapper.readValue(FileManager.streamToString("day11.json"),
-          ArrayListOfArrayList.class);
-      day12 = objectMapper.readValue(FileManager.streamToString("day12.json"),
-          ArrayListOfArrayList.class);
-      day13 = objectMapper.readValue(FileManager.streamToString("day13.json"),
-          ArrayListOfArrayList.class);
-      day14 = objectMapper.readValue(FileManager.streamToString("day14.json"),
-          ArrayListOfArrayList.class);
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
+    today = objectRetriever("today");
+    future = objectRetriever("future");
+    day1 = objectRetriever("day1");
+    day2 = objectRetriever("day2");
+    day3 = objectRetriever("day3");
+    day4 = objectRetriever("day4");
+    day5 = objectRetriever("day5");
+    day6 = objectRetriever("day6");
+    day7 = objectRetriever("day7");
+    day8 = objectRetriever("day8");
+    day9 = objectRetriever("day9");
+    day10 = objectRetriever("day10");
+    day11 = objectRetriever("day11");
+    day12 = objectRetriever("day12");
+    day13 = objectRetriever("day13");
+    day14 = objectRetriever("day14");
   }
 
   /**

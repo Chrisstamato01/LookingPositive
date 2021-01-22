@@ -111,7 +111,7 @@ public final class Operations {
       case choiceSix:
         execution = false;
         FileManager.dataSaver();
-        System.out.println("Το πρόγραμμα τερματίστηκε επιτυχώς.");
+        System.out.println("The program terminated succesfuly.");
         break;
       default:
       }
@@ -138,7 +138,7 @@ public final class Operations {
         choice = sc.nextInt();
 
       } catch (InputMismatchException e) {
-        System.out.println("Εισάγετε έναν ακέραιο αριθμό.");
+        System.out.println("Enter an integer.");
         choice = 0;
       } catch (Exception e) {
         choice = 0;
@@ -146,7 +146,7 @@ public final class Operations {
       }
 
       if (choice < smallerChoice || choice > biggerChoice) {
-        System.out.println("Εισάγετε επιλογή [1-6]");
+        System.out.println("Choose a number between [1-6].");
       }
       sc.nextLine();
     }
@@ -158,10 +158,10 @@ public final class Operations {
    * This method prints the choices the user has.
    */
   private static void menu() {
-    System.out.println("------------Μενού Επιλογών------------ \n"
-        + "1. Γεγονότα \n" + "2. Υγεία \n" + "3. Γεωγραφική περιγραφή \n"
-        + "4. Πληροφορίες για τον ιό \n" + "5. Ρυθμίσεις \n" + "6. Έξοδος \n"
-        + "Εισάγετε επιλογή [1-6]");
+    System.out.println("------------ Menu ------------ \n" + "1. Events \n"
+        + "2. Health \n" + "3. Epidimiological Status \n"
+        + "4. Informations about Covid-Sars-19 \n" + "5. Settings \n"
+        + "6. Exit \n" + "Choose a number between [1-6].");
 
   }
 
