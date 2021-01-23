@@ -1,5 +1,6 @@
 package lookingpositive.lookingpositive;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -36,7 +37,6 @@ public final class Information {
    */
   public static void infoMenu() {
 
-    Scanner sc = new Scanner(System.in);
     int g = 0;
     while (g != -1) {
       System.out.println("FAQs: ");
@@ -45,7 +45,7 @@ public final class Information {
           + "4.Mask's right usage [Which masks are allowed?]\r\n"
           + "5.Fines\r\n" + "6.Back");
       System.out.println("Chose a question corresponding to a number(1-6).:");
-      g = sc.nextInt();
+      g = menuChoice();
 
       switch (g) {
       case 1:
@@ -123,5 +123,39 @@ public final class Information {
         break;
       }
     }
+  }
+
+  /**
+   * This method handles user's input.
+   *
+   * @return an integer which is the user's choice
+   */
+  private static int menuChoice() {
+
+    Scanner sc = new Scanner(System.in);
+    int choice = 0;
+    final int smallerChoice = 1;
+    final int biggerChoice = 6;
+    while (choice < smallerChoice || choice > biggerChoice) {
+
+      try {
+
+        choice = sc.nextInt();
+
+      } catch (InputMismatchException e) {
+        System.out.println("Enter an integer.");
+        choice = 0;
+      } catch (Exception e) {
+        choice = 0;
+        System.out.println(e);
+      }
+
+      if (choice < smallerChoice || choice > biggerChoice) {
+        System.out.println("Choose a number between [1-6].");
+      }
+      sc.nextLine();
+    }
+
+    return choice;
   }
 }

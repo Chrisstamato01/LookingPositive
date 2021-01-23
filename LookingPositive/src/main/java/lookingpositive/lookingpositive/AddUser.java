@@ -35,13 +35,22 @@ public final class AddUser {
    * @param id is the user's id
    */
   public static void change(final int id) {
+    int choice = 0;
     Scanner sc = new Scanner(System.in);
     boolean flag = false;
     System.out.println("Would you like to change your email or password? \n"
         + "1. Email \n"
         + "2. Password");
     while (!flag) {
-      int choice = sc.nextInt();
+      try {
+        choice = sc.nextInt();
+      } catch (InputMismatchException e) {
+        System.out.println("Enter an integer.");
+        choice = 0;
+      } catch (Exception e) {
+        choice = 0;
+        System.out.println(e);
+      }
       if (choice == 1) {
         changeEmail(id, sc);
         flag = true;
@@ -52,6 +61,7 @@ public final class AddUser {
         System.out.println("Insert valid number:\n"
             + "[1] for email ή [2] for password.");
       }
+      sc.nextLine();
     }
   }
 
