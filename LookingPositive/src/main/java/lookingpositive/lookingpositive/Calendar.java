@@ -160,7 +160,7 @@ public final class Calendar {
     } else {
       future.addEventToUsersList(userId, ev);
     }
-    return "Καταχωρήθηκε η εκδήλωση σας " + ev;
+    return "Your event has been registered." + ev;
   }
 
   /**
