@@ -49,6 +49,7 @@ public final class AddDelEvents {
       } catch (Exception e) {
         System.err.println(e);
       }
+      sc.next();
     }
     switch (choice) {
     case firstCase:
