@@ -124,7 +124,7 @@ public final class AddDelEvents {
   private static ArrayList<Profile> profileListInput() {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> contactedPeople = new ArrayList<Profile>();
-    System.out.println("Will you meet up with other people during (ΝΑΙ/ΟΧΙ).");
+    System.out.println("Will you meet up with other people during (Y/N).");
     boolean flag = true;
     String answer = null;
     while (flag) {
@@ -135,23 +135,23 @@ public final class AddDelEvents {
         flag = false;
       }
     }
-    if (answer.equalsIgnoreCase("ΝΑΙ")) {
-      System.out.println("Εισάγεται τα άτομα με τα οποία θα συναντηθείτε.");
-      String innerAnswer = "ΝΑΙ";
-      while (innerAnswer.equalsIgnoreCase("ΝΑΙ")) {
-        System.out.println("Εισάγεται το όνομα του ατόμου.");
+    if (answer.equalsIgnoreCase("Y")) {
+      System.out.println("Enter the people you will meet.");
+      String innerAnswer = "Y";
+      while (innerAnswer.equalsIgnoreCase("Y")) {
+        System.out.println("Enter the person's first name.");
         String firstName = sc.nextLine();
-        System.out.println("Εισάγεται το επίθετο του ατόμου.");
+        System.out.println("Enter the person's last name.");
         String lastName = sc.nextLine();
         contactedPeople.add(addContactedPeople(firstName, lastName));
-        System.out.println("Θα συναντηθείτε και με άλλα άτομα ; (ΝΑΙ/ΟΧΙ) ");
+        System.out.println("Will you meet other people ; (Y/N) ");
         flag = true;
         while (flag) {
           innerAnswer = sc.nextLine();
-          if (!(innerAnswer.equalsIgnoreCase("ΝΑΙ")
-              || innerAnswer.equalsIgnoreCase("ΟΧΙ"))) {
-            System.out.println("Τα δεδομένα που εισάγατε δεν είναι σωστά."
-                + " Eπιλέξτε ΝΑΙ / ΟΧΙ ");
+          if (!(innerAnswer.equalsIgnoreCase("Y")
+              || innerAnswer.equalsIgnoreCase("N"))) {
+            System.out.println("Your input is not valid."
+                + " Chosese Y or N ");
           } else {
             flag = false;
           }
