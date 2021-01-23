@@ -83,7 +83,11 @@ public final class Health {
     while (flag) {
       try {
         answer = sc.next();
+        if (answer.equalsIgnoreCase("NO") || answer.equalsIgnoreCase("YES")) {
         flag = false;
+        } else {
+          System.out.println("Enter (YES/NO)");
+        }
       } catch (Exception e) {
         flag = true;
         System.out.println("Enter (YES/NO)");
