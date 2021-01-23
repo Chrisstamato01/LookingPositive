@@ -31,8 +31,8 @@ public final class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays
-  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays =
+      new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -175,42 +175,27 @@ public final class Calendar {
     long differenceOfDays = oldDate.until(newDate, ChronoUnit.DAYS);
     LocalDate replicaOldDate;
 
-    // System.out.println(differenceOfDays);
     // ΔΗΜΙΟΘΡΓΙΑ ΒΡΟΓΧΟΥ ΓΙΑ ΤΗΝ ΔΙΑΧΕΙΡΗΣΗ ΔΕΔΟΜΕΝΩΝ ΠΟΥ ΑΠΕΧΟΥΝ ΠΟΛΛΕΣ ΜΕΡΕΣ
     // ΜΕΤΑΞΥ ΤΟΥΣ
     for (int counter = 0; counter < differenceOfDays; counter++) {
 
       // ΣΕ ΠΕΡΙΠΤΩΣΗ ΠΟΥ Ο ΧΡΗΣΤΗΣ ΜΠΑΙΝΕΙ ΚΑΘΕ ΜΕΡΑ
-      // System.out.println(counter);
+
       rearrangingFourteenDays();
 
-      // System.out.println("Beginfourteen cell[0]");
-      // fourteenDays[0].printCheck();
-      // System.out.println("ENDfourteen cell[0]");
       // ΔΙΑΓΡΑΦΗ ΤΟΥ ΠΕΡΙΕΧΟΜΕΝΟΥ ΤΟΥ TODAY
       today.deleteAllEvents();
 
-      // System.out.println("Begintoday");
-      // today.printCheck();
-      // System.out.println("ENDtoday");
       // ΔΙΑΧΕΙΡΗΣΕΙ ΤΩΝ ΗΜΕΡΟΜΙΝΙΩΝ ΜΕΣΩ ΤΟΥ REPLICAOLDDATE
       replicaOldDate = oldDate.plusDays(counter + 1);
-      // System.out.println(replicaOldDate);
 
       // ΓΕΜΙΣΜΑ ΤΟΥ TODAY ΜΕ ΤΑ ΑΝΑΝΕΟΜΕΝΑ ΣΤΟΙΧΕΙΑ ΤΗΣ ΕΠΟΜΕΝΗΣ
       // ΜΕΡΑΣ ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ
       // ΣΤΟΝ FUTURE
-      // System.out.println("filling today");
       updatingToday(replicaOldDate);
-      // System.out.println("end filling today");
       // ΔΙΑΓΡΑΦΗ ΤΩΝ ΣΤΟΙΧΕΙΩΝ ΠΟΥ ΜΠΗΚΑΝ ΣΤΟΝ TODAY ΑΡΑ Η ΗΜΕΡΟΜΗΝΙΑ ΤΟΥΣ ΔΕΝ
       // ΑΝΟΙΚΕΙ ΠΛΕΟΝ ΣΤΟ ΜΕΛΛΟΝ
-      // System.out.println("removing future of day");
       clearingFutureFromTodaysEvents(replicaOldDate);
-
-      // System.out.println("Afterrefilltoday");
-      // today.printcheck();
-      // System.out.println("Afterrefilltoday");
 
     }
   }
@@ -340,49 +325,38 @@ public final class Calendar {
    * Saves Events to JSON file.
    */
   public static void eventSaver() {
+    objectSaver("today", today);
+    objectSaver("future", future);
+    objectSaver("day1", day1);
+    objectSaver("day2", day2);
+    objectSaver("day3", day3);
+    objectSaver("day4", day4);
+    objectSaver("day5", day5);
+    objectSaver("day6", day6);
+    objectSaver("day7", day7);
+    objectSaver("day8", day8);
+    objectSaver("day9", day9);
+    objectSaver("day10", day10);
+    objectSaver("day11", day11);
+    objectSaver("day12", day12);
+    objectSaver("day13", day13);
+    objectSaver("day14", day14);
+  }
+
+/**
+ * This method saves the new data to the local file for each date.
+ * @param day the day we want to save
+ * @param days the day we want to save
+ */
+  private static void objectSaver(final String day,
+      final ArrayListOfArrayList days) {
     ObjectMapper objectMapper = new ObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
       objectMapper.writeValue(
-          new File("LookingPositiveAppData/today.json").getAbsoluteFile(),
-          today);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/future.json").getAbsoluteFile(),
-          future);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day1.json").getAbsoluteFile(), day1);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day2.json").getAbsoluteFile(), day2);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day3.json").getAbsoluteFile(), day3);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day4.json").getAbsoluteFile(), day4);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day5.json").getAbsoluteFile(), day5);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day6.json").getAbsoluteFile(), day6);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day7.json").getAbsoluteFile(), day7);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day8.json").getAbsoluteFile(), day8);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day9.json").getAbsoluteFile(), day9);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day10.json").getAbsoluteFile(),
-          day10);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day11.json").getAbsoluteFile(),
-          day11);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day12.json").getAbsoluteFile(),
-          day12);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day13.json").getAbsoluteFile(),
-          day13);
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/day14.json").getAbsoluteFile(),
-          day14);
+          new File("LookingPositiveAppData/" + day + ".json").getAbsoluteFile(),
+          days);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -446,57 +420,37 @@ public final class Calendar {
    * Reads Events from the local directory the JSON files.
    */
   public static void eventReader() {
+    today = objectReader("today");
+    future = objectReader("future");
+    day1 = objectReader("day1");
+    day2 = objectReader("day2");
+    day3 = objectReader("day3");
+    day4 = objectReader("day4");
+    day5 = objectReader("day5");
+    day6 = objectReader("day6");
+    day7 = objectReader("day7");
+    day8 = objectReader("day8");
+    day9 = objectReader("day9");
+    day10 = objectReader("day10");
+    day11 = objectReader("day11");
+    day12 = objectReader("day12");
+    day13 = objectReader("day13");
+    day14 = objectReader("day14");
+  }
+
+  /**
+   * This method reads from the local file one day's data.
+   *
+   * @param day the day we want to read
+   * @return an ArrayListOfArrayList
+   */
+  private static ArrayListOfArrayList objectReader(final String day) {
     ObjectMapper objectMapper = new ObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      today = objectMapper.readValue(
-          new File("LookingPositiveAppData/today.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      future = objectMapper.readValue(
-          new File("LookingPositiveAppData/future.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day1 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day1.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day2 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day2.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day3 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day3.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day4 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day4.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day5 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day5.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day6 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day6.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day7 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day7.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day8 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day8.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day9 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day9.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day10 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day10.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day11 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day11.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day12 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day12.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day13 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day13.json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
-      day14 = objectMapper.readValue(
-          new File("LookingPositiveAppData/day14.json").getAbsoluteFile(),
+      return objectMapper.readValue(
+          new File("LookingPositiveAppData/" + day + ".json").getAbsoluteFile(),
           ArrayListOfArrayList.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
@@ -507,5 +461,6 @@ public final class Calendar {
     } catch (Exception e) {
       System.out.println("exception:" + e);
     }
+    return null;
   }
 }
