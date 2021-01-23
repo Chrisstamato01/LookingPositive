@@ -49,7 +49,7 @@ public final class AddDelEvents {
       } catch (Exception e) {
         System.err.println(e);
       }
-      sc.next();
+      sc.nextLine();
     }
     switch (choice) {
     case firstCase:
@@ -99,8 +99,8 @@ public final class AddDelEvents {
         LocalDate now = LocalDate.now();
         if (now.until(date, ChronoUnit.DAYS) < 0) {
           flag = true;
-          System.out.println(
-              "Your date input is past date." + " Please enter a future date.");
+          System.out.println("Your date input belongs to the past."
+              + " Please enter future's or today's date.");
         }
       } catch (DateTimeParseException e) {
         System.out.println("Enter a date with the proper pattern (dd/MM/yyyy) "
@@ -151,8 +151,7 @@ public final class AddDelEvents {
           innerAnswer = sc.nextLine();
           if (!(innerAnswer.equalsIgnoreCase("Y")
               || innerAnswer.equalsIgnoreCase("N"))) {
-            System.out.println("Your input is not valid."
-                + " Chosese Y or N ");
+            System.out.println("Your input is not valid." + " Chosese Y or N ");
           } else {
             flag = false;
           }
@@ -339,24 +338,24 @@ public final class AddDelEvents {
         .println("Enter the number of the facility" + "you want to visit. ");
     boolean flag = true;
     int choice = -1;
+    final int outOfBounds = 1;
     while (flag) {
       try {
         choice = scanner.nextInt();
 
-        if (choice > Geography.getFacilitiesSize()) {
+        if (choice > Geography.getFacilitiesSize() || choice < outOfBounds) {
           System.out.println("Please enter a valid number.");
         } else {
 
           flag = validatingFacility(choice, municipality);
           if (flag) {
-            System.out.println(
-                "The facility you chose to visit does "
-                + "3not belong to the municipality "
-                    + "you chose. Please enter a valid number.");
+            System.out.println("The facility you chose to visit does "
+                + "not belong to the municipality "
+                + "you chose. Please enter a valid number.");
           }
         }
       } catch (InputMismatchException e) {
-        System.out.println("Please enter a valid number.");
+        System.out.println("Please enter an integer number.");
         flag = true;
       } catch (Exception e) {
         System.err.println(e);
