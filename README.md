@@ -3,11 +3,11 @@
 Looking Positive is a calendar/app that helps fight against the wildly spreading disease of corona virus. Each user makes a profile 
 in which he declares the venues he visited as well as the people he was in contact with. Having stored the mentioned data in a file,
 the app proccesses the information needed in order to notify the users that have been in contact with a verified Covid case.
-## Installation
-To run this project, install it locally using:
+## Run
+To run this project:
 
 ```bash
-java -jar install filename.jar
+java -jar filename.jar
 ```
 ## HandBook
 When you open the application you have to enter your cradentials.
@@ -28,7 +28,7 @@ In this part, you can find relevant information about Covid-19.
 #### Option 5
 In this part, you can change your personal information.
 #### Option 6
-This option allows you to exit the application.
+This option allows you to exit the application. Ιt is mandatory to press it in order to save the data with certainty.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -38,7 +38,7 @@ Please make sure to update tests as appropriate.
 Project is _in progress_
 
 ## Support
-For help contact LookingPositiveApp@gmail.com
+For help contact LookingPositiveapp@gmail.com
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
