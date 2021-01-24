@@ -104,6 +104,8 @@ public class Geography {
   }
 
   /**
+   * Returns the municipality.
+   *
    * @return municipality
    */
   public final String getMunicipality() {
@@ -111,6 +113,8 @@ public class Geography {
   }
 
   /**
+   * Stores the facilities.
+   *
    * @return the whole facilities table.
    */
   public static ArrayList<Geography> getFacilities() {
@@ -118,6 +122,7 @@ public class Geography {
   }
 
   /**
+   * Returns a single facility from the array list.
    *
    * @param i line to be returned
    * @return the whole line
@@ -127,6 +132,7 @@ public class Geography {
   }
 
   /**
+   * Returns the size of the facilities array list.
    *
    * @return size of facilities
    */

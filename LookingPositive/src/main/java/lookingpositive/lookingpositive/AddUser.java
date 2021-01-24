@@ -40,7 +40,8 @@ public final class AddUser {
     boolean flag = false;
     System.out.println("Would you like to change your email or password? \n"
         + "1. Email \n"
-        + "2. Password");
+        + "2. Password \n"
+        + "3. Return to main menu.");
     while (!flag) {
       try {
         choice = sc.nextInt();
@@ -57,6 +58,8 @@ public final class AddUser {
       } else if (choice == 2) {
         changePassword(id, sc);
         flag = true;
+      } else if (choice == THREE) {
+        break;
       } else {
         System.out.println("Insert valid number:\n"
             + "[1] for email or [2] for password.");
@@ -237,7 +240,7 @@ public final class AddUser {
     return isSuspectible;
   }
   /**
-   * User set his password.
+   * User sets his password.
    * @param sc is a Scanner
    * @return User's password
    */
@@ -261,9 +264,9 @@ public final class AddUser {
   }
 
   /**
-   * User set his password.
+   * User changes his password.
    * @param sc is a Scanner
-   * @return User's password
+   * @return User's new password
    */
   private static String passwordChanger(final Scanner sc) {
     System.out.println("Create your password:");
