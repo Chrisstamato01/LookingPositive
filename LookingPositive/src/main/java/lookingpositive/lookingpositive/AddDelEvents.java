@@ -282,7 +282,7 @@ public final class AddDelEvents {
    */
   private static Geography addGeography() {
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Which municipality do you want to visti"
+    System.out.println("Which municipality do you want to visit "
         + "(Vari-Voula-Vouliagmeni(1) - Alimos(2) - Glyfada(3). ");
     boolean flag = true;
     String municipality = null;
