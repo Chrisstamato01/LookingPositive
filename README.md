@@ -17,7 +17,7 @@ When you succesfully login, the application enables you to implement the followi
 
 #### Option 1
 In this part you can manage your events.
-In particular, you can create and see current and future events, as well as delete past events.
+In particular, you can create and see current and future events, as well as delete future events.
 #### Option 2
 In this part, you can renew your health status.
 You have the ability to add any symptoms and verify that you are a Covid-19 case.
