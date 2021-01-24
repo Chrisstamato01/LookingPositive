@@ -27,22 +27,23 @@ public final class AddDelEvents {
    */
   public static void chooseFunction(final int userId) {
     Scanner sc = new Scanner(System.in);
-    System.out
-        .println("Choose one of the following options:" + "\n1. Event registry."
-            + "\n2. Event deletion." + "\n3. Print of future events.");
+    System.out.println("Choose one of the following options:"
+        + "\n1. Event registry." + "\n2. Event deletion."
+        + "\n3. Print of future events." + "\n4. Back to the menu.");
     int choice = -1;
     boolean flag = true;
     final int firstCase = 1;
     final int secondCase = 2;
     final int thirdCase = 3;
+    final int fourthCase = 4;
     while (flag) {
       try {
         choice = sc.nextInt();
-        if (choice == firstCase || choice == secondCase
-            || choice == thirdCase) {
+        if (choice == firstCase || choice == secondCase || choice == thirdCase
+            || choice == fourthCase) {
           flag = false;
         } else {
-          System.out.println("Please enter 1, 2 or 3.");
+          System.out.println("Please enter a number between [1 - 4].");
         }
       } catch (InputMismatchException e) {
         System.out.println("Please enter an integer number.");
@@ -66,7 +67,6 @@ public final class AddDelEvents {
     }
 
   }
-
   // the event is created and registered in the calendar
   /**
    * This method adds an event to the calendar.
@@ -335,7 +335,7 @@ public final class AddDelEvents {
   private static Geography chooseFacility(final String municipality) {
     Scanner scanner = new Scanner(System.in);
     System.out
-        .println("Enter the number of the facility" + "you want to visit. ");
+        .println("Enter the number of the facility you want to visit. ");
     boolean flag = true;
     int choice = -1;
     final int outOfBounds = 1;
