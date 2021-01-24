@@ -97,6 +97,10 @@ public final class Health {
       flag = false;
       int countsymptoma = 0;
       while (!flag) {
+        if (countsymptoma != 0) {
+          System.out.println(
+              "You can add more symptoms or you can exit by pressing 0");
+        }
         System.out.println("If you have a fever, press 1 ");
         System.out.println("If you have a cough, press 2");
         System.out.println("If you feel tired, press 3");
@@ -105,7 +109,9 @@ public final class Health {
         System.out.println("If you have a sore throat, press 6");
         System.out.println("If you have a headache, press 7");
         System.out.println("If you have dyspnea, press 8");
+        if (countsymptoma == 0) {
         System.out.println("If you do not want to add a symptom, press 0");
+        }
         int choice = -1;
         while (choice < 0 || choice > EIGHT) {
           try {
