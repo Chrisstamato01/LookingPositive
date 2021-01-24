@@ -47,9 +47,10 @@ public final class Health {
   public static void chooseOperation(final int userID) {
     System.out.println("If you want to update your health status, press 1");
     System.out.println("If you have Coronavirus, press 2 ");
+    System.out.println("Press 0 to return to the home menu");
     Scanner sc = new Scanner(System.in);
-    int answer = 0;
-    while (answer != 1 && answer != 2) {
+    int answer = -1;
+    while (answer != 1 && answer != 2 && answer != 0) {
       try {
         answer = sc.nextInt();
       } catch (InputMismatchException ex) {
@@ -60,15 +61,18 @@ public final class Health {
         sc.next();
       }
 
-      if (answer != 1 && answer != 2) {
-        System.out.println("Enter an option [1-2]");
+      if (answer != 1 && answer != 2 && answer != 0) {
+        System.out.println("Enter an option [0-2]");
       }
     }
     if (answer == 2) {
       Geography.newCase(userID);
       Tracking.track(userID);
-    } else {
+    } else if (answer == 1) {
       areYouOk();
+    }
+    if (answer == 0) {
+      return;
     }
   }
 
@@ -97,6 +101,7 @@ public final class Health {
       flag = false;
       int countsymptoma = 0;
       while (!flag) {
+        System.out.println("\nBelow are the symptoms you can report:\n");
         if (countsymptoma != 0) {
           System.out.println(
               "You can add more symptoms or you can exit by pressing 0");
@@ -166,17 +171,17 @@ public final class Health {
         }
       }
       if (countsymptoma == 0) {
-        System.out.println("There is no reason to worry.");
+        System.out.println("There is no reason to worry.\n");
       } else if (countsymptoma < THREE) {
         System.out.println(
-            "Please contact your doctor and stay at home as a precaution.");
+            "Please contact your doctor and stay at home as a precaution.\n");
       } else {
         System.out.println(
             "Please contact your doctor as soon as possible,"
-            + " you may have Covid-19.");
+            + " you may have Covid-19.\n");
       }
     } else {
-      System.out.println("Perfect! Have a nice day and be careful!");
+      System.out.println("Perfect! Have a nice day and be careful!\n");
     }
   }
 }

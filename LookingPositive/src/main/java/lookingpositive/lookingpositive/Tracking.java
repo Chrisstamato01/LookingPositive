@@ -48,8 +48,10 @@ public final class Tracking {
         }
       }
     }
+    if (contactstoinform.size() > 0) {
     Tracking.removeDuplicates(contactstoinform);
     Mail.email(contactstoinform);
+    }
   }
 
   /**
