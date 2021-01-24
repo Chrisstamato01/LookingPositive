@@ -49,8 +49,8 @@ public final class Mail {
    * E-mail body.
    */
   private static final String EMAIL_BODY = "You have contacted"
-      + "a verified Covid case."
-      + "Stay home precautionarily ";
+      + " a verified Covid case."
+      + " Stay home precautionarily ";
 
   /**
    * this method sends E-mails.
