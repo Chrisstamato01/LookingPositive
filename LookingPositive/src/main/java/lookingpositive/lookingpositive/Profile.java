@@ -360,11 +360,6 @@ public class Profile {
    */
   @Override
   public final String toString() {
-    if (email == null) {
       return "Name=" + firstName + ", Surname=" + lastName;
-    } else {
-      return "Profile [ Name=" + firstName + ", Surname=" + lastName
-          + ", Residence Region=" + residenceRegion + ", Age=" + age + " ]";
-    }
   }
 }
