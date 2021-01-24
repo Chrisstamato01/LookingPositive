@@ -10,7 +10,7 @@ To run this project:
 java -jar filename.jar
 ```
 ## HandBook
-When you open the application you have to enter your cradentials.
+When you open the application you have to enter your credentials.
 If you do not have an account, you have to create one.
 To create an account you have to add your G-mail and some of your personal details.
 When you succesfully login, the application enables you to implement the following operations.
