@@ -42,7 +42,6 @@ public final class Operations {
    */
   public static void main(final String[] args) {
 
-    // dataRetrieved =FileManager.booleanRetriever();
     FileManager.makeDirectory();
     try {
       FileManager.booleanReader();
@@ -61,7 +60,6 @@ public final class Operations {
       Calendar.deleteExpiredEvents(LocalDate.now(), dateLastUserSignedIn);
     }
 
-    // dataReader καθε φορά εκτοσ απ την πρωτη δεν θα διαβαζει απο τζαρ
     run(SignInUp.login());
 
   }

@@ -22,7 +22,6 @@ public class ArrayListOfArrayList {
     eventList.add(usereventlist);
   }
 
-  // ΜΠΟΡΕΙ ΝΑ ΜΗΝ ΜΑΣ ΧΡΕΙΑΣΤΕΙ ΓΤ ΔΕΝ ΞΕΡΟΥΜΕ ΠΩ΅ΝΑ ΤΟ ΧΡΗΣΙΜΟΠΟΙΗΣΟΥΜΕ.
   /**
    * This method returns the eventList.
    *
