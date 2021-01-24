@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * This class is the model for users' profiles.
@@ -308,10 +307,6 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      /*
-       * File profilesfile = new File(
-       * "src\\main\\resources\\profiles.json").getAbsoluteFile();
-       */
       profiles = objectmapper.readValue(
           FileManager.streamToString("profiles.json"),
           new TypeReference<ArrayList<Profile>>() {

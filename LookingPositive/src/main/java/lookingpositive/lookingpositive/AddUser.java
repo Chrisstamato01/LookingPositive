@@ -74,7 +74,7 @@ public final class AddUser {
     for (int i = 0; i < Profile.profilesSize(); i++) {
       if (Profile.profilesLine(i).getUserID() == id) {
         Profile profile = Profile.profilesLine(i);
-        profile.setPassword(handlePassword(sc));
+        profile.setPassword(passwordChanger(sc));
       }
     }
   }
@@ -124,7 +124,7 @@ public final class AddUser {
    */
   private static String handleResidenceRegion(final Scanner sc) {
 
-    int a = -1;
+    int regionNum = -1;
     String residenceRegion = null;
 
     boolean flag = true;
@@ -139,7 +139,7 @@ public final class AddUser {
       while (!exceptionNotOccured) {
 
         try {
-          a = sc.nextInt();
+          regionNum = sc.nextInt();
           exceptionNotOccured = true;
         } catch (InputMismatchException e) {
           System.out.println("Enter valid number: (1,2,3)");
@@ -147,7 +147,7 @@ public final class AddUser {
         }
 
       }
-      switch (a) {
+      switch (regionNum) {
 
       case 1:
         residenceRegion = "Glyfada";
@@ -215,17 +215,17 @@ public final class AddUser {
    */
   private static Boolean handleIsSusceptible(final Scanner sc) {
     System.out.println("Are you susceptible (Y/N)");
-    boolean w = true;
+    boolean flag = true;
     String susceptible = null;
 
-    while (w) {
-      w = false;
+    while (flag) {
+      flag = false;
       susceptible = sc.nextLine();
       if (!(susceptible.equals("Y") || susceptible.equals("N")
          || susceptible.equals("y") || susceptible.equals("n")
          )) {
         System.out.println("Enter valid character (Y for yes/N for No)");
-        w = true;
+        flag = true;
       }
     }
     boolean isSuspectible;
@@ -243,23 +243,46 @@ public final class AddUser {
    */
   private static String handlePassword(final Scanner sc) {
     System.out.println("Create your password:");
-    boolean w = true;
+    boolean flag = true;
     final int eight = 8;
     final int twenty = 20;
     String pass = "";
-    while (w) {
-      w = false;
+    while (flag) {
+      flag = false;
       pass = sc.nextLine();
       if (pass.length() < eight || pass.length() > twenty
           || !passwordCheck(pass)) {
         System.out.println("Password must be between 8 - 20 characters"
             + " without spaces.");
-        w = true;
+        flag = true;
       }
     }
     return pass;
   }
 
+  /**
+   * User set his password.
+   * @param sc is a Scanner
+   * @return User's password
+   */
+  private static String passwordChanger(final Scanner sc) {
+    System.out.println("Create your password:");
+    boolean flag = true;
+    final int eight = 8;
+    final int twenty = 20;
+    String pass = "";
+    while (flag) {
+      flag = false;
+      pass = sc.next();
+      if (pass.length() < eight || pass.length() > twenty
+          || !passwordCheck(pass)) {
+        System.out.println("Password must be between 8 - 20 characters"
+            + " without spaces.");
+        flag = true;
+      }
+    }
+    return pass;
+  }
   /**
    * Handles the email.
    * @param sc Scanner
@@ -282,20 +305,20 @@ public final class AddUser {
   * @return User's email
   */
   private static String makeEmail(final Scanner sc) {
-    boolean a = false;
+    boolean isValid = false;
     System.out.println("Email(only gmail)\n"
     + "(until @. exmaple: lookingPositive@gmail.com"
     + " -> lookingPositive):");
     String email = sc.nextLine();
     String domain = null;
-    while (!a) {
+    while (!isValid) {
       if (email.contains("@") || email.contains(".com")
           || email.contains(".gr")) {
         System.out.println("Invalid input."
           + " Try again without the suffix @...");
           email = sc.nextLine();
       } else {
-        int b = -1;
+        int choice = -1;
 
         boolean flag = true;
 
@@ -308,7 +331,7 @@ public final class AddUser {
           while (!exceptionNotOccured) {
 
             try {
-              b = sc.nextInt();
+              choice = sc.nextInt();
               exceptionNotOccured = true;
             } catch (InputMismatchException e) {
               System.out.println("Enter valid number (1,2)");
@@ -316,7 +339,7 @@ public final class AddUser {
             }
 
           }
-          switch (b) {
+          switch (choice) {
 
           case 1:
             domain = "@gmail.com";
@@ -333,7 +356,7 @@ public final class AddUser {
           }
           sc.nextLine();
         }
-        a = true;
+        isValid = true;
       }
     }
     String usersEmail = email + domain;
@@ -376,9 +399,7 @@ public final class AddUser {
    * @return User's email
    */
    private static String newEmail(final Scanner sc) {
-/*     final int shortestMail = 6;
-     final int longestMail = 6;*/
-     boolean a = false;
+     boolean isValid = false;
      System.out.println("Enter new e-mail (only gmail)\n"
      + "(until @. example: lookingPositive@gmail.com"
      + " -> lookingPositive): \n"
@@ -386,14 +407,14 @@ public final class AddUser {
      + "be entered until the space.");
      String email = sc.next();
      String domain = null;
-     while (!a) {
+     while (!isValid) {
        if (email.contains("@") || email.contains(".com")
            || email.contains(".gr")) {
          System.out.println("Invalid email input."
            + " Try again without the suffix @...");
            email = sc.next();
        } else {
-         int b = -1;
+         int choice = -1;
 
          boolean flag = true;
 
@@ -406,15 +427,15 @@ public final class AddUser {
            while (!exceptionNotOccured) {
 
              try {
-               b = sc.nextInt();
+               choice = sc.nextInt();
                exceptionNotOccured = true;
              } catch (InputMismatchException e) {
                System.out.println("Enter valid number (1,2)");
-               sc.nextLine();
+               sc.next();
              }
 
            }
-           switch (b) {
+           switch (choice) {
 
            case 1:
              domain = "@gmail.com";
@@ -429,9 +450,8 @@ public final class AddUser {
              System.out.println("Enter valid number (1,2)");
              break;
            }
-           sc.nextLine();
          }
-         a = true;
+         isValid = true;
        }
      }
      String usersEmail = email + domain;
@@ -446,7 +466,7 @@ public final class AddUser {
   public static boolean alphabetCheck(final String input) {
       return ((input != null)
               && (!input.equals(""))
-              //Greek or Latin characters, plus spaces or - available
+              //Latin characters, plus spaces or - available
               && (input.matches("^[a-zA-Z- ]*$")));
   }
 /**
@@ -457,7 +477,7 @@ public final class AddUser {
   public static boolean passwordCheck(final String input) {
     return ((input != null)
             && (!input.equals(""))
-            //Greek or Latin characters, plus spaces or symbols available
+            //Latin characters, plus spaces or symbols available
             && (input.matches("^[a-zA-Z0-9!@#$%&-_]*$")));
   }
   /**

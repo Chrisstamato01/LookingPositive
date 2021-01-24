@@ -10,10 +10,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-//import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.fasterxml.jackson.databind.exc.MismatchedInputException;
-//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 /**
  * This class stores and organizes all the facilities according to their
@@ -213,7 +211,6 @@ public class Geography {
    * @return String
    */
   public static String munColor(final String mun) {
-    // updateCases();
     int current = 0; // the cases of the last three days
     double quotient;
     String color;
@@ -268,10 +265,6 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      /*
-       * File facilitiesfile = new File( "src\\main\\resources" +
-       * "\\facilities.json").getAbsoluteFile();
-       */
       facilities = objectmapper.readValue(
           FileManager.streamToString("facilities.json"),
           new TypeReference<ArrayList<Geography>>() {
