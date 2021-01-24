@@ -59,7 +59,7 @@ public final class AddUser {
         flag = true;
       } else {
         System.out.println("Insert valid number:\n"
-            + "[1] for email ή [2] for password.");
+            + "[1] for email or [2] for password.");
       }
       sc.nextLine();
     }
