@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * This class handles every user's events when days pass.
+ * This class handles the storing of users' events.
  */
 public final class Calendar {
 
@@ -31,8 +31,8 @@ public final class Calendar {
    * This field contains a table which contains the ArrayListOfArrayList
    * day1,day2,...,day14 on each cell.
    */
-  private static ArrayListOfArrayList[] fourteenDays =
-      new ArrayListOfArrayList[DAYS_COVID_LASTS];
+  private static ArrayListOfArrayList[] fourteenDays
+  = new ArrayListOfArrayList[DAYS_COVID_LASTS];
   /**
    * This field contains the events for each user on the current day.
    */
@@ -147,7 +147,7 @@ public final class Calendar {
   }
 
   /**
-   * This method adds a new Event on the calendar of user.
+   * This method adds a new Event on the calendar of the user.
    *
    * @param ev     is the event
    * @param userId is the user's id
@@ -164,9 +164,9 @@ public final class Calendar {
   }
 
   /**
-   * This method renews the events because day/days have passed.
+   * This method relocates the events because day/days have passed.
    *
-   * @param newDate the current date that the last user has singed in
+   * @param newDate the current date that the user has singed in
    * @param oldDate the date that the previews user had signed in
    */
   public static void deleteExpiredEvents(final LocalDate newDate,
@@ -191,7 +191,7 @@ public final class Calendar {
   }
 
   /**
-   * This method clears the future list from old dates.
+   * This method clears the future list from old events.
    *
    * @param replicaOldDate date which is compared with future's dates.
    */
@@ -200,10 +200,7 @@ public final class Calendar {
     for (int i = 0; i < future.giveEventListsSize(); i++) {
       for (int j = future.getUsersEventListsSize(i) - 1; j >= 0; j--) {
         if (replicaOldDate.isEqual((future.getCurrentEvent(i, j).getDate()))) {
-          // System.out.println(future.getUsersEventListsSize(i) + "before");
-          // future.eventlist.get(i).remove(j);
           future.removeCurrentEvent(i, j);
-          // System.out.println(future.getUsersEventListsSize(i) + "after");
         }
       }
     }
@@ -218,9 +215,7 @@ public final class Calendar {
     for (int i = 0; i < future.giveEventListsSize(); i++) {
       for (int j = 0; j < future.getUsersEventListsSize(i); j++) {
         if (replicaOldDate.isEqual((future.getCurrentEvent(i, j).getDate()))) {
-          // today.eventList.get(i).add(future.eventList.get(i).get(j));
           today.addEventToUsersList(i, future.getCurrentEvent(i, j));
-          // System.out.println(today.eventlist.get(i).get(j));
         }
       }
     }
@@ -270,7 +265,7 @@ public final class Calendar {
   }
 
   /**
-   * This method returns the Events of all users of future.
+   * This method returns the future Events of all users.
    *
    * @return ArrayListOfArrayList object
    */
@@ -278,9 +273,9 @@ public final class Calendar {
     return future;
   }
 
-  // ΝΑ ΤΗΝ ΒΑΛΟΥΜΕ ΣΤΗΝ ΚΛΑΣΗ ΤΟΥ ΧΡΗΣΤΟΥ.
   /**
-   * This method initialize every ArrayListOfArrayList object for each user.
+   * This method initialises every ArrayListOfArrayList object for each new
+   * user.
    */
   public static void daysInitializer() {
     today.createArrayListOfEvents();
@@ -304,7 +299,7 @@ public final class Calendar {
   /**
    * This method returns a chosen cell of fourteenDays table.
    *
-   * @param cell is one out of fourteen cells of fourteenDays
+   * @param cell the number of the cell
    * @return an ArrayListOfArrayList object
    */
   public static ArrayListOfArrayList getFourteenDaysCell(final int cell) {
@@ -333,11 +328,12 @@ public final class Calendar {
     objectSaver("day14", day14);
   }
 
-/**
- * This method saves the new data to the local file for each date.
- * @param day the day we want to save
- * @param days the day we want to save
- */
+  /**
+   * This method saves the new data to the local file for each date.
+   *
+   * @param day  the day we want to save as String
+   * @param days the events we want to save
+   */
   private static void objectSaver(final String day,
       final ArrayListOfArrayList days) {
     ObjectMapper objectMapper = new ObjectMapper()
@@ -382,10 +378,10 @@ public final class Calendar {
   }
 
   /**
-   * This method retrieves from the file one day's data.
+   * This method retrieves from the file one day's events.
    *
    * @param day the day we want to retrieve
-   * @return an ArrayListOfArrayList
+   * @return an ArrayListOfArrayList object
    */
   private static ArrayListOfArrayList objectRetriever(final String day) {
     ObjectMapper objectMapper = new ObjectMapper()
@@ -429,7 +425,7 @@ public final class Calendar {
   }
 
   /**
-   * This method reads from the local file one day's data.
+   * This method reads from the local file one day's events.
    *
    * @param day the day we want to read
    * @return an ArrayListOfArrayList

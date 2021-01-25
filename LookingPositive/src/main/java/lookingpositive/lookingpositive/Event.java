@@ -10,7 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 /**
- *This class contains the constructor of the events.
+ *This class makes events.
  */
 public final class Event {
   /**
@@ -58,7 +58,7 @@ public final class Event {
   }
 
   /**
-   * This method modify the date of the event.
+   * This method modifies the date of the event.
    *
    * @param newDate is the renewed date of the event.
    */

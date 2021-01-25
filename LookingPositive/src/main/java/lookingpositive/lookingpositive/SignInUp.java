@@ -3,18 +3,18 @@ package lookingpositive.lookingpositive;
 import java.util.Scanner;
 
 /**
- * This method is used to implement the user's Sign In and Sign Up.
+ * This class regulates the user's Sign In and Sign Up.
  */
 public final class SignInUp {
   /**
-   * This method is private Default constructor.
+   * This method is the private Default constructor.
    */
   private SignInUp() {
     // This class can not be initialized.
   }
 
   /**
-   * This method handles the user's sing in or register.
+   * This method handles the user's sing in or registration.
    * @return user's id
    */
   public static int login() {
@@ -46,11 +46,11 @@ public final class SignInUp {
   }
 
   /**
-   * Checks if the user already exists.
+   * This method checks if the user already exists.
    *
-   * @param email    is User's email
-   * @param password is User's password
-   * @return integer
+   * @param email the User's email
+   * @param password the User's password
+   * @return the user's validated id
    */
   public static int checkUser(final String email, final String password) {
     int id = -1;

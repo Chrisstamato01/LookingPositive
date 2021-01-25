@@ -1,8 +1,10 @@
 package lookingpositive.lookingpositive;
 
 import java.util.ArrayList;
+
 /**
- *This class creates and handles the objects ArrayListOfArrayList.
+ * This class creates and handles the objects ArrayListOfArrayList which contain
+ * all the users' events.
  */
 public class ArrayListOfArrayList {
 
@@ -10,9 +12,8 @@ public class ArrayListOfArrayList {
    * This field is an ArrayList which contains the ArrayLists of the Events for
    * each user.
    */
-  private ArrayList<ArrayList<Event>> eventList =
-      new ArrayList<ArrayList<Event>>();
-  // Creates a list of Events and adds them to the instance's eventLst.
+  private ArrayList<ArrayList<Event>> eventList
+  = new ArrayList<ArrayList<Event>>();
 
   /**
    * This method creates for each user a list that is added to the eventList.
@@ -25,7 +26,7 @@ public class ArrayListOfArrayList {
   /**
    * This method returns the eventList.
    *
-   * @return the eventList
+   * @return a two-dimensional ArrayList
    */
   public final ArrayList<ArrayList<Event>> getEventList() {
     return eventList;
@@ -42,7 +43,7 @@ public class ArrayListOfArrayList {
   }
 
   /**
-   * This method modify the eventList.
+   * This method modifies the eventList.
    *
    * @param newEventList is the renewed eventList of the event.
    */
@@ -93,8 +94,8 @@ public class ArrayListOfArrayList {
   /**
    * This method adds an event to a specific user's list of the eventList.
    *
-   * @param userId is a specific user
-   * @param ev     the is the new event
+   * @param userId is the Id of a user
+   * @param ev     is the new event
    */
   public final void addEventToUsersList(final int userId, final Event ev) {
     eventList.get(userId).add(ev);
@@ -125,7 +126,7 @@ public class ArrayListOfArrayList {
    *
    * @param rowCounter   the row with the events of a user
    * @param eventCounter the number of the event of a user
-   * @return a specific event
+   * @return an Event
    */
   public final Event getCurrentEvent(final int rowCounter,
       final int eventCounter) {
@@ -142,6 +143,7 @@ public class ArrayListOfArrayList {
       final int eventCounter) {
     eventList.get(rowCounter).remove(eventCounter);
   }
+
   /**
    * This method clears every list from an object ArrayListOfArrayList.
    */

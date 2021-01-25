@@ -21,7 +21,7 @@ public final class AddDelEvents {
   }
 
   /**
-   * This method is used as user's interface.
+   * This method is used as the user's interface.
    *
    * @param userId is each user's id
    */
@@ -29,7 +29,7 @@ public final class AddDelEvents {
     Scanner sc = new Scanner(System.in);
     System.out.println("Choose one of the following options:"
         + "\n1. Event registry." + "\n2. Event deletion."
-        + "\n3. Print of future events." + "\n4. Back to the menu.");
+        + "\n3. Print today's and future's events." + "\n4. Back to the menu.");
     int choice = -1;
     boolean flag = true;
     final int firstCase = 1;
@@ -67,6 +67,7 @@ public final class AddDelEvents {
     }
 
   }
+
   // the event is created and registered in the calendar
   /**
    * This method adds an event to the calendar.
@@ -125,7 +126,8 @@ public final class AddDelEvents {
   private static ArrayList<Profile> profileListInput() {
     Scanner sc = new Scanner(System.in);
     ArrayList<Profile> contactedPeople = new ArrayList<Profile>();
-    System.out.println("Will you meet up with other people during (Y/N).");
+    System.out
+        .println("Will you meet with other people during your event ? (Y/N)");
     boolean flag = true;
     String answer = null;
     while (flag) {
@@ -162,7 +164,7 @@ public final class AddDelEvents {
     return contactedPeople;
   }
 
-  // checks if the names exist as users otherwise creates the profiles
+  // checks if the names exist as users otherwise creates their profiles
   /**
    * This method validates the profile that are being added to the
    * contactedPeople list.
@@ -334,8 +336,7 @@ public final class AddDelEvents {
    */
   private static Geography chooseFacility(final String municipality) {
     Scanner scanner = new Scanner(System.in);
-    System.out
-        .println("Enter the number of the facility you want to visit. ");
+    System.out.println("Enter the number of the facility you want to visit. ");
     boolean flag = true;
     int choice = -1;
     final int outOfBounds = 1;

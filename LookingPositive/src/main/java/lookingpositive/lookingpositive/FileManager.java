@@ -27,10 +27,10 @@ public final class FileManager {
   }
 
   /**
-   * This is method converts an InputStream to a String.
+   * This method converts an InputStream to a String.
    *
-   * @param path name
-   * @return str
+   * @param path name of the file
+   * @return the file in String form
    */
   protected static String streamToString(final String path) {
     ClassLoader cl = Thread.currentThread().getContextClassLoader();
@@ -53,7 +53,7 @@ public final class FileManager {
   }
 
   /**
-   * This method creates a Directory in which our data is saved.
+   * This method creates a Directory in which our data is stored.
    *
    */
   public static void makeDirectory() {
@@ -72,9 +72,9 @@ public final class FileManager {
   }
 
   /**
-   * This method returns a String of the path of our users directory.
+   * This method returns the path of our users directory.
    *
-   * @return string
+   * @return the path as String
    *
    */
   private static String getProgramPath() {
@@ -106,7 +106,7 @@ public final class FileManager {
   }
 
   /**
-   * This method saves the date the last user singed in.
+   * This method saves the date user singed in in a JSON file.
    */
   private static void dateSaver() {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -201,21 +201,6 @@ public final class FileManager {
         Boolean.class));
   }
 
-  /*
-   * ΜΑΛΛΟΝ ΑΧΡΗΣΤΗ!!!!!!!!!!!!!!! This method shows that the program has not
-   * retrieved the data from the archive.
-   *
-   * @return a boolean value
-   *
-   * public static boolean booleanRetriever() { ObjectMapper objectMapper = new
-   * ObjectMapper();
-   *
-   * try { return (objectMapper.readValue(streamToString("dataRetrieved.json"),
-   * Boolean.class)); } catch (JsonMappingException e) { e.printStackTrace(); }
-   * catch (JsonGenerationException e) { e.printStackTrace(); } catch
-   * (IOException e) { System.out.println("ioexception:" + e); } catch
-   * (Exception e) { System.out.println("exception:" + e); } return false; }
-   */
   /**
    * This method changes the dataRetrieved file to show that the data has been
    * retrieved.

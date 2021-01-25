@@ -16,7 +16,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 /**
- * This class is the main and only thread of the program.
+ * This class has the main thread of the program.
  */
 public final class Operations {
   /**
@@ -51,7 +51,7 @@ public final class Operations {
 
       FileManager.booleanWriter();
       FileManager.dataRetriever();
-
+      FileManager.dataSaver();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -88,28 +88,33 @@ public final class Operations {
 
       case choiceOne:
         AddDelEvents.chooseFunction(userId);
+        FileManager.dataSaver();
         break;
 
       case choiceTwo:
         Health.chooseOperation(userId);
+        FileManager.dataSaver();
         break;
 
       case choiceThree:
         Geography.showMunColor(dateLastUserSignedIn);
+        FileManager.dataSaver();
         break;
 
       case choiceFour:
         Information.infoMenu();
+        FileManager.dataSaver();
         break;
 
       case choiceFive:
         AddUser.change(userId);
+        FileManager.dataSaver();
         break;
 
       case choiceSix:
         execution = false;
         FileManager.dataSaver();
-        System.out.println("The program terminated succesfuly.");
+        System.out.println("The program was terminated successfully.");
         break;
       default:
       }
