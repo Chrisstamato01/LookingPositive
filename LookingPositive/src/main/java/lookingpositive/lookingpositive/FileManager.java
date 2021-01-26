@@ -137,7 +137,7 @@ public final class FileManager {
 
     try {
       Operations.setDateLastUserSignedIn(objectMapper.readValue(
-          new File("LookingPositiveAppData/date.json").getAbsoluteFile(),
+          new File(getHomePath() + "/LookingPositiveAppData/date.json"),
           new TypeReference<LocalDate>() {
           }));
     } catch (JsonMappingException e) {
@@ -198,7 +198,7 @@ public final class FileManager {
     ObjectMapper objectMapper = new ObjectMapper();
 
     return (objectMapper.readValue(
-        new File(getHomePath() + "LookingPositiveAppData/dataRetrieved.json"),
+        new File(getHomePath() + "/LookingPositiveAppData/dataRetrieved.json"),
         Boolean.class));
   }
 
