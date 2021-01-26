@@ -28,7 +28,7 @@ In this part, you can find relevant information about Covid-19.
 #### Option 5
 In this part, you can change your personal information.
 #### Option 6
-This option allows you to exit the application. Ιt is mandatory to press it in order to save the data with certainty.
+This option allows you to exit the application.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
