@@ -211,8 +211,7 @@ public final class FileManager {
 
     try {
       objectMapper.writeValue(
-          new File(getHomePath() + "LookingPositiveAppData/dataRetrieved.json")
-              .getAbsoluteFile(),
+          new File(getHomePath() + "LookingPositiveAppData/dataRetrieved.json"),
           true);
     } catch (JsonMappingException e) {
       e.printStackTrace();
