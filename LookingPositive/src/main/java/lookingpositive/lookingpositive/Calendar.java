@@ -340,9 +340,8 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      objectMapper.writeValue(
-          new File("LookingPositiveAppData/" + day + ".json").getAbsoluteFile(),
-          days);
+      objectMapper.writeValue(new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + day + ".json"), days);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
@@ -435,9 +434,11 @@ public final class Calendar {
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     try {
-      return objectMapper.readValue(
-          new File("LookingPositiveAppData/" + day + ".json").getAbsoluteFile(),
-          ArrayListOfArrayList.class);
+      return objectMapper
+          .readValue(
+              new File(FileManager.getHomePath() + "/LookingPositiveAppData/"
+                  + day + ".json").getAbsoluteFile(),
+              ArrayListOfArrayList.class);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {

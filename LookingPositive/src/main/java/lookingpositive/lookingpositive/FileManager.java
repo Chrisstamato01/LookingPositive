@@ -58,7 +58,7 @@ public final class FileManager {
    */
   public static void makeDirectory() {
     try {
-      String path = getProgramPath();
+      String path = getHomePath();
 
       String fileSeparator = System.getProperty("file.separator");
       String newDir = path + fileSeparator + "LookingPositiveAppData"
@@ -72,15 +72,16 @@ public final class FileManager {
   }
 
   /**
-   * This method returns the path of our users directory.
+   * This method returns the path of our users home directory.
    *
    * @return the path as String
    *
    */
-  private static String getProgramPath() {
-    String currentdir = System.getProperty("user.dir");
-    currentdir = currentdir.replace("\\", "/");
-    return currentdir;
+  public static String getHomePath() {
+
+    String homedir = System.getProperty("user.home");
+    homedir = homedir.replace("\\", "/");
+    return homedir;
   }
 
   /**
@@ -114,7 +115,7 @@ public final class FileManager {
 
     try {
       objectMapper.writeValue(
-          new File("LookingPositiveAppData/date.json").getAbsoluteFile(),
+          new File(getHomePath() + "/LookingPositiveAppData/date.json"),
           LocalDate.now());
     } catch (JsonMappingException e) {
       e.printStackTrace();
@@ -197,7 +198,7 @@ public final class FileManager {
     ObjectMapper objectMapper = new ObjectMapper();
 
     return (objectMapper.readValue(
-        new File("LookingPositiveAppData/dataRetrieved.json").getAbsoluteFile(),
+        new File(getHomePath() + "LookingPositiveAppData/dataRetrieved.json"),
         Boolean.class));
   }
 
@@ -209,9 +210,10 @@ public final class FileManager {
     ObjectMapper objectMapper = new ObjectMapper();
 
     try {
-      objectMapper
-          .writeValue(new File("LookingPositiveAppData/dataRetrieved.json")
-              .getAbsoluteFile(), true);
+      objectMapper.writeValue(
+          new File(getHomePath() + "LookingPositiveAppData/dataRetrieved.json")
+              .getAbsoluteFile(),
+          true);
     } catch (JsonMappingException e) {
       e.printStackTrace();
     } catch (JsonGenerationException e) {
