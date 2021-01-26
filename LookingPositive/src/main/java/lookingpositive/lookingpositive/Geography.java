@@ -1,5 +1,5 @@
 /**
- * Looking Positive Geography.
+ * This class belongs to the package lookingpositive.lookingpositive.
  */
 package lookingpositive.lookingpositive;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 /**
  * This class stores and organizes all the facilities according to their
@@ -147,8 +146,7 @@ public class Geography {
    */
   public static void showMunColor(final LocalDate oldDate) {
     updateCases(oldDate);
-    System.out.println(
-        "Today's epidemiological profile is: ");
+    System.out.println("Today's epidemiological profile is: ");
     System.out.println(munColor("3B"));
     System.out.println(munColor("Glyfada"));
     System.out.println(munColor("Alimos"));
@@ -242,8 +240,7 @@ public class Geography {
       color = "Green";
     }
 
-    return "The municpality's: " + mun
-        + " epidemiological profile is: "
+    return "The municpality's: " + mun + " epidemiological profile is: "
         + color;
   }
 
@@ -254,8 +251,8 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File facilitiesfile = new File(
-          "LookingPositive/" + "facilities.json").getAbsoluteFile();
+      File facilitiesfile = new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "facilities.json");
       objectmapper.writeValue(facilitiesfile, facilities);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -290,15 +287,14 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File casesfile = new File("LookingPositiveAppData/" + "cases3b.json")
-          .getAbsoluteFile();
+      File casesfile = new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "cases3b.json");
       objectmapper.writeValue(casesfile, cases3B);
-      File casesfile2 = new File("LookingPositiveAppData/"
-      + "casesglyfada.json")
-          .getAbsoluteFile();
+      File casesfile2 = new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "casesglyfada.json");
       objectmapper.writeValue(casesfile2, casesGlyfada);
-      File casesfile3 = new File("LookingPositiveAppData/" + "casesalimos.json")
-          .getAbsoluteFile();
+      File casesfile3 = new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "casesalimos.json");
       objectmapper.writeValue(casesfile3, casesAlimos);
 
     } catch (IOException e) {
@@ -315,19 +311,16 @@ public class Geography {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      cases3B = objectmapper.readValue(
-          new File("LookingPositiveAppData/" + "cases3b.json")
-          .getAbsoluteFile(),
+      cases3B = objectmapper.readValue(new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "cases3b.json"),
           new TypeReference<int[]>() {
           });
-      casesGlyfada = objectmapper.readValue(
-          new File("LookingPositiveAppData/" + "casesglyfada.json")
-          .getAbsoluteFile(),
+      casesGlyfada = objectmapper.readValue(new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "casesglyfada.json"),
           new TypeReference<int[]>() {
           });
-      casesAlimos = objectmapper.readValue(
-          new File("LookingPositiveAppData/" + "casesalimos.json")
-          .getAbsoluteFile(),
+      casesAlimos = objectmapper.readValue(new File(FileManager.getHomePath()
+          + "/LookingPositiveAppData/" + "casesalimos.json"),
           new TypeReference<int[]>() {
           });
 
@@ -357,63 +350,6 @@ public class Geography {
           FileManager.streamToString("casesalimos.json"),
           new TypeReference<int[]>() {
           });
-
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * Saves the cases to the JSON file.
-   */
-  public static void casesSaverTwo() {
-    ObjectMapper objectmapper = new ObjectMapper();
-
-    try {
-      File casesfile = new File(
-          "src\\main\\resourses\\"
-          + "cases3b.json").getAbsoluteFile();
-      objectmapper.writeValue(casesfile, cases3B);
-      File casesfile2 = new File(
-          "src\\main\\resourses\\"
-          + "casesglyfada.json").getAbsoluteFile();
-      objectmapper.writeValue(casesfile2, casesGlyfada);
-      File casesfile3 = new File(
-          "src\\main\\resourses\\"
-          + "casesalimos.json").getAbsoluteFile();
-      objectmapper.writeValue(casesfile3, casesAlimos);
-
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * Retrieves facilities from the JSON file.
-   */
-  public static void casesRetrieverTwo() {
-    ObjectMapper objectmapper = new ObjectMapper();
-
-    try {
-      File casesfile = new File(
-          "src\\main\\resourses"
-          + "\\cases3b.json").getAbsoluteFile();
-      cases3B = objectmapper.readValue(
-          casesfile, new TypeReference<int[]>() { });
-      File casesfile2 = new File(
-          "src\\main\\resourses"
-          + "\\casesglyfada.json").getAbsoluteFile();
-      casesGlyfada = objectmapper.readValue(
-          casesfile2, new TypeReference<int[]>() { });
-      File casesfile3 = new File(
-          "src\\main\\resourses"
-          + "\\cases3b.json").getAbsoluteFile();
-      casesAlimos = objectmapper.readValue(
-          casesfile3, new TypeReference<int[]>() { });
 
     } catch (IOException e) {
       System.out.println("ioexception:" + e);

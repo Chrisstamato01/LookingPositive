@@ -233,15 +233,16 @@ public class Profile {
 
   /**
    * Calculates age from date of birth.
+   *
    * @param birthdate is the date of birth
    * @return age
    */
   public static int calculateAge(final LocalDate birthdate) {
     LocalDate currentDate = LocalDate.now();
     if ((birthdate != null) && (currentDate != null)) {
-        return Period.between(birthdate, currentDate).getYears();
+      return Period.between(birthdate, currentDate).getYears();
     } else {
-        return 0;
+      return 0;
     }
   }
 
@@ -270,8 +271,8 @@ public class Profile {
     ObjectMapper objectmapper = new ObjectMapper();
 
     try {
-      File profilesfile = new File("LookingPositiveAppData/profiles.json")
-          .getAbsoluteFile();
+      File profilesfile = new File(
+          FileManager.getHomePath() + "/LookingPositiveAppData/profiles.json");
       objectmapper.writeValue(profilesfile, profiles);
     } catch (IOException e) {
       System.out.println("ioexception:" + e);
@@ -288,8 +289,8 @@ public class Profile {
 
     try {
       profiles = objectmapper.readValue(
-          new File("LookingPositiveAppData/profiles.json")
-          .getAbsoluteFile(),
+          new File(FileManager.getHomePath()
+              + "/LookingPositiveAppData/profiles.json"),
           new TypeReference<ArrayList<Profile>>() {
           });
 
@@ -320,46 +321,10 @@ public class Profile {
   }
 
   /**
-   * Saves profiles to JSON file.
-   */
-  public static void profilesSaverTwo() {
-    ObjectMapper objectmapper = new ObjectMapper();
-
-    try {
-      File profilesfile = new File(
-          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
-      objectmapper.writeValue(profilesfile, profiles);
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
-   * Retrieves profiles from JSON file.
-   */
-  public static void profilesRetrieverTwo() {
-    ObjectMapper objectmapper = new ObjectMapper();
-
-    try {
-      File profilesfile = new File(
-          "src\\main\\resourses\\profiles.json").getAbsoluteFile();
-      profiles = objectmapper.readValue(
-          profilesfile, new TypeReference<ArrayList<Profile>>() { });
-
-    } catch (IOException e) {
-      System.out.println("ioexception:" + e);
-    } catch (Exception e) {
-      System.out.println("exception:" + e);
-    }
-  }
-
-  /**
    * ToString method.
    */
   @Override
   public final String toString() {
-      return "Name=" + firstName + ", Surname=" + lastName;
+    return "Name=" + firstName + ", Surname=" + lastName;
   }
 }
