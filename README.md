@@ -21,6 +21,7 @@ In particular, you can create and see current and future events, as well as dele
 #### Option 2
 In this part, you can renew your health status.
 You have the ability to add any symptoms and verify that you are a Covid-19 case.
+If you have tested positive with the varius you should reported once.
 #### Option 3
 In this part, you can see the epidemiological status of each area.
 #### Option 4
