@@ -51,6 +51,8 @@ public final class Tracking {
     if (contactstoinform.size() != 0) {
     Tracking.removeDuplicates(contactstoinform);
     Mail.email(contactstoinform);
+    } else {
+    System.out.println("Thanks for the update!");
     }
   }
 

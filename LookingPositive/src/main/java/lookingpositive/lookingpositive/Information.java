@@ -53,7 +53,7 @@ public final class Information {
             "The disease of coronavirus 2019 "
                 + "(Corona virus disease 2019, COVID-19)\n"
                 + "also known as accute respiratory disease 2019-nCoV, "
-                + "is an infactory disease that is caused"
+                + "is an infectious disease that is caused"
                 + " by coronavirus SARS-CoV-2. \n"
                 + "The virus first appeared in Wuhan,"
                 + " China in the end of 2019.\n");
@@ -83,7 +83,7 @@ public final class Information {
                 + "corresponds to the reaons below:\r\n"
                 + "1.Transition to a pharmacy or visit to a doctor, "
                 + "after having booked an appointment.\r\n"
-                + "2.Transition to a store for first need goods "
+                + "2.Transition to a store for necessity goods "
                 + "(super/mini markets), "
                 + "where delivery is not applicable.\r\n"
                 + "3.Transition to a bank, in case that "
@@ -107,15 +107,15 @@ public final class Information {
         System.out
             .println("Allowed masks are the surgical, the "
                 + "approved non surgical and the high protection masks.\n"
-                + "Masks should be used in every indoor space"
-                + "and in crowdedn places(ex. bus stops).\n"
+                + "Masks should be used in every indoor "
+                + "and outdoor space.\n"
                 + "The mask should cover your mouth and nose in every case.\n");
         break;
       case CASE_FIVE:
         System.out.println("The fine for not using a mask as well as not "
-            + "following the transition rules comes to 300 euros.\n"
+            + "following the transition rules comes up to 300 euros.\n"
             + "The fine for organizing gatherings and parties "
-            + "comes to 3000 euros.\n");
+            + "comes up to 3000 euros.\n");
         break;
       case CASE_SIX:
         choice = -1;
